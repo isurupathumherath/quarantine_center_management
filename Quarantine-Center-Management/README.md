@@ -2,7 +2,7 @@
 
 # Inatallation Guide
 <ol>
-  <li>git clone https://github.com/HirushaRukmal/Quarantine-Center-Management.git</li>
+  <li>git clone https://github.com/SLIIT-FacultyOfComputing/itp_project-g17.git</li>
   <li>Open the project</li>
   <li>cd server</li>
   <li>npm i</li>
