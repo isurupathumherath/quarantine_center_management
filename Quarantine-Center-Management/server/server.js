@@ -8,7 +8,7 @@ require('dotenv').config();
 // import routes
 const employeeRoutes = require('./routes/Employee'); //--Added by Isuru Pathum Herath--
 const employeeSalaryRoute = require('./routes/Employee-Salary'); //--Added by Isuru Pathum Herath--
-import financePaymentRoutes from './routes/financePayment.js'; //--Added by Janith gamage--
+import financePaymentRoutes from './routes/FinanceRoutes/financePayment'; //--Added by Janith gamage--
 
 // App
 const app = express();

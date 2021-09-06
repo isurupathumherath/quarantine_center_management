@@ -5,7 +5,7 @@
  */ 
 
 import mongoose from 'mongoose';
-import FinancePayment from '../models/financePaymentschema.js';
+import FinancePayment from '../../models/FinanceModels/financePaymentschema.js';
 
 
 /*

@@ -6,7 +6,7 @@
 
 import express from 'express';
 
-import { getPaymnts, createPayment, updatePayment, deletePayment } from '../controllers/financePayment.js';
+import { getPaymnts, createPayment, updatePayment, deletePayment } from '../../controllers/FinanceControllers/financePayment';
 
 const router = express.Router(); 
 
