@@ -1,0 +1,5 @@
+Add Your Components Here 
+Path - Your Function Folder > Your Pages;
+Example  - UserMangment > login.JS
+                        > Home.JS
+                        > Dashboard.js
