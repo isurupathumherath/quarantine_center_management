@@ -1,0 +1,5 @@
+Add Your Components Here 
+Path - Your Function Folder > Your reducer;
+Example  - UserMangment > index.JS
+                        > post.JS
+                        > ...

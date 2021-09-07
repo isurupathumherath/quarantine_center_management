@@ -1,0 +1,4 @@
+Add Your Constants Here 
+Path - Your Function Folder > Your constants;
+Example  - UserMangment > actionType.js 
+                        > ...
