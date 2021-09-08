@@ -4,7 +4,7 @@
     Name - Employee CRUD
  */
 
-const Employee = require('../models/employee');
+const Employee = require('../../models/HRM/Employee');
 const { uniqueNamesGenerator, names } = require('unique-names-generator');
 require('dotenv').config();
 

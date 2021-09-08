@@ -7,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 
 // Import Controller Methods
-const { create, showAll, readById, readByUsername, readByMobile, readByNIC, update, remove } = require('../controllers/employee');
+const { create, showAll, readById, readByUsername, readByMobile, readByNIC, update, remove } = require('../../controllers/HRM/Employee');
 
 
 // Controller Routes
