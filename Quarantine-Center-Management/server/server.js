@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // import routes
+const ticketRoutes = require('./routes/Ticket-Admin'); //--Added by Vishara Prabuddhi--
 const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Pathum Herath--
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
@@ -31,6 +32,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 // Route Middleware
+app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
 app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
