@@ -37,5 +37,5 @@ app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
 app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
 
 // Post
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
