@@ -10,7 +10,7 @@ const employeeRoutes = require('./routes/Employee'); //--Added by Isuru Pathum H
 const employeeSalaryRoute = require('./routes/Employee-Salary'); //--Added by Isuru Pathum Herath--
 import financePaymentRoutes from './routes/FinanceRoutes/financePayment'; //--Added by Janith gamage--
 import financePayerRoutes from './routes/FinanceRoutes/financePayer'; //--Added by Janith Gamage--
-
+import postRoutes from './routes/posts.js';
 // App
 const app = express();
 
@@ -35,7 +35,7 @@ app.use('/employee', employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use('/salary', employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 app.use('/payment', financePaymentRoutes); //--Added by Janith Gamage--
 app.use('/payer', financePayerRoutes); //--Added by Janith Gamage--
-
+app.use('/posts', postRoutes);
 // Post
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
