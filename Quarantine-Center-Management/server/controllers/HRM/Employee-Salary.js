@@ -4,7 +4,7 @@
     Name - EMP Salary CRUD
  */
 
-const EmployeeSalary = require('../models/Employee-Salary');
+const EmployeeSalary = require('../../models/HRM/Employee-Salary');
 
 /*
 Name - Add Salary
