@@ -1,3 +1,12 @@
+import axios from 'axios';
+import React, { Component } from 'react';
+import {BrowserRouter,Route} from 'react-router-dom';
+
+//pages
+import addTicket from './pages/TicketManagement/addTicket';
+
+
+export default class App extends Component {
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -27,4 +36,17 @@ class App extends Component {
   }
 }
 
-export default App;
+  render() {
+    return (
+
+      <BrowserRouter>
+      <div className="container">
+        
+        <Route path="/add" component={addTicket}></Route>
+        </div>
+        </BrowserRouter>
+
+    
+    )
+  }
+}

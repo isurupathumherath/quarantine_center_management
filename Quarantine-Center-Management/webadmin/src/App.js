@@ -1,3 +1,15 @@
+import axios from 'axios';
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+//pages
+import viewTickets from './components/TicketManagement/adminAllTickets';
+import replyTickets from './components/TicketManagement/adminEditTickets';
+
+export default class App extends Component {
+
+  render() {
+    return (
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
@@ -8,7 +20,6 @@ import Sidebar from './components/Common/Navigation/Sidebar';
 
 //component
 import Login from './components/exampleComponent/Loginform';
-
 
 //pages
 class App extends Component {
@@ -30,4 +41,16 @@ class App extends Component {
   }
 }
 
-export default App;
+      <BrowserRouter>
+        <div className="container">
+
+          <Route path="/" exact component={viewTickets}></Route>
+          <Route path="/edit/:id" component={replyTickets}></Route>
+
+        </div>
+      </BrowserRouter>
+
+
+    )
+  }
+}
