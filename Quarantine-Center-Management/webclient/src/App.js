@@ -23,9 +23,10 @@ class App extends Component {
         <div class="content">
           <div class="container-fluid">
             <Switch>
+              {/* Janith */}
               <Route path="/login" exact component={Login} />
+              {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />
-
               <Route path="/foodadmin" exact component={FoodAdmin} />
               <Route path="/allOrders" exact component={AllOrders} />
               <Route path="/foodCart" exact component={FoodCart} />
