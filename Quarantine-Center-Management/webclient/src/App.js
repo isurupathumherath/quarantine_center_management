@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
+
 //common navigation components
 import Header from "./components/Common/Navigation/Header";
 import Footer from "./components/Common/Navigation/Footer";
+import Register from './components/UserManagement/Register';
+import Home from './components/UserManagement/Home';
+import Login from './components/UserManagement/Login';
+import EditProfile from './components/UserManagement/EditProfile';
 
 //pages
-import Login from "./pages/Common/Loginexaple";
+//import Login from "./pages/Common/Loginexaple";
 
 class App extends Component {
   render() {
@@ -17,7 +22,11 @@ class App extends Component {
         <div class="content">
           <div class="container-fluid">
             <Switch>
+              {/*<Route path="/login" exact component={Login} />*/}
+              <Route path="/register" exact component={Register} />
+              {/*<Route path="/home" exact component={Home} />
               <Route path="/login" exact component={Login} />
+    <Route path="/edit/:id" component={EditProfile} />*/}
             </Switch>
           </div>
         </div>

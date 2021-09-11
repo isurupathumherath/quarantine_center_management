@@ -56,11 +56,11 @@ export default class Header extends Component {
                 </li>
                 <li class="has-submenu">
                   <a href="#">
-                    Doctors <i class="fas fa-chevron-down"></i>
+                    UserManagement <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
                     <li>
-                      <a href="doctor-dashboard.html">Doctor Dashboard</a>
+                      <a href={"/register"}>User Home</a>
                     </li>
                     <li>
                       <a href="appointments.html">Appointments</a>
