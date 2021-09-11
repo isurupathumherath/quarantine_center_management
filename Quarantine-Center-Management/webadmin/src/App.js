@@ -9,7 +9,6 @@ import Sidebar from './components/Common/Navigation/Sidebar';
 //component
 import Login from './components/exampleComponent/Loginform';
 
-
 //pages
 class App extends Component {
   render() {
@@ -31,12 +30,3 @@ class App extends Component {
 }
 
 export default App;
-
-      // <BrowserRouter>
-      //   <div className="container">
-
-      //     <Route path="/" exact component={viewTickets}></Route>
-      //     <Route path="/edit/:id" component={replyTickets}></Route>
-
-      //   </div>
-      // </BrowserRouter>
