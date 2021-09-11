@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import uniqid from "uniqid";
 import axios from "axios";
-import OrderContext from "./store/orderContext";
-import OrderedList from "./OrderedList";
-import ConfirmOrder from "./ConfirmOrder";
+import OrderContext from "../../components/FoodManagement/store/orderContext";
+import OrderedList from "../../components/FoodManagement/OrderedList";
+import ConfirmOrder from "../../components/FoodManagement/ConfirmOrder";
 import Modal from "react-modal";
-import ModelCss from "./ui/modelCss.css";
+import ModelCss from "../../components/FoodManagement/ui/modelCss.css";
 
 export default function FoodCart() {
   const orderedCtx = useContext(OrderContext);

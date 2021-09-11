@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 export default class Header extends Component {
   render() {
     return (
@@ -188,46 +188,23 @@ export default class Header extends Component {
                 </li>
                 <li class="has-submenu">
                   <a href="#">
-                    Pages <i class="fas fa-chevron-down"></i>
+                    Foods <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
                     <li>
-                      <a href="voice-call.html">Voice Call</a>
+                      <Link to={"/allFood"}>Foods Home</Link>
                     </li>
                     <li>
-                      <a href="video-call.html">Video Call</a>
+                      <Link to={"/addFood"}>Order Details</Link>
                     </li>
                     <li>
-                      <a href="search.html">Search Doctors</a>
+                      <Link to={"/foodadmin"}>Foods Admin</Link>
                     </li>
                     <li>
-                      <a href="calendar.html">Calendar</a>
+                      <Link to={"/allOrders"}>Past Orders</Link>
                     </li>
                     <li>
-                      <a href="components.html">Components</a>
-                    </li>
-                    <li class="has-submenu">
-                      <a href="invoices.html">Invoices</a>
-                      <ul class="submenu">
-                        <li>
-                          <a href="invoices.html">Invoices</a>
-                        </li>
-                        <li>
-                          <a href="invoice-view.html">Invoice View</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="blank-page.html">Starter Page</a>
-                    </li>
-                    <li>
-                      <a href="login.html">Login</a>
-                    </li>
-                    <li>
-                      <a href="register.html">Register</a>
-                    </li>
-                    <li>
-                      <a href="forgot-password.html">Forgot Password</a>
+                      <Link to={"/foodCart"}>Food Cart</Link>
                     </li>
                   </ul>
                 </li>

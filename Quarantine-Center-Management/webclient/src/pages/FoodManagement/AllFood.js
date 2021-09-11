@@ -18,73 +18,75 @@ export default function AllFoods() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#DCDCDC" }}>
-      <h3>Asd</h3>
-      <div
-        className="row"
-        style={{ marginLeft: "20px", backgroundColor: "#DCDCDC" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            overflowX: "auto",
-          }}
-        >
-          {food.map((post) => (
-            <div key={post.foodID}>
-              <FoodItem
-                name={post.name}
-                price={post.price}
-                id={post.foodID}
-                description={post.description}
-                image={post.image}
-              />
-            </div>
-          ))}
-        </div>
+    <section class="section home-tile-section">
+      <div class="container-fluid">
+        <div class="row">
+          <div>
+            <div className="row">
+              <div
+                style={{
+                  display: "flex",
+                  overflowX: "auto",
+                }}
+              >
+                {food.map((post) => (
+                  <div key={post.foodID}>
+                    <FoodItem
+                      name={post.name}
+                      price={post.price}
+                      id={post.foodID}
+                      description={post.description}
+                      image={post.image}
+                    />
+                  </div>
+                ))}
+              </div>
 
-        <div
-          style={{
-            display: "flex",
-            overflowX: "auto",
-            marginTop: "40px",
-          }}
-        >
-          {food.map((post) => (
-            <div key={post.foodID}>
-              <FoodItem
-                key={post.foodID}
-                name={post.name}
-                price={post.price}
-                id={post.foodID}
-                description={post.description}
-                image={post.image}
-              />
-            </div>
-          ))}
-        </div>
+              <div
+                style={{
+                  display: "flex",
+                  overflowX: "auto",
+                  marginTop: "40px",
+                }}
+              >
+                {food.map((post) => (
+                  <div key={post.foodID}>
+                    <FoodItem
+                      key={post.foodID}
+                      name={post.name}
+                      price={post.price}
+                      id={post.foodID}
+                      description={post.description}
+                      image={post.image}
+                    />
+                  </div>
+                ))}
+              </div>
 
-        <div
-          style={{
-            display: "flex",
-            overflowX: "auto",
-            marginTop: "40px",
-          }}
-        >
-          {food.map((post) => (
-            <div key={post.foodID}>
-              <FoodItem
-                key={post.foodID}
-                name={post.name}
-                price={post.price}
-                id={post.foodID}
-                description={post.description}
-                image={post.image}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  overflowX: "auto",
+                  marginTop: "40px",
+                }}
+              >
+                {food.map((post) => (
+                  <div key={post.foodID}>
+                    <FoodItem
+                      key={post.foodID}
+                      name={post.name}
+                      price={post.price}
+                      id={post.foodID}
+                      description={post.description}
+                      image={post.image}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -5,7 +5,6 @@ import { XSquare } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Check } from "react-feather";
 import uniqid from "uniqid";
-import AllOrders from "./AllOrders";
 
 const $ = require("jquery");
 
@@ -23,8 +22,7 @@ export default function FoodAdmin() {
   let [likeCount, setlikeCount] = useState("");
   let [insertDate, setinsertDate] = useState("");
   let [option, setOption] = useState(1);
-
-  let count = 1;
+  let count = 0;
 
   useEffect(() => {
     axios
@@ -145,10 +143,8 @@ export default function FoodAdmin() {
     e.preventDefault();
 
     let fid = foodID;
-    console.log(fid);
-    console.log(objectID);
-    console.log(name);
 
+    console.log(image);
     if (option == 2) {
       const updateFood = {
         foodID: fid,
@@ -174,6 +170,7 @@ export default function FoodAdmin() {
         });
     }
     if (option == 1) {
+      console.log(image);
       const newFood = {
         foodID: uniqid(),
         name,
@@ -201,113 +198,111 @@ export default function FoodAdmin() {
   }
 
   return (
-    <div style={{ backgroundColor: "#DCDCDC" }}>
+    <div>
       <div>
         <div className="row">
-          <div
-            className="col-md-4"
-            style={{
-              backgroundColor: "white",
-              marginTop: "20px",
-            }}
-          >
-            <form
-              onSubmit={sendData}
-              style={{
-                marginTop: "20px",
-                marginLeft: "20px",
-              }}
-            >
-              <div className="form-group">
-                <label for="exampleInputEmail1">Food Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                />
+          <div className="col-md-4">
+            <div className="card">
+              <div className="card-header">
+                <h4 className="card-title">Add/Update</h4>
               </div>
+              <div className="card-body">
+                <form action="#">
+                  <div className="change-avatar">
+                    <div className="profile-img">
+                      <img src={`img/${image}`} alt="Food Image" />
+                    </div>
+                    <br />
 
-              <div className="form-group">
-                <label for="exampleInputEmail1">Price</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter price"
-                  value={price}
-                  onChange={(e) => {
-                    setPrice(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Description</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Description"
-                  value={description}
-                  onChange={(e) => {
-                    setDescription(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Type</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Description"
-                  value={type}
-                  onChange={(e) => {
-                    setType(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Image</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Image"
-                  value={image}
-                  onChange={(e) => {
-                    setImage(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label for="exampleInputEmail1">Image</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Image"
-                  value={option}
-                  onChange={(e) => {
-                    setImage(e.target.value);
-                  }}
-                />
-              </div>
+                    <div className="upload-img">
+                      <div className="change-photo-btn">
+                        <span>
+                          <i className="fa fa-upload"></i> Upload Photo
+                        </span>
+                        <input
+                          type="file"
+                          className="upload"
+                          onChange={(e) => {
+                            setImage(e.target.value.split("\\").pop());
+                          }}
+                        />
+                      </div>
+                      <small className="form-text text-muted">
+                        Allowed JPG, GIF or PNG. Max size of 2MB
+                      </small>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label>Food Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Price</label>
+                    <input
+                      type="text"
+                      pattern="[0-9]"
+                      className="form-control"
+                      placeholder="Enter price"
+                      value={price}
+                      onChange={(e) => {
+                        setPrice(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Description</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Enter Description"
+                      value={description}
+                      onChange={(e) => {
+                        setDescription(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Type</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Enter Type"
+                      value={type}
+                      onChange={(e) => {
+                        setType(e.target.value);
+                      }}
+                    />
+                  </div>
 
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </form>
+                  <div className="form-group">
+                    <input
+                      type="hidden"
+                      className="form-control"
+                      placeholder="Enter Image"
+                      placeholder="Enter Image"
+                      value={option}
+                    />
+                  </div>
+
+                  <div className="text-right">
+                    <button
+                      type="submit"
+                      onClick={sendData}
+                      className="btn btn-primary"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
           <div className="col-md-8">
             <div
@@ -339,7 +334,7 @@ export default function FoodAdmin() {
                     <tbody>
                       {food.map((post) => (
                         <tr key={post.foodID}>
-                          <td>1</td>
+                          <td>{(count = count + 1)}</td>
                           <td className="py-1">
                             <img
                               src={`../../img/${post.image}`}

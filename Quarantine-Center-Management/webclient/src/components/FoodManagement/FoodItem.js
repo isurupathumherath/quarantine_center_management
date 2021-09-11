@@ -1,7 +1,6 @@
 import axios from "axios";
 import Modal from "react-modal";
 import React, { useState, useContext, useEffect } from "react";
-import { Heart } from "react-feather";
 import FoodComment from "./FoodComments";
 import FoodDetails from "./FoodDetails";
 import SendComment from "./SendComment";
@@ -79,7 +78,7 @@ export default function FoodItem(props) {
         boxShadow: "5px 5px 5px 5px #888888",
       }}
     >
-      <img
+      {/* <img
         src={`img/${props.image}`}
         onClick={modalOpen}
         className="card-img-top"
@@ -115,6 +114,52 @@ export default function FoodItem(props) {
             </a>
           </div>
           <div className="col-md-2"></div>
+        </div>
+
+      </div> */}
+      <div class="blog grid-blog">
+        <div class="blog-image">
+          <a>
+            <img
+              class="img-fluid"
+              src={`img/${props.image}`}
+              alt="Post Image"
+              onClick={modalOpen}
+              style={{
+                width: "250px",
+                height: "200px",
+              }}
+            />
+          </a>
+        </div>
+        <div class="blog-content">
+          <div className="row">
+            <div className="col-md-3">
+              <a onClick={toogleFavouriteStatusHandler}>
+                {isFavourite ? (
+                  <FeatherIcon
+                    icon="heart"
+                    fill="red"
+                    color="white"
+                    style={{ stroke: "red" }}
+                  />
+                ) : (
+                  <FeatherIcon
+                    icon="heart"
+                    borderColor="white"
+                    style={{ stroke: "black" }}
+                  />
+                )}
+              </a>
+            </div>
+            <div className="col-md-6"></div>
+            <div className="col-md-3">
+              <a onClick={toogleFavouriteStatusHandler}>
+                <FeatherIcon icon="more-vertical" style={{ stroke: "green" }} />
+              </a>
+            </div>
+            <div className="col-md-2"></div>
+          </div>
         </div>
       </div>
 

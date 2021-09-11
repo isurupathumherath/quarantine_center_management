@@ -59,13 +59,26 @@ export default function ConfirmOrder(props) {
             <h4 className="card-title">
               Do you have any special instructions?
             </h4>
-            <textarea
+            {/* <textarea
               cols="80"
               onChange={(e) => {
                 setInstruction(e.target.value);
               }}
-            />
-
+            /> */}
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Specify Instructions</span>
+              </div>
+              <textarea
+                class="form-control"
+                aria-label="With textarea"
+                onChange={(e) => {
+                  setInstruction(e.target.value);
+                }}
+              ></textarea>
+            </div>
+            <br />
+            <br />
             <h4 className="card-title">Select the delivery date</h4>
             <DateTimePicker onChange={setDeliveryDate} value={deliveryDate} />
           </div>
@@ -88,7 +101,7 @@ export default function ConfirmOrder(props) {
                 Room-No : 202
               </p>
 
-              <h4>Total price : Rs.{totalPrice}.00</h4>
+              <h4 style={{ color: "red" }}>Total price : Rs.{totalPrice}.00</h4>
               <button className="btn btn-primary" onClick={confirmOrder}>
                 Confirm order
               </button>
