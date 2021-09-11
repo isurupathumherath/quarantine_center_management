@@ -24,9 +24,9 @@ const App = () => {
     }
 
     //Delete staff Member by ID
-    const deleteStaffMember = (id) => {
+    const deleteStaffMember = (employeeId) => {
         axios
-        .delete(`http://localhost:8000/employee/removebyId/${id}`)
+        .delete(`http://localhost:8000/employee/remove/${employeeId}`)
         .then(response => {
             alert(response.data.message);
             fetchStaffMembers();
@@ -74,11 +74,11 @@ const App = () => {
                 <td>{staffMembers.createdAt}</td>
                
                 <td>
-                  <a className="btn btn-warning" href={`/edit/${staffMembers._id}`}>
+                  <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>
                     <i className="fas fa-edit"></i>&nbsp;
                   </a>
                   &nbsp;
-                  <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers._id)}>
+                  <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
                     <i className="far fa-trash-alt"></i>&nbsp;
                   </a>
                 </td>

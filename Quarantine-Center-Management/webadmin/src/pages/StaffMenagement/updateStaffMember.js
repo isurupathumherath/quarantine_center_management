@@ -8,7 +8,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const updateStaffMember = props => {
+const UpdateStaffMember = props => {
     // state
     const [state, setState] = useState({
         firstName: '',
@@ -20,16 +20,20 @@ const updateStaffMember = props => {
         // DOB: new Date(),
         NIC: '',
         address: '',
-        type: ''
+        type: '',
+        id: ''
     });
 
      //destructure values from state
      const{firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address} = state;
 
-     useEffect(() => {
+     console.log(`PROP TEST: ${props.match.params._id}`)
+     
+     useEffect(() => {  
         axios
-            .get(`http://localhost:8000/employee//displayEmployeeById/${props.match.params.id}`)
+            .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
+                console.log(response)
                 const {firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address} = response.data
                 setState({...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address})
             })
@@ -96,24 +100,32 @@ const updateStaffMember = props => {
         event.preventDefault()
         console.table({firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address})
         axios
-            .put(`http://localhost:8000/employee/`, { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address })
+            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address })
             .then(response => {
 
                 console.log(response)
-                const {title, content, slug, user} = response.data
+                const {firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address} = response.data
                 
                 //empty state
-                setState({ ...state, title, content, slug, user} );
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address} );
                 //show success alert
-                alert(`Post Titled ${title} is Updated`);
+                alert(`Staff Member ${firstName} is Updated`);
             })
             .catch(error => {
                 console.log(error.Response)
                 alert(error.response.data.error)
             })
     };
+
+    return (
+        <div className="container p-5" style={{marginTop:'40px', marginRight:'40px'}}>
+        <br />
+        <h1>UPDATE STAFF MEMBER</h1>
+        {showUpdateForm()}
+    </div>
+    )
      
 }
 
 
-export default updateStaffMember;
+export default UpdateStaffMember;
