@@ -243,10 +243,24 @@ exports.showAll = (req, res) => {
 };
 
 /*
-Name - Display Employee Details by Id
+Name - Display Employee Details by Employee Id
 Date - 22/08/2021
  */
 exports.readById = (req, res) => {
+    const { employeeId } = req.params
+    console.log(req.params._id)
+    Employee.findOne({employeeId})
+        .exec((err, employee) => {
+            if(err) console.log(err);
+            res.json(employee);
+        });
+};
+
+/*
+Name - Display Employee Details by _Id
+Date - 22/08/2021
+ */
+exports.readBy_Id = (req, res) => {
     const { employeeId } = req.params
     console.log(req.params._id)
     Employee.findOne({employeeId})
@@ -312,12 +326,39 @@ exports.update = (req, res) => {
 }
 
 /*
+Name - Update Employee Details by Id
+Date - 11/09/2021
+ */
+exports.updateEmployeeDetail = (req, res) => {
+    const { ID } = req.params;
+    const {firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password} = req.body;
+    Employee.findOneAndUpdate({ID}, {firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC}, {new: true}).exec((err, post) => {
+        if(err) console.log(err);
+        res.json(post);
+    }) 
+}
+
+/*
 Name - Delete Post by Employee Id
 Date - 22/08/2021
  */
 exports.remove = (req, res) => {
     const { employeeId } = req.params;
     Employee.findOneAndRemove({employeeId}).exec((err, post) => {
+        if(err) console.log(err);
+        res.json({
+            message: 'Employee Deleted'
+        });
+    }) 
+}
+
+/*
+Name - Delete Post by _ID
+Date - 11/09/2021
+ */
+exports.removebyId = (req, res) => {
+    const { ID } = req.params.id;
+    Employee.findOneAndRemove({ID}).exec((err, post) => {
         if(err) console.log(err);
         res.json({
             message: 'Employee Deleted'

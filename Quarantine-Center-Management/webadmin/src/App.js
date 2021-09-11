@@ -9,6 +9,10 @@ import Sidebar from './components/Common/Navigation/Sidebar';
 //component
 import Login from './components/exampleComponent/Loginform';
 
+//Page Route
+import AddStaffMember from './pages/StaffMenagement/addStaffMember'
+import AallStaffMembers from './pages/StaffMenagement/allStaffMembers'
+
 //pages
 class App extends Component {
   render() {
@@ -20,6 +24,8 @@ class App extends Component {
           <div class="content container-fluid">
             <Switch>
               <Route path="/login" exact component={Login} />
+              <Route path="/addStaffMember" exact component={AddStaffMember} />
+              <Route path="/allStaffMembers" exact component={AallStaffMembers} />
             </Switch>
           </div>
         </div>

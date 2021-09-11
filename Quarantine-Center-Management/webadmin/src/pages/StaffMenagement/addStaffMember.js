@@ -1,5 +1,15 @@
+/*
+    Created by - Isuru Pathum Herath
+    On - 11/09/2021
+    Name - AddStaffMember
+    Last Update - 11/09/2021
+ */
+
+
 import React, {useState} from 'react';
 import axios from 'axios';
+// import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const App = () => {
 
@@ -11,6 +21,7 @@ const App = () => {
         mobileNumber: '',
         email: '',
         DOB: '',
+        // DOB: new Date(),
         NIC: '',
         address: '',
         type: ''
@@ -34,13 +45,14 @@ const App = () => {
     const handleSubmit = event => {
         event.preventDefault()
         console.table({firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type})
-        axios.post(`${process.env.REACT_APP_API}/employee`, { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type })
+        axios.post(`http://localhost:8000/employee/add`, { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type })
         .then(response => {
             console.log(response)
-            //empty state
-            setState({ ...state, firstName: '', middleName: '', lastName: '', mobileNumber: '', email: '', DOB: '', NIC: '', address: '', type: ''} );
             //show success alert
             alert(`Employee ${response.data.firstName} is Created`);
+            //empty state
+            setState({ ...state, firstName: '', middleName: '', lastName: '', mobileNumber: '', email: '', DOB: '', NIC: '', address: '', type: ''} );
+            
         })
         .catch(error => {
             console.log(error.Response)
@@ -50,40 +62,49 @@ const App = () => {
 
   return (
     <div className="container p-5">
-      <br />
       
-      <h1>ADD NEW EMPLOYEE</h1>
+      <h1 align = "center">ADD NEW EMPLOYEE</h1>
       <br/>
       
       {/* {JSON.stringify(state)} */}
       <form onSubmit={handleSubmit}>
           <div className="form-group">
               <label className="text-muted">First Name</label>
-              <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" required/>
+              <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Middle Name</label>
-              <textarea onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" required/>
+              <input onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Last Name</label>
-              <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" required/>
+              <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Mobile Number</label>
-              <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" required/>
+              <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" pattern="[0-9]{10}" title="Invalid Mobile Number." required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Email Address</label>
-              <input onChange={handleChange('email')} value={email} type="text" className="form-control" placeholder="Enter the Email Address" required/>
+              <input onChange={handleChange('email')} value={email} type="email" className="form-control" placeholder="Enter the Email Address" title="Invalid Email Address."  required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Birth Day</label>
-              <input onChange={handleChange('DOB')} value={DOB} type="text" className="form-control" placeholder="Enter the Date of Birth" required/>
+              <input onChange={handleChange('DOB')} value={DOB} className="form-control" placeholder="Enter the Date of Birth" required/>
           </div>
+
+            {/* <div className="form-group">
+            <DatePicker
+                // selected={ this.state.DOB }
+                onChange={handleChange('DOB')} 
+                value={DOB}
+                dateFormat="MM/dd/yyyy"
+            />
+            </div> */}
+
           <div className="form-group">
               <label className="text-muted">NIC Number</label>
-              <input onChange={handleChange('NIC')} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" required/>
+              <input onChange={handleChange('NIC')} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" pattern="[0-9]{12}" title="Invalid NIC Number." required/>
           </div>
           <div className="form-group">
               <label className="text-muted">Address</label>

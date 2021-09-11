@@ -1,10 +1,8 @@
 import React from 'react'
-import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as HiIcons from 'react-icons/hi';
-
 
 export const SidebarData = [
     {
@@ -58,19 +56,19 @@ export const SidebarData = [
     },
     {
         title: 'Staff management',
-        path: '/stuff',
+        path: '/staff',
         icon: <AiIcons.AiOutlineRadiusUpleft/>, 
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
-                title: 'ADD NEW EMPLOYEE',
-                path: {ADD_EMPLOYEE},
+                title: 'ADD STAFF MEMBER',
+                path: '/addStaffMember',
                 icon: <RiIcons.RiDashboardLine />
             },
             {
-                title: 'Details',
-                path: '/finance/details',
+                title: 'ALL STAFF MEMBERS',
+                path: '/allStaffMembers',
                 icon: <IoIcons.IoIosPaper />
             },
             {
@@ -109,7 +107,6 @@ export const SidebarData = [
         path: '/login',
         icon: <AiIcons.AiOutlineLogin/>, 
     },
-
     // {
     //     title: 'Reports',
     //     path: '/reports',
