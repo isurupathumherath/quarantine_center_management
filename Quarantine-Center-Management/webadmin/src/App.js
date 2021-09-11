@@ -20,7 +20,6 @@ class App extends Component {
           <div class="content container-fluid">
             <Switch>
               <Route path="/login" exact component={Login} />
-
             </Switch>
           </div>
         </div>

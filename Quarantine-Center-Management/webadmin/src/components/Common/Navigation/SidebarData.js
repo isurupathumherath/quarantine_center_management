@@ -6,8 +6,6 @@ import * as RiIcons from 'react-icons/ri';
 import * as HiIcons from 'react-icons/hi';
 
 
-
-
 export const SidebarData = [
     {
         title: 'User management',
@@ -62,6 +60,25 @@ export const SidebarData = [
         title: 'Staff management',
         path: '/stuff',
         icon: <AiIcons.AiOutlineRadiusUpleft/>, 
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'ADD NEW EMPLOYEE',
+                path: {ADD_EMPLOYEE},
+                icon: <RiIcons.RiDashboardLine />
+            },
+            {
+                title: 'Details',
+                path: '/finance/details',
+                icon: <IoIcons.IoIosPaper />
+            },
+            {
+                title: 'Report',
+                path: '/finance/report',
+                icon: <HiIcons.HiDocumentReport />
+            },
+        ]
     },
     {
         title: 'Finance Managment',
@@ -92,6 +109,7 @@ export const SidebarData = [
         path: '/login',
         icon: <AiIcons.AiOutlineLogin/>, 
     },
+
     // {
     //     title: 'Reports',
     //     path: '/reports',
