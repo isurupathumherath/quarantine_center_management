@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {BrowserRouter as Router,Route} from "react-router-dom"
+import axios from 'axios'
+import Allstock from './components/InventoryManagement/allStock';
+import Onestock from './components/InventoryManagement/onestock';
+import Delete from './components/InventoryManagement/deleteBatch';
+import UpdateStock from './components/InventoryManagement/updateBatch';
+import Addbatch from './components/InventoryManagement/addBatch';
+// import Onestocktest from './components/InventoryManagement/onestock copy';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div>
+       <Route path="/add" exact component={Addbatch}/> 
+       <Route path="/update" exact component={UpdateStock}/>  
+       <Route path="/delete" exact component={Delete}/> 
+       <Route path="/" exact component={Allstock}/> 
+       <Route path="/onestock/:name" exact component={Onestock}/>                       
     </div>
+    </Router>
   );
 }
 
 export default App;
+                           
