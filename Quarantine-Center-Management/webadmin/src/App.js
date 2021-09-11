@@ -22,7 +22,7 @@ class App extends Component {
           <div class="content container-fluid">
             <Switch>
               <Route path="/login" exact component={Login} />
-              <Route path="/" exact component={viewTickets} />
+              <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
             </Switch>
           </div>
