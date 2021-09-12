@@ -22,7 +22,8 @@ export default function DisplayComments(props) {
     axios
       .post("http://localhost:8000/comment/", newComment)
       .then(() => {
-        alert("Comment added");
+        props.func();
+        setComment("");
       })
       .catch((err) => {
         alert(err);
@@ -38,6 +39,7 @@ export default function DisplayComments(props) {
         <input
           type="text"
           className="form-control"
+          value={comment}
           onChange={(e) => {
             setComment(e.target.value);
           }}

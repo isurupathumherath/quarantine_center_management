@@ -11,6 +11,7 @@ import FoodAdmin from "../../webclient/src/pages/FoodManagement/FoodAdmin";
 
 import FoodCart from "../../webclient/src/pages/FoodManagement/FoodCart";
 import AllOrders from "../../webclient/src/pages/FoodManagement/AllOrders";
+import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 
 //pages
 import Login from "./pages/Common/Loginexaple";
@@ -30,6 +31,7 @@ class App extends Component {
               <Route path="/foodadmin" exact component={FoodAdmin} />
               <Route path="/allOrders" exact component={AllOrders} />
               <Route path="/foodCart" exact component={FoodCart} />
+              <Route path="/orderAdmin" exact component={OrderAdmin} />
             </Switch>
           </div>
         </div>

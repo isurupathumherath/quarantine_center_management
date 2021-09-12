@@ -250,7 +250,7 @@ export default function FoodItem(props) {
               ))}
             </div>
 
-            <SendComment foodID={props.id} />
+            <SendComment func={modalOpen} foodID={props.id} />
           </div>
         </div>
       </Modal>

@@ -195,7 +195,7 @@ export default class Header extends Component {
                       <Link to={"/allFood"}>Foods Home</Link>
                     </li>
                     <li>
-                      <Link to={"/addFood"}>Order Details</Link>
+                      <Link to={"/orderAdmin"}>Order Details</Link>
                     </li>
                     <li>
                       <Link to={"/foodadmin"}>Foods Admin</Link>
