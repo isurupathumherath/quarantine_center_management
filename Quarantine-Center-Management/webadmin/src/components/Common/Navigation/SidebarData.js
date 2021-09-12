@@ -72,10 +72,11 @@ export const SidebarData = [
                 icon: <IoIcons.IoIosPaper />
             },
             {
-                title: 'Report',
-                path: '/finance/report',
+                title: 'ADD SALARY',
+                path: '/addSalary',
                 icon: <HiIcons.HiDocumentReport />
             },
+            
         ]
     },
     {

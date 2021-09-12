@@ -1,7 +1,7 @@
 /*
     Created by - Isuru Pathum Herath
     On - 11/09/2021
-    Name - AddStaffMember
+    Name - addStaffMember
     Last Update - 11/09/2021
  */
 
@@ -61,8 +61,7 @@ const App = () => {
     };
 
   return (
-    <div className="container p-5">
-      
+    <div className="container p-5" style={{marginTop:'40px'}}>
       <h1 align = "center">ADD NEW EMPLOYEE</h1>
       <br/>
       

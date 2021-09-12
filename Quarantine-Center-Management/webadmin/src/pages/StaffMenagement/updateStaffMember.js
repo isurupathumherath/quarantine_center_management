@@ -84,6 +84,7 @@ const UpdateStaffMember = props => {
               <label className="text-muted">Address</label>
               <input onChange={handleChange('address')} value={address} type="text" className="form-control" placeholder="Enter the Address" required/>
           </div>
+          <br/>
           <div>
               <button className="btn btn-primary">Update</button>
           </div>
@@ -118,14 +119,14 @@ const UpdateStaffMember = props => {
     };
 
     return (
-        <div className="container p-5" style={{marginTop:'40px', marginRight:'40px'}}>
+        
+    <div className="container p-5" style={{marginTop:'40px', marginRight:'40px'}}>
         <br />
         <h1>UPDATE STAFF MEMBER</h1>
         {showUpdateForm()}
+        
     </div>
     )
-     
 }
-
 
 export default UpdateStaffMember;

@@ -18,21 +18,10 @@ const App = () => {
     const fetchStaffMembers = () => {
         axios.get("http://localhost:8000/employee/all-employees")
         .then(response => {
-            console.log(response)
+            // console.log(response)
             setStaffMembers(response.data)
         })
         .catch(error => alert("Error Fetching Staff Members"));
-    }
-
-    //Delete staff Member by ID
-    const deleteStaffMember = (employeeId) => {
-        axios
-        .delete(`http://localhost:8000/employee/remove/${employeeId}`)
-        .then(response => {
-            alert(response.data.message);
-            fetchStaffMembers();
-        })
-        .catch(error => alert('Error deleting Staff Member'));
     }
 
     //Filter Staff Member
@@ -44,7 +33,7 @@ const App = () => {
         .then(response => {
             console.log(response)
             const newFilter = staffMembers.filter((response) => {
-                return response.NIC.toLowerCase().includes(searchWord.toLowerCase());
+                return response.firstName.toLowerCase().includes(searchWord.toLowerCase());
             });
 
             if (searchWord === "") {
@@ -66,15 +55,12 @@ const App = () => {
             <h1 align="center">Staff Members</h1>
             <br/>
             <form style={{marginTop:'40px', marginLeft:'40px'}}>
-            <div className="col-lg-3 mt-2 mb-2">
                 <input
-                className="form-control"
-                type="search"
-                placeholder="Search"
-                value={wordEntered}
-                onChange={handleFilter}
+                    type="text"
+                    placeholder="Search.."
+                    value={wordEntered}
+                    onChange={handleFilter}
                 />
-            </div>
             </form>
           <br/>
             <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'40px'}}>
@@ -108,15 +94,6 @@ const App = () => {
                 <td>{staffMembers.mobileNumber}</td>
                 <td>{staffMembers.createdAt}</td>
                
-                <td>
-                  <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>
-                    <i className="fas fa-edit"></i>&nbsp;
-                  </a>
-                  &nbsp;
-                  <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
-                    <i className="far fa-trash-alt"></i>&nbsp;
-                  </a>
-                </td>
               </tr>
             ))}
             </tbody>
