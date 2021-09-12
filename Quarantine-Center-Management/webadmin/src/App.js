@@ -4,7 +4,7 @@ import './App.css';
 
 //common navigation components
 import Header from './components/Common/Navigation/Header';
-import Sidebar from './components/Common/Navigation/Sidebar'; 
+import Sidebar from './components/Common/Navigation/Sidebar';
 
 //component
 import Login from './components/exampleComponent/Loginform';
@@ -18,6 +18,8 @@ import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Adde
 import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
 
 //pages
+import viewTickets from './components/TicketManagement/adminAllTickets';
+import replyTickets from './components/TicketManagement/adminEditTickets';
 class App extends Component {
   render() {
     return (
@@ -35,6 +37,8 @@ class App extends Component {
               <Route path="/singleProfile/:id" exact component={singleProfile} />   {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/filterStaffMember" exact component={filterStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addSalary" exact component={addSalary} />   {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/viewticket" exact component={viewTickets} />
+              <Route path="/edit/:id" component={replyTickets} />
             </Switch>
           </div>
         </div>
