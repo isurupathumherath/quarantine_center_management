@@ -1,18 +1,39 @@
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import AddPCR from './components/MedicalTests/AddPCR';
 import {BrowserRouter as Router,Route} from "react-router-dom"
 
-function App() {
-  return (
-    <Router>
-      <div>
-         <Route path="/addPCR" exact component={AddPCR}/>
+//common navigation components
+import Header from './components/Common/Navigation/Header';
+import Sidebar from './components/Common/Navigation/Sidebar';
 
-         <AddPCR/>
-      </div>
-    </Router> 
-    
-  );
+//component
+import Login from './components/exampleComponent/Loginform';
+
+//pages
+import viewTickets from './components/TicketManagement/adminAllTickets';
+import replyTickets from './components/TicketManagement/adminEditTickets';
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Header />
+        <Sidebar />
+        <div class="page-wrapper">
+          <div class="content container-fluid">
+            <Switch>
+              <Route path="/login" exact component={Login} />
+              <Route path="/viewticket" exact component={viewTickets} />
+              <Route path="/edit/:id" component={replyTickets} />
+              <Route path="/addPCR" exact component={AddPCR}/>
+              <AddPCR/>
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    )
+  }
 }
 
 export default App;
