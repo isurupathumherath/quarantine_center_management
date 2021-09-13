@@ -8,6 +8,8 @@ require('dotenv').config();
 // import routes
 const employeeRoutes = require('./routes/Employee'); //--Added by Isuru Pathum Herath--
 const employeeSalaryRoute = require('./routes/Employee-Salary'); //--Added by Isuru Pathum Herath--
+const PCRTestsRouter = require("./routes/MedicalTestsDetails/PCRTests.js");//--Added by Mathishi Adya Dissanayake--
+const TempCheckupsRouter = require("./routes/MedicalTestsDetails/TempCheckups");//--Added by Mathishi Adya Dissanayake--
 
 // App
 const app = express();
@@ -31,6 +33,8 @@ app.use(bodyParser.json());
 // Route Middleware
 app.use('/employee', employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use('/salary', employeeSalaryRoute); //--Added by Isuru Pathum Herath--
+app.use("/PCRTest",PCRTestsRouter);//--Added by Mathishi Adya Dissanayake--
+app.use("/TempCheckup",TempCheckupsRouter);//--Added by Mathishi Adya Dissanayake--
 
 // Post
 const port = process.env.PORT || 8000;
