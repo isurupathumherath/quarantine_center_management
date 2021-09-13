@@ -16,23 +16,15 @@
         const[staffSalary, setStaffSalary] = useState([]);
         const [wordEntered, setWordEntered] = useState("");
         const [wordEnteredStaff, setWordEnteredStaff] = useState("");
+        const [filterId, setFilterId] = useState("");
 
         // state
         const [state, setState] = useState({
-            firstName: '',
-            middleName: '',
-            lastName: '',
-            mobileNumber: '',
-            email: '',
-            DOB: '',
-            // DOB: new Date(),
-            NIC: '',
-            address: '',
-            type: ''
+            EmployeeID: '', Grade: '', PerDay: '', AdditionalHour: ''
         });
 
         //destructure values from state
-        const{firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type} = state;
+        const{ EmployeeID, Grade, PerDay, AdditionalHour } = state;
 
     
         //Fetch All staff Members
@@ -87,10 +79,32 @@
             })
             .catch(error => console.log(error));
         };
+
+        //Filter Staff Member By ID
+        const handleFilterStaffById = (event) => {
+            const searchWord = event.target.value;
+            console.log(searchWord);
+            setFilterId(searchWord);
+            axios.get("http://localhost:8000/employee/all-employees")
+            .then(response => {
+                console.log(response)
+                const newFilter = staffMembers.filter((response) => {
+                    return response.employeeId.toLowerCase().includes(searchWord.toLowerCase());
+                });
+
+                if (searchWord === "") {
+                    alert("EMPLTY");
+                    fetchStaffMembers();
+                } else {
+                    setStaffMembers(newFilter);
+                }
+            })
+            .catch(error => console.log(error));
+        };
     
         //Filter Staff Salary
-        const handleFilter = (event) => {
-            const searchWord = event.target.value;
+        const handleFilter = (key) => {
+            const searchWord = key;
             console.log(searchWord);
             setWordEntered(searchWord);
             axios.get("http://localhost:8000/salary/all-salary")
@@ -119,15 +133,17 @@
         //Submit Form Data
         const handleSubmit = event => {
             event.preventDefault()
-            console.table({firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type})
-            axios.post(`http://localhost:8000/employee/add`, { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type })
+            console.table({ EmployeeID, Grade, PerDay, AdditionalHour })
+            axios.post(`http://localhost:8000/salary/add`, { EmployeeID, Grade, PerDay, AdditionalHour })
             .then(response => {
                 console.log(response)
+                handleFilterStaffById(EmployeeID);
                 //show success alert
-                alert(`Employee ${response.data.firstName} is Created`);
+                alert(`Salary Added for ${response.data.EmployeeID}`);
                 //empty state
-                setState({ ...state, firstName: '', middleName: '', lastName: '', mobileNumber: '', email: '', DOB: '', NIC: '', address: '', type: ''} );
-                
+                setState({ ...state, EmployeeID: '', Grade: '', PerDay:'', AdditionalHour: ''} );
+                fetchStaffMembers();
+                fetchSalaryDetails();
             })
             .catch(error => {
                 console.log(error.Response)
@@ -151,25 +167,25 @@
                                 <div class="col">
                                     <div className="form-group">
                                         <label className="text-muted">Employee ID</label>
-                                        <input onChange={handleChange('employeeId')} value={firstName} type="text" className="form-control" placeholder="Enter the Employee ID" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
+                                        <input onChange={handleChange('EmployeeID')} value={EmployeeID} type="text" className="form-control" placeholder="Enter the Employee ID" pattern="[0-9]{5}" title="Please Enter Valid Employee ID" required/>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div className="form-group">
                                         <label className="text-muted">Grade</label>
-                                        <input onChange={handleChange('grade')} value={middleName} type="text" className="form-control" placeholder="Enter the Grade" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
+                                        <input onChange={handleChange('Grade')} value={Grade} type="text" className="form-control" placeholder="Enter the Grade" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div className="form-group">
                                         <label className="text-muted">Salary Per Day</label>
-                                        <input onChange={handleChange('salaryPerDay')} value={lastName} type="text" className="form-control" placeholder="Salary Per Day (Rs.)" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required/>
+                                        <input onChange={handleChange('PerDay')} value={PerDay} type="text" className="form-control" placeholder="Salary Per Day (Rs.)" pattern="[0-9]{0-10}" title="Please Enter Valid Salary Rate" required/>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div className="form-group">
                                         <label className="text-muted">Salary per OT hour</label>
-                                        <input onChange={handleChange('salaryPerOtHour')} value={mobileNumber} type="text" className="form-control" placeholder="Salary Per OT Hour (Rs.)" pattern="[0-9]{10}" title="Invalid Mobile Number." required/>
+                                        <input onChange={handleChange('AdditionalHour')} value={AdditionalHour} type="text" className="form-control" placeholder="Salary Per OT Hour (Rs.)" pattern="[0-9]{0-10}" title="Please Enter Valid Salary Rate" required/>
                                     </div>
                                     
                                 </div>
