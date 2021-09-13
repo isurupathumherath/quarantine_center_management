@@ -40,7 +40,7 @@ export const SidebarData = [
     },
     {
         title: 'Ticketing system',
-        path: '/ticketing',
+        path: '/viewalltickets',
         icon: <AiIcons.AiTwotoneRocket/>, 
     },
     {
