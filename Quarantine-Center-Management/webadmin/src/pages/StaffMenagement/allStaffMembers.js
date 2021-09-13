@@ -5,9 +5,8 @@
     Last Update - 11/09/2021
  */
 
-import React, { useState, useEffect, setState} from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 
 const App = () => {
 
@@ -63,9 +62,10 @@ const App = () => {
 
     return (
         <div>
+
             <h1 align="center">Staff Members</h1>
             <br/>
-            <form style={{marginTop:'40px', marginLeft:'40px'}}>
+            <form style={{marginTop:'40px', marginLeft:'40px', marginRight:'40px'}}>
             <div className="col-lg-3 mt-2 mb-2">
                 <input
                 className="form-control"
@@ -77,18 +77,19 @@ const App = () => {
             </div>
             </form>
           <br/>
-            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'40px'}}>
+            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'20px'}}>
             <thead>
                 <tr>
-                    <th >#</th>
-                    <th >Employee ID</th>
-                    <th >First Name</th>
-                    <th >Last Name</th>
-                    <th >Employee Type</th>
-                    <th >NIC Number</th>
-                    <th >Email Address</th>
-                    <th >Mobile Number</th>
+                    <th>#</th>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Employee Type</th>
+                    <th>NIC Number</th>
+                    <th>Email Address</th>
+                    <th>Mobile Number</th>
                     <th >Added At</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

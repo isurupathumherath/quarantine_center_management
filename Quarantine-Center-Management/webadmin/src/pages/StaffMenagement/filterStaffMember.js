@@ -63,7 +63,7 @@ const App = () => {
                 />
             </form>
           <br/>
-            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'40px'}}>
+            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'20px'}}>
             <thead>
                 <tr>
                     <th >#</th>
@@ -75,6 +75,7 @@ const App = () => {
                     <th >Email Address</th>
                     <th >Mobile Number</th>
                     <th >Added At</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

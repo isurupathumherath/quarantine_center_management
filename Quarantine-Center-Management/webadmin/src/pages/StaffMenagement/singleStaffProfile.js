@@ -5,12 +5,10 @@
     Last Update - 12/09/2021
  */
 
-import React, { useState, useEffect, Table} from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 
 import '../../assets/HRM/staffProfile.css';
-// import '../../assets/HRM/css/style.css';
 
 const App = props => {
 
@@ -28,7 +26,8 @@ const App = props => {
     }, []);
 
     return (
-        <div className="container" style={{marginTop:'40px', marginLeft:'300px'}}>
+        <div className="container" >
+            <h1 align="center">Staff Member Profile</h1><br/>
             <div className="main-body">
                 {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
                     <ol className="breadcrumb">

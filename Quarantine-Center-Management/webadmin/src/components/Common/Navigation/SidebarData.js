@@ -67,7 +67,7 @@ export const SidebarData = [
                 icon: <RiIcons.RiDashboardLine />
             },
             {
-                title: 'ALL STAFF MEMBERS',
+                title: 'ALL STAFF',
                 path: '/allStaffMembers',
                 icon: <IoIcons.IoIosPaper />
             },

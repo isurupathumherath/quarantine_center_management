@@ -120,9 +120,10 @@ const UpdateStaffMember = props => {
 
     return (
         
-    <div className="container p-5" style={{marginTop:'40px', marginRight:'40px'}}>
+    <div className="container p-5">
         <br />
-        <h1>UPDATE STAFF MEMBER</h1>
+        <h1 align = "center">UPDATE STAFF MEMBER</h1>
+
         {showUpdateForm()}
         
     </div>
