@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 export default class Header extends Component {
-	render() {
-		return (
-			<div className="header">
-				<div className="header-left">
-					<a href="index.html" className="logo">
-						<img src="/assets/img/logo.png" alt="Logo" />
+    render() {
+        return ( 
+            <div class="header"> 
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+						<img src="/assets/img/logo.png" alt="Logo"/>
 					</a>
-					<a href="index.html" className="logo logo-small">
-						<img src="/assets/img/logo-small.png" alt="Logo" width={30} height={30} />
+					<a href="index.html" class="logo logo-small">
+						<img src="/assets/img/logo-small.png" alt="Logo" width="30" height="30"/>
 					</a>
 				</div>
 				<a href="javascript:void(0);" id="toggle_btn">
@@ -43,13 +43,9 @@ export default class Header extends Component {
 								<ul className="notification-list">
 									<li className="notification-message">
 										<a href="#">
-											<div className="media">
-												<span className="avatar avatar-sm">
-													<img
-														className="avatar-img rounded-circle"
-														alt="User Image"
-														src="assets/img/doctors/doctor-thumb-01.jpg"
-													/>
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/doctors/doctor-thumb-01.jpg" />
 												</span>
 												<div className="media-body">
 													<p className="noti-details">
@@ -66,13 +62,9 @@ export default class Header extends Component {
 									</li>
 									<li className="notification-message">
 										<a href="#">
-											<div className="media">
-												<span className="avatar avatar-sm">
-													<img
-														className="avatar-img rounded-circle"
-														alt="User Image"
-														src="assets/img/patients/patient1.jpg"
-													/>
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient1.jpg" />
 												</span>
 												<div className="media-body">
 													<p className="noti-details">
@@ -89,13 +81,9 @@ export default class Header extends Component {
 									</li>
 									<li className="notification-message">
 										<a href="#">
-											<div className="media">
-												<span className="avatar avatar-sm">
-													<img
-														className="avatar-img rounded-circle"
-														alt="User Image"
-														src="assets/img/patients/patient2.jpg"
-													/>
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient2.jpg" />
 												</span>
 												<div className="media-body">
 													<p className="noti-details">
@@ -112,13 +100,9 @@ export default class Header extends Component {
 									</li>
 									<li className="notification-message">
 										<a href="#">
-											<div className="media">
-												<span className="avatar avatar-sm">
-													<img
-														className="avatar-img rounded-circle"
-														alt="User Image"
-														src="assets/img/patients/patient3.jpg"
-													/>
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient3.jpg" />
 												</span>
 												<div className="media-body">
 													<p className="noti-details">
@@ -138,26 +122,15 @@ export default class Header extends Component {
 								<a href="#">View all Notifications</a>
 							</div>
 						</div>
-					</li>
-					<li className="nav-item dropdown has-arrow">
-						<a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-							<span className="user-img">
-								<img
-									className="rounded-circle"
-									src="assets/img/profiles/avatar-01.jpg"
-									width={31}
-									alt="Ryan Taylor"
-								/>
-							</span>
+					</li> 
+					<li class="nav-item dropdown has-arrow">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img"><img class="rounded-circle" src="/assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor" /></span>
 						</a>
-						<div className="dropdown-menu">
-							<div className="user-header">
-								<div className="avatar avatar-sm">
-									<img
-										src="assets/img/profiles/avatar-01.jpg"
-										alt="User Image"
-										className="avatar-img rounded-circle"
-									/>
+						<div class="dropdown-menu">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle" />
 								</div>
 								<div className="user-text">
 									<h6>Ryan Taylor</h6>
