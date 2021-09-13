@@ -1,6 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts';
+import React, { Component } from 'react'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -14,19 +12,13 @@ import Login from './components/exampleComponent/Loginform';
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
-import Dashboard from "./pages/FinanceManagement/dashboard";
-import Inquary from "./pages/FinanceManagement/finceinquary";
+
+/* Janith Gamage On - 13/09/2021  */
+import Home from './pages/FinanceManagement/Home';
+import Test from './pages/FinanceManagement/test';
 
 class App extends Component {
-  render() {
-    
-    const [currentId, setCurrentId] = useState(0);
-    const dispatch = useDispatch();
-  
-    useEffect(() => {
-      dispatch(getPosts());
-    }, [currentId, dispatch]);
-
+  render() { 
     return (
       <Router>
         <Header />
@@ -36,9 +28,10 @@ class App extends Component {
             <Switch>
               <Route path="/login" exact component={Login} />
               <Route path="/viewticket" exact component={viewTickets} />
-              <Route path="/edit/:id" component={replyTickets} />
-              <Route path="/dashboard" exact component={Dashboard} />
-              <Route path="/inquary" exact component={Inquary} />
+              <Route path="/edit/:id" exact component={replyTickets} />
+              { /* Janith Gamage On - 13/09/2021  */ }
+              <Route path="/test" exact component={Home} />
+              <Route path="/finance/home" exact component={Test} />
             </Switch>
           </div>
         </div>

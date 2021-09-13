@@ -8,19 +8,17 @@ import Footer from "./components/Common/Navigation/Footer";
 
 //pages
 import Login from "./pages/Common/Loginexaple";
+import PaymentInvoice from "./pages/FinanceManagement/PaymentInvoice";
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Header />
-        <div class="content">
-          <div class="container-fluid">
+        <Header /> 
             <Switch>
               <Route path="/login" exact component={Login} />
-            </Switch>
-          </div>
-        </div>
+              <Route path="/paymentinvoice" exact component={PaymentInvoice} />
+            </Switch> 
         <Footer />
       </Router>
     );

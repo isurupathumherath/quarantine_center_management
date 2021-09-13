@@ -65,7 +65,7 @@ export const SidebarData = [
     },
     {
         title: 'Finance Managment',
-        path: '/finance',
+        path: '/finance/home',
         icon: <AiIcons.AiFillCreditCard/>,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -77,12 +77,12 @@ export const SidebarData = [
             },
             {
                 title: 'Details',
-                path: '/finance/details',
+                path: '/finance/paymentHome',
                 icon: <IoIcons.IoIosPaper />
             },
             {
                 title: 'Report',
-                path: '/finance/report',
+                path: '/finance/paymentTest',
                 icon: <HiIcons.HiDocumentReport />
             },
         ],

@@ -11,11 +11,11 @@ const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Path
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
+import postRoutes from './routes/FinanceRoutes/posts'; //test
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
 const OrderRoute = require("./routes/foodroute/orderRoute");
-const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute"); 
-import postRoutes from './routes/posts.js';
+const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute");  
 
 // App
 const app = express();
@@ -42,7 +42,7 @@ app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
 app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
-
+app.use('/posts', postRoutes);
 app.use("/foods", FoodsRoute);
 app.use("/comment", CommentRoute);
 app.use("/order", OrderRoute);
