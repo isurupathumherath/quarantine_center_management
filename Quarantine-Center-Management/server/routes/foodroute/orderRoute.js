@@ -8,6 +8,7 @@ const {
   getbyOrderId,
   getbyPatientId,
   getLastInserted,
+  updateFoodOrderStatus,
 } = require("../../controllers/foodcontroller/orderCtrl");
 
 router.get("/", getAllOrders);
@@ -16,5 +17,6 @@ router.delete("/delete/:id", deleteOrder);
 router.get("/getbypatient/:id", getbyPatientId);
 router.get("/getbyorder/:id", getbyOrderId);
 router.get("/getlastorder/", getLastInserted);
+router.get("/getorderfood/:id/", updateFoodOrderStatus);
 
 module.exports = router;

@@ -92,3 +92,15 @@ exports.getbyPatientId = (req, res) => {
     }
   });
 };
+
+exports.updateFoodOrderStatus = (req, res) => {
+  let orderID = req.params.id;
+
+  const food = OrderModule.findById({ _id: orderID }).exec((err, post) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(post);
+    }
+  });
+};
