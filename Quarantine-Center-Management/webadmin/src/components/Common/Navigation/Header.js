@@ -5,11 +5,11 @@ export default class Header extends Component {
         return ( 
             <div class="header"> 
                 <div class="header-left">
-                    <a href="/" class="logo">
-						<img src="assets/img/logo.png" alt="Logo"/>
+                    <a href="index.html" class="logo">
+						<img src="/assets/img/logo.png" alt="Logo"/>
 					</a>
 					<a href="index.html" class="logo logo-small">
-						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30"/>
+						<img src="/assets/img/logo-small.png" alt="Logo" width="30" height="30"/>
 					</a>
                 </div> 
 				<a href="javascript:void(0);" id="toggle_btn">
@@ -40,7 +40,7 @@ export default class Header extends Component {
 										<a href="#">
 											<div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg" />
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/doctors/doctor-thumb-01.jpg" />
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
@@ -53,7 +53,7 @@ export default class Header extends Component {
 										<a href="#">
 											<div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg" />
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient1.jpg" />
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
@@ -66,7 +66,7 @@ export default class Header extends Component {
 										<a href="#">
 											<div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg" />
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient2.jpg" />
 												</span>
 												<div class="media-body">
 												<p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
@@ -79,7 +79,7 @@ export default class Header extends Component {
 										<a href="#">
 											<div class="media">
 												<span class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg" />
+													<img class="avatar-img rounded-circle" alt="User Image" src="/assets/img/patients/patient3.jpg" />
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
@@ -97,12 +97,12 @@ export default class Header extends Component {
 					</li> 
 					<li class="nav-item dropdown has-arrow">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor" /></span>
+							<span class="user-img"><img class="rounded-circle" src="/assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor" /></span>
 						</a>
 						<div class="dropdown-menu">
 							<div class="user-header">
 								<div class="avatar avatar-sm">
-									<img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle" />
+									<img src="/assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle" />
 								</div>
 								<div class="user-text">
 									<h6>Ryan Taylor</h6>

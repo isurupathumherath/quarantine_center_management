@@ -1,0 +1,2 @@
+PORT = 8000
+DATABASE = mongodb+srv://Member_1:IMLLDUKg6ReJniIi@cluster0.4vex8.mongodb.net/QMC_DB?retryWrites=true&w=majority
