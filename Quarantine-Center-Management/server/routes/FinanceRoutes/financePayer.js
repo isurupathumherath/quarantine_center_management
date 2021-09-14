@@ -16,6 +16,7 @@ const router = express.Router();
 router.get('/getallPayers', getPayers);
 router.post('/createPayer', createPayer);
 router.patch('/updatePayer/:id', updatePayer);
-router.delete('/deletePayer/:id', deletePayer); 
+router.delete('/deletePayer/:id', deletePayer);  
+
 
 export default router;

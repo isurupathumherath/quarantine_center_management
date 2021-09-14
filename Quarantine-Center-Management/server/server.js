@@ -15,7 +15,14 @@ import postRoutes from './routes/FinanceRoutes/posts'; //test
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
 const OrderRoute = require("./routes/foodroute/orderRoute");
-const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute");  
+const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute"); 
+
+
+
+import TestInfo from "./routes/FinanceRoutes/paymentInfo"; //--Added by Janith gamage--
+
+
+
 
 // App
 const app = express();
@@ -47,6 +54,13 @@ app.use("/foods", FoodsRoute);
 app.use("/comment", CommentRoute);
 app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
+
+
+app.use("/testInfo", TestInfo);
+
+
+
+
 
 // Post
 const port = process.env.PORT || 8004;

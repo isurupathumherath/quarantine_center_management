@@ -9,6 +9,7 @@ import Footer from "./components/Common/Navigation/Footer";
 //pages
 import Login from "./pages/Common/Loginexaple";
 import PaymentInvoice from "./pages/FinanceManagement/PaymentInvoice";
+import Home from "./pages/FinanceManagement/home";
 
 class App extends Component {
   render() {

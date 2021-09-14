@@ -48,7 +48,7 @@ export default class Header extends Component {
                   </a>
                   <ul class="submenu">
                     <li class="active">
-                      <a href={'/paymentinvoice'}>Payment Invoice</a>
+                      <a href={'/payment/home'}>Payment</a>
                     </li> 
                   </ul>
                 </li>

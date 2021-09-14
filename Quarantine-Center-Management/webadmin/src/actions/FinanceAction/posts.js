@@ -52,3 +52,9 @@ export const likePost = (id) => async (dispatch) => {
         console.log(error);
     }
 }
+
+// User.countDocuments({_id: userID}, function (err, count){ 
+//     if(count>0){
+//         //document exists });
+//     }
+// });

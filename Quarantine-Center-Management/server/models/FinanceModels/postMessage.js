@@ -8,14 +8,30 @@ import mongoose from "mongoose";
 
 //mongo db table (schema)
 const postSchema = mongoose.Schema({
-    title: String,
-    message: String,
-    creator: String,
-    tags: [String],
-    selectedFile: String,
-    likeCount: {
+    title:{
+        type: String,
+        required: true 
+    },
+    message:{
+        type: String,
+        required: true 
+    },
+    creator:{
+        type: String,
+        required: true 
+    },
+    tags: [{
+        type: String,
+        required: true 
+    }],
+    selectedFile:{
+        type: String,
+        required: true 
+    },
+    likeCount:{
         type: Number,
-        default: 0
+        max: 999999999,
+        required: true 
     },
     createdAt: {
         type: Date,
