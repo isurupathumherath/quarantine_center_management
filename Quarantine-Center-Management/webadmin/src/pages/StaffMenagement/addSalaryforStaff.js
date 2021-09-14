@@ -7,8 +7,6 @@
 
     import React, { useState, useEffect, setState} from 'react';
     import axios from 'axios';
-    import {Link} from 'react-router-dom';
-    import { Row, Container, Col } from 'react-bootstrap/'
     
     const App = () => {
     
@@ -16,7 +14,6 @@
         const[staffSalary, setStaffSalary] = useState([]);
         const [wordEntered, setWordEntered] = useState("");
         const [wordEnteredStaff, setWordEnteredStaff] = useState("");
-        const [filterId, setFilterId] = useState("");
 
         // state
         const [state, setState] = useState({
@@ -47,13 +44,14 @@
             .catch(error => alert("Error Fetching Staff Members"));
         }
     
-        //Delete staff Member by ID
-        const deleteStaffMember = (employeeId) => {
+        //Delete staff Salary Member by Employee ID
+        const deleteStaffSalaryMember = (id) => {
             axios
-            .delete(`http://localhost:8000/employee/remove/${employeeId}`)
+            .delete(`http://localhost:8000/salary/remove/${id}`)
             .then(response => {
                 alert(response.data.message);
                 fetchStaffMembers();
+                fetchSalaryDetails();
             })
             .catch(error => alert('Error deleting Staff Member'));
         }
@@ -79,32 +77,10 @@
             })
             .catch(error => console.log(error));
         };
-
-        //Filter Staff Member By ID
-        const handleFilterStaffById = (event) => {
-            const searchWord = event.target.value;
-            console.log(searchWord);
-            setFilterId(searchWord);
-            axios.get("http://localhost:8000/employee/all-employees")
-            .then(response => {
-                console.log(response)
-                const newFilter = staffMembers.filter((response) => {
-                    return response.employeeId.toLowerCase().includes(searchWord.toLowerCase());
-                });
-
-                if (searchWord === "") {
-                    alert("EMPLTY");
-                    fetchStaffMembers();
-                } else {
-                    setStaffMembers(newFilter);
-                }
-            })
-            .catch(error => console.log(error));
-        };
     
         //Filter Staff Salary
         const handleFilter = (key) => {
-            const searchWord = key;
+            const searchWord = key.target.value;
             console.log(searchWord);
             setWordEntered(searchWord);
             axios.get("http://localhost:8000/salary/all-salary")
@@ -137,7 +113,6 @@
             axios.post(`http://localhost:8000/salary/add`, { EmployeeID, Grade, PerDay, AdditionalHour })
             .then(response => {
                 console.log(response)
-                handleFilterStaffById(EmployeeID);
                 //show success alert
                 alert(`Salary Added for ${response.data.EmployeeID}`);
                 //empty state
@@ -197,6 +172,7 @@
                                 </div>
                         </div>  
                     </form>
+                    
                 <hr style={{ marginLeft:'20px' }}/>
                 <div class="row">
                     <div class="col">
@@ -238,15 +214,15 @@
                                 <td>{staffSalary.PerDay}</td>
                                 <td>{staffSalary.AdditionalHour}</td>
                             
-                                {/* <td>
-                                <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.EmployeeID}`}>
+                                <td>
+                                {/* <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.EmployeeID}`}>
                                     <i className="fa fa-check-square"></i>&nbsp;
-                                </a>
+                                </a> */}
                                 &nbsp;
-                                <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
+                                <a className="btn btn-danger" href="#" onClick={() => deleteStaffSalaryMember(staffSalary.EmployeeID)}>
                                     <i className="far fa-trash-alt"></i>&nbsp;
                                 </a>
-                                </td> */}
+                                </td>
                             </tr>
                             ))}
                             </tbody>
