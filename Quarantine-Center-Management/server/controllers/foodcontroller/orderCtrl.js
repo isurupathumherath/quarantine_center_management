@@ -1,8 +1,32 @@
+const orderModule = require("../../models/foodmodel/orderModule");
 const OrderModule = require("../../models/foodmodel/orderModule");
 
 exports.getAllOrders = async (req, res) => {
   try {
     const allOrders = await OrderModule.find();
+
+    console.log(allOrders);
+    res.status(200).json(allOrders);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getActiveOrders = async (req, res) => {
+  let st1 = 1;
+  try {
+    const allOrders = await OrderModule.find({ status: st1 });
+
+    console.log(allOrders);
+    res.status(200).json(allOrders);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+exports.getCompletedOrders = async (req, res) => {
+  let st1 = 2;
+  try {
+    const allOrders = await OrderModule.find({ status: st1 });
 
     console.log(allOrders);
     res.status(200).json(allOrders);
@@ -93,14 +117,41 @@ exports.getbyPatientId = (req, res) => {
   });
 };
 
-exports.updateFoodOrderStatus = (req, res) => {
-  let orderID = req.params.id;
+exports.updateOrderStatus = async (req, res) => {
+  let oid = req.params.id;
+  const { status } = req.body;
 
-  const food = OrderModule.findById({ _id: orderID }).exec((err, post) => {
-    if (err) {
+  const updateFood = { status };
+
+  //Metana findBiId dmmoth vada kranava findOneAndUpdate dmmama vda na.
+  const update = await OrderModule.update(
+    { _id: oid },
+    { $set: { status: status } }
+  )
+    .then(() => {
+      res.status(200).send({ status: "Order Status updated" });
+    })
+    .catch((err) => {
       console.log(err);
-    } else {
-      res.send(post);
-    }
-  });
+      res.status(500).send({
+        status: "Error with updating Order status",
+        error: err.message,
+      });
+    });
 };
+
+// exports.updateFoodOrderStatus = (req, res) => {
+//   let orderID = req.params.id;
+//   let foodID = req.params.fid;
+//   let orderdetails = OrderModule.orderDetails;
+
+//   const order = OrderModule.find({
+//     orderDetails: { $elemMatch: { _id: foodID } },
+//   }).exec((err, post) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.send(post);
+//     }
+//   });
+// };

@@ -2,23 +2,33 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
 import Modal from "react-modal";
-import { XSquare } from "react-feather";
-import { Trash2 } from "react-feather";
 import { Check } from "react-feather";
+import { Trash2 } from "react-feather";
+import { Loader } from "react-feather";
 import { Eye } from "react-feather";
 
 export default function OrderAdmin() {
   let count = 0;
   let [orders, setOrders] = useState([]);
+  let [completeorders, setCompleteorders] = useState([]);
   let [foods, setFoods] = useState([]);
   const [modelOpen, setmodelOpen] = useState(false);
   let f1 = [];
   let content;
   useEffect(() => {
     axios
-      .get("http://localhost:8000/order/")
+      .get("http://localhost:8000/order/active")
       .then((res) => {
         setOrders(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    axios
+      .get("http://localhost:8000/order/complete")
+      .then((res) => {
+        setCompleteorders(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -48,6 +58,48 @@ export default function OrderAdmin() {
     //     alert(err);
     //     alert("asd");
     //   });
+
+    // window.location.reload();
+  }
+
+  function changeOrderStatus(id2, status1) {
+    let newStatus;
+    console.log(id2, status1);
+    if (status1 == 1) {
+      newStatus = {
+        status: 2,
+      };
+    } else if (status1 == 2) {
+      newStatus = {
+        status: 1,
+      };
+    }
+
+    axios
+      .put(`http://localhost:8000/order/updateorderstatus/${id2}`, newStatus)
+      .then(() => {
+        axios
+          .get("http://localhost:8000/order/active")
+          .then((res) => {
+            setOrders(res.data);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+
+        axios
+          .get("http://localhost:8000/order/complete")
+          .then((res) => {
+            setCompleteorders(res.data);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+      })
+      .catch((err) => {
+        alert(err);
+        alert("asd");
+      });
 
     // window.location.reload();
   }
@@ -125,7 +177,7 @@ export default function OrderAdmin() {
             }}
           >
             <div className="card-body">
-              <h4 className="card-title">Foods</h4>
+              <h4 className="card-title">Ongoing Orders</h4>
               <div className="row">
                 <div className="col-md-4">
                   <input
@@ -186,20 +238,28 @@ export default function OrderAdmin() {
                               style={{ marginLeft: "10px" }}
                               size="30px"
                             />
-                            <Check
-                              className="btn btn-outline-success btn-sm"
-                              color="black"
-                              // onClick={() => deleteFood(post.foodID)}
-                              style={{ marginLeft: "10px" }}
-                              size="30px"
-                            />
-                            <XSquare
-                              className="btn btn-outline-warning btn-sm"
-                              color="black"
-                              // onClick={() => deleteFood(post.foodID)}
-                              style={{ marginLeft: "10px" }}
-                              size="30px"
-                            />
+                            {post.status == 1 ? (
+                              <Loader
+                                className="btn btn-outline-warning btn-sm"
+                                color="black"
+                                key={post.foodID}
+                                size="30px"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                              />
+                            ) : post.status == 2 ? (
+                              <Check
+                                className="btn btn-outline-success btn-sm"
+                                color="black"
+                                size="30px"
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                                style={{ marginLeft: "10px" }}
+                              />
+                            ) : null}
                             <Trash2
                               className="btn btn-outline-danger btn-sm"
                               color="black"
@@ -217,7 +277,9 @@ export default function OrderAdmin() {
             </div>
           </div>
         </div>
-        {/* <div className="col-md-5">
+      </div>
+      <div className="row">
+        <div className="col-md-12">
           <div
             className="card"
             style={{
@@ -225,8 +287,32 @@ export default function OrderAdmin() {
             }}
           >
             <div className="card-body">
-              <h4 className="card-title">Foods</h4>
-
+              <h4 className="card-title">Completed Orders</h4>
+              <div className="row">
+                <div className="col-md-4">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Date"
+                  />
+                </div>
+                <div className="col-md-4">
+                  {" "}
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Type"
+                  />
+                </div>
+                <div className="col-md-4">
+                  {" "}
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+              </div>
               <div
                 className="table-responsive"
                 style={{
@@ -238,17 +324,69 @@ export default function OrderAdmin() {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Image</th>
-                      <th>Food ID</th>
-                      <th>Name</th>
+                      <th>Order ID</th>
+                      <th>Patient ID</th>
+                      <th>Instructions</th>
+                      <th>Ordered Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    {completeorders.map((post) => (
+                      <tr key={post.orderID}>
+                        <td>{(count = count + 1)}</td>
+                        <td>{post.orderID}</td>
+                        <td>{post.patientID}</td>
+                        <td>{post.instructions}</td>
+                        <td>{post.orderedDate}</td>
+                        <td>
+                          <div className="input-group-append">
+                            <Eye
+                              className="btn btn-outline-primary btn-sm"
+                              color="black"
+                              onClick={() => modalopen(post.orderID)}
+                              style={{ marginLeft: "10px" }}
+                              size="30px"
+                            />
+                            {post.status == 1 ? (
+                              <Loader
+                                className="btn btn-outline-warning btn-sm"
+                                color="black"
+                                key={post.foodID}
+                                size="30px"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                              />
+                            ) : post.status == 2 ? (
+                              <Check
+                                className="btn btn-outline-success btn-sm"
+                                color="black"
+                                size="30px"
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                                style={{ marginLeft: "10px" }}
+                              />
+                            ) : null}
+                            <Trash2
+                              className="btn btn-outline-danger btn-sm"
+                              color="black"
+                              // onClick={() => deleteFood(post.foodID)}
+                              style={{ marginLeft: "10px" }}
+                              size="30px"
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
       <Modal animation={true} isOpen={modelOpen} onRequestClose={modalClose}>
         <div className="row">
@@ -282,8 +420,8 @@ export default function OrderAdmin() {
                     <td style={{ width: "180px" }}>
                       <div className="input-group-append">
                         {post.status == 1 ? (
-                          <Check
-                            className="btn btn-outline-success btn-sm"
+                          <Loader
+                            className="btn btn-outline-warning btn-sm"
                             color="black"
                             key={post.foodID}
                             size="30px"
@@ -293,8 +431,8 @@ export default function OrderAdmin() {
                             }
                           />
                         ) : post.status == 2 ? (
-                          <XSquare
-                            className="btn btn-outline-warning btn-sm"
+                          <Check
+                            className="btn btn-outline-success btn-sm"
                             color="black"
                             size="30px"
                             onClick={() =>
