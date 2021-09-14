@@ -42,6 +42,25 @@ export const SidebarData = [
         title: 'Ticketing system',
         path: '/viewalltickets',
         icon: <AiIcons.AiTwotoneRocket/>, 
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'All Tickets',
+                path: '/viewalltickets',
+                icon: <RiIcons.RiDashboardLine />
+            },
+            {
+                title: 'Details',
+                path: '/finance/details',
+                icon: <IoIcons.IoIosPaper />
+            },
+            {
+                title: 'Report',
+                path: '/finance/report',
+                icon: <HiIcons.HiDocumentReport />
+            },
+        ],
     },
     {
         title: 'Food management',

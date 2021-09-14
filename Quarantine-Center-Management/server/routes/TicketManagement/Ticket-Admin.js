@@ -5,7 +5,7 @@
  */
 
 const express = require('express');
-const tickets = require('../models/Ticket-Admin');
+const tickets = require('../../models/TicketManagement/Ticket-Admin');
     
 const router = express.Router();
     
