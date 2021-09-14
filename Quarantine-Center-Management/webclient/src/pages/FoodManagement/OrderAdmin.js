@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import uniqid from "uniqid";
 import Modal from "react-modal";
 import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
-
 export default function OrderAdmin() {
   let count = 0;
   let [orders, setOrders] = useState([]);
   let [completeorders, setCompleteorders] = useState([]);
   let [foods, setFoods] = useState([]);
+  let [active, setActive] = useState(1);
   const [modelOpen, setmodelOpen] = useState(false);
   let f1 = [];
   let content;
@@ -105,6 +104,7 @@ export default function OrderAdmin() {
   }
 
   function modalopen(oid) {
+    setActive(2);
     axios
       .get(`http://localhost:8000/order/getbyorder/${oid}`)
       .then((res) => {
@@ -117,6 +117,7 @@ export default function OrderAdmin() {
     setmodelOpen(true);
   }
   function modalClose() {
+    setActive(1);
     setmodelOpen(false);
   }
   return (
@@ -232,26 +233,42 @@ export default function OrderAdmin() {
                         <td>
                           <div className="input-group-append">
                             <Eye
-                              className="btn btn-outline-primary btn-sm"
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-primary btn-sm"
+                                  : null
+                              }
                               color="black"
                               onClick={() => modalopen(post.orderID)}
                               style={{ marginLeft: "10px" }}
                               size="30px"
                             />
                             {post.status == 1 ? (
-                              <Loader
-                                className="btn btn-outline-warning btn-sm"
-                                color="black"
+                              <button
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-warning btn-sm"
+                                    : null
+                                }
                                 key={post.foodID}
                                 size="30px"
                                 style={{ marginLeft: "10px" }}
                                 onClick={() =>
                                   changeOrderStatus(post._id, post.status)
                                 }
-                              />
+                              >
+                                <i
+                                  class="fas fa-spinner fa-spin"
+                                  style={{ color: "black" }}
+                                ></i>
+                              </button>
                             ) : post.status == 2 ? (
                               <Check
-                                className="btn btn-outline-success btn-sm"
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-success btn-sm"
+                                    : null
+                                }
                                 color="black"
                                 size="30px"
                                 onClick={() =>
@@ -261,7 +278,11 @@ export default function OrderAdmin() {
                               />
                             ) : null}
                             <Trash2
-                              className="btn btn-outline-danger btn-sm"
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-danger btn-sm"
+                                  : null
+                              }
                               color="black"
                               // onClick={() => deleteFood(post.foodID)}
                               style={{ marginLeft: "10px" }}
@@ -342,7 +363,11 @@ export default function OrderAdmin() {
                         <td>
                           <div className="input-group-append">
                             <Eye
-                              className="btn btn-outline-primary btn-sm"
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-primary btn-sm"
+                                  : null
+                              }
                               color="black"
                               onClick={() => modalopen(post.orderID)}
                               style={{ marginLeft: "10px" }}
@@ -350,7 +375,11 @@ export default function OrderAdmin() {
                             />
                             {post.status == 1 ? (
                               <Loader
-                                className="btn btn-outline-warning btn-sm"
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-warning btn-sm"
+                                    : null
+                                }
                                 color="black"
                                 key={post.foodID}
                                 size="30px"
@@ -361,7 +390,11 @@ export default function OrderAdmin() {
                               />
                             ) : post.status == 2 ? (
                               <Check
-                                className="btn btn-outline-success btn-sm"
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-success btn-sm"
+                                    : null
+                                }
                                 color="black"
                                 size="30px"
                                 onClick={() =>
@@ -371,7 +404,11 @@ export default function OrderAdmin() {
                               />
                             ) : null}
                             <Trash2
-                              className="btn btn-outline-danger btn-sm"
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-danger btn-sm"
+                                  : null
+                              }
                               color="black"
                               // onClick={() => deleteFood(post.foodID)}
                               style={{ marginLeft: "10px" }}

@@ -21,7 +21,11 @@ export default class Header extends Component {
             <div class="main-menu-wrapper">
               <div class="menu-header">
                 <a href="index.html" class="menu-logo">
-                  <img src="/assets/img/logo.png" class="img-fluid" alt="Logo" />
+                  <img
+                    src="/assets/img/logo.png"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
                 </a>
                 <a
                   id="menu_close"

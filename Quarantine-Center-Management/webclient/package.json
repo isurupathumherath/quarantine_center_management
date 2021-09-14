@@ -13,6 +13,7 @@
     "bootstrap": "^5.1.1",
     "datatables.net": "^1.11.2",
     "feather-icons-react": "^0.4.3",
+    "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-datepicker": "^4.2.1",
     "react-datetime-picker": "^3.4.0",
