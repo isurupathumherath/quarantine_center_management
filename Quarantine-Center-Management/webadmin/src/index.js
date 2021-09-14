@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'; 
+import Routes from './Routes';
+
 
 /* Janith Gamage On - 13/09/2021  */
 import { Provider } from 'react-redux';
