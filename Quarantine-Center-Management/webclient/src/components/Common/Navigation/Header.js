@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 export default class Header extends Component {
   render() {
     return (
@@ -21,11 +21,7 @@ export default class Header extends Component {
             <div class="main-menu-wrapper">
               <div class="menu-header">
                 <a href="index.html" class="menu-logo">
-                  <img
-                    src="/assets/img/logo.png"
-                    class="img-fluid"
-                    alt="Logo"
-                  />
+                  <img src="/assets/img/logo.png" class="img-fluid" alt="Logo" />
                 </a>
                 <a
                   id="menu_close"
@@ -192,23 +188,46 @@ export default class Header extends Component {
                 </li>
                 <li class="has-submenu">
                   <a href="#">
-                    Foods <i class="fas fa-chevron-down"></i>
+                    Pages <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
                     <li>
-                      <Link to={"/allFood"}>Foods Home</Link>
+                      <a href="voice-call.html">Voice Call</a>
                     </li>
                     <li>
-                      <Link to={"/orderAdmin"}>Order Details</Link>
+                      <a href="video-call.html">Video Call</a>
                     </li>
                     <li>
-                      <Link to={"/foodadmin"}>Foods Admin</Link>
+                      <a href="search.html">Search Doctors</a>
                     </li>
                     <li>
-                      <Link to={"/allOrders"}>Past Orders</Link>
+                      <a href="calendar.html">Calendar</a>
                     </li>
                     <li>
-                      <Link to={"/foodCart"}>Food Cart</Link>
+                      <a href="components.html">Components</a>
+                    </li>
+                    <li class="has-submenu">
+                      <a href="invoices.html">Invoices</a>
+                      <ul class="submenu">
+                        <li>
+                          <a href="invoices.html">Invoices</a>
+                        </li>
+                        <li>
+                          <a href="invoice-view.html">Invoice View</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="blank-page.html">Starter Page</a>
+                    </li>
+                    <li>
+                      <a href="login.html">Login</a>
+                    </li>
+                    <li>
+                      <a href="register.html">Register</a>
+                    </li>
+                    <li>
+                      <a href="forgot-password.html">Forgot Password</a>
                     </li>
                   </ul>
                 </li>
