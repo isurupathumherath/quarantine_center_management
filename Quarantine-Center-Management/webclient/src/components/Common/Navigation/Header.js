@@ -60,13 +60,13 @@ export default class Header extends Component {
                   </a>
                   <ul class="submenu">
                     <li>
-                      <a href={"/register"}>User Home</a>
+                      <a href={"/home"}>Home</a>
                     </li>
                     <li>
-                      <a href="appointments.html">Appointments</a>
+                      <a href={"/register"}>Registration</a>
                     </li>
                     <li>
-                      <a href="schedule-timings.html">Schedule Timing</a>
+                      <a href={"/login"}>Login</a>
                     </li>
                     <li>
                       <a href="my-patients.html">Patients List</a>
@@ -265,7 +265,7 @@ export default class Header extends Component {
                   </ul>
                 </li>
                 <li class="login-link">
-                  <a href={"/login"}>Login / Signup</a>
+                  <a href={"/Login"}>Login / Signup</a>
                 </li>
               </ul>
             </div>

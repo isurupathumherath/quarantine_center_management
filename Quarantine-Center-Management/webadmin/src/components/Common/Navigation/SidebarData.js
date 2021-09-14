@@ -11,14 +11,14 @@ import * as HiIcons from 'react-icons/hi';
 export const SidebarData = [
     {
         title: 'User management',
-        path: '/user',
+        path: '/dashboard',
         icon: <AiIcons.AiOutlineUser/>,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'Dashboard',
-                path: '/finance/dashboard',
+                path: '/dashboard',
                 icon: <RiIcons.RiDashboardLine />
             },
             {

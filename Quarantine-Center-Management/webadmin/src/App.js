@@ -12,6 +12,7 @@ import Login from './components/exampleComponent/Loginform';
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
+import Dashboard from './components/UserManagement/Dashboard';
 class App extends Component {
   render() {
     return (
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path="/login" exact component={Login} />
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
+              <Route path="/dashboard" exact component={Dashboard} />
             </Switch>
           </div>
         </div>

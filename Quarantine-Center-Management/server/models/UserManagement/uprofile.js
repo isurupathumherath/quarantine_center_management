@@ -6,6 +6,14 @@ const profileSchema = new mongoose.Schema({
         required:true,
         trim: true
     },
+
+    mName:{
+        type:String,
+        required:true,
+        trim: true
+
+    },
+
     lName:{
         type:String,
         required:true,
@@ -20,6 +28,7 @@ const profileSchema = new mongoose.Schema({
     email:{
         type:String,
         required:true,
+        lowercase: true,
         trim: true,
        // validate(value) {
         //    if (!validator.isEmail(value)) {
@@ -27,8 +36,31 @@ const profileSchema = new mongoose.Schema({
          //   }
         //}
     },
+
+    dob: {
+        type: Date,
+        required: true
+    },
+
+    nic: {
+        type: String,
+        required: true,
+        unique: true
+    },
+
+    address: {
+        type: String,
+        default: "null"
+    },
+
+    type: {
+        type: String,
+        default: "user"
+    },
     password:{
         type:String,
+        min: 8,
+        max:16,
         required:true,
         trim: true
     },
@@ -36,7 +68,14 @@ const profileSchema = new mongoose.Schema({
     resetPasswordLink:{
         data: String,
         default:""
-    }
+    },
+
+    Favourites:[
+        {
+            id:{type: String},
+            name:{type: String},
+        },
+    ]
 
 },{timestamp:true});
 

@@ -7,6 +7,7 @@ import "./App.css";
 import Header from "./components/Common/Navigation/Header";
 import Footer from "./components/Common/Navigation/Footer";
 import Register from './components/UserManagement/Register';
+//import Register from "./components/UserManagement/Test";
 import Home from './components/UserManagement/Home';
 import Login from './components/UserManagement/Login';
 import EditProfile from './components/UserManagement/EditProfile';
@@ -24,8 +25,9 @@ class App extends Component {
             <Switch>
               {/*<Route path="/login" exact component={Login} />*/}
               <Route path="/register" exact component={Register} />
-              {/*<Route path="/home" exact component={Home} />
               <Route path="/login" exact component={Login} />
+              {/*<Route path="/home" exact component={Home} />
+              
     <Route path="/edit/:id" component={EditProfile} />*/}
             </Switch>
           </div>
