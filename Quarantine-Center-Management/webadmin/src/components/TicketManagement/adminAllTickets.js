@@ -1,3 +1,9 @@
+/*
+    Created by - Vishara Prabuddhi
+    On - 30/08/2021
+    Name - All Ticket Table
+ */
+
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -62,7 +68,7 @@ export default class adminAllTickets extends Component {
       <div className="container">
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
-            <h4>All Posts</h4>
+            <h4>All Tickets</h4>
           </div>
           <div className="col-lg-3 mt-2 mb-2">
             <input
@@ -112,73 +118,7 @@ export default class adminAllTickets extends Component {
               ))}
           </tbody>
         </table>
-
-
-{/* boostrap test table */}
-        {/* <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Hoverable Table</h4>
-                  <p class="card-description">
-                    Add class <code>.table-hover</code>
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>User</th>
-                          <th>Product</th>
-                          <th>Sale</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Jacob</td>
-                          <td>Photoshop</td>
-                          <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-danger">Pending</label></td>
-                        </tr>
-                        <tr>
-                          <td>Messsy</td>
-                          <td>Flash</td>
-                          <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>Premier</td>
-                          <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                          <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>After effects</td>
-                          <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-
-{/* material UI data Table */}
-
-
-
       </div>
-
-
-                
     )
   }
 }

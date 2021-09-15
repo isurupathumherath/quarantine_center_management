@@ -8,8 +8,6 @@ import Sidebar from './components/Common/Navigation/Sidebar';
 
 //component
 import Login from './components/exampleComponent/Loginform';
-import viewTickets from './components/TicketManagement/adminAllTickets';
-import replyTickets from './components/TicketManagement/adminEditTickets'
 
 
 //Page Route
@@ -19,10 +17,10 @@ import updateStaffMember from './pages/StaffMenagement/updateStaffMember' //--Ad
 import addSalary from './pages/StaffMenagement/addSalaryforStaff' //--Added by Isuru Pathum Herath--
 import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Added by Isuru Pathum Herath-- | TEMP
 import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
+import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
+import replyTickets from './pages/TicketManagement/replyTickets'; //--Added by Vishara Prabuddhi--
 
-//pages
-import viewTickets from './components/TicketManagement/adminAllTickets';
-import replyTickets from './components/TicketManagement/adminEditTickets';
+
 class App extends Component {
   render() {
     return (
@@ -35,9 +33,8 @@ class App extends Component {
             <Switch>
               <Route path="/login" exact component={Login} />
 
-              <Route path="/viewalltickets" exact component={viewTickets}/>
-              <Route path="/edit/:id" exact component={replyTickets}/> 
-
+              <Route path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+              <Route path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
               <Route path="/addStaffMember" exact component={addStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/allStaffMembers" exact component={allStaffMembers} />       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
