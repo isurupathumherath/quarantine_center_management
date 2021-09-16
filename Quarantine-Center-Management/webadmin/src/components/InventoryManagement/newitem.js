@@ -17,16 +17,16 @@ export default function AddBatch() {
     const [total_quantity, setquantity] = useState(0);
     
     
-    useEffect(() => {
-        setitemcode(localStorage.getItem('itemcode'));
-        setcategory(localStorage.getItem('category'));
-        setname(localStorage.getItem('name'));   
-        setprice(localStorage.getItem('price'));
-        setbatch(localStorage.getItem('batchnum'));
-        setreceived(localStorage.getItem('received_d'));
-        setexpire(localStorage.getItem('expiration_d'));
-        setquantity(localStorage.getItem('quantity'));   
-    }, []);
+    // useEffect(() => {
+    //     setitemcode(localStorage.getItem('itemcode'));
+    //     setcategory(localStorage.getItem('category'));
+    //     setname(localStorage.getItem('name'));   
+    //     setprice(localStorage.getItem('price'));
+    //     setbatch(localStorage.getItem('batchnum'));
+    //     setreceived(localStorage.getItem('received_d'));
+    //     setexpire(localStorage.getItem('expiration_d'));
+    //     setquantity(localStorage.getItem('quantity'));   
+    // }, []);
 
     const AddAPIData = (e) => {
 
@@ -55,15 +55,15 @@ export default function AddBatch() {
         <div class="content container-fluid">
             <form> 
                     <label>Item Name</label><br/>
-                    <input placeholder='Item Name' value={name} onChange={(e) => setname(e.target.value)} readonly /><br/><br/>
+                    <input placeholder='Item Name'  onChange={(e) => setname(e.target.value)} readonly /><br/><br/>
             
                     <label>Item code</label><br/>
-                    <input placeholder='Item code' value={itemcode} onChange={(e) => setitemcode(e.target.value)} readonly/><br/><br/>
+                    <input placeholder='Item code'  onChange={(e) => setitemcode(e.target.value)} readonly/><br/><br/>
               
                     <label>Category</label><br/>
-                    <input placeholder='Category' value={category} onChange={(e) => setcategory(e.target.value)} readonly/><br/><br/>
+                    <input placeholder='Category'  onChange={(e) => setcategory(e.target.value)} readonly/><br/><br/>
                 
-                    <label>Price</label><br/>
+                    <label>Price of One</label><br/>
                     <input placeholder='Price' onChange={(e) => parseInt(setprice(e.target.value))}/><br/><br/>
               
                     <label>Batch Number</label><br/>

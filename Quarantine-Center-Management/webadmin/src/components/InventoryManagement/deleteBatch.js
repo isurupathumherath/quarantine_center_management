@@ -42,6 +42,8 @@ const Deletestock=() =>{
     
     return(
         <div>
+        <div class="page-wrapper">
+        <div class="content container-fluid">
                 <div>
                 <form>
                     <label for="fname">Item Name</label>
@@ -66,9 +68,11 @@ const Deletestock=() =>{
                         <input type="text" id="Price" name="Price" value={price_of_one} readOnly/>
 
                     
-                    <Link to={`/`}><input type="submit" value="Delete Record" onClick={DelBatch}/></Link>
+                    <Link to={`Inventory/food`}><input type="submit" value="Delete Record" onClick={DelBatch}/></Link>
                 </form>
                 </div>
+        </div>
+        </div>
         </div>
     )
 }

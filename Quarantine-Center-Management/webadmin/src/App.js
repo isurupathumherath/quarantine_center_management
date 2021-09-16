@@ -13,6 +13,9 @@ import Onestock from './components/InventoryManagement/onestock';
 import Delete from './components/InventoryManagement/deleteBatch';
 import UpdateStock from './components/InventoryManagement/updateBatch';
 import Addbatch from './components/InventoryManagement/addBatch';
+import Newitem from './components/InventoryManagement/newitem';
+import MedAll from './components/InventoryManagement/MedAll';
+import MedBatches from './components/InventoryManagement/MedBatches';
 
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -32,8 +35,11 @@ class App extends Component {
               <Route path="/add" exact component={Addbatch}/>  {/* Anupa */}
               <Route path="/update" exact component={UpdateStock}/>  {/* Anupa */}
               <Route path="/delete" exact component={Delete}/> {/* Anupa */}
-              <Route path="/" exact component={Allstock}/> {/* Anupa */}
+              <Route path="/Inventory/food" exact component={Allstock}/> {/* Anupa */}
               <Route path="/onestock/:name" exact component={Onestock}/>   {/* Anupa */}
+              <Route path="/newitem" exact component={Newitem}/>   {/* Anupa */}
+              <Route path="/Inventory/medall" exact component={MedAll}/>   {/* Anupa */}
+              <Route path="/Inventory/medbatches/:med" exact component={MedBatches}/>   {/* Anupa */}
             </Switch>
           </div>
         </div>

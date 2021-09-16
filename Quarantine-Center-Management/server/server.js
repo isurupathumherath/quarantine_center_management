@@ -12,6 +12,7 @@ const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added b
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
 const stockRouter=require("./routes/InventoryManagement/stock");//--Added by Anupa Senevirathne--
+const MedicineRouter=require("./routes/InventoryManagement/medecine");//--Added by Anupa Senevirathne--
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
@@ -48,8 +49,9 @@ app.use("/comment", CommentRoute);
 app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use("/stock",stockRouter);//--Added by Anupa Senevirathne--
+app.use("/meds",MedicineRouter);//--Added by Anupa Senevirathne--
 
 
 // Post
-const port = process.env.PORT || 8004;
+const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

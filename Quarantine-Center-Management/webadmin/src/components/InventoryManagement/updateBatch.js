@@ -3,7 +3,6 @@ import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import {Link} from 'react-router-dom';
-import '../../assets/InventoryManagement/updateBatch.css'
 
 export default function UpdateBatch() {
     let history = useHistory();
@@ -46,6 +45,8 @@ export default function UpdateBatch() {
     }
     return (
         <div>
+        <div class="page-wrapper">
+        <div class="content container-fluid">
             <form> 
                     <label>Item Name</label><br/>
                     <input placeholder='Item Name' value={name} onChange={(e) => setname(e.target.value)}/><br/><br/>
@@ -73,8 +74,10 @@ export default function UpdateBatch() {
                     <label>Quantity</label><br/>
                     <input type="Number" placeholder='Quantity' value={total_quantity} onChange={(e) =>parseInt(setquantity(e.target.value))}/><br/><br/>
                
-                <Link to={`/`}><Button type='submit' onClick={updateAPIData}>Update</Button></Link>
+                <Link to={`Inventory/food`}><Button type='submit' onClick={updateAPIData}>Update</Button></Link>
             </form>
+        </div>
+        </div>
         </div>
     )
 }

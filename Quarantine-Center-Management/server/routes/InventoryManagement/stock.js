@@ -1,7 +1,6 @@
 const router=require("express").Router();
 const { response } = require("express");
 const batch=require("../../models/InventoryManagement/batch");
-const stocks=require("../../models/InventoryManagement/stocks"); 
 
 
 //use this to enter new items to database

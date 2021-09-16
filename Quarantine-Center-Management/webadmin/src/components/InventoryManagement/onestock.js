@@ -12,9 +12,7 @@ const Onestock=() =>{
     useEffect(()=>{
         function getitem(){
             axios.get(`http://localhost:8000/stock/get/${name}`).then((res)=>{
-                console.log(res.data);
                 setitem(res.data);
-                console.log(item);
             }).catch((err)=>{
                 alert(err.message);
             })
