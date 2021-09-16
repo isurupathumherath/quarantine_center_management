@@ -21,6 +21,72 @@ exports.getActiveFoods = async (req, res) => {
   }
 };
 
+// Getting foods by type
+
+exports.getBreakfastFoods = async (req, res) => {
+  let type = "Breakfast";
+  let st1 = 1;
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getDinnerFoods = async (req, res) => {
+  let type = "Dinner";
+  let st1 = 1;
+
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getLunchFoods = async (req, res) => {
+  let type = "Lunch";
+  let st1 = 1;
+
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getAppetizers = async (req, res) => {
+  let type = "Appetizer";
+  let st1 = 1;
+
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getBeveragers = async (req, res) => {
+  let type = "Beverage";
+  let st1 = 1;
+
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 exports.addFoods = (req, res) => {
   const {
     foodID,

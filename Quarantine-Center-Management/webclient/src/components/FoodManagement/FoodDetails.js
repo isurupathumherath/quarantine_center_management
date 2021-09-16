@@ -11,26 +11,34 @@ export default function FoodDetails(props) {
           alt="..."
         />
 
-        <div className="col-md-3">
+        <div className="col-md-4">
           <h5 className="card-title">Name</h5>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-8">
           <p className="card-text">: {props.name}</p>
         </div>
       </div>
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-4">
           <h5 className="card-title">Price</h5>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-8">
           <p className="card-text">: Rs.{props.price}.00</p>
         </div>
       </div>
       <div className="row">
-        <div className="col-md-3">
+        <div className="col-md-4">
+          <h5 className="card-title">Type</h5>
+        </div>
+        <div className="col-md-8">
+          <p className="card-text">: {props.type}</p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-md-4">
           <h5 className="card-title">Description</h5>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-8">
           <p className="card-text">: {props.description}</p>
         </div>
       </div>

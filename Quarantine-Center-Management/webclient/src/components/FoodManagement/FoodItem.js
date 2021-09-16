@@ -212,6 +212,7 @@ export default function FoodItem(props) {
               id={props.foodID}
               description={props.description}
               image={props.image}
+              type={props.type}
             />
             <div className="row">
               <div className="col-md-5">
