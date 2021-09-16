@@ -89,7 +89,7 @@ const App = () => {
           </div>
           <div className="form-group">
               <label className="text-muted">Birth Day</label>
-              <input onChange={handleChange('DOB')} value={DOB} className="form-control" placeholder="Enter the Date of Birth" required/>
+              <input type = "date" onChange={handleChange('DOB')} value={DOB} className="form-control" placeholder="Enter the Date of Birth" required/>
           </div>
 
             {/* <div className="form-group">

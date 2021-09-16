@@ -14,6 +14,7 @@ import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by
 import allStaffMembers from './pages/StaffMenagement/allStaffMembers' //--Added by Isuru Pathum Herath--
 import updateStaffMember from './pages/StaffMenagement/updateStaffMember' //--Added by Isuru Pathum Herath--
 import addSalary from './pages/StaffMenagement/addSalaryforStaff' //--Added by Isuru Pathum Herath--
+import addQuaratineStaff from './pages/StaffMenagement/addQuaratineStaff' //--Added by Isuru Pathum Herath--
 import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Added by Isuru Pathum Herath-- | TEMP
 import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
 
@@ -32,12 +33,13 @@ class App extends Component {
                     
             <Switch>
               <Route path="/login" exact component={Login} />
-              <Route path="/addStaffMember" exact component={addStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/allStaffMembers" exact component={allStaffMembers} />       {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addStaffMember" exact component={addStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/allStaffMembers" exact component={allStaffMembers} />           {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/singleProfile/:id" exact component={singleProfile} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/filterStaffMember" exact component={filterStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/addSalary" exact component={addSalary} />   {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/singleProfile/:id" exact component={singleProfile} />           {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/filterStaffMember" exact component={filterStaffMember} />       {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addSalary" exact component={addSalary} />                       {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />       {/*--Added by Isuru Pathum Herath--*/}
               
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />

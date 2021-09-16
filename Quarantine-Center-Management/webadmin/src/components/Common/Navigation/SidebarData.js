@@ -27,6 +27,7 @@ export const SidebarData = [
                 path: '/finance/report',
                 icon: <HiIcons.HiDocumentReport />
             },
+            
         ]
     },
     {
@@ -74,6 +75,11 @@ export const SidebarData = [
             {
                 title: 'ADD SALARY',
                 path: '/addSalary',
+                icon: <HiIcons.HiDocumentReport />
+            },
+            {
+                title: 'ADD QUARANTINE STAFF',
+                path: '/addQuaratineStaff',
                 icon: <HiIcons.HiDocumentReport />
             },
             
