@@ -1,11 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'; 
-import App from './App';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { OrderContextProvider } from "./components/FoodManagement/store/orderContext";
+import { FavouriteContextProvider } from "./components/FoodManagement/store/FavouriteContext";
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <OrderContextProvider>
+    <FavouriteContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </FavouriteContextProvider>
+  </OrderContextProvider>,
+  document.getElementById("root")
 );
