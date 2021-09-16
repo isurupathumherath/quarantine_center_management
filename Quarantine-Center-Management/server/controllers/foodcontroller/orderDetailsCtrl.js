@@ -149,24 +149,3 @@ exports.getbyId = (req, res) => {
     }
   });
 };
-
-exports.deleteFromFavourite = async (req, res) => {
-  let fid = req.params.fid;
-  let oid = req.params.id;
-  const { status } = req.body;
-
-  OrderDetailsModule.findByIdAndUpdate(
-    { _id: oid },
-    { $pull: { Favourites: { id: fid } } },
-    { new: true },
-    (err, data) => {
-      if (err) {
-        return res
-          .status(500)
-          .json({ error: "error in deleting from favourites" });
-      }
-
-      res.json(data);
-    }
-  );
-};
