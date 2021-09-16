@@ -5,7 +5,7 @@
     Last Update - 12/09/2021
  */
 
-    import React, { useState, useEffect, setState} from 'react';
+    import React, { useState, useEffect} from 'react';
     import axios from 'axios';
     
     const App = () => {
