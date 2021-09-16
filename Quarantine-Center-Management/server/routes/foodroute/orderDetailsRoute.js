@@ -11,7 +11,6 @@ const {
   AddUsers,
   updateUsers,
   getbyId,
-  deleteFromFavourite,
 } = require("../../controllers/foodcontroller/orderDetailsCtrl");
 
 // router.post("/", addOrderDetails);
@@ -23,5 +22,4 @@ router.get("/getallusers/", getAllUsers);
 router.post("/addusers/", AddUsers);
 router.put("/updateusers/:id", updateUsers);
 router.get("/getUserbyid/:id", getbyId);
-router.put("/deletefromfavourite/:id/:fid", deleteFromFavourite);
 module.exports = router;
