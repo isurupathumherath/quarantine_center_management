@@ -12,9 +12,8 @@ const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Path
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
 
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
-import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
-import postRoutes from './routes/FinanceRoutes/posts'; //test
-import TestInfo from "./routes/FinanceRoutes/paymentInfo"; //--Added by Janith gamage--
+import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage-- 
+import FinanceInvoice from "./routes/FinanceRoutes/financeInvoice"; //--Added by Janith Gamage-- 
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute"); //--Added by Chamodh iduranga--
 const CommentRoute = require("./routes/foodroute/commentRoute"); //--Added by Chamodh iduranga--
@@ -46,16 +45,13 @@ app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 
 app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
-app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
-app.use('/posts', postRoutes);
+app.use("/payer", financePayerRoutes); //--Added by Janith Gamage-- 
+app.use("/invoice", FinanceInvoice); //--Added by Janith Gamage-- 
 
 app.use("/foods", FoodsRoute); //--Added by Chamodh iduranga--
 app.use("/comment", CommentRoute); //--Added by Chamodh iduranga--
 app.use("/order", OrderRoute); //--Added by Chamodh iduranga--
-app.use("/orderdetails", OrderDetailsRoute); //--Added by Chamodh iduranga--
-
-
-app.use("/testInfo", TestInfo);
+app.use("/orderdetails", OrderDetailsRoute); //--Added by Chamodh iduranga-- 
 
 
 
