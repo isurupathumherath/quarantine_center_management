@@ -43,7 +43,8 @@ const App = () => {
         .then(response => {
             console.log(response)
             const newFilter = staffMembers.filter((response) => {
-                return response.NIC.toLowerCase().includes(searchWord.toLowerCase());
+                return response.NIC.toLowerCase().includes(searchWord.toLowerCase()) ||
+                response.employeeId.toLowerCase().includes(searchWord.toLowerCase());
             });
 
             if (searchWord === "") {
