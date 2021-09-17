@@ -136,50 +136,55 @@ exports.create = (req, res) => {
                 }
                 
             }
-            res.json(employee);
-        });
-
-        const nodemailer = require("nodemailer");
-
-        async function main() {
-            var transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                  user: process.env.MAIL_SERVER_USERNAME,
-                  pass: process.env.MAIL_SERVER_PASSWORD
-                }
-              });
-              
-              var mailOptions = {
-                from: 'quarantine@out.com',
-                to: `${email}`,
-                subject: 'Your Login Details',
-                text: `
-                    Hi
+            else {
+                res.json(employee);
                 
-                    You can login to the system using these username and password. This is a temporary login.
+                const nodemailer = require("nodemailer");
+
+                async function main() {
+                    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                        user: process.env.MAIL_SERVER_USERNAME,
+                        pass: process.env.MAIL_SERVER_PASSWORD
+                        }
+                    });
                     
-                    You have to give new username and password in your first login
+                    var mailOptions = {
+                        from: 'quarantine@out.com',
+                        to: `${email}`,
+                        subject: 'Your Login Details',
+                        text: `
+                            Hi
+                        
+                            You can login to the system using these username and password. This is a temporary login.
+                            
+                            You have to give new username and password in your first login
+                            
+                            Username: ${username}
+                            Password: ${password}
+                            
+                            This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
+                            
+                            Thank You`
+                    };
                     
-                    Username: ${username}
-                    Password: ${password}
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                        console.log(error);
+                        } else {
+                        console.log('Email sent: ' + info.response);
+                        }
+                    });
+                
+                    }
+                
+                    main().catch(console.error);
+                    }
                     
-                    This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
-                    
-                    Thank You`
-              };
-              
-              transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log('Email sent: ' + info.response);
-                }
-              });
+                });
+
         
-            }
-        
-            main().catch(console.error);
 
 
     } else {
