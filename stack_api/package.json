@@ -16,5 +16,8 @@
     "multer": "^1.4.3",
     "nodemon": "^2.0.12",
     "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "package": "^1.0.1"
   }
 }
