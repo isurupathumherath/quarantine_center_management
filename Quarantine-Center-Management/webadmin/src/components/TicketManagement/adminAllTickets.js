@@ -64,7 +64,7 @@ export default class adminAllTickets extends Component {
   render() {
     return (
 
-// original table
+// Table
       <div className="container">
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">

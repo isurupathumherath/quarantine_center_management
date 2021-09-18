@@ -32,15 +32,14 @@ class App extends Component {
                     
             <Switch>
               <Route path="/login" exact component={Login} />
-
               <Route path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
               <Route path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
-              <Route path="/addStaffMember" exact component={addStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/allStaffMembers" exact component={allStaffMembers} />       {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addStaffMember" exact component={addStaffMember} /> {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/allStaffMembers" exact component={allStaffMembers} /> {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/singleProfile/:id" exact component={singleProfile} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/filterStaffMember" exact component={filterStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/addSalary" exact component={addSalary} />   {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/singleProfile/:id" exact component={singleProfile} /> {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/filterStaffMember" exact component={filterStaffMember} /> {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addSalary" exact component={addSalary} /> {/*--Added by Isuru Pathum Herath--*/}
               
             
             </Switch>
