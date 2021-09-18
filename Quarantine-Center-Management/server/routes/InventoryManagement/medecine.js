@@ -38,18 +38,19 @@ try {
 
 
 //update med small array only
-router.route("/update/:id").put(async(req,res)=>{
-        let id=req.params.id;
-       
-        const{category,name,price_of_one,Batch}=req.body;
-        const updateitem={
-            category,
-            name,
-            price_of_one,
-            Batch
-        }
+router.route("/update/:ba").put(async(req,res)=>{
+        let ba=req.params.ba;
+        
+
+        const{total_quantity}=req.body;
+        // const updateitem={
+        //     category,
+        //     name,
+        //     price_of_one,
+        //     Batch
+        // }
     
-        const update=await meds.findByIdAndUpdate(id,{ $set: { Batch: Batch } }).then(()=>{
+        const update=await meds.update({"Batch._id":ba},{$set:{"Batch.$.total_quantity":total_quantity}}).then(()=>{
             res.status(200).send({status:"Meds updated"})
         }).catch((err)=>{
             console.log(err);
@@ -63,16 +64,16 @@ router.route("/update/:id").put(async(req,res)=>{
 router.route("/update/big/:id").put(async(req,res)=>{
     let id=req.params.id;
        
-    const{category,name,price_of_one,Batch}=req.body;
-    const updateitem={
-        category,
-        name,
-        price_of_one,
-        Batch
-    }
+    const{category,name,price_of_one}=req.body;
+    // const updateitem={
+    //     category,
+    //     name,
+    //     price_of_one,
+    //     Batch
+    // }
     
-    const update=await meds.findByIdAndUpdate(id,updateitem).then(()=>{
-        res.status(200).send({status:"Meds updated"})
+    const update=await meds.findByIdAndUpdate(id,{$set:{"category":category,"name":name,"price_of_one":price_of_one}}).then(()=>{
+        res.status(200).send({status:"Med item updated"})
     }).catch((err)=>{
         console.log(err);
         res.status(500).send({status:"Error with updating data",error:err.message});
@@ -108,4 +109,39 @@ router.route("/delete/:id").delete(async(req,res)=>{
         
 })
 
+//delete specific med array item
+router.route("/delete/:id/:batch").put(async(req,res)=>{
+    let id=req.params.id;
+    let betchnum=req.params.batch;
+
+        await meds.findByIdAndUpdate(id,{ $pull: { Batch: {batchnum:betchnum} } }).then(()=>{
+            res.status(200).send({status:"med batch Deleted"});
+        }).catch((err)=>{
+            console.log(err.message);
+            res.status(500).send({status:"Error with delete meds",error:err.message});
+        })
+        
+})
+
+//Add new med batch
+router.route("/update/addnew/:id").put(async(req,res)=>{
+    let id=req.params.id;
+    
+
+    const{batchnum,received_date,expiration_date,total_quantity}=req.body;
+    const updateitem={
+        batchnum,
+        received_date,
+        expiration_date,
+        total_quantity
+    }
+
+    const update=await meds.findByIdAndUpdate(id,{$push:{Batch:updateitem}}).then(()=>{
+        res.status(200).send({status:"Med Batch added succesfully"})
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Error with updating data",error:err.message});
+    })
+
+})
 module.exports=router;

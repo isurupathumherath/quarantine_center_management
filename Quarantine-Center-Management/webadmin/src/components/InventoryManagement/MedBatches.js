@@ -23,15 +23,20 @@ export default function MedBatches(){
         getmedi();
     },[])
     
-    // const setData = (med) => {
+    const setData = (med,m) => {
 
-    //     let {_id,category,name,price_of_one,Batch} = med;
-    //     localStorage.setItem('id',_id);
-    //     localStorage.setItem('category', category);
-    //     localStorage.setItem('name', name);
-    //     localStorage.setItem('price', price_of_one);
-    //     localStorage.setItem('batch', Batch);
-    // }
+        let {_id,category,name,price_of_one} = med;
+        let {batchnum,received_date,expiration_date,total_quantity} = m;
+        localStorage.setItem('id',_id);
+        localStorage.setItem('category', category);
+        localStorage.setItem('name', name);
+        localStorage.setItem('price', price_of_one);
+        localStorage.setItem('batchnum', batchnum);
+        localStorage.setItem('received_date', received_date);
+        localStorage.setItem('expiration_date', expiration_date);
+        localStorage.setItem('total_quantity', total_quantity);
+
+    }
     
     return(
         <div>
@@ -39,6 +44,7 @@ export default function MedBatches(){
         <div className="content container-fluid">
              <center>
                 <h1>{medi.name}</h1>
+                <Link to={`/Inventory/medadd/${medi._id}`}><button id="Add_Batch">Add Batch</button></Link>
             </center>       
             <center>
             <table className="table">
@@ -58,9 +64,8 @@ export default function MedBatches(){
                     <td>{m.received_date}</td>
                     <td>{m.expiration_date}</td>
                     <td>{m.total_quantity}</td>
-                    <td><Link to={`/delete`}><button id="delete" >Delete</button></Link>
-                    <Link to="/update"><button id="update" >Update</button></Link>
-                    <Link to={`/add`}><button id="add" >Add Batch</button></Link>
+                    <td><Link to={`/Inventory/medDelete`}><button id="delete" onClick={()=>setData(medi,m)}>Delete</button></Link>
+                    <Link to={`/Inventory/medUpdate/${m._id}`}><button id="update" onClick={()=>setData(medi,m)}>Update</button></Link>
                     </td>
                 </tr>   
                 );

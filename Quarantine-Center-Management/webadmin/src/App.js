@@ -16,6 +16,11 @@ import Addbatch from './components/InventoryManagement/addBatch';
 import Newitem from './components/InventoryManagement/newitem';
 import MedAll from './components/InventoryManagement/MedAll';
 import MedBatches from './components/InventoryManagement/MedBatches';
+import MedBatchDelete from './components/InventoryManagement/medBatchDelete';
+import MedBatchUpdate from './components/InventoryManagement/medbatchupdate';
+import AddNewBatchMed from './components/InventoryManagement/addNewBatchmed';
+import AddnewMeditem from './components/InventoryManagement/addnewMeditem';
+import Meditemupdate from './components/InventoryManagement/MedItemupdate';
 
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
@@ -56,6 +61,11 @@ class App extends Component {
               <Route path="/newitem" exact component={Newitem}/>   {/* Anupa */}
               <Route path="/Inventory/medall" exact component={MedAll}/>   {/* Anupa */}
               <Route path="/Inventory/medbatches/:med" exact component={MedBatches}/>   {/* Anupa */}
+              <Route path="/Inventory/medDelete" exact component={MedBatchDelete}/>   {/* Anupa */}
+              <Route path="/Inventory/medUpdate/:med" exact component={MedBatchUpdate}/>   {/* Anupa */}
+              <Route path="/Inventory/medadd/:med" exact component={AddNewBatchMed}/>   {/* Anupa */}
+              <Route path="/Inventory/medall/mednew" exact component={AddnewMeditem}/>   {/* Anupa */}
+              <Route path="/Inventory/medbatches/update/whole" exact component={Meditemupdate}/>   {/* Anupa */}
             </Switch>
           </div>
         </div>

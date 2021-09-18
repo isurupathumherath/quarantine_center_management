@@ -4,40 +4,58 @@ import {Link} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
-const Deletestock=() =>{
+const MedBatchUpdate=() =>{
 
+    const { med }=useParams();
+    const [medi,setmedi]=useState([]);
     let history = useHistory();
+
     const [id, setID] = useState(null);
-    const [itemcode, setitemcode] = useState(0);
     const [category, setcategory] = useState('');
     const [name, setname] = useState('');
     const [price_of_one, setprice] = useState(0);
-    const [batchnum, setbatch] = useState(0);
+
     const [received_date, setreceived] = useState(null);
     const [expiration_date, setexpire] = useState(null);
     const [total_quantity, setquantity] = useState(0);
+    const [batchnum, setbatchnum] = useState(0);
     
     useEffect(() => {
+        function getmedi(){
+            axios.get(`http://localhost:8000/meds/get/${med}`).then((res)=>{
+                setmedi(res.data);
+            }).catch((err)=>{
+                alert(err.message);
+            })
+        }
+        console.log(medi);
+        getmedi();
+
+
         setID(localStorage.getItem('id'))
-        setitemcode(localStorage.getItem('itemcode'));
         setcategory(localStorage.getItem('category'));
         setname(localStorage.getItem('name'));
         setprice(localStorage.getItem('price'));
-        setbatch(localStorage.getItem('batchnum'));
-        setreceived(localStorage.getItem('received_d'));
-        setexpire(localStorage.getItem('expiration_d'));
-        setquantity(localStorage.getItem('quantity'));
+
+        setbatchnum(localStorage.getItem('batchnum'));
+        setreceived(localStorage.getItem('received_date'));
+        setexpire(localStorage.getItem('expiration_date'));
+        setquantity(localStorage.getItem('total_quantity'));
+
     }, []);
 
 
-    const DelBatch = () => {
-        axios.delete(`http://localhost:8000/stock/delete/batch/${id}`).then((res)=>{             
-            console.log(res.data);
+    const UpdateBatch = () => {
+        let newquantity={total_quantity:total_quantity}
+        axios.put(`http://localhost:8000/meds/update/${med}`,
+            newquantity,
+        ).then((res)=>{             
+            alert("Batch Updated");
         }).catch((err)=>{
             alert(err.message);
         })
     }
-           
+     
     
     return(
         <div>
@@ -51,6 +69,9 @@ const Deletestock=() =>{
                     <label for="lname">Category</label>
                         <input type="text" id="category" name="category" value={category} readOnly/>
 
+                    <label for="country">Price of One</label>
+                        <input type="text" id="Price" name="Price" value={price_of_one} readOnly/>    
+           
                     <label for="country">Received Date</label>
                         <input type="text" id="R_date" name="R_date" value={received_date} readOnly/>
 
@@ -61,13 +82,12 @@ const Deletestock=() =>{
                         <input type="text" id="B_number" name="B_number" value={batchnum} readOnly/> 
 
                     <label for="country">Total Quantity</label>
-                        <input type="text" id="TQ" name="TQ" value={total_quantity} readOnly/>
+                        <input type="Number" id="TQ" name="TQ" value={total_quantity} onChange={(e) =>parseInt(setquantity(e.target.value))}/>
                     
-                    <label for="country">Price of One</label>
-                        <input type="text" id="Price" name="Price" value={price_of_one} readOnly/>
 
                     
-                    <Link to={`Inventory/food`}><input type="submit" value="Delete Record" onClick={DelBatch}/></Link>
+                    <Link to={`/Inventory/medall`}><input type="submit" value="Update Record" onClick={UpdateBatch}/></Link> 
+                    
                 </form>
                 </div>
         </div>
@@ -76,4 +96,4 @@ const Deletestock=() =>{
     )
 }
 
-export default Deletestock;
+export default MedBatchUpdate;
