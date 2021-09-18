@@ -123,5 +123,13 @@ lass Booking extends React.Component {
             await axios.post(url,datas,{
                 headers: {'Content-Type': 'application/json'}
             })
+            .then(res => {
+                console.log(res.data);
+                this.setState(initialState)
+                this.componentDidMount()
+                swal("Success!", "Edit Successful!", "success")
+            })
+        }
+    }
 
 
