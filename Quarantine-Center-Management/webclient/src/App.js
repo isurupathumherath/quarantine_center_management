@@ -8,6 +8,7 @@ import Footer from "./components/Common/Navigation/Footer";
 
 //pages
 import Login from "./pages/Common/Loginexaple";
+// import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <div class="container-fluid">
             <Switch>
               <Route path="/login" exact component={Login} />
+              {/* <Route path="/addticket" exact component={addTicket}/> --Added by Vishara Prabuddhi-- */}
             </Switch>
           </div>
         </div>
