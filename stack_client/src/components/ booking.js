@@ -147,4 +147,17 @@ lass Booking extends React.Component {
                             </div>
                         </div>
 
+                    <hr/>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="tableTh">Room Name</th>
+                                <th class="tableTh">Room Type</th>
+                                <th class="tableTh">Description</th>
+                                <th class="tableTh">Image</th>
+                                <th class="tableTh">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
 
