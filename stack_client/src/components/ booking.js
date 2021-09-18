@@ -109,4 +109,19 @@ lass Booking extends React.Component {
         }
 
         return true;
+
     }
+
+    SubmitForm = async(e) => {
+        e.preventDefault();
+        this.validation();
+        if(this.state.fname&&this.state.lname&&this.state.email&&this.state.checkin&&this.state.checkout&&this.state.roomid&&this.state.patientid&&this.state.price){
+            console.log(this.state);
+            const url = 'http://localhost:3500/room/booking/';
+            var datas = JSON.stringify({ fname: this.state.fname , lname: this.state.lname , email: this.state.email , checkin: this.state.checkin , checkout: this.state.checkout, roomid: this.state.roomid , patientid: this.state.patientid ,price: this.state.price });
+            console.log(datas);
+            await axios.post(url,datas,{
+                headers: {'Content-Type': 'application/json'}
+            })
+
+
