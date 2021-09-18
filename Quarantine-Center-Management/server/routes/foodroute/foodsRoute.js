@@ -8,6 +8,11 @@ const {
   deleteFoods,
   getbyId,
   getActiveFoods,
+  getBreakfastFoods,
+  getDinnerFoods,
+  getLunchFoods,
+  getAppetizers,
+  getBeveragers,
 } = require("../../controllers/foodcontroller/foodsCtrl");
 
 router.get("/", getFoods);
@@ -16,5 +21,10 @@ router.put("/update/:id", updateFoods);
 router.delete("/delete/:id", deleteFoods);
 router.get("/get/:id", getbyId);
 router.get("/getActive/", getActiveFoods);
+router.get("/getbreakfastactive/", getBreakfastFoods);
+router.get("/getdinneractive/", getDinnerFoods);
+router.get("/getlunchactive/", getLunchFoods);
+router.get("/getappetizersactive/", getAppetizers);
+router.get("/getbeverageactive/", getBeveragers);
 
 module.exports = router;
