@@ -14,7 +14,7 @@ const TempCheckupSchema = new Schema({
     },
 
     CheckupDate : {
-        type : String,
+        type : Date,
         required : true
     },
 

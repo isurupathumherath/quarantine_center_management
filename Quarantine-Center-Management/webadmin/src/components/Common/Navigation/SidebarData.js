@@ -49,10 +49,12 @@ export const SidebarData = [
         icon: <AiIcons.AiOutlineFolder/>, 
     },
     {
-        title: 'Medical details',
-        path: '/medical',
+        title: 'Medical Test details',
+        path: '/Medicaltests/dashboard',
         icon: <AiIcons.AiFillMedicineBox/>, 
+        
     },
+    
     {
         title: 'Room management',
         path: '/room',

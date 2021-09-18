@@ -52,5 +52,5 @@ app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 
 // Post
-const port = process.env.PORT || 8004;
+const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
