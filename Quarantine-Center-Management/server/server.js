@@ -16,10 +16,10 @@ import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added 
 const stockRouter=require("./routes/InventoryManagement/stock");//--Added by Anupa Senevirathne--
 const MedicineRouter=require("./routes/InventoryManagement/medecine");//--Added by Anupa Senevirathne--
 
-const FoodsRoute = require("./routes/foodroute/foodsRoute");
-const CommentRoute = require("./routes/foodroute/commentRoute");
-const OrderRoute = require("./routes/foodroute/orderRoute");
-const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute");
+const FoodsRoute = require("./routes/foodroute/foodsRoute"); //--Added by Chamodh iduranga--
+const CommentRoute = require("./routes/foodroute/commentRoute"); //--Added by Chamodh iduranga--
+const OrderRoute = require("./routes/foodroute/orderRoute"); //--Added by Chamodh iduranga--
+const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute"); //--Added by Chamodh iduranga--
 // App
 const app = express();
 
