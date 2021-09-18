@@ -131,5 +131,20 @@ lass Booking extends React.Component {
             })
         }
     }
+    render (){
+        const { rooms } = this.state;
+        return (
+            <div class="container">
+            <br/><br/>
+            <div class="justify-content-center">
+                    <h1>ALL Rooms</h1>
+                    <hr/>
+                    <div class="x_scroll">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right font-weight-bold">Search</label>
+                            <div class="col-md-6">
+                            <input type="text" class="form-control" name="search" value={this.state.search} onChange={this.handleChange} />
+                            </div>
+                        </div>
 
 
