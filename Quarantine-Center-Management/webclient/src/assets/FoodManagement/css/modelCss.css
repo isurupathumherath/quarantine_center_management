@@ -12,3 +12,11 @@
   opacity: 0;
   transform: translateX(-100px);
 }
+
+.modal-dialog {
+  position: fixed;
+  top: auto;
+  right: auto;
+  left: auto;
+  bottom: 0;
+}

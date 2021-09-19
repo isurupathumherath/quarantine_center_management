@@ -83,14 +83,19 @@ export default function FoodAdmin() {
       .put(`http://localhost:8000/foods/update/${id2}`, newFood)
       .then(() => {
         alert("Status changed");
-        console.log(id);
+        axios
+          .get("http://localhost:8000/foods/")
+          .then((res) => {
+            setFood(res.data);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
       })
       .catch((err) => {
         alert(err);
         alert("asd");
       });
-
-    window.location.reload();
   }
 
   function deleteFood(id) {
@@ -98,11 +103,18 @@ export default function FoodAdmin() {
       .delete(`http://localhost:8000/foods/delete/${id}`)
       .then((res) => {
         alert("Food Deleted successfully");
+        axios
+          .get("http://localhost:8000/foods/")
+          .then((res) => {
+            setFood(res.data);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
       })
       .catch((err) => {
         alert("wrong");
       });
-    window.location.reload();
   }
 
   function editFood(
@@ -129,14 +141,6 @@ export default function FoodAdmin() {
     setinsertDate(insertDate);
     setObjectID(id2);
     setOption(2);
-    // foodID = id;
-    // name = name1;
-    // image1 = image1;
-    // price = price1;
-    // description = desc;
-    // type = type1;
-    // console.log(id2);
-    // console.log(foodID);
   }
 
   function sendData(e) {
@@ -163,6 +167,14 @@ export default function FoodAdmin() {
         .put(`http://localhost:8000/foods/update/${objectID}`, updateFood)
         .then(() => {
           alert("Food updated");
+          axios
+            .get("http://localhost:8000/foods/")
+            .then((res) => {
+              setFood(res.data);
+            })
+            .catch((err) => {
+              alert(err.message);
+            });
         })
         .catch((err) => {
           alert(err.message);
@@ -188,13 +200,20 @@ export default function FoodAdmin() {
         .post("http://localhost:8000/foods/", newFood)
         .then(() => {
           alert("Food added");
+          axios
+            .get("http://localhost:8000/foods/")
+            .then((res) => {
+              setFood(res.data);
+            })
+            .catch((err) => {
+              alert(err.message);
+            });
         })
         .catch((err) => {
           alert(err.message);
           alert("asd");
         });
     }
-    window.location.reload();
   }
 
   return (
@@ -207,7 +226,7 @@ export default function FoodAdmin() {
                 <h4 className="card-title">Add/Update</h4>
               </div>
               <div className="card-body">
-                <form action="#">
+                <form action="#" onSubmit={sendData}>
                   <div className="change-avatar">
                     <div className="profile-img">
                       <img src={`img/${image}`} alt="Food Image" />
@@ -238,22 +257,25 @@ export default function FoodAdmin() {
                       type="text"
                       className="form-control"
                       value={name}
+                      placeholder="Enter name"
                       onChange={(e) => {
                         setName(e.target.value);
                       }}
+                      required
                     />
                   </div>
                   <div className="form-group">
                     <label>Price</label>
                     <input
                       type="text"
-                      pattern="[0-9]"
+                      pattern="[0-9]+"
                       className="form-control"
                       placeholder="Enter price"
                       value={price}
                       onChange={(e) => {
                         setPrice(e.target.value);
                       }}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -264,6 +286,7 @@ export default function FoodAdmin() {
                       onChange={(e) => {
                         setType(e.target.value);
                       }}
+                      required
                     >
                       <option>Breakfast</option>
                       <option>Dinner</option>
@@ -274,13 +297,14 @@ export default function FoodAdmin() {
                   <div className="form-group">
                     <label>Description</label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
                       placeholder="Enter Description"
                       value={description}
                       onChange={(e) => {
                         setDescription(e.target.value);
                       }}
+                      required
                     />
                   </div>
 
@@ -295,13 +319,11 @@ export default function FoodAdmin() {
                   </div>
 
                   <div className="text-right">
-                    <button
+                    <input
                       type="submit"
-                      onClick={sendData}
+                      value="Submit"
                       className="btn btn-primary"
-                    >
-                      Submit
-                    </button>
+                    />
                   </div>
                 </form>
               </div>

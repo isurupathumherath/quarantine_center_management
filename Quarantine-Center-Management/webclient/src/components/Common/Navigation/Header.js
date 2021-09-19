@@ -210,6 +210,9 @@ export default class Header extends Component {
                     <li>
                       <Link to={"/foodCart"}>Food Cart</Link>
                     </li>
+                    <li>
+                      <Link to={"/favourites"}>Favourites</Link>
+                    </li>
                   </ul>
                 </li>
                 <li class="has-submenu">

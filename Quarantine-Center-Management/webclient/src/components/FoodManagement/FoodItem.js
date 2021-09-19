@@ -17,7 +17,6 @@ export default function FoodItem(props) {
   const isOrderd = orderedCtx.isOrdered(props.id);
   const favouriteCtx = useContext(FavouriteContext);
   const isFavourite = favouriteCtx.isFavourite(props.id);
-  let [favourite, setFaourite] = useState("");
   let [user, setUser] = useState("");
 
   const [modelOpen, setmodelOpen] = useState(false);
@@ -52,27 +51,42 @@ export default function FoodItem(props) {
   function toogleFavouriteStatusHandler() {
     if (isFavourite) {
       favouriteCtx.removeFavourite(props.id);
+      console.log(props.id);
+      axios
+        .put(
+          `http://localhost:8000/orderDetails/deletefromfavourite/613b2cac1aaf8d0fdcf35ff3/${props.id}`
+        )
+        .then(() => {
+          alert("Removed from favourites");
+        })
+        .catch((err) => {
+          alert(err.message);
+          alert("asd");
+        });
     } else {
       favouriteCtx.addFavourite({
         id: props.id,
         price: props.price,
         name: props.name,
         image: props.image,
+        type: props.type,
         status: 1,
         description: props.description,
       });
 
-      favourite = favouriteCtx.favourites;
+      let favourite = favouriteCtx.favourites;
 
-      let completeArray = [...user.Favourites, ...favourite];
+      if (favourite === favouriteCtx.favourites) {
+      } else {
+        let completeArray = [...user.Favourites, ...favourite];
 
-      const ids = completeArray.map((o) => o.id);
-      const filtered = completeArray.filter(
-        ({ id }, index) => !ids.includes(id, index + 1)
-      );
-
+        const ids = completeArray.map((o) => o.id);
+        const filtered = completeArray.filter(
+          ({ id }, index) => !ids.includes(id, index + 1)
+        );
+      }
       const newFood = {
-        Favourites: filtered,
+        Favourites: favouriteCtx.favourites,
       };
       axios
         .put(
@@ -80,7 +94,7 @@ export default function FoodItem(props) {
           newFood
         )
         .then(() => {
-          alert("Food updated");
+          alert("Favourites updated");
         })
         .catch((err) => {
           alert(err.message);
@@ -107,32 +121,63 @@ export default function FoodItem(props) {
   }
 
   return (
-    <div
-      className="card"
-      style={{
-        width: "250px",
-        height: "300px",
-        marginLeft: "20px",
-        backgroundColor: "white",
-        boxShadow: "5px 5px 5px 5px #888888",
-      }}
-    >
-      <div class="blog grid-blog">
-        <div class="blog-image">
-          <a>
-            <img
-              class="img-fluid"
-              src={`img/${props.image}`}
-              alt="Food image"
-              onClick={modalOpen}
-              style={{
-                width: "250px",
-                height: "200px",
-              }}
-            />
-          </a>
-        </div>
+    <div>
+      {/* <div class="blog grid-blog">
+        <a>
+          <img
+            class="img-fluid"
+            src={`img/${props.image}`}
+            alt="Food image"
+            onClick={modalOpen}
+            style={{
+              width: "250px",
+              height: "200px",
+            }}
+          />
+        </a>
+
         <div class="blog-content">
+          <div className="row">
+            <div className="col-md-3">
+              <a onClick={toogleFavouriteStatusHandler}>
+                {isFavourite ? (
+                  <FeatherIcon
+                    icon="heart"
+                    fill="red"
+                    color="white"
+                    style={{ stroke: "red" }}
+                  />
+                ) : (
+                  <FeatherIcon
+                    icon="heart"
+                    borderColor="white"
+                    style={{ stroke: "black" }}
+                  />
+                )}
+              </a>
+            </div>
+            <div className="col-md-6"></div>
+            <div className="col-md-3">
+              <a onClick={toogleFavouriteStatusHandler}>
+                <FeatherIcon icon="more-vertical" style={{ stroke: "black" }} />
+              </a>
+            </div>
+            <div className="col-md-2"></div>
+          </div>
+        </div>
+      </div> */}
+
+      <div className="card" style={{ width: "25rem", marginLeft: "2px" }}>
+        <img
+          className="card-img-top"
+          src={`img/${props.image}`}
+          alt="Food image"
+          onClick={modalOpen}
+          style={{
+            height: "200px",
+          }}
+        />
+        <div className="card-body">
           <div className="row">
             <div className="col-md-3">
               <a onClick={toogleFavouriteStatusHandler}>
@@ -167,33 +212,22 @@ export default function FoodItem(props) {
         animation={true}
         isOpen={modelOpen}
         onRequestClose={modalClose}
-        style={{
-          display: "flex",
-          overlay: {
-            backgroundColor: "black",
-            opacity: "0.9",
-          },
-          content: {
-            width: "800px",
-            height: "450px",
-            margin: "auto",
-          },
-        }}
         style={
           (ModelCss,
           {
             display: "flex",
             overlay: {
-              backgroundColor: "black",
+              backgroundColor: "	#D3D3D3",
               opacity: "0.9",
-              width: "1200px",
-              height: "650px",
-              margin: "auto",
+              width: "100%",
+              height: "70%",
+              marginTop: "16%",
             },
             content: {
-              width: "800px",
-              height: "450px",
+              width: "80%",
+              height: "90%",
               margin: "auto",
+
               borderStyle: "solid",
             },
           })
@@ -201,7 +235,7 @@ export default function FoodItem(props) {
       >
         <div className="row">
           <div
-            className="card col-md-6"
+            className="card col-md-5"
             style={{
               overflowY: "initial",
             }}
@@ -214,26 +248,30 @@ export default function FoodItem(props) {
               image={props.image}
               type={props.type}
             />
-            <div className="row">
-              <div className="col-md-5">
-                <button
-                  onClick={toogleOrderStatusHandler}
-                  className="btn btn-primary"
-                >
-                  {isOrderd ? "Cancel order" : "Order now"}
-                </button>
-              </div>
-              <div className="col-md-2"></div>
-              <div className="col-md-5">
-                <button onClick={modalClose} className="btn btn-danger">
-                  Close
-                </button>
-              </div>
+            <div className="btn-group">
+              <button
+                onClick={toogleOrderStatusHandler}
+                className="btn btn-primary"
+                style={{ width: "20%" }}
+              >
+                {isOrderd ? "Cancel order" : "Order now"}
+              </button>
+
+              <button
+                onClick={modalClose}
+                className="btn btn-danger"
+                style={{
+                  marginLeft: "10px",
+                  width: "20%",
+                }}
+              >
+                Close
+              </button>
             </div>
             <br />
           </div>
 
-          <div className="model-body col-md-6">
+          <div className="model-body col-md-7">
             <div
               style={{
                 height: "350px",
