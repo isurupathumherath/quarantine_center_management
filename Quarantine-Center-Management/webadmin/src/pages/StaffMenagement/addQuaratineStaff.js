@@ -110,12 +110,12 @@
                     <td>{staffMembers.createdAt}</td>
                    
                     <td>
-                      <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>
+                      {/* <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>
-                      &nbsp;
-                      <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
-                        <i className="far fa-trash-alt"></i>&nbsp;
+                      &nbsp; */}
+                      <a className="" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
+                        <i className="fa fa-plus-square" width="20px"></i>&nbsp;
                       </a>
                     </td>
                   </tr>

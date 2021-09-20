@@ -66,7 +66,7 @@ const App = () => {
 
             <h1 align="center">Staff Members</h1>
             <br/>
-            <form style={{marginTop:'40px', marginLeft:'40px', marginRight:'40px'}}>
+            <form style={{marginTop:'40px', marginLeft:'50px', marginRight:'40px'}}>
             <div className="col-lg-3 mt-2 mb-2">
                 <input
                 className="form-control"
@@ -77,8 +77,7 @@ const App = () => {
                 />
             </div>
             </form>
-          <br/>
-            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'20px'}}>
+            <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'60px', width:'95%'}}>
             <thead>
                 <tr>
                     <th>#</th>
@@ -111,11 +110,11 @@ const App = () => {
                 <td>{staffMembers.createdAt}</td>
                
                 <td>
-                  <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>
+                  <a className="" href={`/updateStaffMember/${staffMembers.employeeId}`}>
                     <i className="fas fa-edit"></i>&nbsp;
                   </a>
                   &nbsp;
-                  <a className="btn btn-danger" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
+                  <a className="" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
                     <i className="far fa-trash-alt"></i>&nbsp;
                   </a>
                 </td>
