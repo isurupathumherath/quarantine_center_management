@@ -29,8 +29,8 @@ exports.create = (req, res) => {
         
         // example 2
         const employeeId = generateUniqueId({
-        length: 5,
-        useLetters: false
+            length: 5,
+            useLetters: false
         });
         
         // example 3
