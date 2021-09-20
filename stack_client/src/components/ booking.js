@@ -159,5 +159,73 @@ lass Booking extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
+                         {
+                            rooms.filter((data)=>{
+                                if(this.state.search == null)
+                                    return data
+                                else if(data._id.toLowerCase().includes(this.state.search.toLowerCase()) || data.roomName.toLowerCase().includes(this.state.search.toLowerCase()) ||data.roomName.toLowerCase().includes(this.state.search.toLowerCase()) || data.roomType.toLowerCase().includes(this.state.search.toLowerCase()) || data.description.toLowerCase().includes(this.state.search.toLowerCase())){
+                                    return data
+                                }
+                            }).map((res) =>
 
+                            <tr>
+                                <td class="tableTh">{ res.roomName }</td>
+                                <td class="tableTh">{ res.roomType }</td>
+                                <td class="tableTh">{ res.description }</td>
+                                <td class="tableTh"><img width="100px" alt="" src={ "http://localhost:3500/"+res.image } class="img-thumbnail"/></td>
+                                <td class="tableTh">{ res.total }</td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
+                    <hr/>
+                        <h1>Booking</h1>
+                        <hr/>
+                            <form autoComplete="off" onSubmit={this.SubmitForm}>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">First Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="fname" value={this.state.fname} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.fnameError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="lname" value={this.state.lname} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.lnameError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Email</label>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" name="email" value={this.state.email} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.emailError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Check In</label>
+                                    <div class="col-md-6">
+                                        <input type="date" class="form-control" name="checkin" value={this.state.checkin} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.checkinError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Check Out</label>
+                                    <div class="col-md-6">
+                                        <input type="date" class="form-control" name="checkout" value={this.state.checkout} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.checkoutError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Room Name</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="search" onChange={this.handleChange} value={this.state.search}>
+                                            <option value="">~select~</option>
+                                            {
 
