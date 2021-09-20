@@ -228,4 +228,34 @@ lass Booking extends React.Component {
                                         <select class="form-control" name="search" onChange={this.handleChange} value={this.state.search}>
                                             <option value="">~select~</option>
                                             {
+                                                  rooms.map((res) =>
+                                                    <option value={ res._id }>{ res.roomName }</option>
+                                            )}
+                                        </select>
+                                        <div style={{color : "red"}}>{this.state.roomidError}</div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right font-weight-bold">Price</label>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" name="price" value={this.state.price} onChange={this.handleChange} />
+                                        <div style={{color : "red"}}>{this.state.priceError}</div>
+                                    </div>
+                                </div>
+
+                                <br/>   
+                                <div class="col-md-4 offset-md-4">
+                                    <input type="submit" class="btn btn-outline-primary" value="Submit" />
+                                    <input type="button" class="btn btn-outline-danger" value="Clear" onClick={() => this.onClear()} />
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Booking;
 
