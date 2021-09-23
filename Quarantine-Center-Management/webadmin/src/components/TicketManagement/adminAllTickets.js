@@ -88,7 +88,7 @@ export default class adminAllTickets extends Component {
               <th scope="col">NIC</th>
               <th scope="col">Department Name</th>
               <th scope="col">Message</th>
-              <th scope="col">Action</th>
+              <th style={{width:'200px'}} scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
