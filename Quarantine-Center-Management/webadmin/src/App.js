@@ -21,6 +21,9 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
 import Dashboard from './components/UserManagement/Dashboard';
+import ProfileDetails from './components/UserManagement/ProfileDetails';
+import EditProfile from './components/UserManagement/EditProfile';
+import Register from './components/UserManagement/Register';
 class App extends Component {
   render() {
     return (
@@ -42,6 +45,9 @@ class App extends Component {
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
               <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/profile/:id" exact component={ProfileDetails} />
+              <Route path="/update/:id" component={EditProfile} />
+              <Route path="/register" exact component={Register} />
             </Switch>
           </div>
         </div>

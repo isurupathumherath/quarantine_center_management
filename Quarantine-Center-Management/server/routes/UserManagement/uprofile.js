@@ -71,4 +71,20 @@ router.delete('/profile/delete/:id', (req,res)=>{
     });
 });
 
+//get a specific post
+
+router.get('/profile/:id',(req,res) =>{
+    
+    //let profileId = req.params.id;
+    Profile.findOne({email:req.params.email}).exec((err,profile) =>{
+            if(err){
+                return res.status(400).json({success:false, err});
+            }
+            return res.status(200).json({
+                success:true,
+                profile
+            });
+    });
+});
+
 module.exports = router;

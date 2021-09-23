@@ -4,38 +4,40 @@ import axios from 'axios';
 
 class Dashboard extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state={
-        profiles:[]
-    }
+    this.state = {
+      profiles: []
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.retrieveProfiles();
   }
 
-  retrieveProfiles(){
-    axios.get("http://localhost:8000/profiles").then(res =>{
-      if(res.data.success){
+  retrieveProfiles() {
+    axios.get("http://localhost:8000/profiles").then(res => {
+      if (res.data.success) {
         this.setState({
-          profiles:res.data.existingProfiles
-        });       
-      };
+          profiles: res.data.existingProfile
+        });
+
+        console.log(this.state.profiles)
+      }
 
     });
   }
 
-  onDelete =(id)=>{
-  
-    axios.delete(`http://localhost:8000/profiles/delete/${id}`).then((res) =>{
-    
+  onDelete = (id) => {
+
+    axios.delete(`http://localhost:8000/profile/delete/${id}`).then((res) => {
+
       alert("Deleted Successfully");
-    
+
       this.retrieveProfiles();
     })
-    
+
   }
 
   render() {
@@ -50,11 +52,10 @@ class Dashboard extends Component {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">FName</th>
-                <th scope="col">LName</th>
-                <th scope="col">UName</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email address</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -63,20 +64,19 @@ class Dashboard extends Component {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>
-                    <a href={`/profiles/${profiles._id}`} style={{ textDecoration: 'none' }}>
+                    <a href={`/profile/${profiles._id}`} style={{ textDecoration: 'none' }}>
                       {profiles.fName}
                     </a>
                   </td>
                   <td>{profiles.lName}</td>
                   <td>{profiles.uName}</td>
                   <td>{profiles.email}</td>
-                  <td>{profiles.password}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${profiles._id}`}>
+                    <a className="btn btn-warning" href={`/update/${profiles._id}`}>
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;
-                    <a className="btn btn-danger" href="/#" onClick={() => this.onDelete(profiles._id)}>
+                    <a className="btn btn-danger" onClick={() => this.onDelete(profiles._id)}>
                       <i className="far fa-trash-alt"></i>&nbsp;Delete
                     </a>
                   </td>
@@ -84,10 +84,6 @@ class Dashboard extends Component {
               ))}
             </tbody>
           </table>
-
-          
-          
-
         </div>
       </div>
 
