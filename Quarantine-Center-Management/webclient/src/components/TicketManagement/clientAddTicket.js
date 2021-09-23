@@ -27,6 +27,8 @@ export default class clientAddTicket extends Component {
         })
     }
 
+    handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
+
     onSubmit = (e) =>{
         e.preventDefault();
 
@@ -61,32 +63,48 @@ export default class clientAddTicket extends Component {
                 <h1 className="h3 mb-3 font-weight-normal">Create New Post</h1>
                 <form className="needs-validation" noValidate>
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Topic</label>
+                        <label style={{marginBottom:'5px'}}>Full Name</label>
                         <input type="text"
                         className="form-control"
                         name="fullName"
-                        placeholder="Enter Topic"
+                        placeholder="Enter Full Name"
                         value={this.state.fullName}
                         onChange={this.handleInputChange}/>
                     </div>
 
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Description</label>
+                        <label style={{marginBottom:'5px'}}>NIC</label>
                         <input type="text"
                         className="form-control"
                         name="nic"
-                        placeholder="Enter Description"
+                        placeholder="Enter NIC"
                         value={this.state.nic}
                         onChange={this.handleInputChange}/>
                     </div>
 
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Post Category</label>
-                        <input type="text"
+                        <label  style={{marginBottom:'5px'}}>Department</label>
+                        <select
+                         class="form-control" 
+                         name="departmentName"
+                         value={this.state.departmentName}
+                         onChange={this.handleInputChange}>
+                            <option selected disabled value="">Select Department</option>
+                            <option>FnB</option>
+                            <option>medical</option>
+                            <option>room</option>
+                            <option>HK</option>
+                            <option>admin</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group" style={{marginBottom:'15px'}}>
+                        <label style={{marginBottom:'5px'}}>Message</label>
+                        <input type=""
                         className="form-control"
-                        name="departmentName"
-                        placeholder="Enter Post Category"
-                        value={this.state.departmentName}
+                        name="message"
+                        placeholder="Enter Message"
+                        value={this.state.message}
                         onChange={this.handleInputChange}/>
                     </div>
 
@@ -96,8 +114,9 @@ export default class clientAddTicket extends Component {
                     </button>
 
                 </form>
-                
+                <br></br><br></br><br></br>
             </div>
+            
         );
     }
 }

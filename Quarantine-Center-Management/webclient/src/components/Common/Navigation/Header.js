@@ -60,54 +60,14 @@ export default class Header extends Component {
                 </li>
                 <li class="has-submenu">
                   <a href="#">
-                    Doctors <i class="fas fa-chevron-down"></i>
+                    Ticket <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
                     <li>
-                      <a href="doctor-dashboard.html">Doctor Dashboard</a>
+                      <a href="/addticket">Add Ticket</a>
                     </li>
                     <li>
-                      <a href="appointments.html">Appointments</a>
-                    </li>
-                    <li>
-                      <a href="schedule-timings.html">Schedule Timing</a>
-                    </li>
-                    <li>
-                      <a href="my-patients.html">Patients List</a>
-                    </li>
-                    <li>
-                      <a href="patient-profile.html">Patients Profile</a>
-                    </li>
-                    <li>
-                      <a href="chat-doctor.html">Chat</a>
-                    </li>
-                    <li>
-                      <a href="invoices.html">Invoices</a>
-                    </li>
-                    <li>
-                      <a href="doctor-profile-settings.html">
-                        Profile Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a href="reviews.html">Reviews</a>
-                    </li>
-                    <li>
-                      <a href="doctor-register.html">Doctor Register</a>
-                    </li>
-                    <li class="has-submenu">
-                      <a href="doctor-blog.html">Blog</a>
-                      <ul class="submenu">
-                        <li>
-                          <a href="doctor-blog.html">Blog</a>
-                        </li>
-                        <li>
-                          <a href="blog-details.html">Blog view</a>
-                        </li>
-                        <li>
-                          <a href="doctor-add-blog.html">Add Blog</a>
-                        </li>
-                      </ul>
+                      <a href="">View My Ticket</a>
                     </li>
                   </ul>
                 </li>

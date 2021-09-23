@@ -15,7 +15,7 @@ import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 
 //pages
 import Login from "./pages/Common/Loginexaple";
-// import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
+import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
 
 class App extends Component {
   render() {
@@ -27,7 +27,8 @@ class App extends Component {
             <Switch>
               {/* Janith */}
               <Route path="/login" exact component={Login} />
-              {/* <Route path="/addticket" exact component={addTicket}/> --Added by Vishara Prabuddhi-- */}
+              {/* vishara */}
+              <Route path="/addticket" exact component={addTicket}/> 
               {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />
               <Route path="/foodadmin" exact component={FoodAdmin} />
