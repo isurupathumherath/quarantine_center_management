@@ -84,6 +84,7 @@ export default class adminAllTickets extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">Ref ID</th>
               <th scope="col">Full Name</th>
               <th scope="col">NIC</th>
               <th scope="col">Department Name</th>
@@ -97,6 +98,7 @@ export default class adminAllTickets extends Component {
                 <tr key={index
                 }>
                   <th scope="row">{index + 1}</th>
+                  <td>{tickets.refID}</td>
                   <td>
                     <a href={`/ticket/${tickets._id}`} style={{ textDecoration: 'none' }}>
                       {tickets.fullName}

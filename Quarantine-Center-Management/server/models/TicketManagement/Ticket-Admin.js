@@ -8,6 +8,12 @@ const mongoose = require('mongoose');
 
 const TicketAdminSchema = new mongoose.Schema({
 
+
+    refID:{
+        type:String,
+        required:true
+    },
+
     fullName:{
         type:String,
         required:true

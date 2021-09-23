@@ -6,9 +6,9 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+const generateUniqueId = require('generate-unique-id');
 
 export default class clientAddTicket extends Component {
-
     constructor(props){
         super(props);
         this.state={
@@ -34,7 +34,13 @@ export default class clientAddTicket extends Component {
 
         const {fullName,nic,departmentName,message} = this.state;
 
+        const refID = generateUniqueId({
+                length: 10,
+                useLetters: true
+              });
+
         const data = {
+            refID:refID,
             fullName:fullName,
             nic:nic,
             departmentName:departmentName,

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.4",
     "feather-icons-react": "^0.4.3",
+    "generate-unique-id": "^2.0.1",
     "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-datetime-picker": "^3.4.0",
