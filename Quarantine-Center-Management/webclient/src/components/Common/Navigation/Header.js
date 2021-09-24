@@ -42,7 +42,7 @@ export default class Header extends Component {
                   </a>
                   <ul class="submenu">
                     <li class="active">
-                      <a href="index.html">Home</a>
+                      <a href={'/invoice'}>Home</a>
                     </li>
                     <li>
                       <a href="index-1.html">Home 1</a>

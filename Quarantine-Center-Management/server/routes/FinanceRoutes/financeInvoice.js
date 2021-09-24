@@ -6,7 +6,7 @@
 
     import express from 'express';
 
-    import { getFoodDetails } from '../../controllers/FinanceControllers/financeInvoice';
+    import { getFoodDetails, getRoomDetails } from '../../controllers/FinanceControllers/financeInvoice';
     
     const router = express.Router();
     
@@ -14,6 +14,8 @@
     
     //all the routes  
     router.get('/getfoodData/:id', getFoodDetails);  
+    router.get('/getroomData/:id', getRoomDetails);  
+
     
     
     export default router;

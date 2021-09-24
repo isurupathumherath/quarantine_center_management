@@ -16,7 +16,7 @@ import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 //pages
 import Login from "./pages/Common/Loginexaple";
 import PaymentInvoice from "./pages/FinanceManagement/PaymentInvoice";
-import Home from "./pages/FinanceManagement/home";
+import Invoice from "./pages/FinanceManagement/Invoice";
 
 class App extends Component {
   render() {
@@ -27,6 +27,8 @@ class App extends Component {
               {/* Janith */}
               <Route path="/login" exact component={Login} />
               <Route path="/paymentinvoice" exact component={PaymentInvoice} /> 
+              <Route path="/invoice" exact component={Invoice} /> 
+
               {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />
               <Route path="/foodadmin" exact component={FoodAdmin} />
