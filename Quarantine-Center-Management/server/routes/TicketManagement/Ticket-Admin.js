@@ -59,7 +59,8 @@ router.get("/ticket/:id",(req,res) =>{
         });
     });
 });
-    
+
+
 //update tickets
     
 router.put('/ticket/update/:id',(req,res)=>{

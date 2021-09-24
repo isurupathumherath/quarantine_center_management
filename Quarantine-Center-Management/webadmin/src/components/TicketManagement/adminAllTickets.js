@@ -7,8 +7,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import { Link } from "react-router-dom";
-
 
 export default class adminAllTickets extends Component {
   constructor(props) {
@@ -105,8 +103,7 @@ export default class adminAllTickets extends Component {
           </thead>
           <tbody>
             {this.state.tickets.map((tickets, index) => (
-                <tr key={index
-                }>
+                <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{tickets.refID}</td>
                   <td>
@@ -118,9 +115,6 @@ export default class adminAllTickets extends Component {
                   <td>{tickets.departmentName}</td>
                   <td>{tickets.message}</td>
                   <td>
-
-              
-
                     <a className="btn btn-warning" href={`/edit/${tickets._id}`}>
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>

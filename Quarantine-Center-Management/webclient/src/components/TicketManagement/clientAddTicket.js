@@ -118,10 +118,11 @@ export default class clientAddTicket extends Component {
                         <i className="far fa-check-square"></i>
                         &nbsp;Save
                     </button>
-                    {/* <button className="btn btn-success" type="submit" style={{marginTop:'15px'}} onClick={this.onSubmit}>
+                    <br></br>
+                    <button className="btn btn-success" type="submit" style={{marginTop:'15px'}} onClick={this.onSubmit}>
                         <i className="far fa-check-square"></i>
                         &nbsp;My Tickets
-                    </button> */}
+                    </button>
 
                 </form>
                 <br></br><br></br><br></br>
