@@ -42,6 +42,7 @@ export default class adminAllTickets extends Component {
 
   filterData(tickets, searchKey) {
     const result = tickets.filter((ticket) =>
+      ticket.refID.toLowerCase().includes(searchKey) ||
       ticket.fullName.toLowerCase().includes(searchKey) ||
       ticket.nic.toLowerCase().includes(searchKey) ||
       ticket.departmentName.toLowerCase().includes(searchKey) ||
