@@ -7,12 +7,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
 export default class adminEditTickets extends Component {
 
 
     constructor(props){
         super(props);
         this.state={
+           
             fullName:"",
             nic:"",
             departmentName:"",
@@ -25,12 +27,12 @@ export default class adminEditTickets extends Component {
         this.setState({
             ...this.state,
             [name]:value
-        });
+        })
     }
 
     onSubmit = (e) =>{
         e.preventDefault();
-        const id = this.props.match.params.id;
+        const id = this.props.ticketID;
 
         const {fullName,nic,departmentName,message} = this.state;
 
@@ -56,13 +58,16 @@ export default class adminEditTickets extends Component {
                 )
             }
         })
-        this.props.history.push("/");
+        // this.props.history.push("/");
         
     }
     
 
     componentDidMount(){
-        const id = this.props.match.params.id;
+
+        // console.log("ticketID", this.location.data);
+
+        const id = this.props.ticketID; 
 
         axios.get(`http://localhost:8000/ticket/${id}`).then((res)=>{
             if(res.data.success){

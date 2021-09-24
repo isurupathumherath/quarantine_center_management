@@ -6,6 +6,8 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { Link } from "react-router-dom";
 
 
 export default class adminAllTickets extends Component {
@@ -65,11 +67,20 @@ export default class adminAllTickets extends Component {
   render() {
     return (
 
-// Table
+      // Table
       <div className="container">
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
             <h4>All Tickets</h4>
+            <br></br>
+            &nbsp;
+            <ReactHTMLTableToExcel
+              className='btn btn-outline-success'
+              table='enrollment-table'
+              filename='enrollments Excel'
+              sheet='Sheet'
+              buttonText='Generate Sheet'
+            />
           </div>
           <div className="col-lg-3 mt-2 mb-2">
             <input
@@ -77,11 +88,10 @@ export default class adminAllTickets extends Component {
               type="search"
               placeholder="Search"
               name="searchQuery"
-              onChange={this.handleSearchArea}>
-            </input>
+              onChange={this.handleSearchArea} />
           </div>
         </div>
-        <table className="table table-hover" style={{ marginTop: '40px' }}>
+        <table id="enrollment-table" className="table table-hover" style={{ marginTop: '40px' }}>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -90,18 +100,17 @@ export default class adminAllTickets extends Component {
               <th scope="col">NIC</th>
               <th scope="col">Department Name</th>
               <th scope="col">Message</th>
-              <th style={{width:'200px'}} scope="col">Action</th>
+              <th style={{ width: '200px' }} scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {
-              this.state.tickets.map((tickets, index) => (
+            {this.state.tickets.map((tickets, index) => (
                 <tr key={index
                 }>
                   <th scope="row">{index + 1}</th>
                   <td>{tickets.refID}</td>
                   <td>
-                    <a href={`/ticket/${tickets._id}`} style={{ textDecoration: 'none' }}>
+                    <a href={`/ticket/${tickets._id}`} style={{ textDecoration: 'none', color: 'Black' }}>
                       {tickets.fullName}
                     </a>
                   </td>
@@ -109,6 +118,9 @@ export default class adminAllTickets extends Component {
                   <td>{tickets.departmentName}</td>
                   <td>{tickets.message}</td>
                   <td>
+
+              
+
                     <a className="btn btn-warning" href={`/edit/${tickets._id}`}>
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
