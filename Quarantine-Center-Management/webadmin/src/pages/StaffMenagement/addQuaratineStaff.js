@@ -84,11 +84,11 @@
                         <th>Employee ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Employee Type</th>
                         <th>NIC Number</th>
-                        <th>Email Address</th>
-                        <th>Mobile Number</th>
-                        <th >Added At</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -103,11 +103,19 @@
                     
                     <td>{staffMembers.firstName}</td>
                     <td>{staffMembers.lastName}</td>
-                    <td>{staffMembers.type}</td>
                     <td>{staffMembers.NIC}</td>
-                    <td>{staffMembers.email}</td>
-                    <td>{staffMembers.mobileNumber}</td>
-                    <td>{staffMembers.createdAt}</td>
+                    <td>
+                    <div className="form-group">
+                        <input type = "date" className="form-control" required/>
+                    </div>
+                    </td>
+                    <td> 
+                        <div className="form-group">
+                        <input type = "date" className="form-control" required/>
+                    </div>
+                    </td>
+                    <td></td>
+                    <td></td>
                    
                     <td>
                       {/* <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.employeeId}`}>

@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const App = () => {
 
@@ -77,6 +78,13 @@ const App = () => {
                 />
             </div>
             </form>
+            <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"/>
             <table responsive className="table table-hover" style={{marginTop:'40px', marginLeft:'60px', width:'95%'}}>
             <thead>
                 <tr>

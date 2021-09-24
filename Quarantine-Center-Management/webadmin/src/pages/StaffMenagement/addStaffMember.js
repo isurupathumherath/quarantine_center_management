@@ -62,6 +62,7 @@ const App = () => {
       address,
       type,
     });
+    
     axios
       .post(`http://localhost:8000/employee/add`, {
         firstName,
