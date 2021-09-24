@@ -35,6 +35,18 @@ exports.getBreakfastFoods = async (req, res) => {
   }
 };
 
+exports.getDesserts = async (req, res) => {
+  let type = "Desserts";
+  let st1 = 1;
+  try {
+    const allFoods = await FoodModule.find({ status: st1, type: type });
+
+    res.status(200).json(allFoods);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 exports.getDinnerFoods = async (req, res) => {
   let type = "Dinner";
   let st1 = 1;

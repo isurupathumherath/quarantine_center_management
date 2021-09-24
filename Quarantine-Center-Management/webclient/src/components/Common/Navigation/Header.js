@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CartImage from "../cartImage";
 export default class Header extends Component {
   render() {
     return (
@@ -207,9 +209,7 @@ export default class Header extends Component {
                     <li>
                       <Link to={"/allOrders"}>Past Orders</Link>
                     </li>
-                    <li>
-                      <Link to={"/foodCart"}>Food Cart</Link>
-                    </li>
+
                     <li>
                       <Link to={"/favourites"}>Favourites</Link>
                     </li>
@@ -248,6 +248,7 @@ export default class Header extends Component {
                     </li>
                   </ul>
                 </li>
+
                 <li class="login-link">
                   <a href={"/login"}>Login / Signup</a>
                 </li>
@@ -255,9 +256,18 @@ export default class Header extends Component {
             </div>
             <ul class="nav header-navbar-rht">
               <li class="nav-item contact-item">
+                <Link to={"/foodCart"}>
+                  <div
+                    className="input-group-append btn btn-outline-primary"
+                    style={{ marginRight: "30px", borderRadius: "20px" }}
+                  >
+                    <CartImage />
+                  </div>
+                </Link>
                 <div class="header-contact-img">
                   <i class="far fa-hospital"></i>
                 </div>
+                <div class="header-contact-detail"></div>
                 <div class="header-contact-detail">
                   <p class="contact-header">Contact</p>
                   <p class="contact-info-header"> +1 315 369 5943</p>

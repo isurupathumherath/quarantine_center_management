@@ -13,6 +13,7 @@ const {
   getLunchFoods,
   getAppetizers,
   getBeveragers,
+  getDesserts,
 } = require("../../controllers/foodcontroller/foodsCtrl");
 
 router.get("/", getFoods);
@@ -26,5 +27,6 @@ router.get("/getdinneractive/", getDinnerFoods);
 router.get("/getlunchactive/", getLunchFoods);
 router.get("/getappetizersactive/", getAppetizers);
 router.get("/getbeverageactive/", getBeveragers);
+router.get("/getdesertsactive/", getDesserts);
 
 module.exports = router;

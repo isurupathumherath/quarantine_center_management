@@ -217,17 +217,17 @@ export default function FoodItem(props) {
           {
             display: "flex",
             overlay: {
-              backgroundColor: "	#D3D3D3",
+              backgroundColor: "black",
               opacity: "0.9",
               width: "100%",
               height: "70%",
               marginTop: "16%",
             },
             content: {
-              width: "80%",
+              width: "70%",
               height: "90%",
               margin: "auto",
-
+              opacity: "1",
               borderStyle: "solid",
             },
           })

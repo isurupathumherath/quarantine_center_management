@@ -12,15 +12,16 @@ export default function AllOrders() {
   let [foods, setFoods] = useState([]);
   let [active, setActive] = useState(1);
   const [modelOpen, setmodelOpen] = useState(false);
+  let [completelength, setcompletelength] = useState(0);
+  let [ongoinglength, setongoinglength] = useState(0);
   let f1 = [];
-  let content;
-  let [c1, setCount] = useState(1);
 
   useEffect(() => {
     axios
       .get("http://localhost:8000/order/getactivebypatient/102")
       .then((res) => {
         setOrders(res.data);
+        setongoinglength(res.data.length);
       })
       .catch((err) => {
         alert(err.message);
@@ -30,6 +31,7 @@ export default function AllOrders() {
       .get("http://localhost:8000/order/getcompletedbypatient/102")
       .then((res) => {
         setCompleteorders(res.data);
+        setcompletelength(res.data.length);
       })
       .catch((err) => {
         alert(err.message);
@@ -53,6 +55,46 @@ export default function AllOrders() {
     setActive(1);
     setmodelOpen(false);
   }
+
+  function filterContent(data, userSearch) {
+    // setPackages(res.data.filter((item) =>item.seller === seller));
+
+    if (userSearch == null) {
+      axios
+        .get("http://localhost:8000/order/getactivebypatient/102")
+        .then((res) => {
+          setOrders(res.data);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    let result = data.filter((post) => post.orderedDate.includes(userSearch));
+
+    if (result != null) {
+    } else if (result.length == 0) {
+      //document.getElementById("txt2").innerHTML = "No Result Found!";
+    } else {
+    }
+
+    setOrders(result);
+  }
+
+  function handleSearch(e) {
+    let userSearch = e;
+    console.log(userSearch);
+
+    axios
+      .get("http://localhost:8000/order/getactivebypatient/102")
+      .then((res) => {
+        filterContent(res.data, userSearch);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   return (
     <div>
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
@@ -70,7 +112,7 @@ export default function AllOrders() {
             >
               <div className="row">
                 <div className="col-8">
-                  <span style={{ color: "orange" }}>278</span>
+                  <span style={{ color: "orange" }}>{ongoinglength}</span>
                   <br />
                   <span>Ongoing Orders</span>
                 </div>
@@ -101,7 +143,7 @@ export default function AllOrders() {
             >
               <div className="row">
                 <div className="col-8">
-                  <span style={{ color: "Green" }}>278</span>
+                  <span style={{ color: "Green" }}>{completelength}</span>
                   <br />
                   <span>Completed orders</span>
                 </div>
@@ -132,7 +174,9 @@ export default function AllOrders() {
             >
               <div className="row">
                 <div className="col-8">
-                  <span style={{ color: "red" }}>278</span>
+                  <span style={{ color: "red" }}>
+                    {ongoinglength + completelength}
+                  </span>
                   <br />
                   <span>All Orders</span>
                 </div>
@@ -165,26 +209,12 @@ export default function AllOrders() {
               <h4 className="card-title">Ongoing Orders</h4>
               <div className="row">
                 <div className="col-md-4">
+                  {" "}
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Date"
-                  />
-                </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Type"
-                  />
-                </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
+                    onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
               </div>
@@ -213,7 +243,7 @@ export default function AllOrders() {
                         <td>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -270,22 +300,7 @@ export default function AllOrders() {
                     type="text"
                     className="form-control"
                     placeholder="Date"
-                  />
-                </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Type"
-                  />
-                </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
+                    onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
               </div>
@@ -314,7 +329,7 @@ export default function AllOrders() {
                         <td>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye

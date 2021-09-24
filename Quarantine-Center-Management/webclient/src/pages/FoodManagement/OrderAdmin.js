@@ -14,12 +14,15 @@ export default function OrderAdmin() {
   let [orderid, setOrderid] = useState(1);
   const [modelOpen, setmodelOpen] = useState(false);
   let f1 = [];
-  let content;
+  let [completelength, setcompletelength] = useState(0);
+  let [ongoinglength, setongoinglength] = useState(0);
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/order/active")
       .then((res) => {
         setOrders(res.data);
+        setongoinglength(res.data.length);
       })
       .catch((err) => {
         alert(err.message);
@@ -29,6 +32,7 @@ export default function OrderAdmin() {
       .get("http://localhost:8000/order/complete")
       .then((res) => {
         setCompleteorders(res.data);
+        setcompletelength(res.data.length);
       })
       .catch((err) => {
         alert(err.message);
@@ -39,75 +43,136 @@ export default function OrderAdmin() {
     let newFoodStatus;
     console.log(id2, status1);
     if (status1 == 1) {
-      newFoodStatus = {
-        status: 2,
-      };
-    } else if (status1 == 2) {
-      newFoodStatus = {
-        status: 1,
-      };
-    }
-
-    axios
-      .put(`http://localhost:8000/order/changefoodstatus/${id2}`, newFoodStatus)
-      .then(() => {
-        alert("Status changed");
+      if (window.confirm("Are you want to Deactivate order item")) {
+        newFoodStatus = {
+          status: 2,
+        };
         axios
-          .get(`http://localhost:8000/order/getbyorder/${orderid}`)
-          .then((res) => {
-            f1 = res.data;
-            setFoods(f1.orderDetails);
+          .put(
+            `http://localhost:8000/order/changefoodstatus/${id2}`,
+            newFoodStatus
+          )
+          .then(() => {
+            axios
+              .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+              .then((res) => {
+                f1 = res.data;
+                setFoods(f1.orderDetails);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
           })
           .catch((err) => {
-            alert(err.message);
+            alert(err);
+            alert("asd");
           });
-      })
-      .catch((err) => {
-        alert(err);
-        alert("asd");
-      });
+      }
+    } else if (status1 == 2) {
+      if (window.confirm("Are you want to Activate order item")) {
+        newFoodStatus = {
+          status: 1,
+        };
+        axios
+          .put(
+            `http://localhost:8000/order/changefoodstatus/${id2}`,
+            newFoodStatus
+          )
+          .then(() => {
+            axios
+              .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+              .then((res) => {
+                f1 = res.data;
+                setFoods(f1.orderDetails);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+          })
+          .catch((err) => {
+            alert(err);
+            alert("asd");
+          });
+      }
+    }
   }
 
   function changeOrderStatus(id2, status1) {
     let newStatus;
     console.log(id2, status1);
     if (status1 == 1) {
-      newStatus = {
-        status: 2,
-      };
+      if (window.confirm("Confirm order is completed")) {
+        newStatus = {
+          status: 2,
+        };
+        axios
+          .put(
+            `http://localhost:8000/order/updateorderstatus/${id2}`,
+            newStatus
+          )
+          .then(() => {
+            axios
+              .get("http://localhost:8000/order/active")
+              .then((res) => {
+                setOrders(res.data);
+                setongoinglength(res.data.length);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+
+            axios
+              .get("http://localhost:8000/order/complete")
+              .then((res) => {
+                setCompleteorders(res.data);
+                setcompletelength(res.data.length);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+          })
+          .catch((err) => {
+            alert(err);
+            alert("asd");
+          });
+      }
     } else if (status1 == 2) {
-      newStatus = {
-        status: 1,
-      };
+      if (window.confirm("Confirm order is not completed")) {
+        newStatus = {
+          status: 1,
+        };
+        axios
+          .put(
+            `http://localhost:8000/order/updateorderstatus/${id2}`,
+            newStatus
+          )
+          .then(() => {
+            axios
+              .get("http://localhost:8000/order/active")
+              .then((res) => {
+                setOrders(res.data);
+                setongoinglength(res.data.length);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+
+            axios
+              .get("http://localhost:8000/order/complete")
+              .then((res) => {
+                setCompleteorders(res.data);
+                setcompletelength(res.data.length);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+          })
+          .catch((err) => {
+            alert(err);
+            alert("asd");
+          });
+      }
     }
-
-    axios
-      .put(`http://localhost:8000/order/updateorderstatus/${id2}`, newStatus)
-      .then(() => {
-        axios
-          .get("http://localhost:8000/order/active")
-          .then((res) => {
-            setOrders(res.data);
-          })
-          .catch((err) => {
-            alert(err.message);
-          });
-
-        axios
-          .get("http://localhost:8000/order/complete")
-          .then((res) => {
-            setCompleteorders(res.data);
-          })
-          .catch((err) => {
-            alert(err.message);
-          });
-      })
-      .catch((err) => {
-        alert(err);
-        alert("asd");
-      });
-
-    // window.location.reload();
   }
 
   function modalopen(oid) {
@@ -130,52 +195,104 @@ export default function OrderAdmin() {
   }
   return (
     <div>
-      <div className="row">
-        <div className="col-md-3">
-          <div className="card">
-            <div className="row card-body">
-              <div className="col-md-7">
-                <h4>Color</h4>
-                <br />
-                <h4>Ongoing orders</h4>
+      <div className="container" style={{ width: "90%", fontSize: "18px" }}>
+        <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
+          <div className="col">
+            <div
+              style={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                borderColor: "#00408C",
+                padding: "20px 20px 20px 20px",
+                margin: "10px 0px 0px 0px",
+              }}
+            >
+              <div className="row">
+                <div className="col-8">
+                  <span style={{ color: "orange" }}>{ongoinglength}</span>
+                  <br />
+                  <span>Ongoing Orders</span>
+                </div>
+                <div className="col">
+                  <i
+                    class="fa fa-map-marker"
+                    aria-hidden="true"
+                    style={{
+                      color: "orange",
+                      fontSize: "30px",
+                      marginTop: "10px",
+                    }}
+                  ></i>
+                </div>
               </div>
-              <div className="col-md-5">
-                <h4>Color</h4>
+            </div>
+          </div>
+          <div className="col">
+            <div
+              style={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                borderColor: "#00408C",
+                padding: "20px 20px 20px 20px",
+                margin: "10px 0px 0px 0px",
+              }}
+            >
+              <div className="row">
+                <div className="col-8">
+                  <span style={{ color: "Green" }}>{completelength}</span>
+                  <br />
+                  <span>Completed orders</span>
+                </div>
+                <div className="col">
+                  <i
+                    class="fa fa-map-marker"
+                    aria-hidden="true"
+                    style={{
+                      color: "Green",
+                      fontSize: "30px",
+                      marginTop: "10px",
+                    }}
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col">
+            <div
+              style={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                borderColor: "#00408C",
+                padding: "20px 20px 20px 20px",
+                margin: "10px 0px 0px 0px",
+              }}
+            >
+              <div className="row">
+                <div className="col-8">
+                  <span style={{ color: "blue" }}>
+                    {ongoinglength + completelength}
+                  </span>
+                  <br />
+                  <span>All Orders</span>
+                </div>
+                <div className="col">
+                  <i
+                    class="fa fa-map-marker"
+                    aria-hidden="true"
+                    style={{
+                      color: "blue",
+                      fontSize: "30px",
+                      marginTop: "10px",
+                    }}
+                  ></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-md-1"></div>
-        <div className="col-md-3">
-          <div className="card">
-            <div className="row card-body">
-              <div className="col-md-7">
-                <h4>Color</h4>
-                <br />
-                <h4>Ongoing orders</h4>
-              </div>
-              <div className="col-md-5">
-                <h4>Color</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-1"></div>
-        <div className="col-md-3">
-          <div className="card">
-            <div className="row card-body">
-              <div className="col-md-7">
-                <h4>Color</h4>
-                <br />
-                <h4>Ongoing orders</h4>
-              </div>
-              <div className="col-md-5">
-                <h4>Color</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-1"></div>
       </div>
       <div className="row">
         <div className="col-md-12">
@@ -237,7 +354,7 @@ export default function OrderAdmin() {
                         <td>{post.orderID}</td>
                         <td>{post.patientID}</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -367,7 +484,7 @@ export default function OrderAdmin() {
                         <td>{post.orderID}</td>
                         <td>{post.patientID}</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -486,13 +603,6 @@ export default function OrderAdmin() {
                             style={{ marginLeft: "10px" }}
                           />
                         ) : null}
-                        <Trash2
-                          className="btn btn-outline-danger btn-sm"
-                          color="black"
-                          // onClick={() => deleteFood(post.foodID)}
-                          style={{ marginLeft: "10px" }}
-                          size="35px"
-                        />
                       </div>
                     </td>
                   </tr>

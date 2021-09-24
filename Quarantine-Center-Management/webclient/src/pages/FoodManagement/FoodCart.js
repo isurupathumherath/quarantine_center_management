@@ -118,21 +118,41 @@ export default function FoodCart() {
       >
         <div className="row">
           <div className="col">
-            <h4 className="card-title d-flex justify-content-center">
+            <h2
+              className="card-title d-flex justify-content-center"
+              style={{ fontWeight: "bold" }}
+            >
               Quarentine Center Management
-            </h4>
-            <h5 className="card-title">Contact Number: 011-2289485</h5>
+            </h2>
+            <br />
+
+            <div className="row">
+              <div className="col-md-6">
+                <h5 className="card-title">
+                  <b>Contact Number:</b> 011-2289485
+                </h5>
+              </div>
+              <div className="col-md-6">
+                <h5 className="card-title">
+                  <b>Location:</b> We provide the best care available
+                </h5>
+              </div>
+            </div>
             <hr />
           </div>
         </div>
 
         <div>
           <div className="row">
-            <div className="col-md-4">
-              <h5 className="card-title">Bill number: {order.orderID} </h5>
+            <div className="col-md-6">
+              <h5 className="card-title">
+                <b>Bill number:</b> {order.orderID}{" "}
+              </h5>
             </div>
-            <div className="col-md-8">
-              <h5 className="card-title">Ordered date: {order.orderedDate}</h5>
+            <div className="col-md-6">
+              <h5 className="card-title">
+                <b>Ordered date:</b> {order.orderedDate}
+              </h5>
             </div>
           </div>
           <hr />
@@ -187,14 +207,22 @@ export default function FoodCart() {
           <div className="col-md-2"></div>
 
           <div className="col-md-3">
-            <button onClick={modalClose} className="btn btn-primary">
+            <button
+              onClick={modalClose}
+              style={{ width: "90%" }}
+              className="btn btn-info"
+            >
               Print recipt
             </button>
           </div>
           <div className="col-md-2"></div>
 
           <div className="col-md-3">
-            <button onClick={modalClose} className="btn btn-primary">
+            <button
+              onClick={modalClose}
+              style={{ width: "90%" }}
+              className="btn btn-danger"
+            >
               Close
             </button>
           </div>
@@ -203,7 +231,7 @@ export default function FoodCart() {
       </Modal>
     );
   } else {
-    mdel = <p>ass</p>;
+    mdel = <p></p>;
   }
 
   return (
