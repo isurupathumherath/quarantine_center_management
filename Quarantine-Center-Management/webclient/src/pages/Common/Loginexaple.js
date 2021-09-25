@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 //import componenents
 import LoginForm from "../../components/example/Loginform";
+import RoomData from '../../components/FinanceManagment/Invoice/roomData';
 
 export default class Loginexample extends Component {
   render() {
@@ -23,7 +24,7 @@ export default class Loginexample extends Component {
                     Login <span>Doccure</span>
                   </h3>
                 </div>
-                <LoginForm />
+                <RoomData />
               </div>
             </div>
           </div>

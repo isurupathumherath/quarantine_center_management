@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import Home from "../../components/FinanceManagment/Invoice/home";
+import React, { Component } from "react";  
 import * as AiIcons from 'react-icons/ai';
 
-export default class Invoice extends Component {
+export default class Payment extends Component {
     render() {
         return (
             <div>
@@ -16,10 +15,7 @@ export default class Invoice extends Component {
                                         <li class="breadcrumb-item active" aria-current="page">Payment</li>
                                     </ol>
                                 </nav>
-                                <h2 class="breadcrumb-title">Payment Details
-                                    {/* <span class="float-right mt-0">
-                                        
-                                    </span> */}
+                                <h2 class="breadcrumb-title">Payment
                                 </h2>
                             </div>
                             <div class="col-md-1 col-1">
@@ -30,7 +26,7 @@ export default class Invoice extends Component {
                 </div>
                 <div class="content">
                     <div class="container-fluid">
-                        <Home />
+                        {/* <PayerForm /> */}
                     </div>
                 </div>
             </div>

@@ -31,16 +31,16 @@ const financePayerschema = mongoose.Schema({
     },
     status: {
         type: String,
-        required: true
+        required: false
     },
     updatedDate: {
         type: Date,
         default: Date.now,
-        required: true
+        required: false
     },
     userID: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: Date,

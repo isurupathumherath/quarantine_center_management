@@ -41,14 +41,15 @@ export default class Header extends Component {
                     Home <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
-                    <li class="active">
-                      <a href={'/invoice'}>Home</a>
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li>
+                      <a href={'/invoice'}>Invoice</a>
                     </li>
                     <li>
-                      <a href="index-1.html">Home 1</a>
+                      <a href={'/payer'}>Payer</a>
                     </li>
                     <li>
-                      <a href="index-2.html">Home 2</a>
+                      <a href={'/payment'}>Payment</a>
                     </li>
                     <li>
                       <a href="index-3.html">Home slider 1</a>
@@ -235,7 +236,7 @@ export default class Header extends Component {
                   <ul class="submenu">
                     <li class="active">
                       <a href={'/payment/home'}>Payment</a>
-                    </li> 
+                    </li>
                   </ul>
                 </li>
               </ul>

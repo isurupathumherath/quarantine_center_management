@@ -3,8 +3,11 @@
     On - 17/09/2021
     Name - Invoice business logic
  */
+import mongoose from 'mongoose';
 import FoodDetails from '../../models/foodmodel/orderModule';
 import RoomDetails from '../../models/RoomModels/booking';
+import RoomInfo from '../../models/RoomModels/room';
+
 
 export const getFoodDetails = async (req, res) => {
     try {
@@ -22,7 +25,7 @@ export const getFoodDetails = async (req, res) => {
     }
 }
 
-export const getRoomDetails = async (req, res) => {
+export const getBookingDetails = async (req, res) => {
     try {
         const userID = req.params.id; 
 
@@ -32,6 +35,26 @@ export const getRoomDetails = async (req, res) => {
             res.status(200).json(RoomInfo);
         } else {
             res.status(200).send(`No payment assign for this user id ${userID} in Room`);
+        }
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+} 
+
+
+export const getRoomDetails = async (req, res) => {
+    try {
+
+        const {id} = req.params; 
+
+        if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with that id: ${id}`);
+
+        const RoomData = await RoomInfo.find({ _id: id });
+
+        if (RoomData != []) {
+            res.status(200).json(RoomData);
+        } else {
+            res.status(200).send(`No Room with this id ${id} in Room`);
         }
     } catch (error) {
         res.status(404).json({ message: error.message });
