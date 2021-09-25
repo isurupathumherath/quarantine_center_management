@@ -74,7 +74,7 @@ exports.getLunchFoods = async (req, res) => {
 };
 
 exports.getAppetizers = async (req, res) => {
-  let type = "Appetizer";
+  let type = "Appetizers";
   let st1 = 1;
 
   try {
@@ -87,7 +87,7 @@ exports.getAppetizers = async (req, res) => {
 };
 
 exports.getBeveragers = async (req, res) => {
-  let type = "Beverage";
+  let type = "Beverages";
   let st1 = 1;
 
   try {
