@@ -157,7 +157,6 @@ exports.create = (req, res) => {
                         text: `
                             Hi
                         
-                            Welcome to DOCCURE Staff.
                             You can login to the system using these username and password. This is a temporary login.
                             
                             You have to give new username and password in your first login
@@ -324,8 +323,8 @@ Date - 22/08/2021
  */
 exports.update = (req, res) => {
     const { employeeId } = req.params;
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password } = req.body;
-    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password }, { new: true }).exec((err, post) => {
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type } = req.body;
+    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type }, { new: true }).exec((err, post) => {
         if (err) console.log(err);
         res.json(post);
     })
@@ -336,9 +335,8 @@ Name - Update Employee Details by Id
 Date - 11/09/2021
  */
 exports.updateEmployeeDetail = (req, res) => {
-    const { id } = req.params;
     const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC } = req.body;
-    Employee.findOneAndUpdate({ id }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC }, { new: true }).exec((err, post) => {
+    Employee.findByIdAndUpdate(req.params.id, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC }, { new: true }).exec((err, post) => {
         if (err) console.log(err);
         res.json(post);
     })
