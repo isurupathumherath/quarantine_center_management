@@ -1,5 +1,6 @@
 import React, { Component } from "react";  
 import * as AiIcons from 'react-icons/ai';
+import Home from '../../components/FinanceManagment/payment/home'
 
 export default class Payment extends Component {
     render() {
@@ -26,7 +27,7 @@ export default class Payment extends Component {
                 </div>
                 <div class="content">
                     <div class="container-fluid">
-                        {/* <PayerForm /> */}
+                        <Home />
                     </div>
                 </div>
             </div>

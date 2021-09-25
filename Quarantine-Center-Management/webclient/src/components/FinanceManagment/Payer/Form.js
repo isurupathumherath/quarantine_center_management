@@ -1,39 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPayer } from '../../../api/FinanceApi';
-
-const PayerForm = ({ currentId, setCurrentId }) => {
+import { createPayer } from '../../../actions/FinanceAction/payer'; 
+import Swal from 'sweetalert2';
+ 
+const PayerForm = ({}) => {
     const [payerData, setpayerData] = useState({ firstName: '', lastName: '', address: '', email: '', contactNumber: '' });
+    
     const dispatch = useDispatch();
-    const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(false); 
 
-
-    const clear = () => {
-        // setCurrentId(0);
-        setpayerData({ firstName: '', lastName: '', address: '', email: '', contactNumber: '' });
-    };
+    const clear = () => { 
+        setpayerData({firstName: '', lastName: '', address: '', email: '', contactNumber: ''});
+      };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            dispatch(createPayer(payerData));
-            clear();
-        } else if (form.checkValidity() === true) {
-            event.preventDefault();
-            console.log("tets");
-        } else {
-            event.preventDefault();
-        }
-
-        setValidated(true); 
-
-        // browserHistory.push('/invoice') 
-
+        event.preventDefault(); 
+        dispatch(createPayer(payerData)); 
+        clear();
+        Swal.fire(
+            'suucess',
+            'payer details succefully saved',
+            'success'
+          )
+        // browserHistory.push('/invoice')
+        setValidated(true);
     };
 
     return (
@@ -79,7 +70,7 @@ const PayerForm = ({ currentId, setCurrentId }) => {
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
                         required
-                        type="email"
+                        type="text"
                         placeholder="user@gmail.com"
                         name="email"
                         value={payerData.email}
@@ -91,7 +82,7 @@ const PayerForm = ({ currentId, setCurrentId }) => {
                     <Form.Label>Contact Number</Form.Label>
                     <Form.Control
                         required
-                        type="number"
+                        type="text"
                         placeholder="Contact Number"
                         name="contactNumber"
                         value={payerData.contactNumber}
@@ -104,7 +95,7 @@ const PayerForm = ({ currentId, setCurrentId }) => {
                 <Col sm={6} md={6}>
                 </Col>
                 <Col sm={2} md={2}>
-                    <button type="button" class="btn btn-block btn-warning" onClick={clear}>Cancel</button>
+                    {/* <button type="button" class="btn btn-block btn-warning" onClick={clear}>Cancel</button> */}
                 </Col>
                 <Col sm={2} md={2}>
                     <button type="button" class="btn btn-block btn-danger">Cancel</button>

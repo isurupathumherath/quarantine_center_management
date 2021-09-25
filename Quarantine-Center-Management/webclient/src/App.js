@@ -19,6 +19,7 @@ import PaymentInvoice from "./pages/FinanceManagement/PaymentInvoice";
 import Invoice from "./pages/FinanceManagement/Invoice";
 import Payer from "./pages/FinanceManagement/Payer";
 import Payment from "./pages/FinanceManagement/Payment";
+import Test from "./pages/FinanceManagement/Test/home";
 
 
 
@@ -33,7 +34,9 @@ class App extends Component {
               <Route path="/paymentinvoice" exact component={PaymentInvoice} /> 
               <Route path="/invoice" exact component={Invoice} />  
               <Route path="/payer" exact component={Payer} />  
-              <Route path="/payment" exact component={Payment} />   
+              <Route path="/payment" exact component={Payment} />  
+              <Route path="/test" exact component={Test} />   
+
 
               {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />

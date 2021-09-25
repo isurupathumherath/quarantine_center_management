@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'; 
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 
-import Posts from '../components/Posts/Posts';
-import Form from '../components/Form/Form';
-import { getPosts } from '../actions/posts'; 
+// import Posts from '../components/Posts/Posts';
+import Form from './form';
+import CardList from './CardList/List';
+// import { getPayments } from '../../actions/posts'; 
 
 const Home = () => {
     const [currentId, setCurrentId] = useState(0);
-    const dispatch = useDispatch(); 
+    // const dispatch = useDispatch(); 
 
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currentId, dispatch]);
+    // useEffect(() => {
+    //     dispatch(getPosts());
+    // }, [currentId, dispatch]);
 
     return (
         <div>
@@ -26,13 +27,23 @@ const Home = () => {
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="card">
+                                    <div class="card-header">
+                                        Patient ID :  102
+                                    </div>
                                     <div class="card-body">
-                                        <Posts setCurrentId={setCurrentId} />
+                                        <CardList setCurrentId={setCurrentId} />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <Form currentId={currentId} setCurrentId={setCurrentId} />
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Card with links</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <Form currentId={currentId} setCurrentId={setCurrentId} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>

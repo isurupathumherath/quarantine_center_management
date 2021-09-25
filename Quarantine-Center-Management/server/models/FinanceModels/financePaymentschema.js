@@ -10,15 +10,15 @@ import mongoose from "mongoose";
 const financePaymentschema = mongoose.Schema({
     paymentAmount:{
         type: String,
-        required: true 
+        required: false 
     },
     invoiceNumber:{
         type: String,
-        required: true 
+        required: false 
     },
     paymentType:{
         type: String,
-        required: true 
+        required: false 
     },
     cardNumber:{
         type: String,
@@ -39,7 +39,7 @@ const financePaymentschema = mongoose.Schema({
     payedDateTime:{
         type: Date,
         default: Date.now,
-        required: true
+        required: false
     },
     invoicEexpirationDate:{
         type: Date,
@@ -47,11 +47,11 @@ const financePaymentschema = mongoose.Schema({
     },
     states:{
         type: String,
-        required: true 
+        required: false 
     },
     userID: {
         type: String,
-        required: true
+        required: false
     },
     createdAt: {
         type: Date,

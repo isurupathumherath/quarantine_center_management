@@ -52,7 +52,7 @@ export default class Header extends Component {
                       <a href={'/payment'}>Payment</a>
                     </li>
                     <li>
-                      <a href="index-3.html">Home slider 1</a>
+                      <a href={'/test'}>Test</a>
                     </li>
                     <li>
                       <a href="index-slide.html">Home slider 2</a>

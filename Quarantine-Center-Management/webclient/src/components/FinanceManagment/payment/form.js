@@ -1,55 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPayer } from '../../../api/FinanceApi';
+import { createPayment, updatePayment } from '../../../actions/FinanceAction/payment';
+import Swal from 'sweetalert2'
+
 
 const PaymentForm = ({ currentId, setCurrentId }) => {
-    const [paymentData, setPaymentData] = useState({cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: '' });
-    const payment = useSelector((state) => (currentId ? state.payments.find((message) => message._id === currentId) : null));
-    const dispatch = useDispatch(); 
-  
+    const [paymentData, setPaymentData] = useState({ cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: '', userID: '110', status: '1' });
+    const payment = useSelector((state) => (currentId ? state.payment.find((message) => message._id === currentId) : null));
+    const dispatch = useDispatch();
+
+    const [validated, setValidated] = useState(false);
+
     useEffect(() => {
-      if (payment) setPostData(payment);
+        if (payment) setPaymentData(payment);
     }, [payment]);
-  
+
     const clear = () => {
-      setCurrentId(0);
-      setPaymentData({cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: ''});
+        setCurrentId(0);
+        setPaymentData({ cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: '' });
     };
-  
+ 
     const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      if (currentId === 0) {
-        dispatch(createPayment(paymentData));
-        clear();
-      } else {
-        dispatch(updatePayment(currentId, paymentData));
-        clear();
-      }
+        e.preventDefault();
+        // if (this.paymentData.cardNumber == "") {
+        //     console.log("test8888888888888888888888888888888");
+        // } else {
+            if (currentId === 0) {
+                dispatch(createPayment(paymentData));
+                clear();
+                Swal.fire(
+                    'success',
+                    'card added suucefully',
+                    'success'
+                )
+            } else {
+                dispatch(updatePayment(currentId, paymentData));
+                clear();
+                Swal.fire(
+                    'update success!',
+                    'Card details updated',
+                    'success'
+                )
+            }
+        // }
+
+        setValidated(true);
     };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const form = event.currentTarget;
-
-    //     if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //         dispatch(createPayer(payerData));
-    //         clear();
-    //     } else if (form.checkValidity() === true) {
-    //         event.preventDefault();
-    //         console.log("tets");
-    //     } else {
-    //         event.preventDefault();
-    //     }
-
-    //     setValidated(true); 
-
-    //     // browserHistory.push('/invoice') 
-
-    // };
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -66,7 +63,7 @@ const PaymentForm = ({ currentId, setCurrentId }) => {
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="12" controlId="validationCustom02">
+                <Form.Group as={Col} md="12" className='mt-3' controlId="validationCustom02">
                     <Form.Label>Card Holders name</Form.Label>
                     <Form.Control
                         required
@@ -101,19 +98,19 @@ const PaymentForm = ({ currentId, setCurrentId }) => {
                         onChange={(event) => setPaymentData({ ...paymentData, cvv: event.target.value })}
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group> 
+                </Form.Group>
             </Row>
             <Row className='mt-5'>
-                <Col sm={6} md={6}>
-                </Col> 
-                <Col sm={2} md={2}>
-                    <button type="button" class="btn btn-block btn-info">Pay</button>
+                <Col sm={3} md={3}>
                 </Col>
-                <Col sm={2} md={2}>
+                <Col sm={3} md={3}>
+                    <button type="button" class="btn btn-block btn-warning" onClick={clear}>Clear</button>
+                </Col>
+                <Col sm={3} md={3}>
                     <button type="submit" class="btn btn-block btn-success">Save</button>
                 </Col>
-                <Col sm={2} md={2}>
-                    <button type="button" class="btn btn-block btn-warning" onClick={clear}>Clear</button>
+                <Col sm={3} md={3}>
+                    <button type="button" class="btn btn-block btn-info">Pay</button>
                 </Col>
             </Row>
 
@@ -122,4 +119,4 @@ const PaymentForm = ({ currentId, setCurrentId }) => {
 }
 
 
-export default PayerForm;
+export default PaymentForm;
