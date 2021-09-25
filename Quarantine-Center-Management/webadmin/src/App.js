@@ -15,8 +15,11 @@ import allStaffMembers from './pages/StaffMenagement/allStaffMembers' //--Added 
 import updateStaffMember from './pages/StaffMenagement/updateStaffMember' //--Added by Isuru Pathum Herath--
 import addSalary from './pages/StaffMenagement/addSalaryforStaff' //--Added by Isuru Pathum Herath--
 import addQuaratineStaff from './pages/StaffMenagement/addQuaratineStaff' //--Added by Isuru Pathum Herath--
-import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Added by Isuru Pathum Herath-- | TEMP
+import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Added by Isuru Pathum Herath--
 import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
+import addTask from './pages/StaffMenagement/addTaskStaffMember'  //--Added by Isuru Pathum Herath--
+import showEmployeeTask from './pages/StaffMenagement/showEmployeeTasks' //--Added by Isuru Pathum Herath--
+import staffAnalytic from './pages/StaffMenagement/StaffAnalytics' //--Added by Isuru Pathum Herath--
 
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -30,7 +33,7 @@ class App extends Component {
         <Sidebar />
         <div class="page-wrapper">
           <div class="content container-fluid">
-                    
+
             <Switch>
               <Route path="/login" exact component={Login} />
               <Route path="/addStaffMember" exact component={addStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
@@ -40,6 +43,9 @@ class App extends Component {
               <Route path="/filterStaffMember" exact component={filterStaffMember} />       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addSalary" exact component={addSalary} />                       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />       {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/addTask" exact component={addTask} />                           {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/showEmployeeTask" exact component={showEmployeeTask} />         {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/staffAnalytic" exact component={staffAnalytic} />
               
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />

@@ -8,7 +8,6 @@
 import React, { useState, useEffect, setState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { ExcelFile, ExcelSheet } from "react-export-excel";
 
 const App = () => {
 
@@ -53,10 +52,8 @@ const App = () => {
 
     return (
         <div>
-
-            <h1 align="center">Staff Members</h1>
+            <h1 align="center">Staff Analytics</h1>
             <br />
-
             <form style={{ marginTop: '40px', marginLeft: '40px' }}>
                 <input
                     type="text"

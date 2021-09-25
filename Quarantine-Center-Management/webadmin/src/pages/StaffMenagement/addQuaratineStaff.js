@@ -23,17 +23,6 @@
             .catch(error => alert("Error Fetching Staff Members"));
         }
     
-        //Delete staff Member by ID
-        const deleteStaffMember = (employeeId) => {
-            axios
-            .delete(`http://localhost:8000/employee/remove/${employeeId}`)
-            .then(response => {
-                alert(response.data.message);
-                fetchStaffMembers();
-            })
-            .catch(error => alert('Error deleting Staff Member'));
-        }
-    
         //Filter Staff Member
         const handleFilter = (event) => {
             const searchWord = event.target.value;
@@ -122,7 +111,9 @@
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>
                       &nbsp; */}
-                      <a className="" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
+
+                        {/* {() => deleteStaffMember(staffMembers.employeeId)} */}
+                      <a className="" href="#" onClick = "">
                         <i className="fa fa-plus-square" width="20px"></i>&nbsp;
                       </a>
                     </td>

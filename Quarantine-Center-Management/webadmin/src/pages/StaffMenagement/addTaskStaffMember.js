@@ -1,8 +1,8 @@
 /*
     Created by - Isuru Pathum Herath
-    On - 12/09/2021
-    Name - addSalaryforStaff
-    Last Update - 12/09/2021
+    On - 25/09/2021
+    Name - addTaskStaffMember
+    Last Update - 25/09/2021
  */
 
 import React, { useState, useEffect } from 'react';
@@ -11,17 +11,17 @@ import axios from 'axios';
 const App = () => {
 
     const [staffMembers, setStaffMembers] = useState([]);
-    const [staffSalary, setStaffSalary] = useState([]);
+    const [staffTask, setStaffTask] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [wordEnteredStaff, setWordEnteredStaff] = useState("");
 
     // state
     const [state, setState] = useState({
-        EmployeeID: '', Grade: '', PerDay: '', AdditionalHour: ''
+        EmployeeID: '', TaskName: '', Priority: '', Description: '', Status: '',
     });
 
     //destructure values from state
-    const { EmployeeID, Grade, PerDay, AdditionalHour } = state;
+    const { EmployeeID, TaskName, Status, Priority, Description } = state;
 
 
     //Fetch All staff Members
@@ -35,23 +35,23 @@ const App = () => {
     }
 
     //Fetch All Salary Details
-    const fetchSalaryDetails = () => {
-        axios.get("http://localhost:8000/salary/all-salary")
+    const fetchTaskDetails = () => {
+        axios.get("http://localhost:8000/task/")
             .then(response => {
                 console.log(response)
-                setStaffSalary(response.data)
+                setStaffTask(response.data)
             })
             .catch(error => alert("Error Fetching Staff Members"));
     }
 
-    //Delete staff Salary Member by Employee ID
-    const deleteStaffSalaryMember = (id) => {
+    //Delete staff Task by Employee ID
+    const deleteTask = (id) => {
         axios
-            .delete(`http://localhost:8000/salary/remove/${id}`)
+            .delete(`http://localhost:8000/task/remove/${id}`)
             .then(response => {
                 alert(response.data.message);
                 fetchStaffMembers();
-                fetchSalaryDetails();
+                fetchTaskDetails();
             })
             .catch(error => alert('Error deleting Staff Member'));
     }
@@ -67,8 +67,7 @@ const App = () => {
                 const newFilter = staffMembers.filter((response) => {
                     return response.employeeId.toLowerCase().includes(searchWord.toLowerCase()) ||
                         response.firstName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.lastName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.type.toLowerCase().includes(searchWord.toLowerCase());
+                        response.lastName.toLowerCase().includes(searchWord.toLowerCase());
                 });
 
                 if (searchWord === "") {
@@ -86,21 +85,21 @@ const App = () => {
         const searchWord = key.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get("http://localhost:8000/salary/all-salary")
+        axios.get("http://localhost:8000/task/")
             .then(response => {
                 console.log(response)
-                const newFilter = staffSalary.filter((response) => {
+                const newFilter = staffTask.filter((response) => {
                     return response.EmployeeID.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.Grade.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.PerDay.toString().toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.AdditionalHour.toString().toLowerCase().includes(searchWord.toLowerCase());
+                        response.TaskName.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.Status.toLowerCase().includes(searchWord.toLowerCase())
+                        ;
                 });
 
                 if (searchWord === "") {
                     console.log("EMPLTY");
-                    fetchSalaryDetails();
+                    fetchTaskDetails();
                 } else {
-                    setStaffSalary(newFilter);
+                    setStaffTask(newFilter);
                 }
             })
             .catch(error => console.log(error));
@@ -115,16 +114,16 @@ const App = () => {
     //Submit Form Data
     const handleSubmit = event => {
         event.preventDefault()
-        console.table({ EmployeeID, Grade, PerDay, AdditionalHour })
-        axios.post(`http://localhost:8000/salary/add`, { EmployeeID, Grade, PerDay, AdditionalHour })
+        console.table({ EmployeeID, TaskName, Priority, Description, Status })
+        axios.post(`http://localhost:8000/task/add`, { EmployeeID, TaskName, Priority, Description, Status })
             .then(response => {
                 console.log(response)
                 //show success alert
                 alert(`Salary Added for ${response.data.EmployeeID}`);
                 //empty state
-                setState({ ...state, EmployeeID: '', Grade: '', PerDay: '', AdditionalHour: '' });
+                setState({ ...state, EmployeeID: '', TaskName: '', Priority: '', Description: '', Status: '' });
                 fetchStaffMembers();
-                fetchSalaryDetails();
+                fetchTaskDetails();
             })
             .catch(error => {
                 console.log(error.Response)
@@ -134,13 +133,13 @@ const App = () => {
 
     useEffect(() => {
         fetchStaffMembers();
-        fetchSalaryDetails();
+        fetchTaskDetails();
     }, [])
 
     return (
 
         <div className="container-fluid">
-            <h1 align="center">Staff Salary</h1>
+            <h1 align="center">Staff Member Task</h1>
             <br />
             <form onSubmit={handleSubmit} style={{ marginTop: '50px', marginLeft: '100px' }}>
                 <div class="container-fluid">
@@ -153,36 +152,50 @@ const App = () => {
                         </div>
                         <div class="col">
                             <div className="form-group">
+                                <label className="text-muted">Task Name</label>
+                                <input onChange={handleChange('TaskName')} value={TaskName} type="text" className="form-control" placeholder="Enter Task Name" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
                                 <label className="text-muted">Task Priority</label>
-                                <select id="Grade" value={Grade} onChange={handleChange("Grade")} className="form-control">
-                                    <option value="Attendance Grade A">Attendance Grade A</option>
-                                    <option value="Attendance Grade B">Attendance Grade B</option>
-                                    <option value="Attendance Grade C">Attendance Grade C</option>
-                                    <option value="Nurse Grade A">Nurse Grade A</option>
-                                    <option value="Nurse Grade B">Nurse Grade B</option>
-                                    <option value="Nurse Grade C">Nurse Grade C</option>
-                                    <option value="Doctor Grade">Doctor Grade</option>
+                                <select id="Priority" value={Priority} onChange={handleChange("Priority")} className="form-control">
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div className="form-group">
-                                <label className="text-muted">Salary Per Day</label>
-                                <input onChange={handleChange('PerDay')} value={PerDay} type="text" className="form-control" placeholder="Salary Per Day (Rs.)" pattern="[0-9]{0-10}" title="Please Enter Valid Salary Rate" required />
+                                <label className="text-muted">Status</label>
+                                <select id="Status" value={Status} onChange={handleChange("Status")} className="form-control">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Done">Done</option>
+                                </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <div className="form-group">
-                                <label className="text-muted">Salary per OT hour</label>
-                                <input onChange={handleChange('AdditionalHour')} value={AdditionalHour} type="text" className="form-control" placeholder="Salary Per OT Hour (Rs.)" pattern="[0-9]{0-10}" title="Please Enter Valid Salary Rate" required />
+                                <label className="text-muted">Description</label>
+                                <textarea onChange={handleChange('Description')} value={Description} type="text" className="form-control" placeholder="Enter Description" required />
                             </div>
-
                         </div>
                         <div class="col" style={{ marginTop: '30px', marginLeft: '20px' }}>
                             <div>
                                 <button className="btn btn-primary" style={{ width: "100px" }}>Add</button>
                             </div>
                         </div>
+
+                    </div>
+                    <div class="row">
+
+
+
                     </div>
                 </div>
             </form>
@@ -210,31 +223,38 @@ const App = () => {
                             <tr>
                                 <th >#</th>
                                 <th >Employee ID</th>
-                                <th >Grade</th>
-                                <th >PerDay</th>
-                                <th >Additional Hour</th>
+                                <th >Task Name</th>
+                                <th >Priority</th>
+                                <th >Status</th>
+                                <th>Description</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {staffSalary.map((staffSalary, i) => (
+                            {staffTask.map((staffTask, i) => (
                                 <tr key={i}>
                                     <th scope="row">{i + 1}</th>
 
-                                    <a href={`/singleProfile/${staffSalary.EmployeeID}`} style={{ textDecoration: 'none' }}>
-                                        <td>{staffSalary.EmployeeID}</td>
+                                    <a href={`/singleProfile/${staffTask.EmployeeID}`} style={{ textDecoration: 'none' }}>
+                                        <td>{staffTask.EmployeeID}</td>
                                     </a>
 
-                                    <td>{staffSalary.Grade}</td>
-                                    <td>{staffSalary.PerDay}</td>
-                                    <td>{staffSalary.AdditionalHour}</td>
+                                    <td>
+                                        <a href={`/showEmployeeTask/${staffTask.EmployeeID}`} style={{ textDecoration: 'none' }}>
+                                            {staffTask.TaskName}
+                                        </a>
+                                    </td>
+
+                                    <td>{staffTask.Priority}</td>
+                                    <td>{staffTask.Status}</td>
+                                    <td>{staffTask.Description}</td>
 
                                     <td>
-                                        {/* <a className="btn btn-warning" href={`/updateStaffMember/${staffMembers.EmployeeID}`}>
+                                        {/* <a className="btn btn-warning" href="#" onClick={() => deleteTask(staffTask._id)}>
                                     <i className="fa fa-check-square"></i>&nbsp;
                                 </a> */}
                                         &nbsp;
-                                        <a className="btn btn-danger" href="#" onClick={() => deleteStaffSalaryMember(staffSalary.EmployeeID)}>
+                                        <a className="btn btn-danger" href="#" onClick={() => deleteTask(staffTask._id)}>
                                             <i className="far fa-trash-alt"></i>&nbsp;
                                         </a>
                                     </td>
