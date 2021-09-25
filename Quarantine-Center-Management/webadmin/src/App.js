@@ -19,6 +19,7 @@ import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Adde
 import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
 import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
 import replyTickets from './pages/TicketManagement/replyTickets'; //--Added by Vishara Prabuddhi--
+import Mailer from './components/TicketManagement/mailer';
 
 
 class App extends Component {
@@ -32,8 +33,11 @@ class App extends Component {
                     
             <Switch>
               <Route path="/login" exact component={Login} />
+
               <Route path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
               <Route path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+              <Route path="/Mailer" exact component={Mailer}/> {/*--Added by Vishara Prabuddhi--*/}
+
               <Route path="/addStaffMember" exact component={addStaffMember} /> {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/allStaffMembers" exact component={allStaffMembers} /> {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}

@@ -29,7 +29,17 @@ const TicketAdminSchema = new mongoose.Schema({
     message:{
         type:String,
         required:true
+    },
+    reply:{
+        type:String,
+        required:true
+    },
+    status:{
+        type:String,
+        required:true,
+        default:'New'
     }
+
 
 });
 

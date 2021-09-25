@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "generate-password": "^1.6.1",
     "generate-unique-id": "^2.0.1",
+    "html-pdf": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.7",
     "morgan": "^1.10.0",
