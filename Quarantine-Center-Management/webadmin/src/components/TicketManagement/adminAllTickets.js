@@ -79,7 +79,7 @@ export default class adminAllTickets extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <h3>All Tickets</h3>
               <br></br>
-              <hr style={{width:'1000px'}}></hr>
+              <hr style={{width:'1100px'}}></hr>
               &nbsp;
               <ReactHTMLTableToExcel
                 className='btn btn-outline-success'
@@ -100,7 +100,7 @@ export default class adminAllTickets extends Component {
           </div>
           <div className="card">
             <div className="table-responsive" style={{ maxHeight: "500px", overflowY: "scroll", }}>
-              <table id="enrollment-table" className="table table-hover" style={{ marginTop: '40px'}}>
+              <table id="enrollment-table" className="table table-hover" style={{ marginTop: '40px', width:'1500px' }}>
                 <thead>
                   <tr>
                     <th style={{ width: '10px' }} scope="col">#</th>
