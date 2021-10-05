@@ -17,12 +17,7 @@ const PayerForm = ({}) => {
     const handleSubmit = async (event) => {
         event.preventDefault(); 
         dispatch(createPayer(payerData)); 
-        clear();
-        Swal.fire(
-            'suucess',
-            'payer details succefully saved',
-            'success'
-          )
+        clear(); 
         // browserHistory.push('/invoice')
         setValidated(true);
     };

@@ -5,12 +5,12 @@ export default class Header extends Component {
         return ( 
             <div class="header"> 
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    {/* <a href="index.html" class="logo">
 						<img src="/assets/img/logo.png" alt="Logo"/>
 					</a>
 					<a href="index.html" class="logo logo-small">
 						<img src="/assets/img/logo-small.png" alt="Logo" width="30" height="30"/>
-					</a>
+					</a> */}
 				</div>
 				<a href="javascript:void(0);" id="toggle_btn">
 					<i className="fe fe-text-align-left" />

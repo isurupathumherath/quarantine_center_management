@@ -21,9 +21,8 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
 
-/* Janith Gamage On - 13/09/2021  */
-import Home from './pages/FinanceManagement/Home';
-import Test from './pages/FinanceManagement/test';
+/* Janith Gamage On - 13/09/2021  */ 
+import PayerDetails from './pages/FinanceManagement/PayerDetails';
 
 class App extends Component {
   render() { 
@@ -45,9 +44,10 @@ class App extends Component {
               
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" exact component={replyTickets} />
-              { /* Janith Gamage On - 13/09/2021  */ }
-              <Route path="/test" exact component={Home} />
-              <Route path="/finance/home" exact component={Test} />
+
+              { /* Janith Gamage On - 13/09/2021  */ } 
+              <Route path="/finance/payer" exact component={PayerDetails} />
+
             </Switch>
           </div>
         </div>
