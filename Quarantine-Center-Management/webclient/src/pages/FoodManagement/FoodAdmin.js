@@ -5,6 +5,7 @@ import { XSquare } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Check } from "react-feather";
 import uniqid from "uniqid";
+// import { set } from "mongoose";
 
 const $ = require("jquery");
 
@@ -236,6 +237,13 @@ export default function FoodAdmin() {
           alert("asd");
         });
     }
+
+    setImage("");
+    setName("");
+    setDescription("");
+    setPrice("");
+    setType("");
+    setOption(1);
   }
 
   return (

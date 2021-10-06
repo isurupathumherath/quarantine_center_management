@@ -193,6 +193,128 @@ export default function OrderAdmin() {
     setActive(1);
     setmodelOpen(false);
   }
+
+  function filterContent(data, userSearch) {
+    // setPackages(res.data.filter((item) =>item.seller === seller));
+
+    if (userSearch == null) {
+      axios
+        .get("http://localhost:8000/order/active/")
+        .then((res) => {
+          setOrders(res.data);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    let result = data.filter((post) => post.orderedDate.includes(userSearch));
+
+    if (result != null) {
+    } else if (result.length == 0) {
+      //document.getElementById("txt2").innerHTML = "No Result Found!";
+    } else {
+    }
+
+    setOrders(result);
+  }
+
+  function handleSearch(e) {
+    let userSearch = e;
+    console.log(userSearch);
+
+    axios
+      .get("http://localhost:8000/order/active/")
+      .then((res) => {
+        filterContent(res.data, userSearch);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  function filterContent1(data1, userSearch1) {
+    // setPackages(res.data.filter((item) =>item.seller === seller));
+
+    if (userSearch1 == null) {
+      axios
+        .get("http://localhost:8000/order/complete/")
+        .then((res) => {
+          setCompleteorders(res.data1);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    let result1 = data1.filter((post) =>
+      post.orderedDate.includes(userSearch1)
+    );
+
+    if (result1 != null) {
+    } else if (result1.length == 0) {
+      //document.getElementById("txt2").innerHTML = "No Result Found!";
+    } else {
+    }
+
+    setCompleteorders(result1);
+  }
+
+  function handleSearch1(e) {
+    let userSearch1 = e;
+    console.log(userSearch1);
+
+    axios
+      .get("http://localhost:8000/order/complete/")
+      .then((res) => {
+        filterContent1(res.data, userSearch1);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  function filterContent1(data1, userSearch1) {
+    // setPackages(res.data.filter((item) =>item.seller === seller));
+
+    if (userSearch1 == null) {
+      axios
+        .get("http://localhost:8000/order/getactivebypatient/102")
+        .then((res) => {
+          setOrders(res.data1);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    let result1 = data1.filter((post) =>
+      post.orderedDate.includes(userSearch1)
+    );
+
+    if (result1 != null) {
+    } else if (result1.length == 0) {
+      //document.getElementById("txt2").innerHTML = "No Result Found!";
+    } else {
+    }
+
+    setCompleteorders(result1);
+  }
+
+  function handleSearch1(e) {
+    let userSearch1 = e;
+    console.log(userSearch1);
+
+    axios
+      .get("http://localhost:8000/order/getcompletedbypatient/102")
+      .then((res) => {
+        filterContent1(res.data, userSearch1);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   return (
     <div>
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
@@ -310,16 +432,10 @@ export default function OrderAdmin() {
                     type="text"
                     className="form-control"
                     placeholder="Date"
+                    onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Type"
-                  />
-                </div>
+
                 <div className="col-md-4">
                   {" "}
                   <input
@@ -402,7 +518,7 @@ export default function OrderAdmin() {
                                 style={{ marginLeft: "10px" }}
                               />
                             ) : null}
-                            <Trash2
+                            {/* <Trash2
                               className={
                                 active == 1
                                   ? "btn btn-outline-danger btn-sm"
@@ -412,7 +528,7 @@ export default function OrderAdmin() {
                               // onClick={() => deleteFood(post.foodID)}
                               style={{ marginLeft: "10px" }}
                               size="35px"
-                            />
+                            /> */}
                           </div>
                         </td>
                       </tr>
@@ -440,14 +556,7 @@ export default function OrderAdmin() {
                     type="text"
                     className="form-control"
                     placeholder="Date"
-                  />
-                </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Type"
+                    onChange={(e) => handleSearch1(e.target.value)}
                   />
                 </div>
                 <div className="col-md-4">
@@ -528,7 +637,7 @@ export default function OrderAdmin() {
                                 style={{ marginLeft: "10px" }}
                               />
                             ) : null}
-                            <Trash2
+                            {/* <Trash2
                               className={
                                 active == 1
                                   ? "btn btn-outline-danger btn-sm"
@@ -538,7 +647,7 @@ export default function OrderAdmin() {
                               // onClick={() => deleteFood(post.foodID)}
                               style={{ marginLeft: "10px" }}
                               size="35px"
-                            />
+                            /> */}
                           </div>
                         </td>
                       </tr>

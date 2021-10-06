@@ -8,7 +8,7 @@ import OrderContext from "./store/orderContext";
 import FavouriteContext from "./store/FavouriteContext";
 import FeatherIcon from "feather-icons-react";
 import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
-
+import over from "../../assets/FoodManagement/css/over.css";
 Modal.setAppElement("#root");
 
 export default function FoodItem(props) {
@@ -167,16 +167,23 @@ export default function FoodItem(props) {
         </div>
       </div> */}
 
-      <div className="card" style={{ width: "25rem", marginLeft: "2px" }}>
-        <img
-          className="card-img-top"
-          src={`img/${props.image}`}
-          alt="Food image"
-          onClick={modalOpen}
-          style={{
-            height: "200px",
-          }}
-        />
+      <div
+        className="card Regular shadow"
+        style={{ width: "22rem", marginLeft: "5px" }}
+      >
+        <div className="container7788">
+          <img
+            className="card-img-top"
+            src={`img/${props.image}`}
+            alt="Food image"
+            onClick={modalOpen}
+            style={{
+              height: "200px",
+              width: "100%",
+            }}
+          />
+          <div class="overlay">{props.name}</div>
+        </div>
         <div className="card-body">
           <div className="row">
             <div className="col-md-3">
