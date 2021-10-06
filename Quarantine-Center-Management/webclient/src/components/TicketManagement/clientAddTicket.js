@@ -15,6 +15,7 @@ export default class clientAddTicket extends Component {
         this.state = {
             fullName: "",
             nic: "",
+            email: "",
             departmentName: "",
             reply: "",
             status: "",
@@ -35,7 +36,7 @@ export default class clientAddTicket extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const { fullName, nic, departmentName, reply, status, message } = this.state;
+        const { fullName, nic, email, departmentName, reply, status, message } = this.state;
 
         const refID = generateUniqueId({
             length: 10,
@@ -46,6 +47,7 @@ export default class clientAddTicket extends Component {
             refID: refID,
             fullName: fullName,
             nic: nic,
+            email: email,
             departmentName: departmentName,
             reply: "Null",
             status: "New",
@@ -60,6 +62,7 @@ export default class clientAddTicket extends Component {
                     {
                         fullName: "",
                         nic: "",
+                        email: "",
                         departmentName: "",
                         reply: "",
                         status: "",
@@ -79,7 +82,6 @@ export default class clientAddTicket extends Component {
                         <h4>We would love to hear from you !</h4>
                         <div class="contact-info">
                             <img src="https://i1.wp.com/static.vectorcharacters.net/uploads/2018/06/doctor-gif.gif" style={{ width: '300px' }} alt="image" />
-
                         </div>
                     </div>
 
@@ -106,6 +108,18 @@ export default class clientAddTicket extends Component {
                                     min='10' max='12'
                                     onChange={this.handleInputChange} />
                             </div>
+
+                            <div className="form-group" >
+                                <label style={{ marginBottom: '5px' }}>Email</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="email"
+                                    placeholder="Enter Email"
+                                    value={this.state.email}
+                                    min='10' max='12'
+                                    onChange={this.handleInputChange} />
+                            </div>
+
 
                             <div className="form-group" >
                                 <label style={{ marginBottom: '5px' }}>Department</label>

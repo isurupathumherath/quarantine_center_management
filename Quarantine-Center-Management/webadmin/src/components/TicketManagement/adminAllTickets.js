@@ -51,6 +51,7 @@ export default class adminAllTickets extends Component {
       ticket.refID.toLowerCase().includes(searchKey) ||
       ticket.fullName.toLowerCase().includes(searchKey) ||
       ticket.nic.toLowerCase().includes(searchKey) ||
+      ticket.email.toLowerCase().includes(searchKey) ||
       ticket.departmentName.toLowerCase().includes(searchKey) ||
       ticket.message.toLowerCase().includes(searchKey) ||
       ticket.status.toLowerCase().includes(searchKey)
@@ -107,6 +108,7 @@ export default class adminAllTickets extends Component {
                     <th style={{ width: '100px' }} scope="col">Ref ID</th>
                     <th style={{ width: '200px' }} scope="col">Full Name</th>
                     <th style={{ width: '150px' }} scope="col">NIC</th>
+                    <th style={{ width: '150px' }} scope="col">Email</th>
                     <th style={{ width: '100px' }} scope="col">Department Name</th>
                     <th  scope="col">Message</th>
                     <th style={{ width: '300px' }} scope="col">Status</th>
@@ -125,6 +127,7 @@ export default class adminAllTickets extends Component {
                         </a>
                       </td>
                       <td>{tickets.nic}</td>
+                      <td>{tickets.email}</td>
                       <td>{tickets.departmentName}</td>
                       <td>{tickets.message}</td>
                       <td>{tickets.status}</td>

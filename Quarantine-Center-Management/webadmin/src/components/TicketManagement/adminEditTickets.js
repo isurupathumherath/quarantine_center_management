@@ -17,6 +17,7 @@ export default class adminEditTickets extends Component {
 
             fullName: "",
             nic: "",
+            email: "",
             departmentName: "",
             message: "",
             status: "",
@@ -36,11 +37,12 @@ export default class adminEditTickets extends Component {
         e.preventDefault();
         const id = this.props.ticketID;
 
-        const { fullName, nic, departmentName, message, status, reply } = this.state;
+        const { fullName, nic, email, departmentName, message, status, reply } = this.state;
 
         const data = {
             fullName: fullName,
             nic: nic,
+            email: email,
             departmentName: departmentName,
             message: message,
             status: status,
@@ -61,6 +63,7 @@ export default class adminEditTickets extends Component {
                     {
                         fullName: "",
                         nic: "",
+                        email: "",
                         departmentName: "",
                         message: "",
                         status: "",
@@ -84,6 +87,7 @@ export default class adminEditTickets extends Component {
                 this.setState({
                     fullName: res.data.ticket.fullName,
                     nic: res.data.ticket.nic,
+                    email: res.data.ticket.email,
                     departmentName: res.data.ticket.departmentName,
                     message: res.data.ticket.message,
                     status: res.data.ticket.status,
@@ -133,6 +137,16 @@ export default class adminEditTickets extends Component {
                         </div>
 
                         <div className="form-group" style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>Email</label>
+                            <input type="text"
+                                className="form-control"
+                                name="email"
+                                placeholder="Enter Email"
+                                value={this.state.email}
+                                onChange={this.handleInputChange} readonly="readonly" />
+                        </div>
+
+                        <div className="form-group" style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Department Name</label>
                             <input type="text"
                                 className="form-control"
@@ -178,7 +192,7 @@ export default class adminEditTickets extends Component {
 
                         <button className="btn btn-success" type="submit" style={{ marginTop: '15px' }} onClick={this.onSubmit} >
                         <i class="fas fa-paper-plane"></i>
-                            &nbsp;Send
+                            &nbsp;Reply
                         </button>
                         <a style={{ marginLeft: '15px', marginTop: '15px' }} className="btn btn-primary" href={'/Mailer'}>
                           <i className="fas fa-edit"></i>&nbsp;Mail
