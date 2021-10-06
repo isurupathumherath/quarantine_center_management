@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const urlinvoice = 'http://localhost:8000/invoice'; 
-const urlpayer = 'http://localhost:8000/payer'; 
-const urlpayment = 'http://localhost:8000/payment'; 
+const urlinvoice = 'http://localhost:5001/invoice'; 
+const urlpayer = 'http://localhost:5001/payer'; 
+const urlpayment = 'http://localhost:5001/payment'; 
 
 
 

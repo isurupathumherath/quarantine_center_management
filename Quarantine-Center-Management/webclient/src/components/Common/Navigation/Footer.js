@@ -4,10 +4,10 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                <footer class="footer"> 
+                <footer class="footer">
                     <div class="footer-top">
                         <div class="container-fluid">
-                            <div class="row">
+                            {/* <div class="row">
                                 <div class="col-lg-3 col-md-6"> 
                                     <div class="footer-widget footer-about">
                                         <div class="footer-logo">
@@ -80,11 +80,11 @@ export default class Header extends Component {
                                         </div>
                                     </div> 
                                 </div> 
-                            </div>
+                            </div> */}
                         </div>
-                    </div> 
+                    </div>
                     <div class="footer-bottom">
-                        <div class="container-fluid"> 
+                        <div class="container-fluid">
                             <div class="copyright">
                                 <div class="row">
                                     <div class="col-md-6 col-lg-6">
@@ -92,18 +92,18 @@ export default class Header extends Component {
                                             <p class="mb-0">&copy; 2020 Doccure. All rights reserved.</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-6"> 
+                                    <div class="col-md-6 col-lg-6">
                                         <div class="copyright-menu">
                                             <ul class="policy-menu">
                                                 <li><a href="term-condition.html">Terms and Conditions</a></li>
                                                 <li><a href="privacy-policy.html">Policy</a></li>
                                             </ul>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
-                    </div>  
+                    </div>
                 </footer>
             </div>
         )
