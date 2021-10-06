@@ -200,12 +200,12 @@ export default class Header extends Component {
                     <li>
                       <Link to={"/allFood"}>Foods Home</Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link to={"/orderAdmin"}>Order Details</Link>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                       <Link to={"/foodadmin"}>Foods Admin</Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link to={"/allOrders"}>Past Orders</Link>
                     </li>

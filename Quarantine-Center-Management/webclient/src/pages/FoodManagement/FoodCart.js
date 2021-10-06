@@ -6,6 +6,8 @@ import OrderedList from "../../components/FoodManagement/OrderedList";
 import ConfirmOrder from "../../components/FoodManagement/ConfirmOrder";
 import Modal from "react-modal";
 import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
+import Swal from "sweetalert2";
+import jsPDF from "jspdf";
 
 export default function FoodCart() {
   const orderedCtx = useContext(OrderContext);
@@ -22,19 +24,58 @@ export default function FoodCart() {
   let content;
   let mdel;
 
+  function pdfGenerate() {
+    let n = 200;
+    let p = 0;
+    var doc = new jsPDF("landscape", "px", "a4", "false");
+    doc.setFont("Helvertica", "bold");
+    doc.setFontSize(22);
+    doc.text(250, 60, "Qurentine center management");
+    doc.setFontSize(18);
+    doc.text(100, 90, "Contact Number:   011-2298476");
+    doc.text(400, 90, "Location:  Anuradhapura Colombo");
+    doc.text(100, 120, "Bill Number: ");
+    doc.text(180, 120, order.orderID);
+    doc.text(400, 120, "Order date: ");
+    doc.text(480, 120, order.orderedDate.substr(0, 10));
+    doc.text(
+      50,
+      145,
+      "-----------------------------------------------------------------------------------------------------------------------------"
+    );
+
+    doc.text(130, 170, "Food Item: ");
+    doc.text(400, 170, "Price: ");
+    doc.setFontSize(16);
+    doc.setFont("Helvertica", "italic");
+    order.orderDetails.map((post) => {
+      doc.text(130, n, post.name);
+      doc.text(400, n, "Rs." + String(post.price) + ".00");
+      n >= 440 ? doc.addPage() : (p = 1);
+      n >= 440 ? (n = 0) : (p = 2);
+      n = n + 30;
+    });
+    doc.setTextColor("red");
+    doc.text(365, n + 10, "Total: " + "Rs." + String(order.total) + ".00");
+    doc.save("a.pdf");
+    setmodelOpen(false);
+    window.location.reload();
+  }
+
   async function addOrder(orderid) {
     {
-      // orderid.map((post) => (orderid = post.orderID));
-
-      console.log("This is food cart");
-      console.log(orderid);
-
       await axios
         .get(`http://localhost:8000/order/getbyorder/${orderid}`)
         .then((res) => {
           if (res.data != null) {
             setOrder(res.data);
-            console.log("success");
+
+            Swal.fire({
+              title: "Success",
+              text: "Food ordered successfully, Here are the details",
+              icon: "Success",
+              condirmButtonText: "Cool",
+            });
             setStatus("1");
           }
         })
@@ -42,26 +83,6 @@ export default function FoodCart() {
           alert(err);
           alert("asd");
         });
-      // orderedCtx.orders.map((post) => {
-      //   fid = post.id;
-      //   p1 = post.price;
-
-      // const orderDetails = {
-      //   orderDetailID: uniqid(),
-      //   foodID: fid,
-      //   price: p1,
-      //   orderID: orderid,
-      //   status: 1,
-      // };
-
-      // axios
-      //   .post("http://localhost:8000/orderdetails/", orderDetails)
-      //   .then(() => {})
-      //   .catch((err) => {
-      //     alert(err.message);
-      //     alert("Food didnt ordered");
-      //   });
-      // });
 
       setmodelOpen(true);
     }
@@ -69,8 +90,10 @@ export default function FoodCart() {
 
   function modalClose() {
     setmodelOpen(false);
+    const Swal = require("sweetalert2");
     window.location.reload();
   }
+
   if (orderedCtx.totalOrders === 0) {
     content = <h5>You dont have any orders yet. </h5>;
   } else {
@@ -96,7 +119,7 @@ export default function FoodCart() {
             },
             content: {
               width: "800px",
-              height: "450px",
+              height: "650px",
               margin: "auto",
             },
           })
@@ -151,7 +174,7 @@ export default function FoodCart() {
             </div>
             <div className="col-md-6">
               <h5 className="card-title">
-                <b>Ordered date:</b> {order.orderedDate}
+                <b>Ordered date:</b> {order.orderedDate.substr(0, 10)}
               </h5>
             </div>
           </div>
@@ -208,7 +231,7 @@ export default function FoodCart() {
 
           <div className="col-md-3">
             <button
-              onClick={modalClose}
+              onClick={pdfGenerate}
               style={{ width: "90%" }}
               className="btn btn-info"
             >

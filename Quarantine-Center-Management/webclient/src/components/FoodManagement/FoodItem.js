@@ -56,9 +56,7 @@ export default function FoodItem(props) {
         .put(
           `http://localhost:8000/orderDetails/deletefromfavourite/613b2cac1aaf8d0fdcf35ff3/${props.id}`
         )
-        .then(() => {
-          alert("Removed from favourites");
-        })
+        .then(() => {})
         .catch((err) => {
           alert(err.message);
           alert("asd");
@@ -93,9 +91,7 @@ export default function FoodItem(props) {
           `http://localhost:8000/orderDetails/updateusers/613b2cac1aaf8d0fdcf35ff3`,
           newFood
         )
-        .then(() => {
-          alert("Favourites updated");
-        })
+        .then(() => {})
         .catch((err) => {
           alert(err.message);
           alert("asd");
@@ -232,7 +228,7 @@ export default function FoodItem(props) {
             },
             content: {
               width: "70%",
-              height: "90%",
+              height: "80%",
               margin: "auto",
               opacity: "1",
               borderStyle: "solid",

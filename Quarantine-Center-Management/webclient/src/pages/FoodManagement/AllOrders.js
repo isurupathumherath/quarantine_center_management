@@ -5,15 +5,24 @@ import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
+import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
+import jsPDF from "jspdf";
+import moment from "moment";
+
 export default function AllOrders() {
   let count = 0;
   let [orders, setOrders] = useState([]);
+  let [allorders, setallorders] = useState([]);
   let [completeorders, setCompleteorders] = useState([]);
   let [foods, setFoods] = useState([]);
   let [active, setActive] = useState(1);
   const [modelOpen, setmodelOpen] = useState(false);
   let [completelength, setcompletelength] = useState(0);
   let [ongoinglength, setongoinglength] = useState(0);
+  let recipt = [];
+
+  let t1 = 0;
+
   let f1 = [];
 
   useEffect(() => {
@@ -36,7 +45,18 @@ export default function AllOrders() {
       .catch((err) => {
         alert(err.message);
       });
+
+    axios
+      .get("http://localhost:8000/order/getallbypatientid/102")
+      .then((res) => {
+        setallorders(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   }, []);
+
+  allorders.map((post) => (t1 = t1 + post.total));
 
   function modalopen(oid) {
     setActive(2);
@@ -54,6 +74,77 @@ export default function AllOrders() {
   function modalClose() {
     setActive(1);
     setmodelOpen(false);
+  }
+
+  function receiptgenerate() {
+    let n = 200;
+    let p = 230;
+    let q = 0;
+    let c = 0;
+    let ftotal = 0;
+    var doc = new jsPDF("landscape", "px", "a4", "false");
+    doc.setFont("Helvertica", "bold");
+    doc.setFontSize(22);
+    doc.text(250, 60, "Qurentine center management");
+    doc.setFontSize(18);
+    doc.text(100, 90, "Contact Number:   011-2298476");
+    doc.text(400, 90, "Location:  Anuradhapura Colombo");
+    doc.text(100, 120, "Date: ");
+    doc.text(150, 120, moment().format("YYYY-MM-DD"));
+    doc.text(
+      50,
+      145,
+      "-----------------------------------------------------------------------------------------------------------------------------"
+    );
+
+    doc.text(300, 170, "Food Name: ");
+    doc.text(500, 170, "Price: ");
+    doc.setFontSize(16);
+    doc.setFont("Helvertica", "italic");
+    orders.map((post) => {
+      doc.text(100, n + 30, "Order ID: ");
+      doc.text(175, n + 30, post.orderID);
+      doc.text(100, n, "Order Date: ");
+      doc.text(175, n, post.orderedDate.substr(0, 10));
+
+      post.orderDetails.map((data) => {
+        doc.text(300, p, data.name);
+        doc.text(500, p, "Rs." + String(data.price) + ".00");
+        c = c + 1;
+
+        p >= 430 ? doc.addPage() : (q = 1);
+        p >= 430 ? (p = 0) : (q = 2);
+        console.log(n);
+
+        p = p + 30;
+      });
+      doc.setTextColor("red");
+      doc.text(465, p, "Total: " + "Rs." + String(post.total) + ".00");
+      ftotal = ftotal + post.total;
+      doc.setTextColor("black");
+      doc.text(
+        50,
+        p + 30,
+        "******************************************************************************************************************************"
+      );
+      p = p + 60;
+      n = p;
+      p = p + 30;
+      // n >= 440 ? doc.addPage() : (q = 1);
+      // n >= 440 ? (p = 30) : (q = 2);
+      // n >= 440 ? (n = 30) : (q = 2);
+    });
+
+    doc.text(100, p, "Number of items ordered = ");
+    doc.text(280, p, String(c));
+    doc.setTextColor("red");
+    doc.text(380, p, "Total payment = ");
+    doc.text(480, p, "Rs." + String(ftotal) + ".00");
+
+    doc.save("xb.pdf");
+  }
+  function reportgenerate() {
+    console.log("report");
   }
 
   function filterContent(data, userSearch) {
@@ -140,7 +231,7 @@ export default function AllOrders() {
     <div>
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
-          <div className="col">
+          <div className="col-md-3">
             <div
               style={{
                 width: "100%",
@@ -159,7 +250,7 @@ export default function AllOrders() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa fa-hourglass-end"
                     aria-hidden="true"
                     style={{
                       color: "orange",
@@ -171,7 +262,7 @@ export default function AllOrders() {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-md-3">
             <div
               style={{
                 width: "100%",
@@ -186,11 +277,11 @@ export default function AllOrders() {
                 <div className="col-8">
                   <span style={{ color: "Green" }}>{completelength}</span>
                   <br />
-                  <span>Completed orders</span>
+                  <span>Finished orders</span>
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa fa-check"
                     aria-hidden="true"
                     style={{
                       color: "Green",
@@ -202,7 +293,7 @@ export default function AllOrders() {
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-md-3">
             <div
               style={{
                 width: "100%",
@@ -223,10 +314,41 @@ export default function AllOrders() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa fa-building"
                     aria-hidden="true"
                     style={{
                       color: "red",
+                      fontSize: "30px",
+                      marginTop: "10px",
+                    }}
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div
+              style={{
+                width: "100%",
+                backgroundColor: "white",
+                borderRadius: "10px",
+                borderColor: "#00408C",
+                padding: "20px 20px 20px 20px",
+                margin: "10px 0px 0px 0px",
+              }}
+            >
+              <div className="row">
+                <div className="col-8">
+                  <span style={{ color: "blue" }}>Rs.{t1}.00</span>
+                  <br />
+                  <span>Total Price</span>
+                </div>
+                <div className="col">
+                  <i
+                    class="fa fa-calculator"
+                    aria-hidden="true"
+                    style={{
+                      color: "blue",
                       fontSize: "30px",
                       marginTop: "10px",
                     }}
@@ -247,7 +369,23 @@ export default function AllOrders() {
             }}
           >
             <div className="card-body">
-              <h4 className="card-title">Ongoing Orders</h4>
+              <div className="row">
+                <div className="col-md-9">
+                  <h4 className="card-title">Ongoing Orders</h4>
+                </div>
+                <div className="col-md-3">
+                  <button className="btn btn-info" onClick={reportgenerate}>
+                    <i className="fa fa-upload"></i> Generate report
+                  </button>
+                  <button
+                    className="btn btn-info"
+                    style={{ marginLeft: "20px" }}
+                    onClick={receiptgenerate}
+                  >
+                    <i className="fa fa-save"></i> Generate receipt
+                  </button>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-md-4">
                   {" "}
@@ -273,7 +411,7 @@ export default function AllOrders() {
                       <th>Order ID</th>
                       <th>Total Price</th>
                       <th>Instructions</th>
-                      <th>Ordered Date</th>
+                      <th>Delivery Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -281,10 +419,10 @@ export default function AllOrders() {
                     {orders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
-                        <td>{post.orderID}</td>
+                        <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate.substr(0, 10)}</td>
+                        <td>{post.deliveryDate}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -325,6 +463,7 @@ export default function AllOrders() {
           </div>
         </div>
       </div>
+
       <div className="row">
         <div className="col-md-12">
           <div
@@ -359,7 +498,7 @@ export default function AllOrders() {
                       <th>Order ID</th>
                       <th>Total Price</th>
                       <th>Instructions</th>
-                      <th>Ordered Date</th>
+                      <th>Delivery Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -367,10 +506,11 @@ export default function AllOrders() {
                     {completeorders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
-                        <td>{post.orderID}</td>
+                        <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.orderedDate.substr(0, 10)}</td>
+                        <td>{post.deliveryDate}</td>
+                        {/* substr(0, 10) */}
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -406,7 +546,58 @@ export default function AllOrders() {
           </div>
         </div>
       </div>
-      <Modal animation={true} isOpen={modelOpen} onRequestClose={modalClose}>
+      <Modal
+        animation={true}
+        isOpen={modelOpen}
+        onRequestClose={modalClose}
+        style={
+          (ModelCss,
+          {
+            display: "flex",
+
+            content: {
+              width: "70%",
+              height: "80%",
+              margin: "auto",
+              opacity: "1",
+              borderStyle: "solid",
+            },
+          })
+        }
+      >
+        <div className="row">
+          <div className="col">
+            <h2
+              className="card-title d-flex justify-content-center"
+              style={{ fontWeight: "bold" }}
+            >
+              Quarentine Center Management
+            </h2>
+            <br />
+
+            <div className="row">
+              <div className="col-md-7">
+                <h4 className="card-title">
+                  <b>Contact Number:</b> 011-2289485
+                </h4>
+              </div>
+              <div className="col-md-5">
+                <h4 className="card-title">
+                  <b>Location:</b> We provide the best care available
+                </h4>
+              </div>
+            </div>
+            <hr />
+            <div className="row">
+              <div className="col-md-12">
+                <h4 className="card-title">
+                  <b>Order Details: </b>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col-md-12">
             <table className="table table-striped">

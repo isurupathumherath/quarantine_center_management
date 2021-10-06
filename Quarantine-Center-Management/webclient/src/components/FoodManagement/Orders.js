@@ -24,10 +24,18 @@ export default function Orders(props) {
             />
           </div>
           <div className="col-md-8">
-            <div className="card-body" style={{ paddingLeft: "50px" }}>
-              <h5 className="card-title">{props.name}</h5>
-              <p className="card-text">Rs.{props.price}.00</p>
-              <p className="card-text">{props.description}</p>
+            <div className="card-body" style={{ paddingLeft: "65px" }}>
+              <h5 className="card-title">
+                <b>Name :</b>
+                {props.name}
+              </h5>
+              <p className="card-text">
+                <b>Price :</b>Rs.{props.price}.00
+              </p>
+              <p className="card-text">
+                <b>Description :</b>
+                {props.description}
+              </p>
 
               <button
                 onClick={toogleOrderStatusHandler}

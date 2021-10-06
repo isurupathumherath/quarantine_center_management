@@ -19,7 +19,16 @@ export default function Favourites() {
 
   return (
     <div>
-      <h1>My orders</h1>
+      <h2
+        style={{
+          color: "#0057d1",
+          fontFamily: "'Bitter', serif",
+          fontSize: "35px",
+        }}
+      >
+        Favourites
+      </h2>
+      <hr />
       <div className="row">
         {favourites.map((post) => (
           <FavouritesToCart

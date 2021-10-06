@@ -5,6 +5,7 @@ import { XSquare } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Check } from "react-feather";
 import uniqid from "uniqid";
+import Swal from "sweetalert2";
 // import { set } from "mongoose";
 
 const $ = require("jquery");
@@ -68,6 +69,13 @@ export default function FoodAdmin() {
         axios
           .put(`http://localhost:8000/foods/update/${id2}`, newFood)
           .then(() => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Status changed",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             axios
               .get("http://localhost:8000/foods/")
               .then((res) => {
@@ -100,6 +108,13 @@ export default function FoodAdmin() {
         axios
           .put(`http://localhost:8000/foods/update/${id2}`, newFood)
           .then(() => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Status changed",
+              showConfirmButton: false,
+              timer: 1300,
+            });
             axios
               .get("http://localhost:8000/foods/")
               .then((res) => {
@@ -122,7 +137,13 @@ export default function FoodAdmin() {
       axios
         .delete(`http://localhost:8000/foods/delete/${id}`)
         .then((res) => {
-          alert("Food Deleted successfully");
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Deleted",
+            showConfirmButton: false,
+            timer: 1300,
+          });
           axios
             .get("http://localhost:8000/foods/")
             .then((res) => {
@@ -222,7 +243,13 @@ export default function FoodAdmin() {
       axios
         .post("http://localhost:8000/foods/", newFood)
         .then(() => {
-          alert("Food added");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Food added",
+            showConfirmButton: false,
+            timer: 1300,
+          });
           axios
             .get("http://localhost:8000/foods/")
             .then((res) => {

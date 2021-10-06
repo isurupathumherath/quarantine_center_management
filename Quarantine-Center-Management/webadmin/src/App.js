@@ -20,6 +20,7 @@ import filterStaffMember from "./pages/StaffMenagement/filterStaffMember"; //--A
 /*--Added by Chamodh Iduranga--*/
 import OrderAdmin from "../../webadmin/src/pages/FoodManagement/OrderAdmin";
 import FoodAdmin from "../../webadmin/src/pages/FoodManagement/FoodAdmin";
+import FoodReport from "../../webadmin/src/pages/FoodManagement/FoodReport";
 //pages
 import viewTickets from "./components/TicketManagement/adminAllTickets";
 import replyTickets from "./components/TicketManagement/adminEditTickets";
@@ -70,6 +71,7 @@ class App extends Component {
               {/*--Added by Chamodh Iduranga--*/}
               <Route path="/orderAdmin" exact component={OrderAdmin} />
               <Route path="/foodadmin" exact component={FoodAdmin} />
+              <Route path="/foodreports" exact component={FoodReport} />
             </Switch>
           </div>
         </div>

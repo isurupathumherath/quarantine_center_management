@@ -29,7 +29,7 @@ export default function ConfirmOrder(props) {
     const newOrder = {
       orderID: oid,
       patientID: "102",
-      orderDate: new Date(),
+      orderDate: new Date().getDate(),
       total: totalPrice,
       instructions,
       deliveryDate,

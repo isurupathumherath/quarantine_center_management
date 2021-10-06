@@ -34,6 +34,38 @@ exports.getCompletedOrders = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+//For generating reports
+exports.getByYear = async (req, res) => {
+  let start = req.params.from;
+  let end = req.params.to;
+  try {
+    const allOrders = await OrderModule.find({
+      orderedDate: { $gte: start, $lt: end },
+    });
+
+    console.log(allOrders);
+    res.status(200).json(allOrders);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+exports.getByDate = async (req, res) => {
+  let start = req.params.from;
+  let end = "2021-11";
+  try {
+    const allOrders = await OrderModule.find({
+      orderedDate: { $gte: start, $lt: end },
+    });
+
+    console.log(allOrders);
+    res.status(200).json(allOrders);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 //Getting the last inserted
 exports.getLastInserted = async (req, res) => {
   try {
@@ -119,6 +151,18 @@ exports.getactiveByPatientId = (req, res) => {
       }
     }
   );
+};
+
+exports.getallbypatient = (req, res) => {
+  let patientID = req.params.id;
+
+  const food = OrderModule.find({ patientID: patientID }).exec((err, post) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(post);
+    }
+  });
 };
 
 exports.getcompletedByPatientID = (req, res) => {

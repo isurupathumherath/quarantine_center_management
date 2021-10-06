@@ -5,7 +5,6 @@ import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
-import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
 export default function OrderAdmin() {
   let count = 0;
   let [orders, setOrders] = useState([]);
@@ -468,7 +467,7 @@ export default function OrderAdmin() {
                     {orders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
-                        <td>{post.orderID}</td>
+                        <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>{post.patientID}</td>
                         <td>{post.instructions}</td>
                         <td>{post.orderedDate.substr(0, 10)}</td>
@@ -591,7 +590,7 @@ export default function OrderAdmin() {
                     {completeorders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
-                        <td>{post.orderID}</td>
+                        <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>{post.patientID}</td>
                         <td>{post.instructions}</td>
                         <td>{post.orderedDate.substr(0, 10)}</td>
@@ -677,7 +676,13 @@ export default function OrderAdmin() {
         }}
         onRequestClose={modalClose}
       >
-        <div className="row">
+        <div
+          className="row"
+          style={{
+            maxHeight: "450px",
+            overflowY: "scroll",
+          }}
+        >
           <div className="col-md-12" style={{ padding: "20px" }}>
             <h4>Order Details</h4>
             <table className="table table-striped">

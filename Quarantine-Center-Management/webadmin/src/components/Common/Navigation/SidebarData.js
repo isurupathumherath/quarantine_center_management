@@ -58,7 +58,7 @@ export const SidebarData = [
       },
       {
         title: "Reports",
-        path: "/",
+        path: "/foodreports",
         icon: <HiIcons.HiDocumentReport />,
       },
     ],

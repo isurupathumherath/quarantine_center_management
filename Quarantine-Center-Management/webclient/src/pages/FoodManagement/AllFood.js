@@ -90,7 +90,7 @@ export default function AllFoods() {
       >
         <img
           className="card-img-top"
-          src={`img/ddd.jpeg`}
+          src={`img/bg1.jpeg`}
           alt="Food image"
           style={{
             height: "400px",
