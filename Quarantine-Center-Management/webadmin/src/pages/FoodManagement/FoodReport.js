@@ -1,6 +1,8 @@
 import React, { useState, useEffect, PureComponent } from "react";
 import axios from "axios";
 import Modal from "react-modal";
+import pdfConverter from "jspdf";
+import html2canvas from "html2canvas";
 import {
   BarChart,
   Bar,
@@ -37,43 +39,31 @@ export default function FoodReport() {
   let oldDate = "2021-2-2";
   let tot = 0;
   let c = 0;
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-    },
-  ];
+
+  function generatepdf() {
+    // alert("as");
+
+    var doc = new pdfConverter("landscape", "px", "a4", "false");
+    var width = doc.internal.pageSize.getWidth();
+    var height = 200;
+
+    // let handleElement = {
+    //   "#sss": function (element, renderer) {
+    //     return true;
+    //   },
+    // };
+
+    var h1 = window.document.getElementById("chart");
+
+    console.log(h1);
+    html2canvas(h1).then((canvas) => {
+      const img = canvas.toDataURL("image/png");
+      const pdf = new pdfConverter("landscape", "px", "a4", "false");
+      pdf.addImage(img, "png", 0, 0, width, height);
+      pdf.save("chart.pdf");
+      // but.style.display = "block";
+    });
+  }
 
   function getData() {
     console.log(fromdate);
@@ -124,9 +114,6 @@ export default function FoodReport() {
 
     console.log("all orders");
     console.log(allorders);
-    // allorders = data;
-    console.log(data1);
-    console.log(data);
   }
 
   return (
@@ -151,11 +138,13 @@ export default function FoodReport() {
                 <div className="col-md-12">
                   <div className="card">
                     <div className="card-header">
-                      <h4 className="card-title">Add/Update</h4>
+                      <h4 id="sss" className="card-title">
+                        Add/Update
+                      </h4>
                     </div>
                     <div className="card-body">
                       <form action="#" onSubmit={getData}>
-                        <div className="row">
+                        <div className="row" id="ddddd">
                           <div className="col-md-3">
                             From:
                             <input
@@ -180,14 +169,26 @@ export default function FoodReport() {
                             />
                           </div>
                           <div
-                            className="col-md-4"
+                            className="col-md-3"
                             style={{ marginTop: "25px" }}
                           >
                             <input
                               type="submit"
-                              value="Submit"
+                              value="Search"
                               className="btn btn-primary"
                               style={{ width: "60%" }}
+                            />
+                          </div>
+                          <div
+                            className="col-md-3"
+                            style={{ marginTop: "25px" }}
+                          >
+                            <input
+                              type="button"
+                              value="Generate report"
+                              className="btn btn-primary"
+                              style={{ width: "60%" }}
+                              onClick={generatepdf}
                             />
                           </div>
                         </div>
@@ -195,10 +196,10 @@ export default function FoodReport() {
                     </div>
                     {console.log(allorders)}
 
-                    <div className="row">
+                    <div id="chart" className="row">
                       <div className="col-md-12">
                         <BarChart
-                          width={1200}
+                          width={1150}
                           height={300}
                           data={allorders}
                           margin={{

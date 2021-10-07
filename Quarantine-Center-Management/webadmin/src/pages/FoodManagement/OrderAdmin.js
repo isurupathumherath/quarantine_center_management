@@ -338,7 +338,7 @@ export default function OrderAdmin() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa  fa-hourglass-end"
                     aria-hidden="true"
                     style={{
                       color: "orange",
@@ -369,7 +369,7 @@ export default function OrderAdmin() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa  fa-check"
                     aria-hidden="true"
                     style={{
                       color: "Green",
@@ -394,7 +394,7 @@ export default function OrderAdmin() {
             >
               <div className="row">
                 <div className="col-8">
-                  <span style={{ color: "blue" }}>
+                  <span style={{ color: "red" }}>
                     {ongoinglength + completelength}
                   </span>
                   <br />
@@ -402,10 +402,10 @@ export default function OrderAdmin() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-map-marker"
+                    class="fa  fa-building"
                     aria-hidden="true"
                     style={{
-                      color: "blue",
+                      color: "red",
                       fontSize: "30px",
                       marginTop: "10px",
                     }}
