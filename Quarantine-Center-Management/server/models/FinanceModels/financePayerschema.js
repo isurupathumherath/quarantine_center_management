@@ -1,12 +1,6 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payer model
- */
+//payer deatils schema
+import mongoose from "mongoose"; 
 
-import mongoose from "mongoose";
-
-//mongo db table (schema)
 const financePayerschema = mongoose.Schema({
     firstName: {
         type: String,

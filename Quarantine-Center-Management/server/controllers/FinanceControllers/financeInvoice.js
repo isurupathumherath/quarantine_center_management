@@ -1,14 +1,10 @@
-/*
-    Created by - Janith Gamage
-    On - 17/09/2021
-    Name - Invoice business logic
- */
+//Food & Room Managment Invoice CRUD
 import mongoose from 'mongoose';
-import FoodDetails from '../../models/foodmodel/orderModule';
+import FoodDetails from '../../models/FoodModels/orderModule';
 import RoomDetails from '../../models/RoomModels/booking';
 import RoomInfo from '../../models/RoomModels/room';
 
-
+//get food details according to user ID
 export const getFoodDetails = async (req, res) => {
     try {
         const userID = req.params.id; 
@@ -25,6 +21,8 @@ export const getFoodDetails = async (req, res) => {
     }
 }
 
+
+//get booking Details according to user ID
 export const getBookingDetails = async (req, res) => {
     try {
         const userID = req.params.id; 
@@ -41,7 +39,7 @@ export const getBookingDetails = async (req, res) => {
     }
 } 
 
-
+//get Room Deatils usinf Room ID
 export const getRoomDetails = async (req, res) => {
     try {
 

@@ -41,3 +41,12 @@ export const deletePayment = (id) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const getSavedCardDetails = (id) => async(dispatch) => {
+  try {
+      const { data } = await api.fetchSavedCardDetails(id);
+      dispatch({ type: FETCH_ALL, payload: data});
+  } catch (error) {
+      console.log(error.message);
+  }
+} 

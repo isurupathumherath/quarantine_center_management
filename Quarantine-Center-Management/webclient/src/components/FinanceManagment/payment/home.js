@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // import Posts from '../components/Posts/Posts';
 import Form from './form';
 import CardList from './CardList/List';
-// import { getPayments } from '../../actions/posts'; 
+import { getSavedCardDetails } from '../../../actions/FinanceAction/payment'; 
 
 const Home = () => {
     const [currentId, setCurrentId] = useState(0);
-    // const dispatch = useDispatch(); 
+    const dispatch = useDispatch(); 
 
-    // useEffect(() => {
-    //     dispatch(getPosts());
-    // }, [currentId, dispatch]);
+    useEffect(() => {
+        dispatch(getSavedCardDetails("110"));
+    }, [currentId, dispatch]);
 
     return (
         <div>

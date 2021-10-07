@@ -6,16 +6,17 @@
 
 import express from 'express';
 
-import { getPaymnts, createPayment, updatePayment, deletePayment } from '../../controllers/FinanceControllers/financePayment';
+import { getPaymnts, createPayment, updatePayment, deletePayment, getPaymentDetais } from '../../controllers/FinanceControllers/financePayment';
 
 const router = express.Router(); 
 
 //all the routes 
-router.get('/testgetallPostman', getPaymnts);
-router.post('/testcreatePostman', createPayment);
-router.patch('/testupdatePostman/:id', updatePayment);
-router.delete('/testdeletePostman/:id', deletePayment); 
-
+router.get('/getAllPayemntDetails', getPaymnts);
+router.post('/createPaymentDetails', createPayment);
+router.patch('/updatePaymentDetails/:id', updatePayment);
+router.delete('/deletePaymentDetail/:id', deletePayment); 
+router.get('/payementDetails/:id', getPaymentDetais); 
+ 
 export default router;
 
 //test

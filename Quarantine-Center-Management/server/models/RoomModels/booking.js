@@ -1,18 +1,4 @@
-const mongoose = require('mongoose')
-
-// var booking = mongoose.model('booking',{
-//     fname: {type:String},
-//     lname: {type:String},
-//     nic: {type:String},
-//     email: {type:String},
-//     checkin: {type:String},
-//     checkout: {type:String},
-//     roomid: {type:String},
-//     patientid: {type:String},
-//     price: {type:Number},
-// })
-
-// module.exports = { booking }
+const mongoose = require('mongoose') 
 
 const bookingSchema = mongoose.Schema({
     fname: {
@@ -40,7 +26,7 @@ const bookingSchema = mongoose.Schema({
         type: String
     },
     price: {
-        type: Number
+        type: String
     },
 })
 

@@ -1,26 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPayer } from '../../../actions/FinanceAction/payer'; 
+import { createPayer } from '../../../actions/FinanceAction/payer';
 import Swal from 'sweetalert2';
- 
-const PayerForm = ({}) => {
-    const [payerData, setpayerData] = useState({ firstName: '', lastName: '', address: '', email: '', contactNumber: '' });
-    
-    const dispatch = useDispatch();
-    const [validated, setValidated] = useState(false); 
 
-    const clear = () => { 
-        setpayerData({firstName: '', lastName: '', address: '', email: '', contactNumber: ''});
-      };
+const PayerForm = ({ }) => {
+    const [payerData, setpayerData] = useState({ firstName: '', lastName: '', address: '', email: '', contactNumber: '' });
+
+    const dispatch = useDispatch();
+    const [validated, setValidated] = useState(false);
+
+    const clear = () => {
+        setpayerData({ firstName: '', lastName: '', address: '', email: '', contactNumber: '' });
+        setValidated(false);
+    };
+
+    const [showResults, setShowResults] = React.useState(false)
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
-        dispatch(createPayer(payerData)); 
-        clear(); 
-        // browserHistory.push('/invoice')
+        event.preventDefault();
+        // dispatch(createPayer(payerData)); 
+        // setValidated(true);
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            Swal.fire(
+                'error',
+                'Please Fill the Form',
+                'error'
+            )
+        } else if (form.checkValidity() === true) {
+            event.preventDefault();
+            Swal.fire(
+                'success',
+                'Payer Details added suucefully',
+                'success'
+            )
+            setShowResults(true)
+            clear();
+        }
+
         setValidated(true);
     };
+
+    const Nextbtn = () => (
+        <Col sm={2} md={2}>
+            <a href={'/payment'} ><button type="button" class="btn btn-block btn-info">Next</button></a>
+        </Col >
+    )
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -53,8 +82,8 @@ const PayerForm = ({}) => {
                     <Form.Label>Permenent Address</Form.Label>
                     <Form.Control
                         required
-                        type="text"
-                        placeholder="First name"
+                        as="textarea" rows={3}
+                        placeholder="No. ##,..."
                         name="address"
                         value={payerData.address}
                         onChange={(event) => setpayerData({ ...payerData, address: event.target.value })}
@@ -65,7 +94,7 @@ const PayerForm = ({}) => {
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
                         required
-                        type="text"
+                        type="email"
                         placeholder="user@gmail.com"
                         name="email"
                         value={payerData.email}
@@ -78,7 +107,8 @@ const PayerForm = ({}) => {
                     <Form.Control
                         required
                         type="text"
-                        placeholder="Contact Number"
+                        maxLength={12}
+                        placeholder="+94 77 000 0000"
                         name="contactNumber"
                         value={payerData.contactNumber}
                         onChange={(event) => setpayerData({ ...payerData, contactNumber: event.target.value })}
@@ -90,17 +120,15 @@ const PayerForm = ({}) => {
                 <Col sm={6} md={6}>
                 </Col>
                 <Col sm={2} md={2}>
-                    {/* <button type="button" class="btn btn-block btn-warning" onClick={clear}>Cancel</button> */}
+                    <button type="button" class="btn btn-block btn-danger" onClick={clear}>Clear</button>
                 </Col>
                 <Col sm={2} md={2}>
-                    <button type="button" class="btn btn-block btn-danger">Cancel</button>
+                    <button type="submit" class="btn btn-block btn-success">Save</button>
                 </Col>
-                <Col sm={2} md={2}>
-                    <button type="submit" class="btn btn-block btn-info">Save & Next</button>
-                </Col>
+                {showResults ? <Nextbtn /> : null}
             </Row>
 
-        </Form>
+        </Form >
     );
 }
 

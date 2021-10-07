@@ -5,20 +5,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// import routes
-const ticketRoutes = require("./routes/Ticket-Admin"); //--Added by Vishara Prabuddhi--
+// import routes  
+import financePaymentRoutes from "./routes/FinanceRoutes/financePayment";  
+import financePayerRoutes from "./routes/FinanceRoutes/financePayer";  
+import FinanceInvoice from "./routes/FinanceRoutes/financeInvoice";
 
-const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Pathum Herath--
-const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
-
-import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
-import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage-- 
-import FinanceInvoice from "./routes/FinanceRoutes/financeInvoice"; //--Added by Janith Gamage-- 
-
-const FoodsRoute = require("./routes/foodroute/foodsRoute"); //--Added by Chamodh iduranga--
-const CommentRoute = require("./routes/foodroute/commentRoute"); //--Added by Chamodh iduranga--
-const OrderRoute = require("./routes/foodroute/orderRoute"); //--Added by Chamodh iduranga--
-const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute"); //--Added by Chamodh iduranga--
 // App
 const app = express();
 
@@ -36,27 +27,12 @@ mongoose
 // Middlewares
 app.use(cors());
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 
-// Route Middleware
-app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
-
-app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
-app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
-
-app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
-app.use("/payer", financePayerRoutes); //--Added by Janith Gamage-- 
-app.use("/invoice", FinanceInvoice); //--Added by Janith Gamage-- 
-
-app.use("/foods", FoodsRoute); //--Added by Chamodh iduranga--
-app.use("/comment", CommentRoute); //--Added by Chamodh iduranga--
-app.use("/order", OrderRoute); //--Added by Chamodh iduranga--
-app.use("/orderdetails", OrderDetailsRoute); //--Added by Chamodh iduranga-- 
-
-
-
-
-
+app.use("/payment", financePaymentRoutes); 
+app.use("/payer", financePayerRoutes); 
+app.use("/invoice", FinanceInvoice);   
+ 
 // Post
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

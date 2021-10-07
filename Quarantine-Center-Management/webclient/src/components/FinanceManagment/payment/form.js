@@ -6,7 +6,14 @@ import Swal from 'sweetalert2'
 
 
 const PaymentForm = ({ currentId, setCurrentId }) => {
-    const [paymentData, setPaymentData] = useState({ cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: '', userID: '110', status: '1' });
+    const [paymentData, setPaymentData] = useState({
+        cardNumber: '',
+        cardholdersName: '',
+        expiaryDate: '',
+        cvv: '',
+        userID: '110',
+        status: '1'
+    });
     const payment = useSelector((state) => (currentId ? state.payment.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
 
@@ -20,33 +27,44 @@ const PaymentForm = ({ currentId, setCurrentId }) => {
         setCurrentId(0);
         setPaymentData({ cardNumber: '', cardholdersName: '', expiaryDate: '', cvv: '' });
     };
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if (this.paymentData.cardNumber == "") {
         //     console.log("test8888888888888888888888888888888");
         // } else {
-            if (currentId === 0) {
-                dispatch(createPayment(paymentData));
-                clear();
-                Swal.fire(
-                    'success',
-                    'card added suucefully',
-                    'success'
-                )
-            } else {
-                dispatch(updatePayment(currentId, paymentData));
-                clear();
-                Swal.fire(
-                    'update success!',
-                    'Card details updated',
-                    'success'
-                )
-            }
+        if (currentId === 0) {
+            dispatch(createPayment(paymentData));
+            clear();
+            Swal.fire(
+                'success',
+                'card added suucefully',
+                'success'
+            )
+            setValidated(true);
+        } else {
+            dispatch(updatePayment(currentId, paymentData));
+            clear();
+            Swal.fire(
+                'update success!',
+                'Card details updated',
+                'success'
+            )
+            setValidated(true);
+        }
         // }
 
         setValidated(true);
     };
+
+    const [showResults, setShowResults] = React.useState(false)
+    const onClick = () => setShowResults(true)
+
+    const Results = () => (
+        <div id="results" className="search-results">
+            Some Results
+        </div>
+    )
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -110,7 +128,8 @@ const PaymentForm = ({ currentId, setCurrentId }) => {
                     <button type="submit" class="btn btn-block btn-success">Save</button>
                 </Col>
                 <Col sm={3} md={3}>
-                    <button type="button" class="btn btn-block btn-info">Pay</button>
+                    <button type="button" class="btn btn-block btn-info" onClick={onClick}>Pay</button>
+                    {showResults ? <Results /> : null}
                 </Col>
             </Row>
 

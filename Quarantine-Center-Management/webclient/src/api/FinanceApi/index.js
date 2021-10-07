@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const urlinvoice = 'http://localhost:5001/invoice'; 
-const urlpayer = 'http://localhost:5001/payer'; 
-const urlpayment = 'http://localhost:5001/payment'; 
+const urlinvoice = 'http://localhost:8000/invoice'; 
+const urlpayer = 'http://localhost:8000/payer'; 
+const urlpayment = 'http://localhost:8000/payment'; 
 
 
 
@@ -21,6 +21,8 @@ export const fetchPayments = () => axios.get(urlpayment+'/testgetallPostman');
 export const createPayment = (newPost) => axios.post(urlpayment+'/testcreatePostman', newPost); 
 export const updatePayment = (id, updatedPost) => axios.patch(`${urlpayment+'/testupdatePostman'}/${id}`, updatedPost);
 export const deletePayment = (id) => axios.delete(`${urlpayment+'/testdeletePostman'}/${id}`);
+
+export const fetchSavedCardDetails = (id) => axios.get(`${urlpayment+'/cardDetails'}/${id}`);
 
 
 
