@@ -1,9 +1,4 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payment routes
- */
-
+//payment details route
 import express from 'express';
 
 import { getPaymnts, createPayment, updatePayment, deletePayment, getPaymentDetais } from '../../controllers/FinanceControllers/financePayment';

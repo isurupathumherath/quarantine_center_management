@@ -9,6 +9,6 @@ router.get('/allPayerDetails', getPayers);
 router.post('/createPayer', createPayer);
 router.patch('/updatePayer/:id', updatePayer);
 router.delete('/deletePayer/:id', deletePayer);  
-router.delete('/payerDetails/:id', getPayerDetails);   
+router.get('/payerDetails/:id', getPayerDetails);   
 
 export default router;

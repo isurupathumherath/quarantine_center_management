@@ -7,9 +7,25 @@ export const getPaymnts = async (req, res) => {
     try {
         const payments = await FinancePayment.find();
 
-        res.status(200).json(payments);
+        if (payments != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    payments
+                });
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "no payments"
+                });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
@@ -21,10 +37,17 @@ export const createPayment = async (req, res) => {
 
     try {
         await newPayment.save();
-
-        res.status(201).json(newPayment);
+        res.status(201).json
+            ({
+                replyCode: 1,
+                newPayment
+            });
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(409).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
@@ -33,11 +56,32 @@ export const updatePayment = async (req, res) => {
     const { id: _id } = req.params;
     const payment = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Payment with that id');
+    try {
+        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Payment with that id');
 
-    const updatedPayment = await FinancePayment.findByIdAndUpdate(_id, { ...payment, _id }, { new: true });
+        const updatedPayment = await FinancePayment.findByIdAndUpdate(_id, { ...payment, _id }, { new: true });
 
-    res.json(updatedPayment);
+        if (updatePayment != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    updatedPayment
+                });
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "no data with that ID"
+                });
+        }
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: "Update payment dunction failed"
+            });
+    }
 
 }
 
@@ -45,11 +89,26 @@ export const updatePayment = async (req, res) => {
 export const deletePayment = async (req, res) => {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Payment with that id: ${id}`);
+    try {
 
-    await FinancePayment.findByIdAndRemove(id);
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Payment with that id: ${id}`);
 
-    res.json({ message: "Payment Deleted Successfully." });
+        await FinancePayment.findByIdAndRemove(id);
+
+        res.status(200).json
+            ({
+                replyCode: 1,
+                message: "Payment Deleted Successfully."
+            });
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: "Payment Delete function falied."
+            });
+    }
+
 }
 
 //get payment details (Card)
@@ -59,12 +118,24 @@ export const getPaymentDetais = async (req, res) => {
 
         const PaymentDetais = await FinancePayment.find({ userID: userID });
 
-        if (PaymentDetais != "") {
-            res.status(200).json(CardInfo);
+        if (PaymentDetais != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    PaymentDetais
+                });
         } else {
-            res.status(200).send(`No Payment Details`);
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "No Payment Details"
+                });
         }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }

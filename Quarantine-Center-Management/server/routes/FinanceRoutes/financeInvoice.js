@@ -5,8 +5,6 @@ import { getFoodDetails, getBookingDetails, getRoomDetails } from '../../control
 
 const router = express.Router();
 
-//http://localhost:8000/invoice/getfoodData/102
-
 //all the routes  
 router.get('/foodDetails/:id', getFoodDetails);
 router.get('/bookingDetails/:id', getBookingDetails);
