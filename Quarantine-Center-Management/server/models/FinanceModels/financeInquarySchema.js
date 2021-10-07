@@ -1,11 +1,7 @@
 //inquary schema 
-import mongoose from "mongoose"; 
+import mongoose from "mongoose";
 
 const InquarySchma = mongoose.Schema({
-    Inquaryid: {
-        type: String,
-        required: false
-    },
     title: {
         type: String,
         required: false
@@ -16,28 +12,23 @@ const InquarySchma = mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     insertedDateTime: {
-        type: String,
-        required: true
-    },
-    piority: {
-        type: String,
-        required: true
-    },
-    states: {
-        //1= inserted / 2 = pending / 3 = on review / 4 = replyed / 5 = closed
-        type: Date,
-        required: true
-    },
-    payedDateTime: {
         type: Date,
         default: Date.now,
         required: false
     },
+    piority: {
+        type: String,
+        required: false
+    }, 
+    payedDateTime: {
+        type: String, 
+        required: false
+    },
     invoicEexpirationDate: {
-        type: Date,
+        type: String,
         required: false
     },
     states: {

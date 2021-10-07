@@ -113,11 +113,11 @@ export const deletePayment = async (req, res) => {
 
 //get payment details (Card)
 export const getPaymentDetais = async (req, res) => {
-    try {
-        const userID = req.params.id;
 
-        const PaymentDetais = await FinancePayment.find({ userID: userID });
+    const userID = req.params.id;
 
+    const PaymentDetais = await FinancePayment.find({ userID: userID });
+    try { 
         if (PaymentDetais != null) {
             res.status(200).json
                 ({

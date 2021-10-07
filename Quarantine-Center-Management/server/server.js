@@ -9,6 +9,7 @@ require("dotenv").config();
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment";  
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer";  
 import FinanceInvoice from "./routes/FinanceRoutes/financeInvoice";
+import FinanceInquary from "./routes/FinanceRoutes/financeInquary";
 
 // App
 const app = express();
@@ -32,6 +33,7 @@ app.use(bodyParser.json());
 app.use("/payment", financePaymentRoutes); 
 app.use("/payer", financePayerRoutes); 
 app.use("/invoice", FinanceInvoice);   
+app.use("/inquary", FinanceInquary);
  
 // Post
 const port = process.env.PORT || 8000;

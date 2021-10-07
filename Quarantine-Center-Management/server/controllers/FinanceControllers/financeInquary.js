@@ -1,22 +1,22 @@
 //payer CRUD
 //reply code 1=success 0=request-error {2 - catch}  
 import mongoose from 'mongoose';
-import FinancePayer from '../../models/FinanceModels/financePayerschema.js';
+import FinanceInquary from '../../models/FinanceModels/financeInquarySchema';
 
 
-//get all the payers 
-export const getPayers = async (req, res) => {
+//get all the inquary 
+export const getInquary = async (req, res) => {
     try {
-        const payers = await FinancePayer.find();
-        if (payers != null) {
+        const inquaryes = await FinanceInquary.find();
+        if (inquaryes != null) {
             res.status(200).json({
                 replyCode: 1,
-                payers
+                inquaryes
             });
         } else {
             res.status(200).json({
                 replyCode: 0,
-                message: "no payers"
+                message: "no inquaryes"
             });
         }
     } catch (error) {
@@ -28,25 +28,25 @@ export const getPayers = async (req, res) => {
     }
 }
 
-//add payer details 
-export const createPayer = async (req, res) => {
-    const payer = req.body;
-    const newPayer = new FinancePayer(payer);
+//add inquary details 
+export const createInquary = async (req, res) => {
+    const inquary = req.body;
+    const newInquary = new FinanceInquary(inquary);
 
     try {
 
-        if (newPayer != "") {
-            await newPayer.save();
+        if (newInquary != null) {
+            await newInquary.save();
             res.status(201).json
                 ({
                     replyCode: 1,
-                    newPayer
+                    newInquary
                 });
         } else {
             res.status(201).json
                 ({
                     replyCode: 1,
-                    message: "no data to add as payer details"
+                    message: "no data to add as inquary details"
                 });
         }
 
@@ -59,19 +59,19 @@ export const createPayer = async (req, res) => {
     }
 }
 
-// update payer details
-export const updatePayer = async (req, res) => {
+// update inquary details
+export const updateInquary = async (req, res) => {
     const { id: _id } = req.params;
-    const payer = req.body;
+    const inquary = req.body;
 
     try {
-        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No payer with that id');
+        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No inquary with that id');
 
-        const updatedPayer = await FinancePayer.findByIdAndUpdate(_id, { ...payer, _id }, { new: true });
+        const updatedInquary = await FinanceInquary.findByIdAndUpdate(_id, { ...inquary, _id }, { new: true });
 
         res.status(200).json({
             replyCode: 1,
-            updatedPayer
+            updatedInquary
         });
 
     } catch (error) {
@@ -85,19 +85,19 @@ export const updatePayer = async (req, res) => {
 
 }
 
-// Delete payer details
-export const deletePayer = async (req, res) => {
+// Delete inquary details
+export const deleteInquary = async (req, res) => {
     const { id } = req.params;
 
     try {
-        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No payer with that id: ${id}`);
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No inquary with that id: ${id}`);
 
-        await FinancePayer.findByIdAndRemove(id);
+        await FinanceInquary.findByIdAndRemove(id);
 
         res.json
             ({
                 replyCode: 1,
-                message: "Payer Deleted Successfully."
+                message: "Inquary Deleted Successfully."
             });
     } catch (error) {
         res.status(400).json({
@@ -109,12 +109,12 @@ export const deletePayer = async (req, res) => {
 }
 
 //get payer details
-export const getPayerDetails = async (req, res) => {
+export const getInquaryDetails = async (req, res) => {
     // const { id } = req.params;
 
     const userID = req.params.id;
 
-    const payerDetails = await FinancePayer.find({ userID: userID });
+    const inquaryDetails = await FinanceInquary.find({ userID: userID });
 
     try {
         //mongoose object id validation
@@ -122,12 +122,12 @@ export const getPayerDetails = async (req, res) => {
 
         // const payerDetails = await FinancePayer.findById(id);
 
-        if (payerDetails != null) {
+        if (inquaryDetails != null) {
             res.status(200).json({
                 replyCode: 1,
-                payerDetails,
+                inquaryDetails,
             });
-        } else{
+        } else {
             res.status(200).json({
                 replyCode: 0,
                 message: "no payer with this ID",
