@@ -38,22 +38,22 @@ export default function Home() {
                     >
                         <Tab eventKey={2} title="Food & Brevarages">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <FoodData />
                                 </div>
-                                <div class="col-md-4 mt-5">
+                                {/* <div class="col-md-4 mt-5">
                                     <Image className="mt-4" src={FoodInvoiceImg} rounded />
-                                </div>
+                                </div> */}
                             </div>
                         </Tab>
                         <Tab eventKey={3} title="Room Reservation">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <RoomData />
                                 </div>
-                                <div class="col-md-4 mt-5">
+                                {/* <div class="col-md-4 mt-5">
                                     <Image className="mt-4" src={bookingInvoiceImg} rounded />
-                                </div>
+                                </div> */}
                             </div>
                         </Tab>
                         {/* <Tab eventKey={1} title="Contact" disabled>

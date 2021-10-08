@@ -52,7 +52,7 @@ export default class Header extends Component {
                       <a href={'/payment'}>Payment</a>
                     </li>
                     <li>
-                      <a href={'/test'}>Test</a>
+                      <a href={'/checkout'}>Checkout</a>
                     </li>
                   </ul>
                 </li>

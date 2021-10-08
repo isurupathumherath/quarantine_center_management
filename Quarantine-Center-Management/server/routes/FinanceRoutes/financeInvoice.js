@@ -1,7 +1,7 @@
 //invoice route 
 import express from 'express';
 
-import { getFoodDetails, getBookingDetails, getRoomDetails } from '../../controllers/FinanceControllers/financeInvoice';
+import { getFoodDetails, getBookingDetails, getRoomDetails, getFoodSetDetails } from '../../controllers/FinanceControllers/financeInvoice';
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ const router = express.Router();
 router.get('/foodDetails/:id', getFoodDetails);
 router.get('/bookingDetails/:id', getBookingDetails);
 router.get('/roomDetails/:id', getRoomDetails);
-
+router.get('/foodSetDetails/:id', getFoodSetDetails);
+ 
 export default router;

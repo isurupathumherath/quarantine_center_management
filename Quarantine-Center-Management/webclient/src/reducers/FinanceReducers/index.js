@@ -7,11 +7,21 @@ import payment from './payment';
 import posts from './posts';
 
 
+import FbookingData from './fbookingData';
+import FroomData from './froomData';
+import ForderData from './forderData'
+import Fpayer from './fpayer'
+
+
 export const reducers = combineReducers({
     invoice,
     invoicebooking,
     payer,
     payment,
-    posts
+    posts,
+    FbookingData,
+    FroomData,
+    ForderData,
+    Fpayer
 });
 

@@ -13,11 +13,7 @@ export const getFoodDetails = async (req, res) => {
         const FoodInfo = await FoodDetails.find({ patientID: userID });
 
         if (FoodInfo != "") {
-            res.status(200).json
-                ({
-                    replyCode: 1,
-                    FoodInfo
-                });
+            res.status(200).json (FoodInfo);
         } else {
             res.status(200).json
                 ({
@@ -43,10 +39,9 @@ export const getBookingDetails = async (req, res) => {
 
         if (RoomInfo != "") {
             res.status(200).json
-                ({
-                    replyCode: 1,
+                ( 
                     RoomInfo
-                });
+                );
         } else {
             res.status(200).json
                 ({
@@ -79,16 +74,44 @@ export const getRoomDetails = async (req, res) => {
         const RoomData = await RoomInfo.find({ _id: id });
 
         if (RoomData != "") {
-            res.status(200).json
-                ({
-                    replyCode: 1,
-                    RoomData
-                });
+            res.status(200).json(RoomData);
         } else {
             res.status(200).json
                 ({
                     replyCode: 0,
                     message: "No Room with this id ${id} in Room"
+                });
+        }
+    } catch (error) {
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
+    }
+}
+
+
+//get Food Deatils using oom ID
+export const getFoodSetDetails = async (req, res) => {
+    try { 
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json
+            ({
+                replyCode: 2,
+                message: "worng id type: ${id}"
+            });
+
+        const FoodData = await FoodDetails.find({ _id: id });
+
+        if (FoodData != "") {
+            res.status(200).json(FoodData);
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "No Food details with this id ${id} in Food"
                 });
         }
     } catch (error) {
