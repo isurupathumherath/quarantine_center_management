@@ -3,6 +3,7 @@ import { Tabs, Tab } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { Invoice } from '../../components/FinanceManagment/fInvoice';
+import CreditCard from '../../components/FinanceManagment/fpayment/CreditCardForm';
 
 //session
 import UserProfile from '../../components/FinanceManagment/Functions/userData';
@@ -29,11 +30,10 @@ class Payment extends Component {
                 <div class="content">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-8 col-lg-8">
+                            <div class="col-md-7 col-lg-7">
                                 <Invoice />
-                            </div>
-
-                            <div class="col-md-4 col-lg-4 theiaStickySidebar">
+                            </div> 
+                            <div class="col-md-5 col-lg-5 theiaStickySidebar">
 
                                 <div class="card booking-card">
                                     <div class="card-header">
@@ -47,8 +47,8 @@ class Payment extends Component {
                                             className="mb-3"
                                         >
                                             <Tab eventKey={2} title="Card Payment">
-                                                <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                    {/* <Orders /> */}
+                                                <Scrollbars style={{ width: '100%', height: 525 }}>
+                                                    <CreditCard />
                                                 </Scrollbars>
                                                 <div class="card-footer text-muted mt-3"> 
                                                 </div>

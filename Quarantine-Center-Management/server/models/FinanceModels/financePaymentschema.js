@@ -24,15 +24,15 @@ const financePaymentschema = mongoose.Schema({
         type: String,
         required: true 
     },
-    cardholdersName:{
+    cardName:{
         type: String,
         required: true 
     },
-    cvv:{
+    cardSecurityCode:{
         type: String,
         required: true 
     },
-    expiaryDate:{
+    cardExpiration:{
         type: Date,
         required: true 
     },
