@@ -4,6 +4,11 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import BookingLogo from '../../../assets/PaymentManagment/img/booking1.png';
 // import Card from './Card/card';
 
+import UserProfile from '../Functions/userData';
+
+UserProfile.setbookingTotal("15000");
+UserProfile.getuserID();
+
 export default function Booking() {
     const [bookingData, setBookingData] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
@@ -11,7 +16,7 @@ export default function Booking() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:5000/invoice/bookingDetails/' + 102)
+            fetch('http://localhost:5000/invoice/bookingDetails/' + UserProfile.getuserID())
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -33,7 +38,7 @@ export default function Booking() {
             {/* <Card Data={Data} /> */}
             {Data.map((data) => {
                 return (
-                    <div class="card booking-card">
+                    <div class="card booking-card" style={{ boxShadow : 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px'}}>
                         <div class="card-body">
                             <div class="booking-summary">
                                 <div class="booking-item-wrap">
@@ -70,7 +75,7 @@ export default function Booking() {
                         />
                     </div>
                 )
-            })}
+            })} 
         </div>
     )
 }
@@ -119,11 +124,11 @@ function MyVerticallyCenteredModal(props) {
                             {RoomData.map((data) =>
                                 <div class="row" >
                                     <div class="booking-item-wrap">
-                                        <ul class="booking-date" style={{ width: '500px', height: '170px',backgroundColor: '#d9d9d9', padding: '10px' }}>
+                                        <ul class="booking-date" style={{ width: '500px', height: '170px', backgroundColor: '#d9d9d9', padding: '10px' }}>
                                             <li>Room ID <span>{data.roomType}</span></li>
                                             <li>Name <span>{data.roomName}</span></li>
                                             <li>Decription</li>
-                                            <li><span>{data.description}</span></li> 
+                                            <li><span>{data.description}</span></li>
                                         </ul>
                                     </div>
                                 </div>

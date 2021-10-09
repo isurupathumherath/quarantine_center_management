@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Tabs, Tab } from 'react-bootstrap';
+import { Tabs, Tab, Form, Col } from 'react-bootstrap';
 
 import { Orders, Bookings } from "../../components/FinanceManagment/fInvoice";
 import { PayerForm } from "../../components/FinanceManagment/fpayer";
+
+//session
+import UserProfile from '../../components/FinanceManagment/Functions/userData';
+
+
 
 class Checkout extends Component {
     render() {
@@ -155,17 +160,27 @@ class Checkout extends Component {
                                             className="mb-3"
                                         >
                                             <Tab eventKey={2} title="Food & Brevarages">
-                                                <Scrollbars style={{ width: '100%', height: 400 }}>
+                                                <Scrollbars style={{ width: '100%', height: 300 }}>
                                                     <Orders />
                                                 </Scrollbars>
+                                                <div class="card-footer text-muted mt-3">
+                                                    <Col sm={12} md={12}>
+                                                        <Form.Control type="text" placeholder={"Food Order Total : Rs." + UserProfile.getorderTotal() + ".00"} readOnly />
+                                                    </Col>
+                                                </div>
                                             </Tab>
                                             <Tab eventKey={3} title="Room Reservation">
-                                                <Scrollbars style={{ width: '100%', height: 400 }}>
+                                                <Scrollbars style={{ width: '100%', height: 300 }}>
                                                     <Bookings />
                                                 </Scrollbars>
+                                                <div class="card-footer text-muted mt-3">
+                                                    <Col sm={12} md={12}>
+                                                        <Form.Control type="text" placeholder={"Booking Total : Rs." + UserProfile.getbookingTotal() + ".00"} readOnly />
+                                                    </Col>
+                                                </div>
                                             </Tab>
                                         </Tabs>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

@@ -16,10 +16,13 @@ import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 //pages
 import Login from "./pages/Common/Loginexaple";
 import PaymentInvoice from "./pages/FinanceManagement/PaymentInvoice";
-import Invoice from "./pages/FinanceManagement/Invoice";
+// import Invoice from "./pages/FinanceManagement/Invoice";
 import Payer from "./pages/FinanceManagement/Payer";
-import Payment from "./pages/FinanceManagement/Payment"; 
+// import Payment from "./pages/FinanceManagement/Payment"; 
+
+import HomePage from "./pages/FinanceManagement/Fhome";
 import Checkout from "./pages/FinanceManagement/Fcheckout";
+import Payment from "./pages/FinanceManagement/Fpayment";
 
 
 
@@ -32,12 +35,15 @@ class App extends Component {
               {/* Janith */}
               <Route path="/login" exact component={Login} />
               <Route path="/paymentinvoice" exact component={PaymentInvoice} /> 
-              <Route path="/invoice" exact component={Invoice} />  
+              {/* <Route path="/invoice" exact component={Invoice} />   */}
               <Route path="/payer" exact component={Payer} />  
               <Route path="/payment" exact component={Payment} />  
-              <Route path="/checkout" exact component={Checkout} />   
 
 
+              <Route path="/home" exact component={HomePage} />   
+              <Route path="/checkout" exact component={Checkout} />  
+              <Route path="/invoice" exact component={Payment} />   
+ 
               {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />
               <Route path="/foodadmin" exact component={FoodAdmin} />

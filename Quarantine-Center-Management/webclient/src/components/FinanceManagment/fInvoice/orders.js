@@ -4,6 +4,13 @@ import { Modal, Button } from 'react-bootstrap'
 import Food from '../../../assets/PaymentManagment/img/food1.png'
 // import Card from './Card/card';
 
+//session storage
+import UserProfile from '../Functions/userData';
+
+UserProfile.setorderTotal("8000");
+UserProfile.getuserID();
+
+
 export default function Orders() {
     const [orderData, setOrderData] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
@@ -11,7 +18,7 @@ export default function Orders() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:5000/invoice/foodDetails/' + 102)
+            fetch('http://localhost:5000/invoice/foodDetails/' + UserProfile.getuserID())
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -27,12 +34,16 @@ export default function Orders() {
         return computeOrderData;
     }, [orderData]);
 
+
+    var Totaltest = 0;  
+
     return (
         <div>
             {/* <Card Data={Data} /> */}
             {Data.map((data) => {
+                Totaltest = Totaltest + data.total;
                 return (
-                    <div class="card booking-card">
+                    <div class="card booking-card" style={{ boxShadow : 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px'}}>
                         <div class="card-body">
                             <div class="booking-summary">
                                 <div class="booking-item-wrap">
@@ -69,11 +80,11 @@ export default function Orders() {
                     </div>
                 )
             })}
-
         </div>
 
     )
 }
+ 
 
 function MyVerticallyCenteredModal(props) {
 
@@ -121,7 +132,7 @@ function MyVerticallyCenteredModal(props) {
                                 {data.orderDetails.map((sub) =>
                                     <div class="row" >
                                         <div class="booking-item-wrap">
-                                            <ul class="booking-date" style={{width:'500px',backgroundColor:'#d9d9d9', padding:'10px'}}>
+                                            <ul class="booking-date" style={{ width: '500px', backgroundColor: '#d9d9d9', padding: '10px' }}>
                                                 <li>Food ID <span>{sub.id}</span></li>
                                                 <li>Name <span>{sub.name}</span></li>
                                                 <li>Decription <span>{sub.description}</span></li>

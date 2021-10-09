@@ -41,7 +41,7 @@ export default class Header extends Component {
                     Payment <i class="fas fa-chevron-down"></i>
                   </a>
                   <ul class="submenu">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href={'/home'}>Home</a></li>
                     <li>
                       <a href={'/invoice'}>Invoice</a>
                     </li>
@@ -53,6 +53,9 @@ export default class Header extends Component {
                     </li>
                     <li>
                       <a href={'/checkout'}>Checkout</a>
+                    </li>
+                    <li>
+                      <a href={'/invoice'}>Invoice</a>
                     </li>
                   </ul>
                 </li>
