@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {Invoice} from '../../components/FinanceManagment/fInvoice';
+import { Tabs, Tab } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
+
+import { Invoice } from '../../components/FinanceManagment/fInvoice';
 
 //session
 import UserProfile from '../../components/FinanceManagment/Functions/userData';
@@ -15,10 +18,10 @@ class Payment extends Component {
                                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Payment</li>
                                     </ol>
                                 </nav>
-                                <h2 class="breadcrumb-title">Checkout</h2>
+                                <h2 class="breadcrumb-title">Payment</h2>
                             </div>
                         </div>
                     </div>
@@ -27,43 +30,37 @@ class Payment extends Component {
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 col-lg-8">
-                                <Invoice /> 
+                                <Invoice />
                             </div>
 
                             <div class="col-md-4 col-lg-4 theiaStickySidebar">
 
                                 <div class="card booking-card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Invoice Summary</h4>
+                                        <h4 class="card-title">Payment</h4>
                                     </div>
                                     <div class="card-body">
-                                        {/* <Tabs
+                                        <Tabs
                                             id="controlled-tab-example"
                                             defaultActiveKey={2}
                                             // onSelect={handleSelect}
                                             className="mb-3"
                                         >
-                                            <Tab eventKey={2} title="Food & Brevarages">
+                                            <Tab eventKey={2} title="Card Payment">
                                                 <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                    <Orders />
+                                                    {/* <Orders /> */}
                                                 </Scrollbars>
-                                                <div class="card-footer text-muted mt-3">
-                                                    <Col sm={12} md={12}>
-                                                        <Form.Control type="text" placeholder={"Food Order Total : Rs." + UserProfile.getorderTotal() + ".00"} readOnly />
-                                                    </Col>
+                                                <div class="card-footer text-muted mt-3"> 
                                                 </div>
                                             </Tab>
-                                            <Tab eventKey={3} title="Room Reservation">
+                                            <Tab eventKey={3} title="Payment Gateway">
                                                 <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                    <Bookings />
+                                                    {/* <Bookings /> */}
                                                 </Scrollbars>
-                                                <div class="card-footer text-muted mt-3">
-                                                    <Col sm={12} md={12}>
-                                                        <Form.Control type="text" placeholder={"Booking Total : Rs." + UserProfile.getbookingTotal() + ".00"} readOnly />
-                                                    </Col>
+                                                <div class="card-footer text-muted mt-3"> 
                                                 </div>
                                             </Tab>
-                                        </Tabs> */}
+                                        </Tabs>
                                     </div>
                                 </div>
                             </div>

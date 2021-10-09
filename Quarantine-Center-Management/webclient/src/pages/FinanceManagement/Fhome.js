@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import UserProfile from '../../components/FinanceManagment/Functions/userData';
 
 UserProfile.setuserID("102");
+UserProfile.setName("Janith Gamage");
+
 
 
 export default class HomePage extends Component {

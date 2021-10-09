@@ -42,7 +42,7 @@ export default class Header extends Component {
                   </a>
                   <ul class="submenu">
                     <li class="active"><a href={'/home'}>Home</a></li>
-                    <li>
+                    {/* <li>
                       <a href={'/invoice'}>Invoice</a>
                     </li>
                     <li>
@@ -50,7 +50,7 @@ export default class Header extends Component {
                     </li>
                     <li>
                       <a href={'/payment'}>Payment</a>
-                    </li>
+                    </li> */}
                     <li>
                       <a href={'/checkout'}>Checkout</a>
                     </li>

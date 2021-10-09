@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { useRef, useState, useEffect } from "react";
 import "@progress/kendo-theme-material/dist/all.css";
-import "hammerjs"; 
+import "hammerjs";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+
+import YourLogo from "../../../assets/PaymentManagment/img/yourlogohere.png";
 
 //session
 import UserProfile from '../Functions/userData';
 
+
+
 //invoice 
-function Invoice() {   
+function Invoice() {
     const pdfExportComponent = useRef(null);
 
     const handleExportWithComponent = event => {
@@ -24,7 +28,7 @@ function Invoice() {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="invoice-logo">
-                                        <img src="assets/img/logo.png" alt="logo" />
+                                        <img src={YourLogo} alt="logo" style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px'}} />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -52,7 +56,7 @@ function Invoice() {
                                     <div class="invoice-info invoice-info2">
                                         <strong class="customer-text">Invoice To</strong>
                                         <p class="invoice-details">
-                                            Walter Roberson <br />
+                                            {UserProfile.getName()} <br />
                                             299 Star Trek Drive, Panama City, <br />
                                             Florida, 32405, USA <br />
                                         </p>
@@ -139,5 +143,5 @@ function Invoice() {
         </div>
     );
 }
- 
+
 export default Invoice;
