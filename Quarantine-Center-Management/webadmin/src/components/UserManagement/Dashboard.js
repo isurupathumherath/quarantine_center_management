@@ -33,10 +33,42 @@ class Dashboard extends Component {
 
     axios.delete(`http://localhost:8000/profile/delete/${id}`).then((res) => {
 
-      alert("Deleted Successfully");
+      const Swal = require('sweetalert2');
+      Swal.fire({
+        title: 'Success!',
+        text: 'Profile Deleted Successfully',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      })
 
       this.retrieveProfiles();
     })
+
+  }
+
+
+  filterData(profiles, searchKey) {
+
+    const result = profiles.filter((profiles) =>
+      profiles.uName.includes(searchKey)
+    )
+
+    this.setState({ profiles: result })
+
+  }
+
+
+  handleSearchArea = (e) => {
+
+    const searchKey = e.currentTarget.values;
+
+    axios.get("http://localhost:8000/profiles").then(res => {
+      if (res.data.success) {
+
+        this.filterData(res.data.existingProfile, searchKey)
+      }
+
+    });
 
   }
 
@@ -47,7 +79,23 @@ class Dashboard extends Component {
 
           <h2>Hello Admin!</h2>
           <br />
-          <p><button className="btn btn-primary"><a href="/register" style={{ textDecoration: 'none', color: 'white' }}>Create New Profile</a></button></p>
+          <p><button className="btn btn-primary">
+            <a href="/register" style={{ textDecoration: 'none', color: 'white' }}>
+              Create New Profile
+            </a>
+          </button>
+            
+
+            <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search here"
+                name="searchQuery"
+                onChange={this.handleSearchArea}>
+              </input>
+            </div>
+          </p>
           <table class="table">
             <thead>
               <tr>

@@ -3,6 +3,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+const router = express.Router();
 require("dotenv").config();
 
 // import routes
@@ -38,6 +41,11 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
+// Express Bodyparser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
 // Route Middleware
 app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
 
@@ -51,6 +59,7 @@ app.use("/comment", CommentRoute);
 app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use(profileRoutes);//--Added by Hirusha Rukmal--
+
 
 // Post
 const port = process.env.PORT || 8000;

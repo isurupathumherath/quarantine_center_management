@@ -11,6 +11,7 @@ import Register from './components/UserManagement/Register';
 import Home from './components/UserManagement/Home';
 import Login from './components/UserManagement/Login';
 import EditProfile from './components/UserManagement/EditProfile';
+import { Provider } from 'react-redux';
 
 //pages
 //import Login from "./pages/Common/Loginexaple";
@@ -26,9 +27,9 @@ class App extends Component {
               {/*<Route path="/login" exact component={Login} />*/}
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
-              {/*<Route path="/home" exact component={Home} />
+              <Route path="/home" exact component={Home}/>
               
-    <Route path="/edit/:id" component={EditProfile} />*/}
+    {/*<Route path="/edit/:id" component={EditProfile} />*/}
             </Switch>
           </div>
         </div>
