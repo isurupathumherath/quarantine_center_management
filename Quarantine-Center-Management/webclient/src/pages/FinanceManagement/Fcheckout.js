@@ -4,7 +4,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import { Orders, Bookings } from "../../components/FinanceManagment/fInvoice";
-
+import { PayerForm } from "../../components/FinanceManagment/fpayer";
 
 class Checkout extends Component {
     render() {
@@ -31,6 +31,11 @@ class Checkout extends Component {
                             <div class="col-md-7 col-lg-7">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="info-widget">
+                                            <h4 class="card-title">Personal Information</h4>
+                                            <PayerForm />
+                                            <div class="exist-customer mt-4">Existing Customer? <a href="#">Click here to login</a></div>
+                                        </div>
                                         {/* <form action="https://doccure-html.dreamguystech.com/template/booking-success.html">
                                             <div class="info-widget">
                                                 <h4 class="card-title">Personal Information</h4>
@@ -158,7 +163,7 @@ class Checkout extends Component {
                                                 <Scrollbars style={{ width: '100%', height: 400 }}>
                                                     <Bookings />
                                                 </Scrollbars>
-                                            </Tab> 
+                                            </Tab>
                                         </Tabs>
                                     </div>
                                 </div>

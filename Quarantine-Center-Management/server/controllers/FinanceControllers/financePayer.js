@@ -37,13 +37,9 @@ export const createPayer = async (req, res) => {
 
         if (newPayer != "") {
             await newPayer.save();
-            res.status(201).json
-                ({
-                    replyCode: 1,
-                    newPayer
-                });
+            res.status(200).json (newPayer);
         } else {
-            res.status(201).json
+            res.status(200).json
                 ({
                     replyCode: 1,
                     message: "no data to add as payer details"
