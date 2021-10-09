@@ -260,7 +260,21 @@ export default function FoodCart() {
   return (
     <div>
       <div>
-        <h1>My orders</h1>
+        <div className="row">
+          <div className="col-md-12">
+            <h1
+              style={{
+                color: "#0057d1",
+                fontSize: "35px",
+                backgroundColor: "white",
+                padding: "20px",
+              }}
+            >
+              My orders
+            </h1>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col-md-6">{content}</div>
 

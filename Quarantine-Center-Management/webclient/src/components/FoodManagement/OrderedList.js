@@ -2,7 +2,12 @@ import React from "react";
 import Orders from "./Orders";
 export default function OrderedList(props) {
   return (
-    <div>
+    <div
+      style={{
+        maxHeight: "670px",
+        overflowY: "scroll",
+      }}
+    >
       {props.order.map((order) => (
         <Orders
           key={order.id}

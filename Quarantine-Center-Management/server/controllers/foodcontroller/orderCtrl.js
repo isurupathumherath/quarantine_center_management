@@ -46,6 +46,7 @@ exports.getByYear = async (req, res) => {
 
     console.log(allOrders);
     res.status(200).json(allOrders);
+    res.status(200).json(end);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

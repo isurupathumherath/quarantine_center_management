@@ -6,6 +6,7 @@ import { Trash2 } from "react-feather";
 import { Check } from "react-feather";
 import uniqid from "uniqid";
 import Swal from "sweetalert2";
+import Header from "../../components/FoodManagement/Header";
 // import { set } from "mongoose";
 
 const $ = require("jquery");
@@ -275,7 +276,11 @@ export default function FoodAdmin() {
 
   return (
     <div>
-      <div className="container" style={{ width: "90%", marginRight: "100px" }}>
+      <Header name="All Foods" />
+      <div
+        className="container"
+        style={{ width: "100%", marginRight: "100px", marginLeft: "20px" }}
+      >
         <div className="content-container-fluid">
           <div className="row">
             <div className="col-md-4">
@@ -434,7 +439,7 @@ export default function FoodAdmin() {
                             </td>
 
                             <td>{post.name}</td>
-                            <td>{post.price}</td>
+                            <td>Rs.{post.price}.00</td>
                             <td>{post.description}</td>
                             <td>
                               <div className="input-group-append">

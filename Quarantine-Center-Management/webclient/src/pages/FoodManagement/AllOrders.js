@@ -8,6 +8,7 @@ import { Eye } from "react-feather";
 import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
 import jsPDF from "jspdf";
 import moment from "moment";
+import Header from "../../components/FoodManagement/Header";
 
 export default function AllOrders() {
   let count = 0;
@@ -229,15 +230,18 @@ export default function AllOrders() {
 
   return (
     <div>
+      <Header name="Order details" />
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
           <div className="col-md-3">
             <div
+              className="border border-warning"
               style={{
                 width: "100%",
                 backgroundColor: "white",
                 borderRadius: "10px",
-                borderColor: "#00408C",
+                borderColor: "red",
+                border: "2px",
                 padding: "20px 20px 20px 20px",
                 margin: "10px 0px 0px 0px",
               }}
@@ -264,6 +268,7 @@ export default function AllOrders() {
           </div>
           <div className="col-md-3">
             <div
+              className="border border-success"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -295,6 +300,7 @@ export default function AllOrders() {
           </div>
           <div className="col-md-3">
             <div
+              className="border border-danger"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -328,6 +334,7 @@ export default function AllOrders() {
           </div>
           <div className="col-md-3">
             <div
+              className="border border-primary"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -360,7 +367,7 @@ export default function AllOrders() {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row ">
         <div className="col-md-12">
           <div
             className="card"
@@ -368,12 +375,12 @@ export default function AllOrders() {
               marginTop: "20px",
             }}
           >
-            <div className="card-body">
+            <div className="card-body border border-secondary">
               <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-8">
                   <h4 className="card-title">Ongoing Orders</h4>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-4">
                   <button className="btn btn-info" onClick={reportgenerate}>
                     <i className="fa fa-upload"></i> Generate report
                   </button>
@@ -386,6 +393,7 @@ export default function AllOrders() {
                   </button>
                 </div>
               </div>
+
               <div className="row">
                 <div className="col-md-4">
                   {" "}
@@ -397,6 +405,7 @@ export default function AllOrders() {
                   />
                 </div>
               </div>
+              <br />
               <div
                 className="table-responsive"
                 style={{
@@ -467,7 +476,7 @@ export default function AllOrders() {
       <div className="row">
         <div className="col-md-12">
           <div
-            className="card"
+            className="card  border border-secondary"
             style={{
               marginTop: "20px",
             }}
@@ -484,6 +493,7 @@ export default function AllOrders() {
                   />
                 </div>
               </div>
+              <br />
               <div
                 className="table-responsive"
                 style={{

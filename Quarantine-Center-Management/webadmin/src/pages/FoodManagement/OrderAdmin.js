@@ -5,6 +5,7 @@ import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
+import Header from "../../components/FoodManagement/Header";
 export default function OrderAdmin() {
   let count = 0;
   let [orders, setOrders] = useState([]);
@@ -317,10 +318,12 @@ export default function OrderAdmin() {
 
   return (
     <div>
+      <Header name="All order details" />
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
           <div className="col">
             <div
+              className="border border-warning"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -331,7 +334,7 @@ export default function OrderAdmin() {
               }}
             >
               <div className="row">
-                <div className="col-8">
+                <div className="col-8 ">
                   <span style={{ color: "orange" }}>{ongoinglength}</span>
                   <br />
                   <span>Ongoing Orders</span>
@@ -352,6 +355,7 @@ export default function OrderAdmin() {
           </div>
           <div className="col">
             <div
+              className="border border-success"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -369,7 +373,7 @@ export default function OrderAdmin() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa  fa-check"
+                    class="fa fa-check"
                     aria-hidden="true"
                     style={{
                       color: "Green",
@@ -383,6 +387,7 @@ export default function OrderAdmin() {
           </div>
           <div className="col">
             <div
+              className="border border-danger"
               style={{
                 width: "100%",
                 backgroundColor: "white",
@@ -417,14 +422,17 @@ export default function OrderAdmin() {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-12" style={{ marginLeft: "25px" }}>
+        <div
+          className="col-md-12"
+          style={{ marginLeft: "45px", maxWidth: "97%" }}
+        >
           <div
             className="card"
             style={{
               marginTop: "20px",
             }}
           >
-            <div className="card-body">
+            <div className="card-body  border border-secondary">
               <h4 className="card-title">Ongoing Orders</h4>
               <div className="row">
                 <div className="col-md-4">
@@ -435,21 +443,14 @@ export default function OrderAdmin() {
                     onChange={(e) => handleSearch(e.target.value)}
                   />
                 </div>
-
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
-                </div>
               </div>
+              <br />
               <div
                 className="table-responsive"
                 style={{
                   maxHeight: "450px",
                   overflowY: "scroll",
+                  overflowX: "hidden",
                 }}
               >
                 <table className="table table-striped">
@@ -463,13 +464,15 @@ export default function OrderAdmin() {
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody style={{ maxWidth: "100px" }}>
                     {orders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>{post.patientID}</td>
-                        <td>{post.instructions}</td>
+                        <td style={{ maxWidth: "300px", overflowX: "scroll" }}>
+                          {post.instructions}
+                        </td>
                         <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
@@ -541,14 +544,17 @@ export default function OrderAdmin() {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-12" style={{ marginLeft: "25px" }}>
+        <div
+          className="col-md-12"
+          style={{ marginLeft: "45px", maxWidth: "97%" }}
+        >
           <div
             className="card"
             style={{
               marginTop: "20px",
             }}
           >
-            <div className="card-body">
+            <div className="card-body  border border-secondary">
               <h4 className="card-title">Completed Orders</h4>
               <div className="row">
                 <div className="col-md-4">
@@ -559,15 +565,8 @@ export default function OrderAdmin() {
                     onChange={(e) => handleSearch1(e.target.value)}
                   />
                 </div>
-                <div className="col-md-4">
-                  {" "}
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
-                </div>
               </div>
+              <br />
               <div
                 className="table-responsive"
                 style={{

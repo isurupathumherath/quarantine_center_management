@@ -14,17 +14,20 @@ export default function Orders(props) {
   return (
     <div>
       <div className="card mb-3">
-        <div className="row no-gutters">
+        <div className="row no-gutters shadow p-3  bg-white rounded">
           <div className="col-md-4">
             <img
               src={`img/${props.image}`}
-              style={{ width: "300px", height: "200px" }}
+              style={{
+                width: "300px",
+                height: "200px",
+              }}
               className
               alt="..."
             />
           </div>
           <div className="col-md-8">
-            <div className="card-body" style={{ paddingLeft: "65px" }}>
+            <div className="card-body" style={{ paddingLeft: "95px" }}>
               <h5 className="card-title">
                 <b>Name :</b>
                 {props.name}
