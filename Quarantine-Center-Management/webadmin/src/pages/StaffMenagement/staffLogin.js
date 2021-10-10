@@ -6,52 +6,45 @@ function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [staffMembers, setStaffMembers] = useState([])
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
     async function Login() {
         const user = { email, password }
-        try {
-            setLoading(true)
-            const result = (await axios.post('http://localhost:8000/staffLogin/staffLogin/', user)).data
-            setLoading(true)
-            console.log(result.data)
-            if (result.email == email) {
+        axios.post('http://localhost:8000/staffLogin/staffLogin/', user)
+            .then(response => {
+                console.log(response)
+                if (response.data == null) {
+                    const Swal = require('sweetalert2');
+                    Swal.fire({
+                        title: 'Login Failed!',
+                        text: 'Username or Password incorrect',
+                        icon: 'error',
+                        confirmButtonText: 'Try again'
+                    });
+                }
+                else {
+                    const Swal = require('sweetalert2');
+                    Swal.fire({
+                        title: 'Welcome!',
+                        text: `User ${response.data.username} Authenticated`,
+                        icon: 'success'
+                    });
+                    setTimeout(() => { window.location.href = '/addStaffMember' }, 2000);
+                    setStaffMembers(response.data)
+                }
+
+            })
+            .catch(error => {
                 const Swal = require('sweetalert2');
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Invalid Credentials',
+                    text: 'Login Failed',
                     icon: 'error',
                     confirmButtonText: 'Try again'
-                })
-            }
-            else {
-                const Swal = require('sweetalert2');
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Welcome',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                })
-                // localStorage.setItem('currentUser', JSON.stringify(result));
-                // window.location.href = '/addStaffMember'
-            }
-
-
-        } catch (error) {
-            console.log(error);
-            setLoading(false)
-            const Swal = require('sweetalert2');
-            Swal.fire({
-                title: 'Error!',
-                text: 'Invalid Credentials',
-                icon: 'error',
-                confirmButtonText: 'Try again'
-            })
-
-        }
-        console.log(user);
-    }
-
-
+                });
+            });
+    };
 
     return (
 
