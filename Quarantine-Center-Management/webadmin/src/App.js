@@ -7,7 +7,7 @@ import Header from './components/Common/Navigation/Header';
 import Sidebar from './components/Common/Navigation/Sidebar';
 
 //component
-import Login from './components/exampleComponent/Loginform';
+import Login from './components/UserManagement/Login';
 
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
@@ -20,6 +20,10 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
+import Dashboard from './components/UserManagement/Dashboard';
+import ProfileDetails from './components/UserManagement/ProfileDetails';
+import EditProfile from './components/UserManagement/EditProfile';
+import Register from './components/UserManagement/Register';
 class App extends Component {
   render() {
     return (
@@ -28,7 +32,7 @@ class App extends Component {
         <Sidebar />
         <div class="page-wrapper">
           <div class="content container-fluid">
-                    
+
             <Switch>
               <Route path="/login" exact component={Login} />
               <Route path="/addStaffMember" exact component={addStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
@@ -37,9 +41,14 @@ class App extends Component {
               <Route path="/singleProfile/:id" exact component={singleProfile} />   {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/filterStaffMember" exact component={filterStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addSalary" exact component={addSalary} />   {/*--Added by Isuru Pathum Herath--*/}
-              
+
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
+              
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/update/:id" component={EditProfile}/>
+              <Route path="/profile/:id" component={ProfileDetails}/>
+              <Route path="/register" exact component={Register} />
             </Switch>
           </div>
         </div>
