@@ -16,13 +16,14 @@ const App = props => {
     const [staffMembers, setStaffMembers] = useState([]);
 
     useEffect(() => {
+        alert(props.match.params.id);
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
                 console.log(response)
                 setStaffMembers(response.data)
             })
-            .catch(error => alert('Error Loading Update Staff'));
+            .catch(error => alert('Error Loading Staff Member Details'));
     }, []);
 
     return (

@@ -12,6 +12,7 @@ const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Path
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
 const employeeQuaratine = require("./routes/HRM/QuarantinedEmployee"); //--Added by Isuru Pathum Herath--
 const task = require("./routes/HRM/Task"); //--Added by Isuru Pathum Herath--
+const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru Pathum Herath--
 
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
@@ -46,6 +47,7 @@ app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 app.use("/qEmployee", employeeQuaratine); //--Added by Isuru Pathum Herath--
 app.use("/task", task); //--Added by Isuru Pathum Herath--
+app.use("/staffLogin", employeLogin); //--Added by Isuru Pathum Herath--
 
 app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
 app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--

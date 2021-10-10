@@ -258,7 +258,7 @@ Date - 22/08/2021
  */
 exports.readById = (req, res) => {
     const { employeeId } = req.params
-    console.log(req.params._id)
+    console.log(req.params.employeeId)
     Employee.findOne({ employeeId })
         .exec((err, employee) => {
             if (err) console.log(err);

@@ -25,10 +25,11 @@ const App = props => {
                 setTasks(response.data)
 
             })
-            .catch(error => alert("Error Fetching Staff Members"));
+            .catch(error => alert("Error Fetching Tasks"));
     }
 
     useEffect(() => {
+        console.log(props.match.params.id);
         axios
             .get(`http://localhost:8000/task/`)
             .then(response => {
@@ -41,7 +42,7 @@ const App = props => {
             .then(response => {
                 setStaffMembers(response.data)
             })
-            .catch(error => alert('Error Loading Update Staff'));
+            .catch(error => alert('Error Loading Staff Details'));
     }, []);
 
 
@@ -83,9 +84,10 @@ const App = props => {
     const showAll = () => {
         fetchTaskDetails();
     }
+
     return (
         <div className="container" >
-            <h1 align="center">Tasks of {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}</h1><br />
+            <h1 align="center">Tasks of {staffMembers.firstName + ' ' + staffMembers.lastName}</h1><br />
             <div className="main-body">
                 <div className="row gutters-sm">
                     <div className="col-md-4 mb-3">
@@ -97,7 +99,7 @@ const App = props => {
                                         <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
                                         <p className="text-secondary mb-1">{staffMembers.type}</p>
                                         <p className="text-muted font-size-sm">{staffMembers.address}</p>
-                                        {/* <button className="btn btn-info">Follow</button> <br/> */}
+                                        {/* <button className="btn btn-info">Follow</button> <br /> */}
                                     </div>
                                 </div>
                             </div>
@@ -161,18 +163,21 @@ const App = props => {
                     <button type="button" class="btn btn-primary" onClick={() => handleFilter()}>Show Staff Member Tasks</button>
                 </div>
                 <br />
+                
                 <div style={{ marginLeft: "10px" }}>
                     <button type="button" class="btn btn-primary" onClick={() => showAll()}>Show All Tasks</button>
                 </div>
                 <input
                     className="form-control"
-                    type="search"
+                    type="hidden"
                     placeholder="Search"
                     value={wordEntered}
                     onChange={handleFilter}
+                    visibilityChange="hidden"
                     style={{ width: "100%" }}
                 />
             </div>
+
             <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
                 <thead>
                     <tr>
@@ -206,6 +211,7 @@ const App = props => {
                     ))}
                 </tbody>
             </table>
+            <br /><br /><br />
         </div>
     )
 }

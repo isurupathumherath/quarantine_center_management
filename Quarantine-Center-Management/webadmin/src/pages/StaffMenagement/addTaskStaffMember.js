@@ -52,7 +52,7 @@ const App = () => {
             .then(response => {
                 // alert(response.data.message);
                 Swal.fire(
-                    `Staff Member ${response.data.EmployeeID} Salary Added`,
+                    `Staff Member ${response.data.EmployeeID} Salary Deleted`,
                     `${response.data.message}`,
                     'success'
                 )
@@ -149,10 +149,10 @@ const App = () => {
 
     return (
 
-        <div className="container-fluid" style={{ marginLeft: "20px", marginTop: "0px" }}>
+        <div className="container-fluid" style={{ marginLeft: "20px", marginTop: "-45px" }}>
             <div className="card" style={{ width: "1350px", marginTop: "0px" }}>
                 <div className="card-body">
-                    <h1 align="center">Staff Member Task</h1>
+                    <h1 align="center" style={{ marginTop: "20px" }}>Staff Member Task</h1>
                     <br />
                     <form onSubmit={handleSubmit} style={{ marginTop: '50px', marginLeft: '20px' }}>
                         <div class="container-fluid">
@@ -175,6 +175,7 @@ const App = () => {
                                     <div className="form-group">
                                         <label className="text-muted">Task Priority</label>
                                         <select id="Priority" value={Priority} onChange={handleChange("Priority")} className="form-control">
+                                            <option value="" disabled selected hidden>Select a Priority</option>
                                             <option value="Medium">Medium</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>
@@ -185,6 +186,7 @@ const App = () => {
                                     <div className="form-group">
                                         <label className="text-muted">Status</label>
                                         <select id="Status" value={Status} onChange={handleChange("Status")} className="form-control">
+                                            <option value="" disabled selected hidden>Select a Status</option>
                                             <option value="Pending">Pending</option>
                                             <option value="Done">Done</option>
                                         </select>
@@ -247,13 +249,14 @@ const App = () => {
                                     {staffTask.map((staffTask, i) => (
                                         <tr key={i}>
                                             <th scope="row">{i + 1}</th>
+                                            {console.log(staffTask.EmployeeID)}
 
                                             <a href={`/singleProfile/${staffTask.EmployeeID}`} style={{ textDecoration: 'none' }}>
                                                 <td>{staffTask.EmployeeID}</td>
                                             </a>
 
                                             <td>
-                                                <a href={`/showEmployeeTask/${staffTask.EmployeeID}`} style={{ textDecoration: 'none' }}>
+                                                <a className="" href={`/showEmployeeTask/${staffTask.EmployeeID}`}>
                                                     {staffTask.TaskName}
                                                 </a>
                                             </td>

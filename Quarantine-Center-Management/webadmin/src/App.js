@@ -20,6 +20,7 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 import addTask from './pages/StaffMenagement/addTaskStaffMember'  //--Added by Isuru Pathum Herath--
 import showEmployeeTask from './pages/StaffMenagement/showEmployeeTasks' //--Added by Isuru Pathum Herath--
 import staffAnalytic from './pages/StaffMenagement/StaffAnalytics' //--Added by Isuru Pathum Herath--
+import staffLogin from './pages/StaffMenagement/staffLogin' //--Added by Isuru Pathum Herath--
 
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -44,9 +45,10 @@ class App extends Component {
               <Route path="/addSalary" exact component={addSalary} />                       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addTask" exact component={addTask} />                           {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/showEmployeeTask" exact component={showEmployeeTask} />         {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/staffAnalytic" exact component={staffAnalytic} />
-              
+              <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />     {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />     {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/staffLogin" exact component={staffLogin} />
+
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
             </Switch>
