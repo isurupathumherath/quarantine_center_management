@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Tabs, Tab, Form, Col } from 'react-bootstrap';
 
@@ -9,7 +10,10 @@ import { PayerForm } from "../../components/FinanceManagment/fpayer";
 //session
 import UserProfile from '../../components/FinanceManagment/Functions/userData';
 
+const test = UserProfile.getorderTotal();
+const test1 = UserProfile.getbookingTotal();
 
+console.log("test func" + test + " " + test1)
 
 class Checkout extends Component {
     render() {
@@ -30,61 +34,64 @@ class Checkout extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-7">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="info-widget">
-                                            <h4 class="card-title">Personal Information</h4>
-                                            <PayerForm />
-                                            <div class="exist-customer mt-4">Existing Customer? <a href="#">Click here to login</a></div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10"> 
+                        <section class="section section-features">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-7 col-lg-7">
+                                        <div class="card" style={{ boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+                                            <div class="card-body">
+                                                <div class="info-widget">
+                                                    <h4 class="card-title">Personal Information</h4>
+                                                    <PayerForm />
+                                                    {/* <div class="exist-customer mt-4">Existing Customer? <a href="#">Click here to login</a></div> */}
+                                                </div>
+                                            </div>
                                         </div> 
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-5 col-lg-5 theiaStickySidebar">
-
-                                <div class="card booking-card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Invoice Summary</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <Tabs
-                                            id="controlled-tab-example"
-                                            defaultActiveKey={2}
-                                            // onSelect={handleSelect}
-                                            className="mb-3"
-                                        >
-                                            <Tab eventKey={2} title="Food & Brevarages">
-                                                <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                    <Orders />
-                                                </Scrollbars>
-                                                <div class="card-footer text-muted mt-3">
-                                                    <Col sm={12} md={12}>
-                                                        <Form.Control type="text" placeholder={"Food Order Total : Rs." + UserProfile.getorderTotal() + ".00"} readOnly />
-                                                    </Col>
-                                                </div>
-                                            </Tab>
-                                            <Tab eventKey={3} title="Room Reservation">
-                                                <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                    <Bookings />
-                                                </Scrollbars>
-                                                <div class="card-footer text-muted mt-3">
-                                                    <Col sm={12} md={12}>
-                                                        <Form.Control type="text" placeholder={"Booking Total : Rs." + UserProfile.getbookingTotal() + ".00"} readOnly />
-                                                    </Col>
-                                                </div>
-                                            </Tab>
-                                        </Tabs>
                                     </div> 
+                                    <div class="col-md-5 col-lg-5 theiaStickySidebar"> 
+                                        <div class="card booking-card" style={{ boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+                                            <div class="card-header">
+                                                <h4 class="card-title">Invoice Summary</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <Tabs
+                                                    id="controlled-tab-example"
+                                                    defaultActiveKey={2}
+                                                    // onSelect={handleSelect}
+                                                    className="mb-3"
+                                                >
+                                                    <Tab eventKey={2} title="Food & Brevarages">
+                                                        <Scrollbars style={{ width: '100%', height: 300 }}>
+                                                            <Orders />
+                                                        </Scrollbars>
+                                                        <div class="card-footer text-muted mt-3">
+                                                            <Col sm={12} md={12}>
+                                                                <Form.Control type="text" placeholder={"Food Order Total : Rs." + localStorage.getItem("orderToatal") + ".00"} readOnly />
+                                                            </Col>
+                                                        </div>
+                                                    </Tab>
+                                                    <Tab eventKey={3} title="Room Reservation">
+                                                        <Scrollbars style={{ width: '100%', height: 300 }}>
+                                                            <Bookings />
+                                                        </Scrollbars>
+                                                        <div class="card-footer text-muted mt-3">
+                                                            <Col sm={12} md={12}>
+                                                                <Form.Control type="text" placeholder={"Booking Total : Rs." + localStorage.getItem("bookingTotal") + ".00"} readOnly />
+                                                            </Col>
+                                                        </div>
+                                                    </Tab>
+                                                </Tabs>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
             </div>
         )

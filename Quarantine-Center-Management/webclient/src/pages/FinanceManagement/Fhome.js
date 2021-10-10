@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 
-//session storage
-import UserProfile from '../../components/FinanceManagment/Functions/userData';
+// //session storage
+// import UserProfile from '../../components/FinanceManagment/Functions/userData';
 
-UserProfile.setuserID("102");
-UserProfile.setName("Janith Gamage");
+// UserProfile.setuserID("102");
+// UserProfile.setName("Janith Gamage");
 
 
 
 export default class HomePage extends Component {
  
     render() {
+
+        localStorage.setItem("userID", "102");
+        localStorage.setItem("userName", "Janith Gamage");
+
         return (
             <div class="content">
                 <div class="container-fluid">

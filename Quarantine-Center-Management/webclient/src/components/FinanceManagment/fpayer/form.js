@@ -52,8 +52,6 @@ class PayerForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-
-
         if (formValid(this.state)) {
             console.log(`
                 --SUBMITING--
@@ -66,7 +64,7 @@ class PayerForm extends Component {
             `)
 
             alert("tets")
-            const res = axios.post('http://localhost:5000/payer/createPayer', this.state); 
+            const res = axios.post('http://localhost:5000/payer/createPayer', this.state);
 
         } else {
             console.error("FORM INVALID - DISPLAY ERROR MASAGE")
@@ -202,7 +200,24 @@ class PayerForm extends Component {
                             )}
                         </Form.Group>
                     </Row>
-                    <Button type="submit">Save Details</Button>
+                    <Row>
+                        <Col md={8}>
+                            <div class="exist-customer mt-4">Existing Customer? <a href="#">Click here to login</a></div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={3} style={{ marginTop: '65px' }}>
+                        </Col>
+                        <Col md={3} style={{ marginTop: '65px' }}>
+                            <button type="button" class="btn btn-block btn-outline-danger active">Cancel</button>
+                        </Col>
+                        <Col md={3} style={{ marginTop: '65px' }}>
+                            <button type="button" class="btn btn-block btn-outline-info active">Clear</button>
+                        </Col>
+                        <Col md={3} style={{ marginTop: '65px' }}>
+                            <button type="submit" class="btn btn-block btn-outline-success active">Save Payment Details</button>
+                        </Col>
+                    </Row>
                 </Form>
             </div>
         )

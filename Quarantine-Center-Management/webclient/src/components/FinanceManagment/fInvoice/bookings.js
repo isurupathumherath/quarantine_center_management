@@ -4,10 +4,10 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import BookingLogo from '../../../assets/PaymentManagment/img/booking1.png';
 // import Card from './Card/card';
 
-import UserProfile from '../Functions/userData';
+// import UserProfile from '../Functions/userData';
 
-UserProfile.setbookingTotal("15000");
-UserProfile.getuserID();
+// UserProfile.setbookingTotal("15000");
+// UserProfile.getuserID();
 
 export default function Booking() {
     const [bookingData, setBookingData] = useState([]);
@@ -16,7 +16,7 @@ export default function Booking() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:5000/invoice/bookingDetails/' + UserProfile.getuserID())
+            fetch('http://localhost:5000/invoice/bookingDetails/' +  localStorage.getItem("userID"))
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -29,16 +29,21 @@ export default function Booking() {
 
     const Data = useMemo(() => {
         let computeBookingData = bookingData;
-
         return computeBookingData;
-    }, [bookingData]);
+    }, [bookingData]); 
+
+    const resultBooking = bookingData.reduce((total, currentValue) => total = total + currentValue.price, 0); 
+    console.log("Booking" + resultBooking);  
+
+    localStorage.setItem("bookingTotal", resultBooking);
+
 
     return (
         <div>
             {/* <Card Data={Data} /> */}
             {Data.map((data) => {
                 return (
-                    <div class="card booking-card" style={{ boxShadow : 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px'}}>
+                    <div class="card booking-card" style={{ boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px' }}>
                         <div class="card-body">
                             <div class="booking-summary">
                                 <div class="booking-item-wrap">
@@ -75,7 +80,7 @@ export default function Booking() {
                         />
                     </div>
                 )
-            })} 
+            })}
         </div>
     )
 }

@@ -57,6 +57,9 @@ export default class Header extends Component {
                     <li>
                       <a href={'/invoice'}>Invoice</a>
                     </li>
+                    <li>
+                      <a href={'/details'}>Details</a>
+                    </li>
                   </ul>
                 </li>
               </ul>

@@ -7,9 +7,7 @@ import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import YourLogo from "../../../assets/PaymentManagment/img/yourlogohere.png";
 
 //session
-import UserProfile from '../Functions/userData';
-
-
+import UserProfile from '../Functions/userData'; 
 
 //invoice 
 function Invoice() {
@@ -20,7 +18,7 @@ function Invoice() {
     };
 
     return (
-        <div id="example">
+        <div id="example" style={{ boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
             <div class="invoice-content">
                 <PDFExport ref={pdfExportComponent}>
                     <div class="invoice-content">
@@ -56,7 +54,7 @@ function Invoice() {
                                     <div class="invoice-info invoice-info2">
                                         <strong class="customer-text">Invoice To</strong>
                                         <p class="invoice-details">
-                                            {UserProfile.getName()} <br />
+                                            {localStorage.getItem("userName")} <br />
                                             299 Star Trek Drive, Panama City, <br />
                                             Florida, 32405, USA <br />
                                         </p>
@@ -94,7 +92,7 @@ function Invoice() {
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xl-4 ml-auto">
+                                <div class="col-md-8 col-xl-6 ml-auto">
                                     <div class="table-responsive">
                                         <table class="invoice-table-two table">
                                             <tbody>

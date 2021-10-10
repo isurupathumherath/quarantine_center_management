@@ -4,11 +4,11 @@ import { Modal, Button } from 'react-bootstrap'
 import Food from '../../../assets/PaymentManagment/img/food1.png'
 // import Card from './Card/card';
 
-//session storage
-import UserProfile from '../Functions/userData';
+// //session storage
+// import UserProfile from '../Functions/userData';
 
-UserProfile.setorderTotal("8000");
-UserProfile.getuserID();
+// UserProfile.setorderTotal("8000");
+// UserProfile.getuserID();
 
 
 export default function Orders() {
@@ -18,7 +18,7 @@ export default function Orders() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:5000/invoice/foodDetails/' + UserProfile.getuserID())
+            fetch('http://localhost:5000/invoice/foodDetails/' + localStorage.getItem("userID"))
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -34,14 +34,15 @@ export default function Orders() {
         return computeOrderData;
     }, [orderData]);
 
+    const resultOrder = orderData.reduce((total, currentValue) => total = total + currentValue.total, 0); 
+    console.log("order" +resultOrder);  
 
-    var Totaltest = 0;  
-
+    localStorage.setItem("orderToatal", resultOrder);
+    
     return (
         <div>
             {/* <Card Data={Data} /> */}
-            {Data.map((data) => {
-                Totaltest = Totaltest + data.total;
+            {Data.map((data) => { 
                 return (
                     <div class="card booking-card" style={{ boxShadow : 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px'}}>
                         <div class="card-body">

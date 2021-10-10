@@ -120,6 +120,13 @@ const CreditCardForm = () => {
                 </Form.Group>
               </Col>
             </Row>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" id="formGridCheckbox">
+                  <Form.Check type="checkbox" label="Save Card Details" />
+                </Form.Group>
+              </Col>
+            </Row>
             <Button
               size={"block"}
               data-testid="validateButton"
