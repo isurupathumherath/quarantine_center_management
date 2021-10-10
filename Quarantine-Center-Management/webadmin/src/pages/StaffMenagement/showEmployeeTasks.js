@@ -14,7 +14,7 @@ const App = props => {
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
-    const [staffTask, setTasks] = useState([]);
+    const [staffTask, setTasks] = useState([]); 
     const [wordEntered, setWordEntered] = useState("");
 
     //Fetch All Salary Details

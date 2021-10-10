@@ -9,18 +9,104 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import '../../assets/HRM/staffProfile.css';
+const Swal = require('sweetalert2');
 
 const App = props => {
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
+    const [staffTask, setTasks] = useState([]);
+    const [state, setState] = useState({
+        dStatus: "Done",
+        uStatus: "Pending"
+    });
+
+    //destructure values from state
+    const {
+        dStatus,
+        uStatus
+    } = state;
+
+    //Fetch All Salary Details
+    const fetchTaskDetails = () => {
+        axios.get(`http://localhost:8000/task/getByEmpId/${props.match.params.id}`)
+            .then(response => {
+                console.log(response)
+                setTasks(response.data)
+
+            })
+            .catch(error => alert("Error Fetching Tasks"));
+    }
+
+    //Mark Done
+    const taskDone = (id) => {
+        console.table({
+            dStatus
+        });
+
+        axios
+            .put(`http://localhost:8000/task/updateDone/${id}`, { dStatus })
+            .then((response) => {
+                // console.log(response);
+                // alert("Updated");
+                Swal.fire({
+                    title: 'Completed',
+                    text: `Task Name ${response.data.TaskName} marked as Completed`,
+                    icon: 'success'
+                });
+                fetchTaskDetails();
+            })
+            .catch((error) => {
+                // console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+    }
+
+
+    //Mark Pending
+    const taskPending = (id) => {
+        console.table({
+            dStatus,
+            uStatus
+        });
+
+        axios
+            .put(`http://localhost:8000/task/updatePending/${id}`, { uStatus })
+            .then((response) => {
+                // console.log(response);
+                // alert("Updated");
+                Swal.fire({
+                    title: 'Pending',
+                    text: `Task Name ${response.data.TaskName} marked as Pending`,
+                    icon: 'info'
+                });
+                fetchTaskDetails();
+            })
+            .catch((error) => {
+                // console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+
+    }
 
     useEffect(() => {
 
+        fetchTaskDetails();
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
-                console.log(response)
                 setStaffMembers(response.data)
             })
             .catch(error => alert('Error Loading Staff Member Details'));
@@ -183,7 +269,46 @@ const App = props => {
                     </div>
                 </div>
             </div>
-        </div>
+
+            <h4 align="center">Your Tasks</h4>
+            <div>
+                <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
+                    <thead>
+                        <tr>
+                            <th >#</th>
+                            <th >Task Name</th>
+                            <th >Priority</th>
+                            <th >Status</th>
+                            <th>Description</th>
+                            <th> &nbsp;&nbsp;&nbsp;&nbsp; Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {staffTask.map((staffTask, i) => (
+                            <tr key={i}>
+                                <th scope="row">{i + 1}</th>
+                                <td>{staffTask.TaskName}</td>
+                                <td>{staffTask.Priority}</td>
+                                <td>{staffTask.Status}</td>
+                                <td>{staffTask.Description}</td>
+
+                                <td>
+                                    &nbsp;
+                                    <a className="btn btn-success" href="#" onClick={() => taskDone(staffTask._id)}>
+                                        <i class="fas fa-check-circle"></i>&nbsp;
+                                    </a>
+                                    &nbsp;
+                                    <a className="btn btn-warning" href="#" onClick={() => taskPending(staffTask._id)}>
+                                        <i class="fas fa-undo-alt"></i>&nbsp;
+                                    </a>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <br /><br />
+        </div >
     )
 }
 

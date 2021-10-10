@@ -79,7 +79,7 @@ Date - 11/10/2021
 */
 exports.readByEmpId = (req, res) => {
     console.log(req.params.id)
-    Task.find({ EmployeeID: req.params.id})
+    Task.find({ EmployeeID: req.params.id })
         .exec((err, task) => {
             if (err) console.log(err);
             res.json(task);
@@ -105,9 +105,10 @@ Name - Update Pending Task Details by Id
 Date - 25/09/2021
 */
 exports.updatePending = (req, res) => {
-    const { id } = req.params.id;
-    const { EmployeeID, TaskName, Status = "Pending", Priority, Description } = req.body;
-    Task.findOneAndUpdate({ id }, { EmployeeID, TaskName, Status, Priority, Description }, { new: true }).exec((err, task) => {
+    console.log(req.params.id)
+    const { uStatus } = req.body;
+    console.log(uStatus)
+    Task.findByIdAndUpdate({ _id: req.params.id }, { Status: uStatus }, { new: true }).exec((err, task) => {
         if (err) console.log(err);
         res.json(task);
     })
@@ -118,9 +119,8 @@ Name - Update Done Task Details by Id
 Date - 25/09/2021
 */
 exports.updateDone = (req, res) => {
-    const { id } = req.params.id;
-    const { EmployeeID, TaskName, Status = "Done", Priority, Description } = req.body;
-    Task.findOneAndUpdate({ id }, { EmployeeID, TaskName, Status, Priority, Description }, { new: true }).exec((err, task) => {
+    const { dStatus } = req.body;
+    Task.findByIdAndUpdate({ _id: req.params.id }, { Status: dStatus }, { new: true }).exec((err, task) => {
         if (err) console.log(err);
         res.json(task);
     })
