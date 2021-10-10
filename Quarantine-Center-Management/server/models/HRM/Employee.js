@@ -36,7 +36,8 @@ const EmployeeSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     DOB: {
         type: Date,

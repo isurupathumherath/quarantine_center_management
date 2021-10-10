@@ -129,6 +129,11 @@ exports.create = (req, res) => {
                         error: 'Username is already registered! Try Again!'
                     });
                 }
+                else if (err.keyPattern.email == 1) {
+                    res.status(400).json({
+                        error: 'Email Address is already registered! Try Again!'
+                    });
+                }
                 else {
                     res.status(400).json({
                         error: 'Internal Server Error! Try Again!'

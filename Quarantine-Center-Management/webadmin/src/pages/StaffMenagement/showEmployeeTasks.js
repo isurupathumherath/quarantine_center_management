@@ -46,7 +46,7 @@ const App = props => {
 
 
     //Filter Staff Salary
-    const handleFilter = (key) => {
+    const handleFilter = () => {
         const searchWord = props.match.params.id;
         console.log(searchWord);
         setWordEntered(searchWord);
@@ -164,14 +164,14 @@ const App = props => {
                 <div style={{ marginLeft: "10px" }}>
                     <button type="button" class="btn btn-primary" onClick={() => showAll()}>Show All Tasks</button>
                 </div>
-                {/* <input
+                <input
                     className="form-control"
                     type="search"
                     placeholder="Search"
                     value={wordEntered}
                     onChange={handleFilter}
                     style={{ width: "100%" }}
-                /> */}
+                />
             </div>
             <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
                 <thead>

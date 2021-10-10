@@ -103,8 +103,8 @@ const App = () => {
         console.log(error.Response);
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
+          title: `${error.response.data.error}`,
+          // text: `${error.response.data.error}`,
           footer: 'Please try again'
         })
         // alert(error.response.data.error);
@@ -112,7 +112,7 @@ const App = () => {
   };
 
   return (
-    <div className="container " style={{ marginLeft: "50px"}}>
+    <div className="container " style={{ marginLeft: "50px" }}>
       <div className="card" style={{ width: "1300px" }}>
         <div className="card-body"></div>
         <h1 align="center">ADD NEW EMPLOYEE</h1>
@@ -128,13 +128,13 @@ const App = () => {
                 <div class="col">
                   <div className="form-group">
                     <label className="text-muted">First Name</label>
-                    <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                    <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" pattern="[A-Za-z]{1,250}" title="Characters can only be A-Z and a-z and must be less than 250 characters." required />
                   </div>
                 </div>
                 <div class="col">
                   <div className="form-group">
                     <label className="text-muted">Middle Name</label>
-                    <input onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                    <input onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z" />
                   </div>
                 </div>
               </div>
@@ -142,7 +142,7 @@ const App = () => {
                 <div class="col">
                   <div className="form-group">
                     <label className="text-muted">Last Name</label>
-                    <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                    <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" pattern="[A-Za-z]{1,250}" title="Characters can only be A-Z and a-z and must be less than 250 characters" required />
                   </div>
                 </div>
                 <div class="col">
@@ -190,7 +190,7 @@ const App = () => {
 
               <div className="form-group">
                 <label className="text-muted">Address</label>
-                <textarea onChange={handleChange("address")} value={address} type="text" className="form-control" placeholder="Enter the Address" required />
+                <textarea onChange={handleChange("address")} value={address} type="text" className="form-control" placeholder="Enter the Address" pattern="{1,300}" required />
               </div>
 
               <br />

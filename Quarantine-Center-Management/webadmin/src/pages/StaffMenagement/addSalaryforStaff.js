@@ -151,8 +151,7 @@ const App = () => {
     return (
 
         <div className="container-fluid" style={{ marginLeft: "10px" }}>
-
-            <div className="card" style={{ width: "1400px" }}>
+            <div className="card" style={{ width: "1400px", marginTop: "0px" }}>
                 <div className="card-body"></div>
                 <h1 align="center">Staff Salary</h1>
                 <br />
@@ -204,6 +203,7 @@ const App = () => {
                 <hr style={{ marginLeft: '20px' }} />
                 <div class="row">
                     <div class="col">
+                        <div><h3 align="center">Salary Details</h3></div>
                         <form style={{ marginTop: '40px' }}>
 
                             <div className="input-group mb-2 col-lg-12">
@@ -219,6 +219,7 @@ const App = () => {
 
                             </div>
                         </form>
+
                         <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
                             <thead>
                                 <tr>
@@ -258,7 +259,8 @@ const App = () => {
                         </table>
                     </div>
                     <br />
-                    <div class="col" style={{ marginTop: '40px', marginLeft: '20px' }}>
+                    <div class="col" style={{ marginTop: '0px', marginLeft: '20px' }}>
+                        <div><h3 align="center">Staff Details</h3></div><br />
                         <div className="input-group mb-2 col-lg-12">
 
                             <input
