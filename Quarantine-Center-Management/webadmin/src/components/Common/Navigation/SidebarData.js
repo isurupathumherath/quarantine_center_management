@@ -86,10 +86,15 @@ export const SidebarData = [
                 title: 'ADD QUARANTINE',
                 path: '/addQuaratineStaff',
                 icon: <IoIcons.IoIosSad />
-            },
+            }, 
             {
                 title: 'ADD TASKS',
                 path: '/addTask',
+                icon: <IoIcons.IoIosListBox />
+            },
+            {
+                title: 'EMP LOGIN',
+                path: '/staffLogin',
                 icon: <IoIcons.IoIosListBox />
             },
 

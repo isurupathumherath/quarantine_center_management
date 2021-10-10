@@ -10,7 +10,7 @@ import axios from "axios";
 
 function LoginScreen() {
 
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [staffMembers, setStaffMembers] = useState([])
@@ -18,7 +18,7 @@ function LoginScreen() {
     const Swal = require('sweetalert2');
 
     async function Login() {
-        const user = { email, password }
+        const user = { username, password }
         axios.post('http://localhost:8000/staffLogin/staffLogin/', user)
             .then(response => {
                 console.log(response)
@@ -49,7 +49,7 @@ function LoginScreen() {
                         });
                         setStaffMembers(response.data)
                         alert("Active Account")
-                        // setTimeout(() => { window.location.href = '/staffLandingPage' }, 2000);
+                        setTimeout(() => { window.location.href = `/staffLandingPage/${response.data.employeeId}` }, 2000);
                     }
                     else {
                         Swal.fire({
@@ -89,19 +89,19 @@ function LoginScreen() {
 
                         <div>
                             <div className="form-group" style={{ marginBottom: '15px' }}>
-                                <label style={{ marginBottom: '5px' }}>Email</label>
-                                <input required type='email'
+                                <label style={{ marginBottom: '5px' }}>Username</label>
+                                <input required type='username'
                                     className="form-control"
-                                    placeholder="Enter your email"
-                                    value={email}
-                                    onChange={(e) => { setEmail(e.target.value) }} />
+                                    placeholder="Enter Your Username"
+                                    value={username}
+                                    onChange={(e) => { setUsername(e.target.value) }} />
                             </div>
 
                             <div className="form-group" style={{ marginBottom: '15px' }}>
                                 <label style={{ marginBottom: '5px' }}>Password</label>
                                 <input required type='password'
                                     className="form-control"
-                                    placeholder="Enter your password"
+                                    placeholder="Enter Your Password"
                                     value={password}
                                     onChange={(e) => { setPassword(e.target.value) }} />
                             </div><br />
@@ -112,9 +112,6 @@ function LoginScreen() {
                                 className="btn btn-success btn-block btn-lg login-btn"
                                 style={{ marginTop: '15px' }}><i className="far fa-check-square" /> Login
                             </button>
-                            <br />
-                            <br />
-                            <div class="text-center dont-have">Don’t have an account? <a href='/register'>Register</a></div>
 
                         </div>
 

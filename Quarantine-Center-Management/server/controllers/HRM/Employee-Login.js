@@ -14,10 +14,21 @@ Date - 10/10/2021
  */
 
 exports.staffLogin = (req, res) => {
-    const { email, password } = req.body;
-    Employee.findOne({ email: email, password: password })
+    const { username, password } = req.body;
+    Employee.findOne({ username: username, password: password })
         .exec((err, employee) => {
-            if (err) console.log(err);
+            if (err) {
+                if (err.keyPattern.username == 1) {
+                    res.status(400).json({
+                        error: 'Username is already in use'
+                    });
+                }
+                else {
+                    res.status(400).json({
+                        error: 'Internal Server Error! Try Again!'
+                    });
+                }
+            };
             res.json(employee);
         });
 };

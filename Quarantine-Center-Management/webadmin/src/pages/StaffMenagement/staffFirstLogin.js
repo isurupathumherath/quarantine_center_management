@@ -16,7 +16,8 @@ const App = props => {
     const [state, setState] = useState({
         username: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        accountStatus: "Active"
     });
 
     //destructure values from state
@@ -24,6 +25,7 @@ const App = props => {
         username,
         password,
         confirmPassword,
+        accountStatus
     } = state;
 
     //onChange event handler
@@ -44,51 +46,62 @@ const App = props => {
             username,
             password,
             confirmPassword,
+            accountStatus
         });
 
         if (password == confirmPassword) {
             axios
                 .put(`http://localhost:8000/employee/firstLogin/${props.match.params.id}`, {
                     username,
-                    password
+                    password,
+                    accountStatus
                 })
                 .then((response) => {
                     console.log(response);
-                    //show success alert
-                    // alert(`Employee ${response.data.firstName} is Created`);
-                    Swal.fire(
-                        `New Username & Password Added`,
-                        'Click Ok to continue',
-                        'success'
-                    )
-
-                    axios
-                        .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
-                        .then(response => {
-                            console.log(response)
-                            setStaffMembers(response.data)
-                        })
-                        .catch(error => alert('Error Loading Staff Member Details'));
-
-                    //Send Activated Message via an Email
-
-                    const sendEmail = response.data.email;
-                    const username = response.data.username;
-
-                    async function main() {
-                        var transporter = nodemailer.createTransport({
-                            service: 'gmail',
-                            auth: {
-                                user: process.env.MAIL_SERVER_USERNAME,
-                                pass: process.env.MAIL_SERVER_PASSWORD
-                            }
+                    if (response.data == "") {
+                        Swal.fire({
+                            title: 'Change Failed!',
+                            text: 'Username is already in use!',
+                            icon: 'error',
+                            confirmButtonText: 'Try again'
                         });
+                    }
+                    else {
+                        //show success alert
+                        // alert(`Employee ${response.data.firstName} is Created`);
+                        Swal.fire(
+                            `New Username & Password Added`,
+                            'Click Ok to continue',
+                            'success'
+                        )
 
-                        var mailOptions = {
-                            from: 'quarantine@out.com',
-                            to: `${sendEmail}`,
-                            subject: 'Your Account Activated',
-                            text: `
+                        axios
+                            .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
+                            .then(response => {
+                                console.log(response)
+                                setStaffMembers(response.data)
+                            })
+                            .catch(error => alert('Error Loading Staff Member Details'));
+
+                        //Send Activated Message via an Email
+
+                        const sendEmail = response.data.email;
+                        const username = response.data.username;
+
+                        async function main() {
+                            var transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: process.env.MAIL_SERVER_USERNAME,
+                                    pass: process.env.MAIL_SERVER_PASSWORD
+                                }
+                            });
+
+                            var mailOptions = {
+                                from: 'quarantine@out.com',
+                                to: `${sendEmail}`,
+                                subject: 'Your Account Activated',
+                                text: `
                             Hi
                         
                             Your account under username - ${username} has been activated successfuly.
@@ -96,29 +109,29 @@ const App = props => {
                             This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
                             
                             Thank You`
-                        };
+                            };
 
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                console.log('Email sent: ' + info.response);
-                            }
+                            transporter.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+                                }
+                            });
+                        }
+
+                        //empty state
+                        setState({
+                            ...state,
+                            username: "",
+                            password: "",
+                            confirmPassword: "",
+
                         });
 
                     }
-
-
                     //Go to Landing Page
                     setTimeout(() => { window.location.href = `/staffLandingPage/${props.match.params.id}` }, 2000);
-
-                    //empty state
-                    setState({
-                        ...state,
-                        username: "",
-                        password: "",
-                        confirmPassword: "",
-                    });
                 })
                 .catch((error) => {
                     console.log(error.Response);
