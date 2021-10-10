@@ -21,6 +21,9 @@ import addTask from './pages/StaffMenagement/addTaskStaffMember'  //--Added by I
 import showEmployeeTask from './pages/StaffMenagement/showEmployeeTasks' //--Added by Isuru Pathum Herath--
 import staffAnalytic from './pages/StaffMenagement/StaffAnalytics' //--Added by Isuru Pathum Herath--
 import staffLogin from './pages/StaffMenagement/staffLogin' //--Added by Isuru Pathum Herath--
+import staffLandingPage from './pages/StaffMenagement/StaffLandingPage' //--Added by Isuru Pathum Herath--
+import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added by Isuru Pathum Herath--
+
 
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -37,6 +40,7 @@ class App extends Component {
 
             <Switch>
               <Route path="/login" exact component={Login} />
+              
               <Route path="/addStaffMember" exact component={addStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/allStaffMembers" exact component={allStaffMembers} />           {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
@@ -46,8 +50,9 @@ class App extends Component {
               <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />       {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/addTask" exact component={addTask} />                           {/*--Added by Isuru Pathum Herath--*/}
               <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />     {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />     {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/staffLogin" exact component={staffLogin} />
+              <Route path="/staffLogin" exact component={staffLogin} />                     {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/staffLandingPage/:id" exact component={staffLandingPage} />     {/*--Added by Isuru Pathum Herath--*/}
+              <Route path="/staffFirstLogin/:id" exact component={staffFirstLogin} />       {/*--Added by Isuru Pathum Herath--*/}
 
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />

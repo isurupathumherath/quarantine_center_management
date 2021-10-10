@@ -2,7 +2,7 @@
     Created by - Isuru Pathum Herath
     On - 12/09/2021
     Name - singleStaffMember
-    Last Update - 11/10/2021
+    Last Update - 12/09/2021
  */
 
 import React, { useState, useEffect } from 'react';
@@ -58,11 +58,11 @@ const App = props => {
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0">Account Status</h6>
-                                    <span className="text-success">{staffMembers.accountStatus}</span>
+                                    <span className="text-secondary">{staffMembers.accountStatus}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0">Username</h6>
-                                    <span className="text-success">{staffMembers.username}</span>
+                                    <span className="text-secondary">{staffMembers.username}</span>
                                 </li>
                                 <br />
                                 <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -101,7 +101,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Staff ID</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.employeeId}
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Full Name</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Email</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.email}
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Mobile Number</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.mobileNumber}
                                     </div>
                                 </div>
@@ -137,7 +137,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Address</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.address}
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Birthday</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.DOB}
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">NIC</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.NIC}
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Added At</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.createdAt}
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Last Update At</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.updatedAt}
                                     </div>
                                 </div>

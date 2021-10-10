@@ -21,11 +21,12 @@ const UpdateStaffMember = props => {
         NIC: '',
         address: '',
         type: '',
-        id: ''
+        id: '',
+        accountStatus: ""
     });
 
     //destructure values from state
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type } = state;
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus } = state;
 
     console.log(`PROP TEST: ${props.match.params._id}`)
 
@@ -34,8 +35,8 @@ const UpdateStaffMember = props => {
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
                 console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type } = response.data
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type })
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus } = response.data
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus })
             })
             .catch(error => alert('Error Loading Update Staff'));
     }, []);
@@ -67,7 +68,8 @@ const UpdateStaffMember = props => {
                     <div className="form-group">
                         <label className="text-muted">Staff Member Type</label>
                         <select id="type" value={type} onChange={handleChange("type")} className="form-control">
-                            <option value="Attendant" selected>Attendant</option>
+                            <option value="" disabled selected>Select a Staff Member Type</option>
+                            <option value="Attendant">Attendant</option>
                             <option value="Nurisng">Nurisng</option>
                             <option value="Doctor">Doctor</option>
                         </select>
@@ -80,7 +82,7 @@ const UpdateStaffMember = props => {
                 <div class="col">
                     <div className="form-group">
                         <label className="text-muted">Mobile Number</label>
-                        <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" pattern="[0-9]{10}" title="Invalid Mobile Number." required />
+                        <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" pattern="[0-9]{9,10}" title="Invalid Mobile Number." required />
                     </div>
                 </div>
                 <div class="col">
@@ -103,6 +105,16 @@ const UpdateStaffMember = props => {
                         <input onChange={handleChange("NIC")} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" pattern="[0-9]{12}" title="Invalid NIC Number." required />
                     </div>
                 </div>
+                <div class="col">
+                    <div className="form-group">
+                        <label className="text-muted">Account Status</label>
+                        <select id="accountStatus" value={accountStatus} onChange={handleChange("accountStatus")} className="form-control">
+                            <option value="" disabled selected>Select a Account Status</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Active">Active</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div className="form-group">
@@ -111,6 +123,7 @@ const UpdateStaffMember = props => {
             </div>
             <br />
             <div>
+
                 <button className="btn btn-primary">Update</button>
             </div>
         </form>

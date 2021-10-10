@@ -66,6 +66,10 @@ const EmployeeSchema = new mongoose.Schema({
         type:String,
         min: 8,
         required: true
+    },
+    accountStatus: {
+        type: String,
+        required: true
     }
 }, {timestamps: true});
 

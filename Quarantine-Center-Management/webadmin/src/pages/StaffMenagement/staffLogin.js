@@ -1,3 +1,10 @@
+/*
+    Created by - Isuru Pathum Herath
+    On - 11/10/2021
+    Name - staffLogin
+    Last Update - 11/10/2021
+ */
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -8,6 +15,7 @@ function LoginScreen() {
     const [loading, setLoading] = useState(false)
     const [staffMembers, setStaffMembers] = useState([])
     const delay = ms => new Promise(res => setTimeout(res, ms));
+    const Swal = require('sweetalert2');
 
     async function Login() {
         const user = { email, password }
@@ -15,7 +23,6 @@ function LoginScreen() {
             .then(response => {
                 console.log(response)
                 if (response.data == null) {
-                    const Swal = require('sweetalert2');
                     Swal.fire({
                         title: 'Login Failed!',
                         text: 'Username or Password incorrect',
@@ -24,19 +31,40 @@ function LoginScreen() {
                     });
                 }
                 else {
-                    const Swal = require('sweetalert2');
-                    Swal.fire({
-                        title: 'Welcome!',
-                        text: `User ${response.data.username} Authenticated`,
-                        icon: 'success'
-                    });
-                    setTimeout(() => { window.location.href = '/addStaffMember' }, 2000);
-                    setStaffMembers(response.data)
+                    if (response.data.accountStatus == "Pending") {
+                        Swal.fire({
+                            title: 'Welcome!',
+                            text: `User ${response.data.username} Authenticated`,
+                            icon: 'success'
+                        });
+                        setStaffMembers(response.data)
+                        alert("First Login")
+                        setTimeout(() => { window.location.href = `/staffFirstLogin/${response.data.employeeId}` }, 2000);
+                    }
+                    else if (response.data.accountStatus == "Active") {
+                        Swal.fire({
+                            title: 'Welcome!',
+                            text: `User ${response.data.username} Authenticated`,
+                            icon: 'success'
+                        });
+                        setStaffMembers(response.data)
+                        alert("Active Account")
+                        // setTimeout(() => { window.location.href = '/staffLandingPage' }, 2000);
+                    }
+                    else {
+                        Swal.fire({
+                            title: 'Login Failed!',
+                            text: 'Username or Password incorrect',
+                            icon: 'error',
+                            confirmButtonText: 'Try again'
+                        });
+                    }
+
+
                 }
 
             })
             .catch(error => {
-                const Swal = require('sweetalert2');
                 Swal.fire({
                     title: 'Error!',
                     text: 'Login Failed',

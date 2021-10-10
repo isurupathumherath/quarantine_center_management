@@ -14,7 +14,7 @@ Date - 22/08/2021
  */
 exports.create = (req, res) => {
 
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type } = req.body
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus } = req.body
 
     // Validate Email & Phone Number /^\d*(?:\.\d{1,2})?$/
     var validator = require("email-validator");
@@ -97,10 +97,14 @@ exports.create = (req, res) => {
                 return res.status(400).json({
                     error: 'Email Address is required'
                 });
+            case !accountStatus:
+                return res.status(400).json({
+                    error: 'Account Status is required'
+                });
         }
 
         //Check Server Errors
-        Employee.create({ employeeId, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password }, (err, employee) => {
+        Employee.create({ employeeId, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password, accountStatus }, (err, employee) => {
 
             //Check Server Errors
             if (err) {
@@ -328,8 +332,21 @@ Date - 22/08/2021
  */
 exports.update = (req, res) => {
     const { employeeId } = req.params;
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type } = req.body;
-    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type }, { new: true }).exec((err, post) => {
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus } = req.body;
+    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus }, { new: true }).exec((err, post) => {
+        if (err) console.log(err);
+        res.json(post);
+    })
+}
+
+/*
+Name - Staff first Login Update
+Date - 11/10/2021
+ */
+exports.staffFirstLogin = (req, res) => {
+    console.log(req.params.id)
+    const { username, password, accountStatus = "Active" } = req.body;
+    Employee.findOneAndUpdate({ employeeId: req.params.id }, { username, password, accountStatus }, { new: true }).exec((err, post) => {
         if (err) console.log(err);
         res.json(post);
     })
@@ -341,7 +358,7 @@ Date - 11/09/2021
  */
 exports.updateEmployeeDetail = (req, res) => {
     const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC } = req.body;
-    Employee.findByIdAndUpdate(req.params.id, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC }, { new: true }).exec((err, post) => {
+    Employee.findByIdAndUpdate(req.params.id, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus }, { new: true }).exec((err, post) => {
         if (err) console.log(err);
         res.json(post);
     })

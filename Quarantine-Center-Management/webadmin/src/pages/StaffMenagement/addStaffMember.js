@@ -23,6 +23,7 @@ const App = () => {
     NIC: "",
     address: "",
     type: "",
+    accountStatus: ""
   });
 
   //destructure values from state
@@ -36,6 +37,7 @@ const App = () => {
     NIC,
     address,
     type,
+    accountStatus,
   } = state;
 
   //onChange event handler
@@ -62,6 +64,7 @@ const App = () => {
       NIC,
       address,
       type,
+      accountStatus,
     });
 
     axios
@@ -75,6 +78,7 @@ const App = () => {
         NIC,
         address,
         type,
+        accountStatus,
       })
       .then((response) => {
         console.log(response);
@@ -97,6 +101,7 @@ const App = () => {
           NIC: "",
           address: "",
           type: "",
+          accountStatus: "",
         });
       })
       .catch((error) => {
@@ -149,7 +154,8 @@ const App = () => {
                   <div className="form-group">
                     <label className="text-muted">Staff Member Type</label>
                     <select id="type" value={type} onChange={handleChange("type")} className="form-control">
-                      <option value="Attendant" selected>Attendant</option>
+                      <option value="" disabled selected>Select a Priority</option>
+                      <option value="Attendant">Attendant</option>
                       <option value="Nurisng">Nurisng</option>
                       <option value="Doctor">Doctor</option>
                     </select>
@@ -186,12 +192,23 @@ const App = () => {
                     <input onChange={handleChange("NIC")} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" pattern="[0-9]{12}" title="Invalid NIC Number." required />
                   </div>
                 </div>
+                <div class="col">
+                  <div className="form-group">
+                    <label className="text-muted">Account Status</label>
+                    <select id="accountStatus" value={accountStatus} onChange={handleChange("accountStatus")} className="form-control">
+                      <option value="" disabled selected>Select a Account Status</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Active">Active</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <div className="form-group">
                 <label className="text-muted">Address</label>
                 <textarea onChange={handleChange("address")} value={address} type="text" className="form-control" placeholder="Enter the Address" pattern="{1,300}" required />
               </div>
+
 
               <br />
               <div>
