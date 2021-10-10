@@ -8,14 +8,19 @@ const express = require('express');
 const router = express.Router();
 
 //Import Cntroller Methos
-const { create, showAll, removebyId, updatePending, updateDone, readByDatabaseId } = require('../../controllers/HRM/Task');
+const { create, showAll, removebyId, updatePending, updateDone, readByDatabaseId, readByEmpId } = require('../../controllers/HRM/Task');
 
 //Controller Routes
 router.post('/add', create);
+
 router.get('/', showAll);
+router.get('/getByEmpId/:id', readByEmpId);
+router.get('/updateFetch/:id', readByDatabaseId);
+
 router.delete('/remove/:id', removebyId);
+
 router.put('/updatePending/:id', updatePending);
 router.put('/updateDone/:id', updateDone);
-router.get('/updateFetch/:id', readByDatabaseId);
+
 
 module.exports = router;

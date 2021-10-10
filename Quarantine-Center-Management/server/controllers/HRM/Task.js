@@ -49,7 +49,6 @@ exports.create = (req, res) => {
 Name - Get All Task
 Date - 25/09/2021
  */
-
 exports.showAll = (req, res) => {
     Task.find({})
         // .limit(10)
@@ -68,6 +67,19 @@ exports.readByDatabaseId = (req, res) => {
     const { id } = req.params
     console.log(req.params.id)
     Task.findById({ id })
+        .exec((err, task) => {
+            if (err) console.log(err);
+            res.json(task);
+        });
+};
+
+/*
+Name - Display Task Details by Employee Id
+Date - 11/10/2021
+*/
+exports.readByEmpId = (req, res) => {
+    console.log(req.params.id)
+    Task.find({ EmployeeID: req.params.id})
         .exec((err, task) => {
             if (err) console.log(err);
             res.json(task);
