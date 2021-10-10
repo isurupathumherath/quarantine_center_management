@@ -37,7 +37,7 @@ class PayerForm extends Component {
             address: null,
             lastName: null,
             firstName: null,
-            userID: "102",
+            userID: localStorage.getItem("userID"),
             formErrors: {
                 contactNumber: "",
                 email: "",
@@ -62,6 +62,16 @@ class PayerForm extends Component {
                 address : ${this.state.address}
                 constactNumber : ${this.state.contactNumber}
             `)
+
+            //add data to the local storage
+            localStorage.setItem("firstName",this.state.firstName);
+            localStorage.setItem("lastName",this.state.lastName);
+            localStorage.setItem("email",this.state.email);
+            localStorage.setItem("address",this.state.address);
+            localStorage.setItem("contactNumber",this.state.contactNumber);
+
+
+
 
             alert("tets")
             const res = axios.post('http://localhost:5000/payer/createPayer', this.state);
