@@ -8,10 +8,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { getUser, logout } from './staffHelper';
 import '../../assets/HRM/staffProfile.css';
 const Swal = require('sweetalert2');
 
-const App = props => {
+
+const App = (props, { history }) => {
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
@@ -36,6 +38,14 @@ const App = props => {
 
             })
             .catch(error => alert("Error Fetching Tasks"));
+    }
+
+    //Auto refresh
+    window.onload = function () {
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     //Mark Done
@@ -102,7 +112,7 @@ const App = props => {
     }
 
     useEffect(() => {
-
+        window.onload();
         fetchTaskDetails();
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
@@ -132,8 +142,8 @@ const App = props => {
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                                     <div className="mt-3">
                                         <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
-                                        <p className="text-secondary mb-1">{staffMembers.type}</p>
-                                        <p className="text-muted font-size-sm">{staffMembers.address}</p>
+                                        {/* <p className="text-secondary mb-1">{staffMembers.type}</p>
+                                        <p className="text-muted font-size-sm">{staffMembers.address}</p> */}
                                         {/* <button className="btn btn-info">Follow</button> <br/> */}
                                     </div>
                                 </div>
@@ -156,6 +166,23 @@ const App = props => {
                                         <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
                                     </div>
                                 </div>
+                                <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <div className="col-sm-12">
+                                        {getUser() && (
+                                            <a href={`/staffLogin/`} >
+                                                <li onClick={() => logout()}
+                                                    className="btn btn-danger"
+                                                    style={{ cursor: 'pointer', width: "100%" }}
+
+                                                >
+                                                    Logout
+                                                </li>
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+
+
                                 {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                     <span className="text-secondary">https://bootdey.com</span>

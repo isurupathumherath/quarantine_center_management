@@ -23,7 +23,8 @@ import staffAnalytic from './pages/StaffMenagement/StaffAnalytics' //--Added by 
 import staffLogin from './pages/StaffMenagement/staffLogin' //--Added by Isuru Pathum Herath--
 import staffLandingPage from './pages/StaffMenagement/StaffLandingPage' //--Added by Isuru Pathum Herath--
 import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added by Isuru Pathum Herath--
-
+import PrivateRoute from './PrivateRoute';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -39,23 +40,7 @@ class App extends Component {
           <div class="content container-fluid">
 
             <Switch>
-              <Route path="/login" exact component={Login} />
-              
-              <Route path="/addStaffMember" exact component={addStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/allStaffMembers" exact component={allStaffMembers} />           {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />   {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/singleProfile/:id" exact component={singleProfile} />           {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/filterStaffMember" exact component={filterStaffMember} />       {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/addSalary" exact component={addSalary} />                       {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />       {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/addTask" exact component={addTask} />                           {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />     {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/staffLogin" exact component={staffLogin} />                     {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/staffLandingPage/:id" exact component={staffLandingPage} />     {/*--Added by Isuru Pathum Herath--*/}
-              <Route path="/staffFirstLogin/:id" exact component={staffFirstLogin} />       {/*--Added by Isuru Pathum Herath--*/}
-
-              <Route path="/viewticket" exact component={viewTickets} />
-              <Route path="/edit/:id" component={replyTickets} />
+              <Route path="/" exact component={Login} />
             </Switch>
           </div>
         </div>

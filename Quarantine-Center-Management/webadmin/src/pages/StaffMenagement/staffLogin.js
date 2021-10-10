@@ -7,8 +7,9 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { authenticate, getUser } from './staffHelper'
 
-function LoginScreen() {
+function LoginScreen(props) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -16,6 +17,11 @@ function LoginScreen() {
     const [staffMembers, setStaffMembers] = useState([])
     const delay = ms => new Promise(res => setTimeout(res, ms));
     const Swal = require('sweetalert2');
+
+    useEffect(() => {
+        const id = getUser();
+        getUser() && props.history.push(`/staffLandingPage/${id}`);
+    }, []);
 
     async function Login() {
         const user = { username, password }
@@ -38,8 +44,10 @@ function LoginScreen() {
                             icon: 'success'
                         });
                         setStaffMembers(response.data)
+                        //response will contain token and name
+                        authenticate(response, () => props.history.push(`/staffFirstLogin/${response.data.employeeId}`), 2000);
                         alert("First Login")
-                        setTimeout(() => { window.location.href = `/staffFirstLogin/${response.data.employeeId}` }, 2000);
+                        // setTimeout(() => { window.location.href = `/staffFirstLogin/${response.data.employeeId}` }, 2000);
                     }
                     else if (response.data.accountStatus == "Active") {
                         Swal.fire({
@@ -48,8 +56,12 @@ function LoginScreen() {
                             icon: 'success'
                         });
                         setStaffMembers(response.data)
+                        authenticate(response, () => props.history.push(`/staffLandingPage/${response.data.employeeId}`), 2000);
+
                         alert("Active Account")
-                        setTimeout(() => { window.location.href = `/staffLandingPage/${response.data.employeeId}` }, 2000);
+                        //response will contain token and name
+                        // authenticate(response, () => props.history.push('/create'));
+                        // setTimeout(() => { window.location.href = `/staffLandingPage/${response.data.employeeId}` }, 2000);
                     }
                     else {
                         Swal.fire({
