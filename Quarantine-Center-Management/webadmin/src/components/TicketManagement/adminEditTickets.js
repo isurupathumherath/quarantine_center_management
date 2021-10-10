@@ -6,6 +6,7 @@
 import { saveAs } from 'file-saver';
 import React, { Component } from 'react';
 import axios from 'axios';
+
 const Swal = require('sweetalert2')
 
 export default class adminEditTickets extends Component {
@@ -108,6 +109,7 @@ export default class adminEditTickets extends Component {
     //         saveAs(pdfBlob, 'Subject.pdf');
     //       })
     //   }
+
 
     render() {
 
