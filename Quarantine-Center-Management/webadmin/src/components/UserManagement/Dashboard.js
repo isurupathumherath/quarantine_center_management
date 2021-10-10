@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 //import "../assets/CSS/memberdashboard.css";
 
 class Dashboard extends Component {
@@ -84,7 +87,17 @@ class Dashboard extends Component {
               Create New Profile
             </a>
           </button>
-            
+
+            <div style={{ marginTop: '-38px', marginLeft: "190px"}}>
+              <ReactHTMLTableToExcel
+                className='btn btn-outline-success'
+                table='table'
+                filename='Ticket Details Excel'
+                sheet='Sheet'
+                buttonText='Generate Sheet'
+              />
+            </div>
+
 
             <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
               <input
@@ -96,7 +109,7 @@ class Dashboard extends Component {
               </input>
             </div>
           </p>
-          <table class="table">
+          <table id="table" class="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
