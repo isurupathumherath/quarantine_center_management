@@ -51,9 +51,9 @@ const Routes = () => {
 
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/staffLogin" exact component={staffLogin} />                           {/*--Added by Isuru Pathum Herath--*/}
-                        <PrivateRoute path="/staffLandingPage/:id" exact component={staffLandingPage} />    {/*--Added by Isuru Pathum Herath--*/}
-                        <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />      {/*--Added by Isuru Pathum Herath--*/}
+                        <Route path="/staffLogin" exact component={staffLogin} />                                   {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRoute path="/staffLandingPage/:id" exact component={staffLandingPage} />            {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />                  {/*--Added by Isuru Pathum Herath--*/}
                     </Switch>
 
                     {getAdminUser() && (
@@ -84,6 +84,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
+
 
                     </Switch>
                 </BrowserRouter>
