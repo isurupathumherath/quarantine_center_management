@@ -123,10 +123,7 @@ export const getInquaryDetails = async (req, res) => {
         // const payerDetails = await FinancePayer.findById(id);
 
         if (inquaryDetails != null) {
-            res.status(200).json({
-                replyCode: 1,
-                inquaryDetails,
-            });
+            res.status(200).json(inquaryDetails);
         } else {
             res.status(200).json({
                 replyCode: 0,

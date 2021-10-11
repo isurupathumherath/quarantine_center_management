@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const urlinvoice = 'http://localhost:5000/invoice'; 
 const urlpayer = 'http://localhost:5000/payer'; 
-const urlpayment = 'http://localhost:5000/payment'; 
-
+const urlpayment = 'http://localhost:5000/payment';  
 
 
 // const urlposts = 'https://first-mernproject.herokuapp.com/posts';
@@ -31,6 +30,7 @@ const url = 'http://localhost:5000';
 //API
 const invoice = url + '/invoice';
 const payer = url + '/payer';
+const inquary = url + '/inquary';
 
 //Calling the invoice CRUD 
 export const foodDetails = (userID) => axios.get(`${invoice + '/foodDetails'}/${userID}`);
@@ -39,10 +39,17 @@ export const roomDetails = (userID) => axios.get(`${invoice + '/roomDetails'}/${
 
 //Calling Payer CRUD API
 export const allPayerDetails = () => axios.get(payer + '/allPayerDetails');
-export const createPayer = (newPayer) => axios.get(payer + '/createPayer', newPayer);
-export const updatePayer = (id) => axios.get(`${payer + '/updatePayer'}/${id}`);
-export const deletePayer = (id) => axios.get(`${payer + '/deletePayer'}/${id}`);
+export const createPayer = (newPayer) => axios.post(payer + '/createPayer', newPayer);
+export const updatePayer = (id, updatePayer) => axios.patch(`${payer + '/updatePayer'}/${id}`, updatePayer);
+export const deletePayer = (id) => axios.delete(`${payer + '/deletePayer'}/${id}`);
 export const payerDetails = (userID) => axios.get(`${payer + '/payerDetails'}/${userID}`);
+ 
+//Calling Inquary CRUD API
+export const allInquaryDetails = () => axios.get(inquary + '/allInquaryDetails');
+export const createInquary = (newInquary) => axios.post(inquary + '/createInquary', newInquary);
+export const updateInquary = (id, updateInquary) => axios.patch(`${inquary + '/updateInquary'}/${id}`, updateInquary);
+export const deleteInquary = (id) => axios.delete(`${inquary + '/deleteInquary'}/${id}`);
+export const InquaryDetails = (userID) => axios.get(`${inquary + '/InquaryDetails'}/${userID}`);
  
 
 

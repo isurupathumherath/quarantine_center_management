@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Logo from '../../../assets/PaymentManagment/img/yourlogohere.png';
+
 export default class Header extends Component {
   render() {
     return (
@@ -14,9 +16,9 @@ export default class Header extends Component {
                   <span></span>
                 </span>
               </a>
-              {/* <a href="index.html" class="navbar-brand logo">
-                <img src="/assets/img/logo.png" class="img-fluid" alt="Logo" />
-              </a> */}
+              <a href="index.html" class="navbar-brand logo">
+                <img src={Logo} class="img-fluid" alt="Logo" />
+              </a>
             </div>
             <div class="main-menu-wrapper">
               <div class="menu-header">
@@ -58,7 +60,7 @@ export default class Header extends Component {
                       <a href={'/invoice'}>Invoice</a>
                     </li>
                     <li>
-                      <a href={'/details'}>Details</a>
+                      <a href={'/inquary'}>Inquary</a>
                     </li>
                   </ul>
                 </li>

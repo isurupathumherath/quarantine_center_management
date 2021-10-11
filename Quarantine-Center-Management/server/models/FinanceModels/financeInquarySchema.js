@@ -13,7 +13,7 @@ const InquarySchma = mongoose.Schema({
     description: {
         type: String,
         required: false
-    },
+    }, 
     insertedDateTime: {
         type: Date,
         default: Date.now,
@@ -42,6 +42,18 @@ const InquarySchma = mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    replyDescription: {
+        type: String,
+        required: false
+    },
+    replyTitle: {
+        type: String,
+        required: false
+    },
+    replyDateTime: {
+        type: String,
+        required: false
     },
 });
 

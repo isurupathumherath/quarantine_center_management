@@ -11,6 +11,7 @@ import FbookingData from './fbookingData';
 import FroomData from './froomData';
 import ForderData from './forderData'
 import Fpayer from './fpayer'
+import Finquary from './finquary';
 
 
 export const reducers = combineReducers({
@@ -22,6 +23,7 @@ export const reducers = combineReducers({
     FbookingData,
     FroomData,
     ForderData,
-    Fpayer
+    Fpayer,
+    Finquary
 });
 
