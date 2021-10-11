@@ -93,10 +93,10 @@ function LoginScreen(props) {
                 {loading}
                 <div className="row align-items-center justify-content-center">
                     <div class="col-md-12 col-lg-6 login-left">
-                        <img src="assets/img/login-banner.png" style={{ height: 500, widows: 500 }} class="img-fluid" alt="Doccure Login" />
+                        <img src="https://img.freepik.com/free-vector/happy-business-colleagues-team-portrait_179970-1271.jpg?size=626&ext=jpg" style={{ height: 500, widows: 500 }} class="img-fluid" alt="Doccure Login" />
                     </div>
                     <div className="col-md-12 col-lg-4 login-right">
-                        <h2 style={{ fontSize: '35px', marginTop: '5px' }}> Login </h2><br />
+                        <h2 style={{ fontSize: '35px', marginTop: '5px' }}> Staff Login </h2><br />
 
 
                         <div>
@@ -122,8 +122,12 @@ function LoginScreen(props) {
 
                             <button onClick={Login}
                                 className="btn btn-success btn-block btn-lg login-btn"
-                                style={{ marginTop: '15px' }}><i className="far fa-check-square" /> Login
+                                style={{ marginTop: '15px' }}><i class="fas fa-sign-in-alt"> Login</i>
                             </button>
+                            <br />
+                            <br />
+                            <div class="text-center dont-have">Admin <a href="/login">Login</a></div>
+
 
                         </div>
 

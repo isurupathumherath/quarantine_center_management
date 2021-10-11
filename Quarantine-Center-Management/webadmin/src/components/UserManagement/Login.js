@@ -82,7 +82,7 @@ function LoginScreen(props) {
                                         </button>
                                         <br />
                                         <br />
-                                        <div class="text-center dont-have">Staff Login <a href="/staffLogin">Register</a></div>
+                                        <div class="text-center dont-have">Staff <a href="/staffLogin">Login</a></div>
 
                                     </div>
 
