@@ -2,17 +2,19 @@ import React,{useState,useEffect} from 'react';// in use effect it determines wh
 import axios from "axios";
 import {Link} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
-import '../../assets/InventoryManagement/onestock.css';
 
 const Onestock=() =>{
 
     const { name }=useParams();
     const [item,setitem]=useState([]);
-
+    const [ba,setba]=useState([]);
+    let b1=[];
     useEffect(()=>{
         function getitem(){
             axios.get(`http://localhost:8000/stock/get/${name}`).then((res)=>{
                 setitem(res.data);
+                b1=res.data;
+                setba(b1.Batch);
             }).catch((err)=>{
                 alert(err.message);
             })
@@ -21,51 +23,71 @@ const Onestock=() =>{
         getitem();
     },[])
 
-    const setData = (it) => {
+    const setData = (med,m) => {
 
-        let {_id, itemcode,category,name,price_of_one,batchnum,received_date,expiration_date,total_quantity } = it;
+        let {_id,category,name,price_of_one} = med;
+        let {batchnum,received_date,expiration_date,total_quantity} = m;
         localStorage.setItem('id',_id);
-        localStorage.setItem('itemcode', itemcode);
         localStorage.setItem('category', category);
         localStorage.setItem('name', name);
         localStorage.setItem('price', price_of_one);
         localStorage.setItem('batchnum', batchnum);
-        localStorage.setItem('received_d', received_date);
-        localStorage.setItem('expiration_d', expiration_date);
-        localStorage.setItem('quantity', total_quantity);
+        localStorage.setItem('received_date', received_date);
+        localStorage.setItem('expiration_date', expiration_date);
+        localStorage.setItem('total_quantity', total_quantity);
+
     }
     return(
-         <div>
+        <div>
+        <div className="page-wrapper">
+        <div className="content container-fluid">
+        <div style={{background:"white",padding:"20px",position: "relative",
+                left: "-190px",
+                top:"-40px",
+                height:"700px",
+                width:"1000px"}}>
              <center>
-                    <h1>{name}</h1>
-             </center>       
-             <center>
-             <table id="customers">
-             <tbody>
-             <tr>
-                     <th>Batch number</th>
-                     <th>Price of unit (Rs)</th>
-                     <th>total Quantity (Units)</th>
-                     <th>Action</th>
-             </tr> 
-           {item.map(it=>{
-               return (
-                   <tr>
-                     <td>{it.batchnum}</td>
-                     <td>{it.price_of_one}</td>
-                     <td>{it.total_quantity}</td>
-                     <td><Link to={`/delete`}><button id="delete" onClick={() => setData(it)}>Delete</button></Link>
-                     <Link to="/update"><button id="update" onClick={() => setData(it)}>Update</button></Link>
-                     <Link to={`/add`}><button id="add" onClick={()=>setData(it)}>Add Batch</button></Link>
-                     </td>
-                   </tr>  
-                 ) //<pre>{JSON.stringify(stud)}</pre>
-           })}
-             </tbody>
-             </table>
-             </center>
-         </div>
-    )
+                <h1>{item.name}</h1>
+            </center>  
+            <Link to={`/add/food/${item._id}`}><button id="Add_Batch" class="btn btn-info">Add Batch</button></Link>  
+            <center>
+            <br></br>
+            <table  class="table table-striped">
+            <thead>
+                    <th>Batch number</th>
+                    <th>Received Date</th>
+                    <th>Expiration Date</th>
+                    <th>Total Quantity</th>
+                    <th>Action</th>
+            </thead>
+                <tbody>
+                {ba.map((m) => {
+              return (
+                <tr>   
+                    <td>{m.batchnum}</td>
+                    <td>{m.received_date.substr(0,10)}</td>
+                    <td>{m.expiration_date.substr(0,10)}</td>
+                    <td>{m.total_quantity}</td>
+                    <td>
+                        <Link to={`/delete`}>
+                            <button id="delete"  class="btn btn-danger" onClick={()=>setData(item,m)}>Delete</button>
+                        </Link>
+                        <Link to={`/update/${m._id}`}>
+                            <button id="update" style={{ marginLeft: '.5rem' }} class="btn btn-warning" onClick={()=>setData(item,m)}>Update</button>
+                        </Link>
+                    </td>
+                </tr>   
+                );
+          })}
+            
+            </tbody>
+            </table>
+            </center> 
+            </div>
+        </div>
+        </div>
+        </div>
+   )
 }
 
 export default Onestock;

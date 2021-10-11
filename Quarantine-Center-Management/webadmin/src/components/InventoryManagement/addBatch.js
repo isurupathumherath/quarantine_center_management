@@ -1,50 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router-dom";
+import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 export default function AddBatch() {
-    let history = useHistory();
-    
-    const [itemcode, setitemcode] = useState(0);
-    const [category, setcategory] = useState('');
-    const [name, setname] = useState('');
-    const [price_of_one, setprice] = useState(0);
+    const { food }=useParams();
+    const history = useHistory();
+    const today=new Date();
     const [batchnum, setbatch] = useState(0);
-    const [received_date, setreceived] = useState(null);
+    const [received_date, setreceived] = useState(today);
     const [expiration_date, setexpire] = useState(null);
     const [total_quantity, setquantity] = useState(0);
     
-    
-    useEffect(() => {
-        setitemcode(localStorage.getItem('itemcode'));
-        setcategory(localStorage.getItem('category'));
-        setname(localStorage.getItem('name'));   
-        setprice(localStorage.getItem('price'));
-        setbatch(localStorage.getItem('batchnum'));
-        setreceived(localStorage.getItem('received_d'));
-        setexpire(localStorage.getItem('expiration_d'));
-        setquantity(localStorage.getItem('quantity'));   
-    }, []);
 
+    const disablePastDate = () => {
+        const dd = String(today.getDate() + 1).padStart(2, "0");
+        const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        const yyyy = today.getFullYear();
+        return yyyy + "-" + mm + "-" + dd;
+    };
+    
     const AddAPIData = (e) => {
 
         e.preventDefault();
-
-        const newbatch={
-            itemcode,
-            category,
-            name,
-            price_of_one,
+        axios.put(`http://localhost:8000/stock/update/addnew/${food}`,{
             batchnum,
             received_date,
             expiration_date,
             total_quantity
         }
-        axios.post(`http://localhost:8000/stock/add/`,newbatch).then(() => {
-            alert("Batch added");
-            history.push("/add");
+        ).then(() => {
+            alert("New Food Batch added");
+            let path = `/onestock/${food}`; 
+            history.push(path);
         }).catch((err)=>{
             alert(err);
         })
@@ -53,35 +43,34 @@ export default function AddBatch() {
         <div>
         <div class="page-wrapper">
         <div class="content container-fluid">
-            <form> 
-                    <label>Item Name</label><br/>
-                    <input placeholder='Item Name' value={name} onChange={(e) => setname(e.target.value)} readonly /><br/><br/>
-            
-                    <label>Item code</label><br/>
-                    <input placeholder='Item code' value={itemcode} onChange={(e) => setitemcode(e.target.value)} readonly/><br/><br/>
-              
-                    <label>Category</label><br/>
-                    <input placeholder='Category' value={category} onChange={(e) => setcategory(e.target.value)} readonly/><br/><br/>
-                
-                    <label>Price</label><br/>
-                    <input placeholder='Price' onChange={(e) => parseInt(setprice(e.target.value))}/><br/><br/>
-              
+        <div style={{background:"white",padding:"20px",position: "relative",
+                left: "-190px",
+                top:"-40px",
+                height:"500px",
+                width:"1000px"}}>
+            <center>
+                <h1>Add New food Batch</h1>
+            </center>
+            <form onSubmit={AddAPIData}> 
+            <div class="form-group">  
                     <label>Batch Number</label><br/>
-                    <input placeholder='Batch Number' onChange={(e) => setbatch(e.target.value)}/><br/><br/>
-                
+                    <input type="Number" placeholder='Batch Number' class="form-control" onChange={(e) => setbatch(e.target.value)} min="1" required/>
+            </div>
+            <div class="form-group">      
                     <label>Received Date</label><br/>
-                    <input type="text" value={received_date}/>
-                    <input type="date"  placeholder='Received Date'  onChange={(e) => Date.parse(setreceived(e.target.value))}/><br/><br/>
-               
+                    <input type="text"  placeholder='Received Date' value={today.toLocaleString()} class="form-control" readOnly/>
+            </div>
+            <div class="form-group">     
                     <label>Expiration Date</label><br/>
-                    <input type="text"  value={expiration_date}/>
-                    <input type="date" placeholder='Expiration Date'  onChange={(e) =>Date.parse(setexpire(e.target.value))}/><br/><br/>
-               
+                    <input type="date" placeholder='Expiration Date'  min={disablePastDate()} class="form-control"  onChange={(e) =>Date.parse(setexpire(e.target.value))} required/>
+            </div>
+            <div class="form-group">  
                     <label>Quantity</label><br/>
-                    <input type="Number" placeholder='Quantity' onChange={(e) =>parseInt(setquantity(e.target.value))}/><br/><br/>
-               
-                    <Link to="Inventory/food"><Button type='submit' onClick={AddAPIData}>Add</Button></Link>
-            </form>
+                    <input type="Number" placeholder='Quantity' class="form-control" onChange={(e) =>parseInt(setquantity(e.target.value))} min="1" required/>
+            </div>   
+                    <input type='submit' class="btn btn-info" value="Add"/><br/><br/>
+            </form>  
+            </div>
         </div>
         </div>
         </div>

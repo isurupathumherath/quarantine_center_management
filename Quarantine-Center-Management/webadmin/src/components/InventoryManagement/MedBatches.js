@@ -42,30 +42,34 @@ export default function MedBatches(){
         <div>
         <div className="page-wrapper">
         <div className="content container-fluid">
+        <div style={{background:"white",padding:"20px",position: "relative",
+                left: "-190px",
+                top:"-40px",
+                height:"700px",
+                width:"1000px"}}>
              <center>
                 <h1>{medi.name}</h1>
-                <Link to={`/Inventory/medadd/${medi._id}`}><button id="Add_Batch">Add Batch</button></Link>
-            </center>       
-            <center>
-            <table className="table">
-                <tbody>
-                <tr>
+             </center>   
+                <Link to={`/Inventory/medadd/${medi._id}`}><button id="Add_Batch" class="btn btn-info">Add Batch</button></Link>
+            <center><br></br> 
+            <table class="table table-striped">
+                <thead>
                     <th>Batch number</th>
                     <th>Received Date</th>
                     <th>Expiration Date</th>
                     <th>Total Quantity</th>
                     <th>Action</th>
-                </tr>  
-                 
+                </thead>      
+                <tbody>
                 {ba.map((m) => {
               return (
                 <tr>   
                     <td>{m.batchnum}</td>
-                    <td>{m.received_date}</td>
-                    <td>{m.expiration_date}</td>
+                    <td>{m.received_date.substr(0,10)}</td>
+                    <td>{m.expiration_date.substr(0,10)}</td>
                     <td>{m.total_quantity}</td>
-                    <td><Link to={`/Inventory/medDelete`}><button id="delete" onClick={()=>setData(medi,m)}>Delete</button></Link>
-                    <Link to={`/Inventory/medUpdate/${m._id}`}><button id="update" onClick={()=>setData(medi,m)}>Update</button></Link>
+                    <td><Link to={`/Inventory/medDelete`}><button id="delete" class="btn btn-danger" onClick={()=>setData(medi,m)}>Delete</button></Link>
+                    <Link to={`/Inventory/medUpdate/${m._id}`}><button id="update" style={{ marginLeft: '.5rem' }} class="btn btn-warning" onClick={()=>setData(medi,m)}>Update</button></Link>
                     </td>
                 </tr>   
                 );
@@ -73,7 +77,8 @@ export default function MedBatches(){
             
             </tbody>
             </table>
-            </center> 
+            </center>
+            </div> 
         </div>
         </div>
         </div>

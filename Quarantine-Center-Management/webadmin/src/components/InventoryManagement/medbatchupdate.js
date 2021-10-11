@@ -61,34 +61,50 @@ const MedBatchUpdate=() =>{
         <div>
         <div class="page-wrapper">
         <div class="content container-fluid">
+        <div style={{background:"white",padding:"20px",position: "relative",
+                left: "-190px",
+                top:"-40px",
+                height:"800px",
+                width:"1000px"}}>
+        <center>
+                <h1>Update Batch {batchnum} of {name}</h1>
+        </center>
                 <div>
                 <form>
+                <div class="form-group">
                     <label for="fname">Item Name</label>
-                        <input type="text" id="iname" name="iname" value={name} readOnly/>
-
+                        <input type="text" class="form-control" id="iname" name="iname" value={name} readOnly/>
+                </div>
+                <div class="form-group">
                     <label for="lname">Category</label>
-                        <input type="text" id="category" name="category" value={category} readOnly/>
-
+                        <input type="text" class="form-control" id="category" name="category" value={category} readOnly/>
+                </div>
+                <div class="form-group">
                     <label for="country">Price of One</label>
-                        <input type="text" id="Price" name="Price" value={price_of_one} readOnly/>    
-           
+                        <input type="text" class="form-control" id="Price" name="Price" value={price_of_one} readOnly/>    
+                </div>
+                <div class="form-group">
                     <label for="country">Received Date</label>
-                        <input type="text" id="R_date" name="R_date" value={received_date} readOnly/>
-
+                        <input type="text" class="form-control" id="R_date" name="R_date" value={received_date} readOnly/>
+                </div>
+                <div class="form-group">
                     <label for="country">Expiration Date</label>
-                        <input type="text" id="E_date" name="E_date" value={expiration_date} readOnly/>    
-
+                        <input type="text" class="form-control" id="E_date" name="E_date" value={expiration_date} readOnly/>    
+                </div>
+                <div class="form-group">
                     <label for="country">Batch Number</label>
-                        <input type="text" id="B_number" name="B_number" value={batchnum} readOnly/> 
-
+                        <input type="text" class="form-control" id="B_number" name="B_number" value={batchnum} readOnly/> 
+                </div>
+                <div class="form-group">
                     <label for="country">Total Quantity</label>
-                        <input type="Number" id="TQ" name="TQ" value={total_quantity} onChange={(e) =>parseInt(setquantity(e.target.value))}/>
-                    
+                        <input type="Number" class="form-control" id="TQ" name="TQ" value={total_quantity} onChange={(e) =>parseInt(setquantity(e.target.value))}/>
+                </div>    
 
                     
-                    <Link to={`/Inventory/medall`}><input type="submit" value="Update Record" onClick={UpdateBatch}/></Link> 
+                    <Link to={`/Inventory/medbatches/${id}`}><input type="submit" class="btn btn-warning" value="Update Record" onClick={UpdateBatch}/></Link> 
                     
-                </form>
+                </form><br/><br/>
+                </div>
                 </div>
         </div>
         </div>

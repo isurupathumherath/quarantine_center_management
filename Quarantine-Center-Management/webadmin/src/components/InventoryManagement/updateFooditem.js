@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {useParams} from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
-const MedBatchUpdate=() =>{
+const FooditemUpdate=() =>{
 
 
     let history = useHistory();
@@ -30,12 +30,12 @@ const MedBatchUpdate=() =>{
             name,
             price_of_one
         }
-        axios.put(`http://localhost:8000/meds/update/big/${id}`,{
+        axios.put(`http://localhost:8000/stock/update/big/${id}`,{
             category,
             name,
             price_of_one
         }).then((res)=>{             
-            alert("Batch Updated");
+            alert("Food item Updated");
         }).catch((err)=>{
             alert(err.message);
         })
@@ -54,22 +54,25 @@ const MedBatchUpdate=() =>{
         <center>
                 <h1>Update {name} item</h1>
         </center>
+                <div>
                 <form>
                 <div class="form-group">
                     <label for="fname">Item Name</label>
-                        <input type="text" id="iname" class="form-control" name="iname" value={name} onChange={(e) => setname(e.target.value)} pattern="[A-Za-z]{2,}" required/>
+                        <input type="text" class="form-control" id="iname" name="iname" value={name} onChange={(e) => setname(e.target.value)}/>
                 </div>
                 <div class="form-group">
                     <label for="lname">Category</label>
-                        <input type="text" id="category" class="form-control" name="category" value={category} onChange={(e) => setcategory(e.target.value)} pattern="[A-Za-z]{2,}" required/>
+                        <input type="text" class="form-control" id="category" name="category" value={category} onChange={(e) => setcategory(e.target.value)}/>
                 </div>
                 <div class="form-group">
                     <label for="country">Price of One</label>
-                        <input type="Number" id="Price" class="form-control" name="Price" value={price_of_one} onChange={(e) => parseInt(setprice(e.target.value))} min="1" required/>    
-                </div>    
-                <Link to={`/Inventory/medall`}><input type='submit' value="Update Record" class="btn btn-warning" onClick={Updateitem}/></Link>
-                    
+                        <input type="Number" class="form-control" id="Price" name="Price" value={price_of_one} onChange={(e) => parseInt(setprice(e.target.value))}/>    
+                </div>
+                <div class="form-group">    
+                        <Link to={`/Inventory/food`}><input type="submit" class="btn btn-warning" value="Update Record" onClick={Updateitem}/></Link> 
+                </div>   
                 </form>
+                </div>
                 </div>
         </div>
         </div>
@@ -77,4 +80,4 @@ const MedBatchUpdate=() =>{
     )
 }
 
-export default MedBatchUpdate;
+export default FooditemUpdate;

@@ -21,6 +21,8 @@ import MedBatchUpdate from './components/InventoryManagement/medbatchupdate';
 import AddNewBatchMed from './components/InventoryManagement/addNewBatchmed';
 import AddnewMeditem from './components/InventoryManagement/addnewMeditem';
 import Meditemupdate from './components/InventoryManagement/MedItemupdate';
+import UpdateFoodItem from './components/InventoryManagement/updateFooditem';
+import SummaryFood from './components/InventoryManagement/summaryFood';
 
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
@@ -33,6 +35,7 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
+import FooditemUpdate from './components/InventoryManagement/updateFooditem';
 class App extends Component {
   render() {
     return (
@@ -53,8 +56,8 @@ class App extends Component {
               
               <Route path="/viewticket" exact component={viewTickets} />
               <Route path="/edit/:id" component={replyTickets} />
-              <Route path="/add" exact component={Addbatch}/>  {/* Anupa */}
-              <Route path="/update" exact component={UpdateStock}/>  {/* Anupa */}
+              <Route path="/add/food/:food" exact component={Addbatch}/>  {/* Anupa */}
+              <Route path="/update/:food" exact component={UpdateStock}/>  {/* Anupa */}
               <Route path="/delete" exact component={Delete}/> {/* Anupa */}
               <Route path="/Inventory/food" exact component={Allstock}/> {/* Anupa */}
               <Route path="/onestock/:name" exact component={Onestock}/>   {/* Anupa */}
@@ -66,6 +69,8 @@ class App extends Component {
               <Route path="/Inventory/medadd/:med" exact component={AddNewBatchMed}/>   {/* Anupa */}
               <Route path="/Inventory/medall/mednew" exact component={AddnewMeditem}/>   {/* Anupa */}
               <Route path="/Inventory/medbatches/update/whole" exact component={Meditemupdate}/>   {/* Anupa */}
+              <Route path="/Inventory/food/update" exact component={FooditemUpdate}/>   {/* Anupa */}
+              <Route path="/Inventory/food/summary" exact component={SummaryFood}/>   {/* Anupa */}
             </Switch>
           </div>
         </div>

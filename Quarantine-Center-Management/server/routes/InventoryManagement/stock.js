@@ -6,117 +6,141 @@ const batch=require("../../models/InventoryManagement/batch");
 //use this to enter new items to database
 router.route("/add").post((req,res)=>{
 
-    const name=req.body.name;
-    const total_quantity=Number(req.body.total_quantity);
     const category=req.body.category;
+    const name=req.body.name;
     const price_of_one=Number(req.body.price_of_one);
-    const received_date=Date(req.body.received_date);
-    const expiration_date=Date(req.body.expiration_date);
-    const batchnum=Number(req.body.batchnum);
-    const itemcode=Number(req.body.itemcode);
+    const Batch=req.body.Batch;
 
-    const newbatch=new batch({
-        itemcode,
+    const newmed=new batch({
         category,
         name,
         price_of_one,
-        batchnum,
-        received_date,
-        expiration_date,
-        total_quantity
+        Batch
     })
 
-    newbatch.save().then(()=>{
-        res.json("batch added")
+    newmed.save().then(()=>{
+        res.json("Stock added")
     }).catch((err)=>{
         console.log(err);
     })
 });
 
-
-//delete every batch from this id
-router.route("/delete/:itemcode").delete(async(req,res)=>{
-    let  itemcode=req.params.itemcode;
-
-        await batch.remove({itemcode: itemcode}).then(()=>{
-            res.status(200).send({status:"batch item Deleted"});
-        }).catch((err)=>{
-            console.log(err.message);
-            res.status(500).send({status:"Error with delete batch",error:err.message});
-        })
-    
-})
-
-//get every item from this batch
-router.route("/get/:itemname").get(async(req,res)=>{
-    let itemname=req.params.itemname;
-   
-    const stoct_item2=await batch.find({name:itemname}).then((batch)=>{
-        res.status(200).send(batch)
-    }).catch((err)=>{
-        console.log(err.message);
-        res.status(500).send({status:"Error with get batch",error:err.message});
-    })
-})
-
-//get the batch
-router.route("/get/:itemname/:batchnum").get(async(req,res)=>{
-    let itemname=req.params.itemname;
-    let batchnum=req.params.batchnum;
-
-    const stoct_item2=await batch.find({name:itemname,batchnum:batchnum}).then((batch)=>{
-        res.status(200).send(batch)
-    }).catch((err)=>{
-        console.log(err.message);
-        res.status(500).send({status:"Error with get batch",error:err.message});
-    })
-})
-
-
-//delete batch from item code and batch number
-router.route("/delete/batch/:id").delete(async(req,res)=>{
-    let  bid=req.params.id;
-
-        await batch.findByIdAndDelete(bid).then(()=>{
-            res.status(200).send({status:"batch item Deleted"})
-        }).catch((err)=>{
-            console.log(err.message);
-            res.status(500).send({status:"Error with delete batch"})
-        })
-    
-})
-
-//get all
 router.route("/get").get(async(req,res)=>{
+    try {
+        const allStocks = await batch.find();
+        console.log(allStocks);
+        res.status(200).json(allStocks);
+      } catch (error) {
+        res.status(404).json({ message: error.message });
+      }
+});
 
-        batch.find({}, 'name').then((batch)=>{
-                res.json(batch)
-            }).catch((err)=>{
-                console.log(err);
-            })
 
-        })
 
-//update the batch
-router.route("/update/:id").put(async(req,res)=>{
+//update stock small array only
+router.route("/update/:ba").put(async(req,res)=>{
+    let ba=req.params.ba;
+    
+
+    const{total_quantity}=req.body;
+    // const updateitem={
+    //     category,
+    //     name,
+    //     price_of_one,
+    //     Batch
+    // }
+
+    const update=await batch.update({"Batch._id":ba},{$set:{"Batch.$.total_quantity":total_quantity}}).then(()=>{
+        res.status(200).send({status:"Stocks updated"})
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Error with updating data",error:err.message});
+    })
+
+})
+
+
+// update only the big stock item
+router.route("/update/big/:id").put(async(req,res)=>{
     let id=req.params.id;
-   
+       
+    const{category,name,price_of_one}=req.body;
+    // const updateitem={
+    //     category,
+    //     name,
+    //     price_of_one,
+    //     Batch
+    // }
+    
+    const update=await batch.findByIdAndUpdate(id,{$set:{"category":category,"name":name,"price_of_one":price_of_one}}).then(()=>{
+        res.status(200).send({status:"Food item updated"})
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Error with updating data",error:err.message});
+    })
+    
+})
 
-    const{itemcode,category,name,price_of_one,batch_num,received_date,expiration_date,total_quantity}=req.body;
 
+
+//get one whole item
+router.route("/get/:id").get(async(req,res)=>{
+    let id = req.params.id;
+  
+    const med = batch.findById(id).exec((err, post) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(post);
+      }
+    });
+});
+
+
+//Delete whole foods
+router.route("/delete/:id").delete(async(req,res)=>{
+    let  id=req.params.id;
+    
+        await batch.findByIdAndDelete(id).then(()=>{
+            res.status(200).send({status:"Food item Deleted"});
+        }).catch((err)=>{
+            console.log(err.message);
+            res.status(500).send({status:"Error with delete foods",error:err.message});
+        })
+        
+})
+
+
+//delete specific med array item
+router.route("/delete/:id/:batch").put(async(req,res)=>{
+    let id=req.params.id;
+    let betchnum=req.params.batch;
+
+        await batch.findByIdAndUpdate(id,{ $pull: { Batch: {batchnum:betchnum} } }).then(()=>{
+            res.status(200).send({status:"Food batch Deleted"});
+        }).catch((err)=>{
+            console.log(err.message);
+            res.status(500).send({status:"Error with delete food batch",error:err.message});
+        })
+        
+})
+
+
+//Add new food batch
+router.route("/update/addnew/:id").put(async(req,res)=>{
+    let id=req.params.id;
+    
+
+    const{batchnum,received_date,expiration_date,total_quantity}=req.body;
     const updateitem={
-        itemcode,
-        category,
-        name,
-        price_of_one,
-        batch_num,
+        batchnum,
         received_date,
         expiration_date,
         total_quantity
     }
 
-    const update=await batch.findByIdAndUpdate(id,updateitem).then(()=>{
-        res.status(200).send({status:"batch updated"})
+    const update=await batch.findByIdAndUpdate(id,{$push:{Batch:updateitem}}).then(()=>{
+        res.status(200).send({status:"Food Batch added succesfully"})
     }).catch((err)=>{
         console.log(err);
         res.status(500).send({status:"Error with updating data",error:err.message});
