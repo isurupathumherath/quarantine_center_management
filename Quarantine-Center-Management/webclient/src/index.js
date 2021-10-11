@@ -16,7 +16,13 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store} >
-    <App />
+    <OrderContextProvider>
+      <FavouriteContextProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </FavouriteContextProvider>
+    </OrderContextProvider>
   </Provider>
   ,
   document.getElementById("root")
