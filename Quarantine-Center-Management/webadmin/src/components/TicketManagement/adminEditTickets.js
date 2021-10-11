@@ -74,10 +74,7 @@ export default class adminEditTickets extends Component {
             }
         })
         // this.props.history.push("/viewalltickets");
-
     }
-
-
     componentDidMount() {
 
 
