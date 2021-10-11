@@ -53,26 +53,30 @@ const Sidebar = () => {
     const showSidebar = () => setSidebar(!sidebar);
 
     return (
-        <IconContext.Provider value={{ color: '#fff' }}>
-            {/* <Nav>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu"></div>
+                <IconContext.Provider value={{ color: '#fff' }}>
+                    {/* <Nav>
                 <NavIcon to="#">
                     <FaIcons.FaBars onClick={showSidebar} />
                 </NavIcon>
             </Nav> */}
-            <SidebarNav sidebar={sidebar}>
-                <SidebarWrap>
-                    {/* <NavIcon to="#">
+                    <SidebarNav sidebar={sidebar}>
+                        <SidebarWrap>
+                            {/* <NavIcon to="#">
                                     <AiIcons.AiOutlineClose onClick={showSidebar} />
                                 </NavIcon> */}
-                    <Scrollbars style={{ width: "100%", height: "100%" }}>
-                        {SidebarData.map((item, index) => {
-                            return <SubMenu item={item} key={index} />
-                        })}
-                    </Scrollbars>
-                </SidebarWrap>
-            </SidebarNav>
-        </IconContext.Provider>
-
+                            <Scrollbars style={{ width: "100%", height: "100%" }}>
+                                {SidebarData.map((item, index) => {
+                                    return <SubMenu item={item} key={index} />
+                                })}
+                            </Scrollbars>
+                        </SidebarWrap>
+                    </SidebarNav>
+                </IconContext.Provider>
+            </div>
+        </div> 
     )
 }
 
