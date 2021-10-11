@@ -41,7 +41,7 @@ function LoginScreen(props) {
 
     return (
         <div>
-            <div class="login-body">
+            <div class=" main-wrapper login-body">
                 <div class="login-wrapper">
                     <div class="container">
                         <div class="loginbox">

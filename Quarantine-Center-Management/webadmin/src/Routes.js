@@ -48,6 +48,7 @@ const Routes = () => {
     return (
         <div class="page-wrapper">
             <div class="content container-fluid">
+
                 <BrowserRouter>
                     <Switch>
                         <Route path="/staffLogin" exact component={staffLogin} />                           {/*--Added by Isuru Pathum Herath--*/}
@@ -55,11 +56,9 @@ const Routes = () => {
                         <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />      {/*--Added by Isuru Pathum Herath--*/}
                     </Switch>
 
-
                     {getAdminUser() && (
                         <Sidebar />
                     )}
-
                     {getAdminUser() && (
                         <Header />
                     )}

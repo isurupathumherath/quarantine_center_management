@@ -8,7 +8,7 @@ export const SidebarData = [
     {
         title: 'User management',
         path: '/dashboard',
-        icon: <AiIcons.AiOutlineUser/>,
+        icon: <AiIcons.AiOutlineUser />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
@@ -86,7 +86,7 @@ export const SidebarData = [
                 title: 'ADD QUARANTINE',
                 path: '/addQuaratineStaff',
                 icon: <IoIcons.IoIosSad />
-            }, 
+            },
             {
                 title: 'ADD TASKS',
                 path: '/addTask',
@@ -123,11 +123,6 @@ export const SidebarData = [
                 icon: <HiIcons.HiDocumentReport />
             },
         ],
-    },
-    {
-        title: 'Login',
-        path: '/login',
-        icon: <AiIcons.AiOutlineLogin />,
     },
     // {
     //     title: 'Reports',
