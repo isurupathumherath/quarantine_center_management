@@ -3,6 +3,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+const router = express.Router();
 require("dotenv").config();
 
 // import routes
@@ -16,11 +19,12 @@ const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru 
 
 import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Added by Janith gamage--
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
+const FoodsRoute = require("./routes/foodroute/foodsRoute");
+const CommentRoute = require("./routes/foodroute/commentRoute");
+const OrderRoute = require("./routes/foodroute/orderRoute");
+const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute");
+const profileRoutes = require('./routes/UserManagement/uprofile');//--Added by Hirusha Rukmal--
 
-const FoodsRoute = require("./routes/foodroute/foodsRoute"); //--Added by Chamodh iduranga--
-const CommentRoute = require("./routes/foodroute/commentRoute"); //--Added by Chamodh iduranga--
-const OrderRoute = require("./routes/foodroute/orderRoute"); //--Added by Chamodh iduranga--
-const OrderDetailsRoute = require("./routes/foodroute/orderDetailsRoute"); //--Added by Chamodh iduranga--
 // App
 const app = express();
 
@@ -40,6 +44,11 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
+// Express Bodyparser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
 // Route Middleware
 app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
 
@@ -51,11 +60,12 @@ app.use("/staffLogin", employeLogin); //--Added by Isuru Pathum Herath--
 
 app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
 app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
+app.use("/foods", FoodsRoute);
+app.use("/comment", CommentRoute);
+app.use("/order", OrderRoute);
+app.use("/orderdetails", OrderDetailsRoute);
+app.use(profileRoutes);//--Added by Hirusha Rukmal--
 
-app.use("/foods", FoodsRoute); //--Added by Chamodh iduranga--
-app.use("/comment", CommentRoute); //--Added by Chamodh iduranga--
-app.use("/order", OrderRoute); //--Added by Chamodh iduranga--
-app.use("/orderdetails", OrderDetailsRoute); //--Added by Chamodh iduranga--
 
 // Post
 const port = process.env.PORT || 8000;
