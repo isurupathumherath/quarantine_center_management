@@ -1,3 +1,4 @@
+/* Janith Gamage On - 11/10/2021  */
 import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../../constants/FinanceConstants/actionTypes';
 
 import * as api from '../../api/FinanceApi';
@@ -42,11 +43,11 @@ export const deleteInquary = (id) => async (dispatch) => {
   }
 };
 
-export const InquaryDetails = (userID) => async(dispatch) => {
+export const InquaryDetails = (userID) => async (dispatch) => {
   try {
-      const { data } = await api.InquaryDetails(userID);
-      dispatch({ type: FETCH_ALL, payload: data});
+    const { data } = await api.InquaryDetails(userID);
+    dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
-      console.log(error.message);
+    console.log(error.message);
   }
-} 
+}

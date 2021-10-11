@@ -1,3 +1,4 @@
+/* Janith Gamage On - 11/10/2021  */
 import React, { Component } from 'react';
 
 import { Inquary, InquaryList } from '../../components/FinanceManagment/finquary'
@@ -43,7 +44,7 @@ class InquaryPage extends Component {
                                                 <h4 class="card-title">Inquaries</h4>
                                             </div>
                                             <div class="card-body">
-                                                <InquaryList  />
+                                                <InquaryList />
                                             </div>
                                         </div>
                                     </div>

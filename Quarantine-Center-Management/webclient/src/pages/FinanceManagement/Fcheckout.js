@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-
+ /* Janith Gamage On - 11/10/2021  */
+import React, { Component } from 'react'; 
 
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Tabs, Tab, Form, Col } from 'react-bootstrap';
@@ -7,13 +7,6 @@ import { Tabs, Tab, Form, Col } from 'react-bootstrap';
 import { Orders, Bookings } from "../../components/FinanceManagment/fInvoice";
 import { PayerForm } from "../../components/FinanceManagment/fpayer";
 
-//session
-import UserProfile from '../../components/FinanceManagment/Functions/userData';
-
-const test = UserProfile.getorderTotal();
-const test1 = UserProfile.getbookingTotal();
-
-console.log("test func" + test + " " + test1)
 
 class Checkout extends Component {
     render() {

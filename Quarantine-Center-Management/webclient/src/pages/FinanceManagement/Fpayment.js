@@ -1,18 +1,10 @@
+/* Janith Gamage On - 11/10/2021  */
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { Invoice } from '../../components/FinanceManagment/fInvoice';
 import CreditCard from '../../components/FinanceManagment/fpayment/CreditCardForm';
-
-//session  
-import UserProfile from '../../components/FinanceManagment/Functions/userData';
-
-const test = UserProfile.getorderTotal();
-const test1 = UserProfile.getbookingTotal();
-
-console.log("test func" + test + " " + test1)
-
 class Payment extends Component {
     render() {
         return (
@@ -42,7 +34,7 @@ class Payment extends Component {
                                         <Invoice />
                                     </div>
                                     <div class="col-md-5 col-lg-5 theiaStickySidebar">
-                                        <div class="card booking-card" style={{ boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+                                        <div class="card booking-card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                                             <div class="card-header">
                                                 <h4 class="card-title">Payment</h4>
                                             </div>
@@ -76,7 +68,7 @@ class Payment extends Component {
                         </section>
                     </div>
                     <div class="col-md-1"></div>
-                </div> 
+                </div>
             </div>
         )
     }

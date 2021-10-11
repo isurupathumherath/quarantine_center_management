@@ -1,5 +1,0 @@
-Add Your Components Here 
-Path - Your Function Folder > Your components;
-Example  - UserMangment > login.JS
-                        > form.JS
-                        > ...
