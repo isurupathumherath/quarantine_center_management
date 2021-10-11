@@ -20,6 +20,11 @@ import FoodCart from "../../webclient/src/pages/FoodManagement/FoodCart";
 import AllOrders from "../../webclient/src/pages/FoodManagement/AllOrders";
 import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 
+/* Janith Gamage On - 11/10/2021  */
+import HomePage from "./pages/FinanceManagement/Fhome";
+import Checkout from "./pages/FinanceManagement/Fcheckout";
+import Payment from "./pages/FinanceManagement/Fpayment";
+import Inquary from './pages/FinanceManagement/Finquary';
 //pages
 //import Login from "./pages/Common/Loginexaple";
 
@@ -28,27 +33,29 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <div class="content">
-          <div class="container-fluid">
-            <Switch>
-              {/*<Route path="/login" exact component={Login} />*/}
-              <Route path="/register" exact component={Register} />
-              <Route path="/login" exact component={Login} />
-              <Route path="/home" exact component={Home}/>
-              
-    {/*<Route path="/edit/:id" component={EditProfile} />*/}
-              {/* Janith */}
-              {/* <Route path="/login" exact component={Login} /> */}
-              
-              {/* Chamodh */}
-              <Route path="/allFood" exact component={AllFood} />
-              <Route path="/foodadmin" exact component={FoodAdmin} />
-              <Route path="/allOrders" exact component={AllOrders} />
-              <Route path="/foodCart" exact component={FoodCart} />
-              <Route path="/orderAdmin" exact component={OrderAdmin} />
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          {/*<Route path="/login" exact component={Login} />*/}
+          <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/home" exact component={Home} />
+
+          {/*<Route path="/edit/:id" component={EditProfile} />*/}
+          {/* Janith */}
+          {/* <Route path="/login" exact component={Login} /> */}
+
+          {/* Chamodh */}
+          <Route path="/allFood" exact component={AllFood} />
+          <Route path="/foodadmin" exact component={FoodAdmin} />
+          <Route path="/allOrders" exact component={AllOrders} />
+          <Route path="/foodCart" exact component={FoodCart} />
+          <Route path="/orderAdmin" exact component={OrderAdmin} />
+
+          {/* Janith Gamage On - 11/10/2021   */}
+          <Route path="/hometest" exact component={HomePage} />
+          <Route path="/checkout" exact component={Checkout} />
+          <Route path="/invoice" exact component={Payment} />
+          <Route path="/inquary" exact component={Inquary} />
+        </Switch>
         <Footer />
       </Router>
     );
