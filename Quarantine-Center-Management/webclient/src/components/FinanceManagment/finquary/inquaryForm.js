@@ -188,15 +188,15 @@ class InquaryForm extends Component {
                         </Col>
                     </Row> */}
                     <Row>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={3} style={{ marginTop: '20px' }}>
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={3} style={{ marginTop: '20px' }}>
                             <button type="button" class="btn btn-block btn-outline-danger active">Cancel</button>
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={3} style={{ marginTop: '20px' }}>
                             <button type="button" class="btn btn-block btn-outline-info active">Clear</button>
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={3} style={{ marginTop: '20px' }}>
                             <button type="submit" class="btn btn-block btn-outline-success active">Add Inquary</button>
                         </Col>
                     </Row>

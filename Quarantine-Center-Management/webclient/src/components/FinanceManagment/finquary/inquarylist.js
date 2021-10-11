@@ -25,10 +25,14 @@ const InquaryList = ({ }) => {
                 <Accordion allowZeroExpanded>
                     {inquarys.map((item) => {
                         if (item.states == '1') {
-                            item.states = "pending";
+                            item.states = "Pending";
+                        }else if(item.states === '2'){
+                            item.states = "Working on";
+                        }else if(item.states === '2'){
+                            item.states = "Completeted"; 
                         }
                         return (
-                            <div key={item._id}>
+                            <div key={item._id} class="mb-2">
                                 <InqauryListitem item={item} currentID={currentId} setCurrentId={setCurrentId} />
                             </div>
                         )
