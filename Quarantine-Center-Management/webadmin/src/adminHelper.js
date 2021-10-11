@@ -1,10 +1,9 @@
 //save login response > (user's name and token) to session storage
-export const authenticate = (next) => {
+export const authenticate = () => {
     const admin = "admin";
     if (window !== 'undefined') {
         sessionStorage.setItem('user', JSON.stringify(admin));
     }
-    next();
 };
 
 //access user's name from session storage

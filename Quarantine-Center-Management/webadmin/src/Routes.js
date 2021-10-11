@@ -10,6 +10,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Router } from 'react-router-dom';
 import App from './App';
 import { getUser, logout } from './pages/StaffMenagement/staffHelper';
+import { getAdminUser } from './adminHelper';
 
 //common navigation components
 import Header from './components/Common/Navigation/Header';
@@ -41,7 +42,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
-import { getAdminUser } from './adminHelper';
+
 
 const Routes = () => {
     return (

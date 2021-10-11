@@ -16,11 +16,10 @@ function LoginScreen(props) {
             Swal.fire({
                 title: 'Success!',
                 text: 'Welcome',
-                icon: 'success',
-                confirmButtonText: 'Cool'
+                icon: 'success'
             });
-            authenticate(() => props.history.push('/dashboard'));
-            // window.location.href = '/dashboard'
+            authenticate();
+            window.location.href = '/dashboard';
 
         } else {
             setLoading(false)
