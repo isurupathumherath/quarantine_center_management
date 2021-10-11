@@ -3,7 +3,7 @@ export const authenticate = (response, next) => {
     if (window !== 'undefined') {
         // console.log('authenticate', response)
         sessionStorage.setItem('token', JSON.stringify(response.data));
-        sessionStorage.setItem('user', JSON.stringify(response.data.employeeId));
+        sessionStorage.setItem('userId', JSON.stringify(response.data.employeeId));
     }
     next();
 };
@@ -23,8 +23,8 @@ export const getToken = () => {
 //access user's name from session storage
 export const getUser = () => {
     if (window !== 'undefined') {
-        if (sessionStorage.getItem('user')) {
-            return JSON.parse(sessionStorage.getItem('user'));
+        if (sessionStorage.getItem('userId')) {
+            return JSON.parse(sessionStorage.getItem('userId'));
         }
         else {
             return false;
@@ -37,7 +37,7 @@ export const getUser = () => {
 export const logout = next => {
     if (window !== 'undefined') {
         sessionStorage.removeItem('token');
-        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('userId');
     }
     // next();
 };

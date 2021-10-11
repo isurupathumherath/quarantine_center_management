@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const App = () => {
@@ -80,18 +81,22 @@ const App = () => {
                 <div className="card-body">
                     <h1 align="center">Staff Members</h1>
                     <br />
-                    <form style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
-                        <div className="col-lg-3 mt-2 mb-2">
-                            <input
-                                className="form-control"
-                                type="search"
-                                placeholder="Search"
-                                value={wordEntered}
-                                onChange={handleFilter}
-                            />
-                        </div>
-                    </form>
-                    <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
+                    <div>
+                        <form style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
+                            <div className="col-lg-3 mt-2 mb-2">
+                                <input
+                                    className="form-control"
+                                    type="search"
+                                    placeholder="Search"
+                                    value={wordEntered}
+                                    onChange={handleFilter}
+                                />
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <table id="table" class="table" responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -117,7 +122,7 @@ const App = () => {
                                     <td>{staffMembers.firstName}</td>
                                     <td>{staffMembers.lastName}</td>
                                     <td>{staffMembers.type}</td>
-                                    <td>{staffMembers.NIC}</td>
+                                    <td>{staffMembers.NIC}.{toString}</td>
                                     <td>{staffMembers.email}</td>
                                     <td>{staffMembers.mobileNumber}</td>
                                     {/* <td>{staffMembers.createdAt}</td> */}
@@ -135,6 +140,16 @@ const App = () => {
                             ))}
                         </tbody>
                     </table>
+                    <br />
+                    <div style={{ marginTop: '', marginLeft: "1030px" }}>
+                        <ReactHTMLTableToExcel
+                            className='btn btn-outline-success'
+                            table='table'
+                            filename='Staff Member Excel'
+                            sheet='Sheet'
+                            buttonText='Download Excel Sheet'
+                        />
+                    </div>
                 </div>
             </div>
         </div>

@@ -46,7 +46,7 @@ function LoginScreen(props) {
                         setStaffMembers(response.data)
                         //response will contain token and name
                         authenticate(response, () => props.history.push(`/staffFirstLogin/${response.data.employeeId}`), 2000);
-                        alert("First Login")
+                        // alert("First Login")
                         // setTimeout(() => { window.location.href = `/staffFirstLogin/${response.data.employeeId}` }, 2000);
                     }
                     else if (response.data.accountStatus == "Active") {
@@ -58,7 +58,7 @@ function LoginScreen(props) {
                         setStaffMembers(response.data)
                         authenticate(response, () => props.history.push(`/staffLandingPage/${response.data.employeeId}`), 2000);
 
-                        alert("Active Account")
+                        // alert("Active Account")
                         //response will contain token and name
                         // authenticate(response, () => props.history.push('/create'));
                         // setTimeout(() => { window.location.href = `/staffLandingPage/${response.data.employeeId}` }, 2000);

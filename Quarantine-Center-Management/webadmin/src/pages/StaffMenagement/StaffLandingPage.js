@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { getUser, logout } from './staffHelper';
+import { getUser, logout } from './staffHelper'; 
 import '../../assets/HRM/staffProfile.css';
 const Swal = require('sweetalert2');
 
@@ -38,14 +38,6 @@ const App = (props, { history }) => {
 
             })
             .catch(error => alert("Error Fetching Tasks"));
-    }
-
-    //Auto refresh
-    window.onload = function () {
-        if (!window.location.hash) {
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
     }
 
     //Mark Done
@@ -109,6 +101,14 @@ const App = (props, { history }) => {
                 // alert(error.response.data.error);
             });
 
+    }
+
+    //Auto refresh
+    window.onload = function () {
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
     }
 
     useEffect(() => {

@@ -1,9 +1,8 @@
 //save login response > (user's name and token) to session storage
-export const authenticate = (response, next) => {
+export const authenticate = (next) => {
+    const admin = "admin";
     if (window !== 'undefined') {
-        // console.log('authenticate', response)
-        sessionStorage.setItem('token', JSON.stringify(response.data));
-        sessionStorage.setItem('user', JSON.stringify(response.data.employeeId));
+        sessionStorage.setItem('user', JSON.stringify(admin));
     }
     next();
 };
@@ -21,7 +20,7 @@ export const getToken = () => {
 };
 
 //access user's name from session storage
-export const getUser = () => {
+export const getAdminUser = () => {
     if (window !== 'undefined') {
         if (sessionStorage.getItem('user')) {
             return JSON.parse(sessionStorage.getItem('user'));

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { authenticate, getAdminUser } from '../../adminHelper'
 
-function LoginScreen() {
+function LoginScreen(props) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -18,7 +19,8 @@ function LoginScreen() {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             });
-            window.location.href = '/dashboard'
+            authenticate(() => props.history.push('/dashboard'));
+            // window.location.href = '/dashboard'
 
         } else {
             setLoading(false)
@@ -33,10 +35,14 @@ function LoginScreen() {
         console.log(user);
     }
 
+    useEffect(() => {
+        getAdminUser() && props.history.push('/dashboard');
+    }, []);
 
 
     return (
-            <div class="main-wrapper login-body">
+        <div>
+            <div class="login-body">
                 <div class="login-wrapper">
                     <div class="container">
                         <div class="loginbox">
@@ -76,6 +82,7 @@ function LoginScreen() {
                                         </button>
                                         <br />
                                         <br />
+                                        <div class="text-center dont-have">Staff Login <a href="/staffLogin">Register</a></div>
 
                                     </div>
 
@@ -83,10 +90,11 @@ function LoginScreen() {
                                 </div>
 
                             </div>
-                        </div><br/><br/><br/>
+                        </div><br /><br /><br />
                     </div>
                 </div>
             </div>
+        </div>
     );
 }
 

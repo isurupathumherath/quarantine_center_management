@@ -1,7 +1,7 @@
 /*
     Created by - Isuru Pathum Herath
     On - 11/10/2021
-    Name - PrivateRoute
+    Name - PrivateRouteAdmin
     Last Update - 11/10/2021
     Last Update By - Isuru Pathum Herath
  */

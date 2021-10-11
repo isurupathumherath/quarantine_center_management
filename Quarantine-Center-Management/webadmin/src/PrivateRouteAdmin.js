@@ -8,17 +8,17 @@
 
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { getUser } from './pages/StaffMenagement/staffHelper';
+import { getAdminUser } from './adminHelper';
 
 const PrivateRouteAdmin = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
             render={props =>
-                getUser() ? (
+                getAdminUser() ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                    <Redirect to={{ pathname: '/', state: { from: props.location } }} />
                 )
             }
         />

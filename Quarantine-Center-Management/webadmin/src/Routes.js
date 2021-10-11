@@ -16,7 +16,11 @@ import Header from './components/Common/Navigation/Header';
 import Sidebar from './components/Common/Navigation/Sidebar';
 
 //component
-import Login from './components/exampleComponent/Loginform';
+import Login from './components/UserManagement/Login';
+import Dashboard from './components/UserManagement/Dashboard';
+import ProfileDetails from './components/UserManagement/ProfileDetails';
+import EditProfile from './components/UserManagement/EditProfile';
+import Register from './components/UserManagement/Register';
 
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
@@ -37,6 +41,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
+import { getAdminUser } from './adminHelper';
 
 const Routes = () => {
     return (
@@ -50,29 +55,35 @@ const Routes = () => {
                     </Switch>
 
 
-                    {!getUser() && (
+                    {getAdminUser() && (
                         <Sidebar />
                     )}
 
-                    {!getUser() && (
+                    {getAdminUser() && (
                         <Header />
                     )}
                     <Switch>
 
                         <Route path="/" exact component={App} />
+                        <Route path="/login" exact component={Login} />
 
-                        <Route path="/addStaffMember" exact component={addStaffMember} />                   {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/allStaffMembers" exact component={allStaffMembers} />                 {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/updateStaffMember/:id" exact component={updateStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/singleProfile/:id" exact component={singleProfile} />                 {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/filterStaffMember" exact component={filterStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/addSalary" exact component={addSalary} />                             {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/addQuaratineStaff" exact component={addQuaratineStaff} />             {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
-                        <Route path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/addStaffMember" exact component={addStaffMember} />                   {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/allStaffMembers" exact component={allStaffMembers} />                 {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/updateStaffMember/:id" exact component={updateStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/singleProfile/:id" exact component={singleProfile} />                 {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/filterStaffMember" exact component={filterStaffMember} />             {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/addSalary" exact component={addSalary} />                             {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/addQuaratineStaff" exact component={addQuaratineStaff} />             {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
 
-                        <Route path="/viewticket" exact component={viewTickets} />
-                        <Route path="/edit/:id" component={replyTickets} />
+                        <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
+                        <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
+
+                        <PrivateRouteAdmin path="/dashboard" exact component={Dashboard} />
+                        <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
+                        <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
+                        <PrivateRouteAdmin path="/register" exact component={Register} />
 
                     </Switch>
                 </BrowserRouter>
