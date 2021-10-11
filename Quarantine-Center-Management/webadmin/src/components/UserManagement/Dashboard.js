@@ -4,10 +4,11 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 //import "../assets/CSS/memberdashboard.css";
+import { getAdminUser, logout } from '../../adminHelper';
 
 class Dashboard extends Component {
 
-  constructor(props) {
+  constructor(props, { history }) {
     super(props);
 
     this.state = {
@@ -15,7 +16,16 @@ class Dashboard extends Component {
     };
   }
 
+  //Auto refresh
+  onload = () => {
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+  }
+
   componentDidMount() {
+    this.onload();
     this.retrieveProfiles();
   }
 
@@ -88,7 +98,7 @@ class Dashboard extends Component {
             </a>
           </button>
 
-            <div style={{ marginTop: '-38px', marginLeft: "190px"}}>
+            <div style={{ marginTop: '-38px', marginLeft: "190px" }}>
               <ReactHTMLTableToExcel
                 className='btn btn-outline-success'
                 table='table'
