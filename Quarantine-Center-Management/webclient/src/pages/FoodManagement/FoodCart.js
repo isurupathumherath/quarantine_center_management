@@ -7,6 +7,7 @@ import ConfirmOrder from "../../components/FoodManagement/ConfirmOrder";
 import Modal from "react-modal";
 import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
 import Swal from "sweetalert2";
+import Header from "../../components/FoodManagement/Header";
 import jsPDF from "jspdf";
 
 export default function FoodCart() {
@@ -114,12 +115,12 @@ export default function FoodCart() {
               backgroundColor: "black",
               opacity: "0.9",
               width: "1200px",
-              height: "650px",
+              height: "1000px",
               margin: "auto",
             },
             content: {
               width: "800px",
-              height: "650px",
+              height: "1000px",
               margin: "auto",
             },
           })
@@ -259,22 +260,8 @@ export default function FoodCart() {
 
   return (
     <div>
+      <Header name="Food cart" icon="fa-shopping-cart" />
       <div>
-        <div className="row">
-          <div className="col-md-12">
-            <h1
-              style={{
-                color: "#0057d1",
-                fontSize: "35px",
-                backgroundColor: "white",
-                padding: "20px",
-              }}
-            >
-              My orders
-            </h1>
-          </div>
-        </div>
-
         <div className="row">
           <div className="col-md-6">{content}</div>
 

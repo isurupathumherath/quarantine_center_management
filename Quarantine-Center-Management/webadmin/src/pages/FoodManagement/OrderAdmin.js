@@ -5,6 +5,7 @@ import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
+import Swal from "sweetalert2";
 import Header from "../../components/FoodManagement/Header";
 export default function OrderAdmin() {
   let count = 0;
@@ -44,57 +45,81 @@ export default function OrderAdmin() {
     let newFoodStatus;
     console.log(id2, status1);
     if (status1 == 1) {
-      if (window.confirm("Are you want to Deactivate order item")) {
-        newFoodStatus = {
-          status: 2,
-        };
-        axios
-          .put(
-            `http://localhost:8000/order/changefoodstatus/${id2}`,
-            newFoodStatus
-          )
-          .then(() => {
-            axios
-              .get(`http://localhost:8000/order/getbyorder/${orderid}`)
-              .then((res) => {
-                f1 = res.data;
-                setFoods(f1.orderDetails);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+      Swal.fire({
+        title: "Do you want to Deactivate order item?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFoodStatus = {
+            status: 2,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/changefoodstatus/${id2}`,
+              newFoodStatus
+            )
+            .then(() => {
+              axios
+                .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+                .then((res) => {
+                  f1 = res.data;
+                  setFoods(f1.orderDetails);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     } else if (status1 == 2) {
-      if (window.confirm("Are you want to Activate order item")) {
-        newFoodStatus = {
-          status: 1,
-        };
-        axios
-          .put(
-            `http://localhost:8000/order/changefoodstatus/${id2}`,
-            newFoodStatus
-          )
-          .then(() => {
-            axios
-              .get(`http://localhost:8000/order/getbyorder/${orderid}`)
-              .then((res) => {
-                f1 = res.data;
-                setFoods(f1.orderDetails);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+      Swal.fire({
+        title: 'Do you want to Activate order item"?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFoodStatus = {
+            status: 1,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/changefoodstatus/${id2}`,
+              newFoodStatus
+            )
+            .then(() => {
+              axios
+                .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+                .then((res) => {
+                  f1 = res.data;
+                  setFoods(f1.orderDetails);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   }
 
@@ -102,77 +127,101 @@ export default function OrderAdmin() {
     let newStatus;
     console.log(id2, status1);
     if (status1 == 1) {
-      if (window.confirm("Confirm order is completed")) {
-        newStatus = {
-          status: 2,
-        };
-        axios
-          .put(
-            `http://localhost:8000/order/updateorderstatus/${id2}`,
-            newStatus
-          )
-          .then(() => {
-            axios
-              .get("http://localhost:8000/order/active")
-              .then((res) => {
-                setOrders(res.data);
-                setongoinglength(res.data.length);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
+      Swal.fire({
+        title: "Confirm order is completed?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newStatus = {
+            status: 2,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/updateorderstatus/${id2}`,
+              newStatus
+            )
+            .then(() => {
+              axios
+                .get("http://localhost:8000/order/active")
+                .then((res) => {
+                  setOrders(res.data);
+                  setongoinglength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
 
-            axios
-              .get("http://localhost:8000/order/complete")
-              .then((res) => {
-                setCompleteorders(res.data);
-                setcompletelength(res.data.length);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+              axios
+                .get("http://localhost:8000/order/complete")
+                .then((res) => {
+                  setCompleteorders(res.data);
+                  setcompletelength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     } else if (status1 == 2) {
-      if (window.confirm("Confirm order is not completed")) {
-        newStatus = {
-          status: 1,
-        };
-        axios
-          .put(
-            `http://localhost:8000/order/updateorderstatus/${id2}`,
-            newStatus
-          )
-          .then(() => {
-            axios
-              .get("http://localhost:8000/order/active")
-              .then((res) => {
-                setOrders(res.data);
-                setongoinglength(res.data.length);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
+      Swal.fire({
+        title: "Confirm order is not completed?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newStatus = {
+            status: 1,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/updateorderstatus/${id2}`,
+              newStatus
+            )
+            .then(() => {
+              axios
+                .get("http://localhost:8000/order/active")
+                .then((res) => {
+                  setOrders(res.data);
+                  setongoinglength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
 
-            axios
-              .get("http://localhost:8000/order/complete")
-              .then((res) => {
-                setCompleteorders(res.data);
-                setcompletelength(res.data.length);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+              axios
+                .get("http://localhost:8000/order/complete")
+                .then((res) => {
+                  setCompleteorders(res.data);
+                  setcompletelength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   }
 
@@ -318,7 +367,7 @@ export default function OrderAdmin() {
 
   return (
     <div>
-      <Header name="All order details" />
+      <Header name="All order details" icon="fa-snowflake-o" />
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
           <div className="col">
@@ -591,7 +640,9 @@ export default function OrderAdmin() {
                         <td>{(count = count + 1)}</td>
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>{post.patientID}</td>
-                        <td>{post.instructions}</td>
+                        <td style={{ maxWidth: "300px", overflowX: "scroll" }}>
+                          {post.instructions}
+                        </td>
                         <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">

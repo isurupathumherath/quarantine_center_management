@@ -230,7 +230,7 @@ export default function AllOrders() {
 
   return (
     <div>
-      <Header name="Order details" />
+      <Header name="Order details" icon="fa-credit-card" />
       <div className="container" style={{ width: "90%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
           <div className="col-md-3">

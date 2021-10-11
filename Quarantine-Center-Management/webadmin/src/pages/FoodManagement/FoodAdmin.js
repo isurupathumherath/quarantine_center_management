@@ -53,111 +53,129 @@ export default function FoodAdmin() {
   ) {
     let newFood;
     if (st == 1) {
-      if (window.confirm("Are you want to deactivate this")) {
-        newFood = {
-          name: name1,
-          image: image1,
-          price: price1,
-          description: desc,
-          type: type1,
-          foodID: id,
-          insertUser: user,
-          insertDate: insertDate,
-          likeCount: like,
-          updateDate: new Date(),
-          status: 2,
-        };
-        axios
-          .put(`http://localhost:8000/foods/update/${id2}`, newFood)
-          .then(() => {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Status changed",
-              showConfirmButton: false,
-              timer: 1500,
+      Swal.fire({
+        position: "top",
+        title: "Are you sure you want to deactivate this?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFood = {
+            name: name1,
+            image: image1,
+            price: price1,
+            description: desc,
+            type: type1,
+            foodID: id,
+            insertUser: user,
+            insertDate: insertDate,
+            likeCount: like,
+            updateDate: new Date(),
+            status: 2,
+          };
+          axios
+            .put(`http://localhost:8000/foods/update/${id2}`, newFood)
+            .then(() => {
+              axios
+                .get("http://localhost:8000/foods/")
+                .then((res) => {
+                  setFood(res.data);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
             });
-            axios
-              .get("http://localhost:8000/foods/")
-              .then((res) => {
-                setFood(res.data);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+          Swal.fire("Deactivated!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     } else if (st == 2) {
-      if (window.confirm("Are you want to Activate this")) {
-        newFood = {
-          name: name1,
-          image: image1,
-          price: price1,
-          description: desc,
-          type: type1,
-          foodID: id,
-          insertUser: user,
-          insertDate: insertDate,
-          likeCount: like,
-          updateDate: new Date(),
-          status: 1,
-        };
-        axios
-          .put(`http://localhost:8000/foods/update/${id2}`, newFood)
-          .then(() => {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Status changed",
-              showConfirmButton: false,
-              timer: 1300,
+      Swal.fire({
+        position: "top",
+        title: "Are you sure you want to Activate this?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFood = {
+            name: name1,
+            image: image1,
+            price: price1,
+            description: desc,
+            type: type1,
+            foodID: id,
+            insertUser: user,
+            insertDate: insertDate,
+            likeCount: like,
+            updateDate: new Date(),
+            status: 1,
+          };
+          axios
+            .put(`http://localhost:8000/foods/update/${id2}`, newFood)
+            .then(() => {
+              axios
+                .get("http://localhost:8000/foods/")
+                .then((res) => {
+                  setFood(res.data);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
             });
-            axios
-              .get("http://localhost:8000/foods/")
-              .then((res) => {
-                setFood(res.data);
-              })
-              .catch((err) => {
-                alert(err.message);
-              });
-          })
-          .catch((err) => {
-            alert(err);
-            alert("asd");
-          });
-      }
+          Swal.fire("Activated!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
     }
   }
 
   function deleteFood(id) {
-    if (window.confirm("Are you sure you want to delete this item")) {
-      axios
-        .delete(`http://localhost:8000/foods/delete/${id}`)
-        .then((res) => {
-          Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "Deleted",
-            showConfirmButton: false,
-            timer: 1300,
+    Swal.fire({
+      position: "top",
+      title: "Are you sure you want to delete this item?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:8000/foods/delete/${id}`)
+          .then((res) => {
+            axios
+              .get("http://localhost:8000/foods/")
+              .then((res) => {
+                setFood(res.data);
+              })
+              .catch((err) => {
+                alert(err.message);
+              });
+          })
+          .catch((err) => {
+            alert("wrong");
           });
-          axios
-            .get("http://localhost:8000/foods/")
-            .then((res) => {
-              setFood(res.data);
-            })
-            .catch((err) => {
-              alert(err.message);
-            });
-        })
-        .catch((err) => {
-          alert("wrong");
-        });
-    }
+        Swal.fire("Deleted!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   }
 
   function editFood(
@@ -173,19 +191,30 @@ export default function FoodAdmin() {
     st,
     id2
   ) {
-    if (window.confirm("Are you want to Edit this")) {
-      setfoodID(id);
-      setName(name1);
-      setImage(image1);
-      setPrice(price1);
-      setDescription(desc);
-      setType(type1);
-      setinsertUser(user);
-      setlikeCount(Number(like));
-      setinsertDate(insertDate);
-      setObjectID(id2);
-      setOption(2);
-    }
+    Swal.fire({
+      title: "Are you sure you want to edit this?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        setfoodID(id);
+        setName(name1);
+        setImage(image1);
+        setPrice(price1);
+        setDescription(desc);
+        setType(type1);
+        setinsertUser(user);
+        setlikeCount(Number(like));
+        setinsertDate(insertDate);
+        setObjectID(id2);
+        setOption(2);
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   }
 
   function sendData(e) {
@@ -276,7 +305,7 @@ export default function FoodAdmin() {
 
   return (
     <div>
-      <Header name="All Foods" />
+      <Header name="All Foods" icon="fa-database" />
       <div
         className="container"
         style={{ width: "100%", marginRight: "100px", marginLeft: "20px" }}
