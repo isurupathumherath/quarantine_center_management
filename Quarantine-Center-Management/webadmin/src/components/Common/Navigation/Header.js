@@ -114,7 +114,7 @@ export default class Header extends Component {
 							<a class="dropdown-item" href="settings.html">Settings</a>
 
 							{getAdminUser() && (
-								<a href={`/login`} >
+								<a href={`/`} >
 									<li onClick={() => logout()}
 										className="btn btn-danger"
 										style={{ cursor: 'pointer', width: "100%" }}

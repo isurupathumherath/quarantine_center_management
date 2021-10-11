@@ -62,10 +62,10 @@ const Routes = () => {
                     {getAdminUser() && (
                         <Header />
                     )}
+
                     <Switch>
 
                         <Route path="/" exact component={App} />
-                        <Route path="/login" exact component={Login} />
 
                         <PrivateRouteAdmin path="/addStaffMember" exact component={addStaffMember} />                   {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/allStaffMembers" exact component={allStaffMembers} />                 {/*--Added by Isuru Pathum Herath--*/}

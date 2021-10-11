@@ -126,7 +126,7 @@ function LoginScreen(props) {
                             </button>
                             <br />
                             <br />
-                            <div class="text-center dont-have">Admin <a href="/login">Login</a></div>
+                            <div class="text-center dont-have">Admin <a href="/">Login</a></div>
 
 
                         </div>
