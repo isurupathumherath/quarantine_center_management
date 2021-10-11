@@ -51,13 +51,16 @@ export default function FoodReport() {
 
     console.log(fulltot);
 
+    var img = new Image();
+    img.src = "assets/img/logo.png";
     var doc = new pdfConverter("landscape", "px", "a4", "false");
     doc.setFont("Helvertica", "bold");
     doc.setFontSize(22);
-    doc.text(250, 60, "Qurentine center management");
+    doc.addImage(img, "png", 280, 10, 90, 50);
+    doc.text(220, 70, "Qurentine center management");
     doc.setFontSize(18);
-    doc.text(100, 90, "Contact Number:   011-2298476");
-    doc.text(400, 90, "Location:  Anuradhapura Colombo");
+    doc.text(100, 100, "Contact Number:   011-2298476");
+    doc.text(400, 100, "Location:  Anuradhapura Colombo");
 
     doc.text(
       50,
@@ -71,21 +74,21 @@ export default function FoodReport() {
 
     html2canvas(h1).then((canvas) => {
       const img = canvas.toDataURL("image/png");
-      doc.addImage(img, "png", 0, 100, width, height);
+      doc.addImage(img, "png", 0, 105, width, height);
       doc.setFontSize(16);
       allorders.map((post) => {
         doc.setTextColor("black");
-        doc.text(n, 330, "| " + post.name);
+        doc.text(n, 335, "| " + post.name);
         doc.setFontSize(14);
         doc.setTextColor("#8884d8");
-        doc.text(n, 350, "| Value: " + post.Value);
+        doc.text(n, 355, "| Value: " + post.Value);
         doc.setTextColor("#82ca9d");
-        doc.text(n, 370, "| Items: " + post.Items);
+        doc.text(n, 375, "| Items: " + post.Items);
         n = n + 63;
       });
       doc.setFontSize(17);
       doc.setTextColor("red");
-      doc.text(10, 410, "Total price in given range : Rs." + fulltot + ".00");
+      doc.text(10, 415, "Total price in given range : Rs." + fulltot + ".00");
       doc.save("chart.pdf");
     });
     console.log(allorders);

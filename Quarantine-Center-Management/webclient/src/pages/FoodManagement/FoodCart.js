@@ -26,19 +26,22 @@ export default function FoodCart() {
   let mdel;
 
   function pdfGenerate() {
+    var img = new Image();
+    img.src = "assets/img/logo.png";
     let n = 200;
     let p = 0;
     var doc = new jsPDF("landscape", "px", "a4", "false");
     doc.setFont("Helvertica", "bold");
     doc.setFontSize(22);
-    doc.text(250, 60, "Qurentine center management");
+    doc.addImage(img, "png", 280, 10, 90, 50);
+    doc.text(220, 70, "Qurentine center management");
     doc.setFontSize(18);
-    doc.text(100, 90, "Contact Number:   011-2298476");
-    doc.text(400, 90, "Location:  Anuradhapura Colombo");
-    doc.text(100, 120, "Bill Number: ");
-    doc.text(180, 120, order.orderID);
-    doc.text(400, 120, "Order date: ");
-    doc.text(480, 120, order.orderedDate.substr(0, 10));
+    doc.text(100, 100, "Contact Number:   011-2298476");
+    doc.text(400, 100, "Location:  Anuradhapura Colombo");
+    doc.text(100, 130, "Bill Number: ");
+    doc.text(180, 130, order.orderID);
+    doc.text(400, 130, "Order date: ");
+    doc.text(480, 130, order.orderedDate.substr(0, 10));
     doc.text(
       50,
       145,

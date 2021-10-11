@@ -79,27 +79,30 @@ export default function AllOrders() {
 
   function receiptgenerate() {
     let n = 200;
-    let p = 230;
+    let p = 235;
     let q = 0;
     let c = 0;
     let ftotal = 0;
+    var img = new Image();
+    img.src = "assets/img/logo.png";
     var doc = new jsPDF("landscape", "px", "a4", "false");
     doc.setFont("Helvertica", "bold");
+    doc.addImage(img, "png", 280, 10, 90, 50);
     doc.setFontSize(22);
-    doc.text(250, 60, "Qurentine center management");
+    doc.text(220, 70, "Qurentine center management");
     doc.setFontSize(18);
-    doc.text(100, 90, "Contact Number:   011-2298476");
-    doc.text(400, 90, "Location:  Anuradhapura Colombo");
-    doc.text(100, 120, "Date: ");
-    doc.text(150, 120, moment().format("YYYY-MM-DD"));
+    doc.text(100, 100, "Contact Number:   011-2298476");
+    doc.text(400, 100, "Location:  Anuradhapura Colombo");
+    doc.text(100, 130, "Date: ");
+    doc.text(150, 130, moment().format("YYYY-MM-DD"));
     doc.text(
       50,
-      145,
+      150,
       "-----------------------------------------------------------------------------------------------------------------------------"
     );
 
-    doc.text(300, 170, "Food Name: ");
-    doc.text(500, 170, "Price: ");
+    doc.text(300, 175, "Food Name: ");
+    doc.text(500, 175, "Price: ");
     doc.setFontSize(16);
     doc.setFont("Helvertica", "italic");
     orders.map((post) => {
@@ -113,8 +116,8 @@ export default function AllOrders() {
         doc.text(500, p, "Rs." + String(data.price) + ".00");
         c = c + 1;
 
-        p >= 430 ? doc.addPage() : (q = 1);
-        p >= 430 ? (p = 0) : (q = 2);
+        p >= 415 ? doc.addPage() : (q = 1);
+        p >= 415 ? (p = 0) : (q = 2);
         console.log(n);
 
         p = p + 30;
@@ -377,13 +380,10 @@ export default function AllOrders() {
           >
             <div className="card-body border border-secondary">
               <div className="row">
-                <div className="col-md-8">
+                <div className="col-md-9">
                   <h4 className="card-title">Ongoing Orders</h4>
                 </div>
-                <div className="col-md-4">
-                  <button className="btn btn-info" onClick={reportgenerate}>
-                    <i className="fa fa-upload"></i> Generate report
-                  </button>
+                <div className="col-md-3">
                   <button
                     className="btn btn-info"
                     style={{ marginLeft: "20px" }}
