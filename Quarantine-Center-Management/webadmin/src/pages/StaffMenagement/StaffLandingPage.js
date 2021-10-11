@@ -2,25 +2,121 @@
     Created by - Isuru Pathum Herath
     On - 12/09/2021
     Name - singleStaffMember
-    Last Update - 11/10/2021
+    Last Update - 12/09/2021
  */
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { getUser, logout } from './staffHelper'; 
 import '../../assets/HRM/staffProfile.css';
+const Swal = require('sweetalert2');
 
-const App = props => {
+
+const App = (props, { history }) => {
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
+    const [staffTask, setTasks] = useState([]);
+    const [state, setState] = useState({
+        dStatus: "Done",
+        uStatus: "Pending"
+    });
+
+    //destructure values from state
+    const {
+        dStatus,
+        uStatus
+    } = state;
+
+    //Fetch All Salary Details
+    const fetchTaskDetails = () => {
+        axios.get(`http://localhost:8000/task/getByEmpId/${props.match.params.id}`)
+            .then(response => {
+                console.log(response)
+                setTasks(response.data)
+
+            })
+            .catch(error => alert("Error Fetching Tasks"));
+    }
+
+    //Mark Done
+    const taskDone = (id) => {
+        console.table({
+            dStatus
+        });
+
+        axios
+            .put(`http://localhost:8000/task/updateDone/${id}`, { dStatus })
+            .then((response) => {
+                // console.log(response);
+                // alert("Updated");
+                Swal.fire({
+                    title: 'Completed',
+                    text: `Task Name ${response.data.TaskName} marked as Completed`,
+                    icon: 'success'
+                });
+                fetchTaskDetails();
+            })
+            .catch((error) => {
+                // console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+    }
+
+
+    //Mark Pending
+    const taskPending = (id) => {
+        console.table({
+            dStatus,
+            uStatus
+        });
+
+        axios
+            .put(`http://localhost:8000/task/updatePending/${id}`, { uStatus })
+            .then((response) => {
+                // console.log(response);
+                // alert("Updated");
+                Swal.fire({
+                    title: 'Pending',
+                    text: `Task Name ${response.data.TaskName} marked as Pending`,
+                    icon: 'info'
+                });
+                fetchTaskDetails();
+            })
+            .catch((error) => {
+                // console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+
+    }
+
+    //Auto refresh
+    window.onload = function () {
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }
 
     useEffect(() => {
-
+        window.onload();
+        fetchTaskDetails();
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
-                console.log(response)
                 setStaffMembers(response.data)
             })
             .catch(error => alert('Error Loading Staff Member Details'));
@@ -46,8 +142,8 @@ const App = props => {
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                                     <div className="mt-3">
                                         <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
-                                        <p className="text-secondary mb-1">{staffMembers.type}</p>
-                                        <p className="text-muted font-size-sm">{staffMembers.address}</p>
+                                        {/* <p className="text-secondary mb-1">{staffMembers.type}</p>
+                                        <p className="text-muted font-size-sm">{staffMembers.address}</p> */}
                                         {/* <button className="btn btn-info">Follow</button> <br/> */}
                                     </div>
                                 </div>
@@ -58,11 +154,11 @@ const App = props => {
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0">Account Status</h6>
-                                    <span className="text-success">{staffMembers.accountStatus}</span>
+                                    <span className="text-secondary">{staffMembers.accountStatus}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0">Username</h6>
-                                    <span className="text-success">{staffMembers.username}</span>
+                                    <span className="text-secondary">{staffMembers.username}</span>
                                 </li>
                                 <br />
                                 <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -70,6 +166,23 @@ const App = props => {
                                         <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
                                     </div>
                                 </div>
+                                <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <div className="col-sm-12">
+                                        {getUser() && (
+                                            <a href={`/staffLogin/`} >
+                                                <li onClick={() => logout()}
+                                                    className="btn btn-danger"
+                                                    style={{ cursor: 'pointer', width: "100%" }}
+
+                                                >
+                                                    Logout
+                                                </li>
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+
+
                                 {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                     <span className="text-secondary">https://bootdey.com</span>
@@ -101,7 +214,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Staff ID</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.employeeId}
                                     </div>
                                 </div>
@@ -110,7 +223,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Full Name</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
                                     </div>
                                 </div>
@@ -119,7 +232,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Email</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.email}
                                     </div>
                                 </div>
@@ -128,7 +241,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Mobile Number</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.mobileNumber}
                                     </div>
                                 </div>
@@ -137,7 +250,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Address</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.address}
                                     </div>
                                 </div>
@@ -146,7 +259,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Birthday</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.DOB}
                                     </div>
                                 </div>
@@ -155,7 +268,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">NIC</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.NIC}
                                     </div>
                                 </div>
@@ -164,7 +277,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Added At</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.createdAt}
                                     </div>
                                 </div>
@@ -173,7 +286,7 @@ const App = props => {
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Last Update At</h6>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
+                                    <div className="col-sm-9 text-secondary">
                                         {staffMembers.updatedAt}
                                     </div>
                                 </div>
@@ -183,7 +296,46 @@ const App = props => {
                     </div>
                 </div>
             </div>
-        </div>
+
+            <h4 align="center">Your Tasks</h4>
+            <div>
+                <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
+                    <thead>
+                        <tr>
+                            <th >#</th>
+                            <th >Task Name</th>
+                            <th >Priority</th>
+                            <th >Status</th>
+                            <th>Description</th>
+                            <th> &nbsp;&nbsp;&nbsp;&nbsp; Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {staffTask.map((staffTask, i) => (
+                            <tr key={i}>
+                                <th scope="row">{i + 1}</th>
+                                <td>{staffTask.TaskName}</td>
+                                <td>{staffTask.Priority}</td>
+                                <td>{staffTask.Status}</td>
+                                <td>{staffTask.Description}</td>
+
+                                <td>
+                                    &nbsp;
+                                    <a className="btn btn-success" href="#" onClick={() => taskDone(staffTask._id)}>
+                                        <i class="fas fa-check-circle"></i>&nbsp;
+                                    </a>
+                                    &nbsp;
+                                    <a className="btn btn-warning" href="#" onClick={() => taskPending(staffTask._id)}>
+                                        <i class="fas fa-undo-alt"></i>&nbsp;
+                                    </a>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <br /><br />
+        </div >
     )
 }
 

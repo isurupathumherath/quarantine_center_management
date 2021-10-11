@@ -76,7 +76,11 @@ const Sidebar = () => {
                     </SidebarNav>
                 </IconContext.Provider>
             </div>
+<<<<<<< HEAD
         </div> 
+=======
+        </div>
+>>>>>>> 5965c1532e08729b0f31cfa7734e5b8377ee811f
     )
 }
 

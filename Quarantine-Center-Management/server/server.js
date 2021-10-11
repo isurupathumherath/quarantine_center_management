@@ -13,6 +13,9 @@ const ticketRoutes = require("./routes/Ticket-Admin"); //--Added by Vishara Prab
 
 const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Pathum Herath--
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
+const employeeQuaratine = require("./routes/HRM/QuarantinedEmployee"); //--Added by Isuru Pathum Herath--
+const task = require("./routes/HRM/Task"); //--Added by Isuru Pathum Herath--
+const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru Pathum Herath--
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
@@ -55,6 +58,12 @@ app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
 
 app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
+app.use("/qEmployee", employeeQuaratine); //--Added by Isuru Pathum Herath--
+app.use("/task", task); //--Added by Isuru Pathum Herath--
+app.use("/staffLogin", employeLogin); //--Added by Isuru Pathum Herath--
+
+app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
+app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
  
 app.use("/foods", FoodsRoute);
 app.use("/comment", CommentRoute);
@@ -62,8 +71,6 @@ app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use(profileRoutes);//--Added by Hirusha Rukmal--
 
-app.use("/payment", financePaymentRoutes); 
-app.use("/payer", financePayerRoutes); 
 app.use("/invoice", FinanceInvoice);   
 app.use("/inquary", FinanceInquary);
  
