@@ -1,71 +1,144 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payer Business Logic
- */
-
+//payer CRUD
+//reply code 1=success 0=request-error {2 - catch}  
 import mongoose from 'mongoose';
 import FinancePayer from '../../models/FinanceModels/financePayerschema.js';
 
 
-/*
-Name - get allpayers
-Date - 29/08/2021
- */
-export const getPayers = async (req, res) => { 
+//get all the payers 
+export const getPayers = async (req, res) => {
     try {
-        const payers = await FinancePayer.find();  
-
-        res.status(200).json(payers);
+        const payers = await FinancePayer.find();
+        if (payers != null) {
+            res.status(200).json({
+                replyCode: 1,
+                payers
+            });
+        } else {
+            res.status(200).json({
+                replyCode: 0,
+                message: "no payers"
+            });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
-/*
-Name - create payer
-Date - 29/08/2021
- */
-export const createPayer = async(req, res) => {
+//add payer details 
+export const createPayer = async (req, res) => {
     const payer = req.body;
-
     const newPayer = new FinancePayer(payer);
 
     try {
-        await newPayer.save();
 
-        res.status(201).json(newPayer);
+        if (newPayer != "") {
+            await newPayer.save();
+            res.status(200).json (newPayer);
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    message: "no data to add as payer details"
+                });
+        }
+
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(409).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
-/*
-Name - update payer
-Date - 29/08/2021
- */
+// update payer details
 export const updatePayer = async (req, res) => {
     const { id: _id } = req.params;
     const payer = req.body;
 
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No payer with that id');
-    
-    const updatedPayer = await FinancePayer.findByIdAndUpdate(_id, { ...payer, _id}, { new: true });
+    try {
+        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No payer with that id');
 
-    res.json(updatedPayer);
+        const updatedPayer = await FinancePayer.findByIdAndUpdate(_id, { ...payer, _id }, { new: true });
+
+        res.status(200).json({
+            replyCode: 1,
+            updatedPayer
+        });
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: error.message
+            })
+    }
+
 
 }
 
-/*
-Name - delete payer
-Date - 29/08/2021
- */
+// Delete payer details
 export const deletePayer = async (req, res) => {
-    const { id } = req.params; 
+    const { id } = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No payer with that id: ${id}`);
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No payer with that id: ${id}`);
 
-    await FinancePayer.findByIdAndRemove(id); 
+        await FinancePayer.findByIdAndRemove(id);
 
-    res.json({ message: "Payer Deleted Successfully." });
-} 
+        res.json
+            ({
+                replyCode: 1,
+                message: "Payer Deleted Successfully."
+            });
+    } catch (error) {
+        res.status(400).json({
+            replyCode: 2,
+            message: error.message
+        });
+    }
+
+}
+
+//get payer details
+export const getPayerDetails = async (req, res) => {
+    // const { id } = req.params;
+
+    const userID = req.params.id;
+
+    const payerDetails = await FinancePayer.find({ userID: userID });
+
+    try {
+        //mongoose object id validation
+        // if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No payer with that id: ${id}`);
+
+        // const payerDetails = await FinancePayer.findById(id);
+
+        if (payerDetails != null) {
+            res.status(200).json({
+                replyCode: 1,
+                payerDetails,
+            });
+        } else{
+            res.status(200).json({
+                replyCode: 0,
+                message: "no payer with this ID",
+            });
+        }
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
+
+    }
+
+
+
+}
