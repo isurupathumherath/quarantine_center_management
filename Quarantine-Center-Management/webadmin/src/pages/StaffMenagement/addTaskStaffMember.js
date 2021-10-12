@@ -149,7 +149,7 @@ const App = () => {
 
     return (
 
-        <div className="container-fluid" style={{ marginLeft: "20px", marginTop: "-45px" }}>
+        <div className="container-fluid" style={{ marginTop: "-45px" }}>
             <div className="card" style={{ width: "1350px", marginTop: "0px" }}>
                 <div className="card-body">
                     <h1 align="center" style={{ marginTop: "20px" }}>Staff Member Task</h1>
@@ -242,7 +242,7 @@ const App = () => {
                                         <th >Priority</th>
                                         <th >Status</th>
                                         <th>Description</th>
-                                        <th></th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -264,12 +264,7 @@ const App = () => {
                                             <td>{staffTask.Priority}</td>
                                             <td>{staffTask.Status}</td>
                                             <td>{staffTask.Description}</td>
-
                                             <td>
-                                                {/* <a className="btn btn-warning" href="#" onClick={() => deleteTask(staffTask._id)}>
-                                    <i className="fa fa-check-square"></i>&nbsp;
-                                </a> */}
-                                                &nbsp;
                                                 <a className="btn btn-danger" href="#" onClick={() => deleteTask(staffTask._id)}>
                                                     <i className="far fa-trash-alt"></i>&nbsp;
                                                 </a>
@@ -293,7 +288,7 @@ const App = () => {
 
                             </div>
 
-                            <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px' }}>
+                            <table responsive className="table table-hover" style={{ marginTop: '40px'}}>
                                 <thead>
                                     <tr>
                                         <th >#</th>
@@ -315,7 +310,6 @@ const App = () => {
                                             <td>{staffMembers.firstName}</td>
                                             <td>{staffMembers.lastName}</td>
                                             <td>{staffMembers.type}</td>
-                                            <td></td>
 
                                         </tr>
                                     ))}

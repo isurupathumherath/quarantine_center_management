@@ -150,7 +150,7 @@ const App = () => {
 
     return (
 
-        <div className="container-fluid" style={{ marginLeft: "10px" }}>
+        <div>
             <div className="card" style={{ width: "1400px", marginTop: "0px" }}>
                 <div className="card-body"></div>
                 <h1 align="center">Staff Salary</h1>
@@ -273,7 +273,7 @@ const App = () => {
 
                         </div>
 
-                        <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px' }}>
+                        <table responsive className="table table-hover" style={{ marginTop: '40px' }}>
                             <thead>
                                 <tr>
                                     <th >#</th>
@@ -281,8 +281,6 @@ const App = () => {
                                     <th >First Name</th>
                                     <th >Last Name</th>
                                     <th >Employee Type</th>
-                                    <th></th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -297,8 +295,6 @@ const App = () => {
                                         <td>{staffMembers.firstName}</td>
                                         <td>{staffMembers.lastName}</td>
                                         <td>{staffMembers.type}</td>
-                                        <td></td>
-
                                     </tr>
                                 ))}
                             </tbody>

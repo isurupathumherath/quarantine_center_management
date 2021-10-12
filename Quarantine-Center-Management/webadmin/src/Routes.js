@@ -40,6 +40,9 @@ import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added 
 import PrivateRoute from './PrivateRoute'; //--Added by Isuru Pathum Herath--
 import PrivateRouteAdmin from './PrivateRouteAdmin'; //--Added by Isuru Pathum Herath--
 import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEdit'; //--Added by Isuru Pathum Herath--
+import qStaff from './pages/StaffMenagement/showQEmployee'; //--Added by Isuru Pathum Herath--
+
+
 
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
@@ -78,7 +81,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/addQuaratineStaff" exact component={addQuaratineStaff} />             {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
-
+                        <PrivateRouteAdmin path="/showQStaff" exact component={qStaff} />           {/*--Added by Isuru Pathum Herath--*/}
 
                         <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
