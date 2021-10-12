@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
-
-//common navigation components
-
+//common navigation components 
 import Header from "./components/Common/Navigation/Header";
 import Footer from "./components/Common/Navigation/Footer";
 import Register from './components/UserManagement/Register';
+
 //import Register from "./components/UserManagement/Test";
 import Home from './components/UserManagement/Home';
 import Login from './components/UserManagement/Login';
@@ -24,6 +23,7 @@ import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 import HomePage from "./pages/FinanceManagement/Fhome";
 import Checkout from "./pages/FinanceManagement/Fcheckout";
 import Payment from "./pages/FinanceManagement/Fpayment";
+import Invoice from "./pages/FinanceManagement/Finvoice";
 import Inquary from './pages/FinanceManagement/Finquary';
 //pages
 //import Login from "./pages/Common/Loginexaple";
@@ -53,7 +53,8 @@ class App extends Component {
           {/* Janith Gamage On - 11/10/2021   */}
           <Route path="/hometest" exact component={HomePage} />
           <Route path="/checkout" exact component={Checkout} />
-          <Route path="/invoice" exact component={Payment} />
+          <Route path="/payment" exact component={Payment} />
+          <Route path="/invoice" exact component={Invoice} /> 
           <Route path="/inquary" exact component={Inquary} />
         </Switch>
         <Footer />

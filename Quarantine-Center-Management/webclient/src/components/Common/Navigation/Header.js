@@ -52,6 +52,9 @@ function Header() {
                     <a href={'/invoice'}>Invoice</a>
                   </li>
                   <li>
+                    <a href={'/payment'}>Payment</a>
+                  </li>
+                  <li>
                     <a href={'/inquary'}>Inquary</a>
                   </li>
                 </ul>

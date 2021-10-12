@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import Swal from "sweetalert2";
+
 const PaymentGateway = ({ }) => {
 
     function loadScript(src) {
@@ -54,7 +56,19 @@ const PaymentGateway = ({ }) => {
 
                 const result = await axios.post("http://localhost:8000/payment/success", data);
 
-                alert(result.data.msg);
+                // alert(result.data.msg); 
+                Swal.fire({
+                    title: 'Payment Successfully!',
+                    icon: 'success',
+                    html:
+                        '<h4> Order ID : </h4>' + response.razorpay_order_id,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                        '<a href="/index">Back To Home</a>',
+                    cancelButtonText:
+                        'Cancel',
+                })
             },
             prefill: {
                 name: "Soumya Dey",

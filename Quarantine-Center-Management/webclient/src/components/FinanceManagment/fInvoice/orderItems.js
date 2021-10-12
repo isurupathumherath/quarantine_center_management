@@ -6,7 +6,7 @@ import Food from '../../../assets/PaymentManagment/img/food1.png'
 
 import { foodSetDetails } from '../../../actions/FinanceAction/fInvoice';
 
-const OrderItems = ({ data, currentID, setCurrentID }) => { 
+const OrderItems = ({ data, currentID, setCurrentID, idTest }) => {
     const [modalShow, setModalShow] = React.useState(false);
 
 
@@ -18,6 +18,9 @@ const OrderItems = ({ data, currentID, setCurrentID }) => {
     return (
         <div>
             <div class="card booking-card" style={{ boxShadow: 'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px' }}>
+                <div class="card-header">
+                    <h4 class="card-title">Order No :  food110{idTest} </h4>
+                </div>
                 <div class="card-body">
                     <div class="booking-summary">
                         <div class="booking-item-wrap">
@@ -62,7 +65,7 @@ export default OrderItems;
 
 function MyVerticallyCenteredModal(props) {
 
-    console.log(props.testID);  
+    console.log(props.testID);
     const dispatch = useDispatch();
 
     useEffect(() => {

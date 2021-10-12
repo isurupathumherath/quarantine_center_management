@@ -8,6 +8,7 @@ import {
 } from 'react-accessible-accordion';
 import { Col, Form, Row, Modal, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Swal from 'sweetalert2';
 
 import { deleteInquary, updateInquary } from '../../../actions/FinanceAction/finquary';
 
@@ -33,13 +34,12 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
                         Inquary ID :  {item._id}
                         <span
                             style={{
-                                marginLeft: '250px',
+                                marginLeft: '50%',
                                 padding: '11px',
                                 borderRadius: '8px',
                                 backgroundColor: '#6c757d',
                                 color: 'white',
-                                fontWeight:
-                                    'bold'
+                                fontWeight: 'bold'
                             }}>
                             Inquary states : {item.states}
                         </span>
@@ -66,7 +66,7 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
                                     <Form.Control type="text" placeholder="" value={item.piority} readOnly />
                                 </Form.Group>
                             </Col>
-                            <Col md={4}>
+                            <Col md={4}> 
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Inquary type</Form.Label>
                                     <Form.Control type="text" placeholder="" value={item.type} readOnly />
@@ -163,12 +163,22 @@ function MyVerticallyCenteredModal(props) {
     };
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         if (props.test === 0) {
             console.log("test123");
         } else {
             dispatch(updateInquary(props.test, inquaryData));
+            Swal.fire({
+                title: 'Inquary Updated Suucessfully',
+                icon: 'success', 
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                    '<a href="/inquary">Ok</a>',
+                cancelButtonText:
+                    'Cancel',
+            })
             clear();
             setValidated(true);
         }

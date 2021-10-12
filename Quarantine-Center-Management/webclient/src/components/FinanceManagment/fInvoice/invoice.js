@@ -3,11 +3,12 @@ import { useRef, useState, useEffect } from "react";
 import "@progress/kendo-theme-material/dist/all.css";
 import "hammerjs";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import Swal from 'sweetalert2';
 
 import YourLogo from "../../../assets/PaymentManagment/img/yourlogohere.png";
 
 //session
-import UserProfile from '../Functions/userData'; 
+import UserProfile from '../Functions/userData';
 
 //invoice 
 function Invoice() {
@@ -17,8 +18,21 @@ function Invoice() {
         pdfExportComponent.current.save();
     };
 
+    const handlepay = event => {
+        Swal.fire({
+            title: 'Proceed to Pay',
+            icon: 'info',
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+                '<a href="/payment">Proceed</a>',
+            cancelButtonText:
+                'Cancel',
+        })
+    }
+
     return (
-        <div id="example" style={{ boxShadow:'rgba(0, 0, 0, 0.35) 0px 5px 15px'}}>
+        <div id="example">
             <div class="invoice-content">
                 <PDFExport ref={pdfExportComponent}>
                     <div class="invoice-content">
@@ -26,7 +40,7 @@ function Invoice() {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="invoice-logo">
-                                        <img src={YourLogo} alt="logo" style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px'}} />
+                                        <img src={YourLogo} alt="logo" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -54,7 +68,7 @@ function Invoice() {
                                     <div class="invoice-info invoice-info2">
                                         <strong class="customer-text">Invoice To</strong>
                                         <p class="invoice-details">
-                                            {localStorage.getItem("firstName") + " " + localStorage.getItem("lastName") } <br />
+                                            {localStorage.getItem("firstName") + " " + localStorage.getItem("lastName")} <br />
                                             {localStorage.getItem("address")} <br />
                                             {localStorage.getItem("contactNumber")} <br />
                                         </p>
@@ -133,8 +147,11 @@ function Invoice() {
                         onChange={updatePageLayout}
                     /> */}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <button type="button" class="btn btn-block btn-outline-secondary active" onClick={handleExportWithComponent}>Export to PDF</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-block btn-outline-success active" onClick={handlepay}>Proceed to Pay</button>
                     </div>
                 </div>
             </div>

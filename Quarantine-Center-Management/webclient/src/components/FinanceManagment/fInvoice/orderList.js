@@ -20,15 +20,16 @@ const OrderList = ({ }) => {
     // console.log("order" + resultOrder);
 
     // localStorage.setItem("orderToatal", resultOrder);
-
+    var idTest = 0
 
     return (
         !orders.length ? <CircularProgress /> : (
             <div>
                 {orders.map((data) => {
+                    idTest = idTest + 1;
                     return (
                         <div key={data._id}>
-                            <OrderItems data={data} currentID={currentID} setCurrentID={setCurrentID} />
+                            <OrderItems data={data} idTest={idTest} currentID={currentID} setCurrentID={setCurrentID} />
                         </div>
                     )
                 })}
