@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { getUser, logout } from './staffHelper'; 
+import { getUser, logout } from './staffHelper';
 import '../../assets/HRM/staffProfile.css';
 const Swal = require('sweetalert2');
 
@@ -163,7 +163,7 @@ const App = (props, { history }) => {
                                 <br />
                                 <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <div className="col-sm-12">
-                                        <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
+                                        <a className="btn btn-info" style={{ width: "100%" }} href={`/editStaffProfile/${staffMembers.employeeId}`}>Edit</a>
                                     </div>
                                 </div>
                                 <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
