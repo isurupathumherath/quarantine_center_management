@@ -39,7 +39,7 @@ class InquaryPage extends Component {
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6">
-                                        <img src={Fimage} style={{ width: '700px' }} /> 
+                                        <img src={Fimage} style={{ width: '90%' }} /> 
                                     </div>
                                     <div class="col-md-12 col-lg-12 theiaStickySidebar">
                                         <div class="card booking-card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>

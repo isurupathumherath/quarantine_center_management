@@ -115,7 +115,7 @@ class Payment extends Component {
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6">
-                                        <img src={Fimage} style={{ width: '700px' }} /> 
+                                        <img src={Fimage} style={{ width: '90%' }} /> 
                                     </div>
                                 </div>
                             </div>
