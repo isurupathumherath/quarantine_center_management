@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import { Invoice } from '../../components/FinanceManagment/fInvoice';
 import CreditCard from '../../components/FinanceManagment/fpayment/CreditCardForm';
+import PaymentGateway from '../../components/FinanceManagment/fpayment/paymentGateway';
 class Payment extends Component {
     render() {
         return (
@@ -54,7 +55,7 @@ class Payment extends Component {
                                                     </Tab>
                                                     <Tab eventKey={3} title="Payment Gateway">
                                                         <Scrollbars style={{ width: '100%', height: 490 }}>
-                                                            {/* <Bookings /> */}
+                                                            <PaymentGateway />
                                                         </Scrollbars>
                                                         <div class="card-footer text-muted mt-3">
                                                         </div>
