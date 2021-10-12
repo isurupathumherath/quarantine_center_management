@@ -133,6 +133,8 @@ export default InquaryItem;
 
 function MyVerticallyCenteredModal(props) {
 
+    console.log(props.test);
+    
     const [inquaryData, setInquaryData] = useState({
         title: null,
         type: null,

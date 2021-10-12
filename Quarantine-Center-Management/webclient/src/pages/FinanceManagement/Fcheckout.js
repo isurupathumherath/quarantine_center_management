@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { Tabs, Tab, Form, Col } from 'react-bootstrap';
 
-import { Orders, Bookings } from "../../components/FinanceManagment/fInvoice";
+import { OrderList, Bookings } from "../../components/FinanceManagment/fInvoice";
 import { PayerForm } from "../../components/FinanceManagment/fpayer";
 
 
@@ -58,7 +58,7 @@ class Checkout extends Component {
                                                 >
                                                     <Tab eventKey={2} title="Food & Brevarages">
                                                         <Scrollbars style={{ width: '100%', height: 300 }}>
-                                                            <Orders />
+                                                            <OrderList />
                                                         </Scrollbars>
                                                         <div class="card-footer text-muted mt-3">
                                                             <Col sm={12} md={12}>
