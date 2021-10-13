@@ -61,9 +61,9 @@ const Routes = () => {
                         <PrivateRoute path="/staffLandingPage/:id" exact component={staffLandingPage} />            {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />              {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/editStaffProfile/:id" exact component={staffMemberProfileEdit} />      {/*--Added by Isuru Pathum Herath--*/}
-                        <PrivateRoute path="/calenderStaff/:id" exact component={calenderStaff} />               {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRoute path="/calenderStaff/:id" exact component={calenderStaff} />                  {/*--Added by Isuru Pathum Herath--*/}
 
-                        
+
                     </Switch>
 
                     {getAdminUser() && (
