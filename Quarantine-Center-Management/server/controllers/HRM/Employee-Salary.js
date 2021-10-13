@@ -55,3 +55,18 @@ exports.showAll = (req, res) => {
             res.json(EmployeeSalary);
         });
 };
+
+/*
+Name - Delete Staff Salary by _ID
+Date - 11/09/2021
+ */
+exports.removebyId = (req, res) => {
+    const { id } = req.params.id;
+    console.log(id);
+    EmployeeSalary.findOneAndRemove({id}).exec((err, post) => {
+        if(err) console.log(err);
+        res.json({
+            message: 'Staff Salary Record Deleted'
+        });
+    }) 
+}

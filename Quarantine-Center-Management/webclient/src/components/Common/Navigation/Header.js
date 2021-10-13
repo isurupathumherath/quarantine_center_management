@@ -46,25 +46,20 @@ function Header() {
               </a>
             </div>
             <ul class="main-nav">
-              <li class="has-submenu active">
+              <li class="has-submenu">
                 <a href="#">
-                  Home <i class="fas fa-chevron-down"></i>
+                  Payment <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                  <li class="active">
-                    <a href="index.html">Home</a>
+                  <li class="active"><a href={'/hometest'}>Home</a></li>
+                  <li>
+                    <a href={'/checkout'}>Checkout</a>
                   </li>
                   <li>
-                    <a href="index-1.html">Home 1</a>
+                    <a href={'/invoice'}>Invoice</a>
                   </li>
                   <li>
-                    <a href="index-2.html">Home 2</a>
-                  </li>
-                  <li>
-                    <a href="index-3.html">Home slider 1</a>
-                  </li>
-                  <li>
-                    <a href="index-slide.html">Home slider 2</a>
+                    <a href={'/inquary'}>Inquary</a>
                   </li>
                 </ul>
               </li>

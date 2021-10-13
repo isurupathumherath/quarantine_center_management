@@ -1,71 +1,141 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payment Business Logic
- */ 
-
+//payment CRUD
 import mongoose from 'mongoose';
 import FinancePayment from '../../models/FinanceModels/financePaymentschema.js';
 
-
-/*
-Name - get all Payments
-Date - 29/08/2021
- */
-export const getPaymnts = async (req, res) => { 
+//get all payments
+export const getPaymnts = async (req, res) => {
     try {
-        const payments = await FinancePayment.find();  
+        const payments = await FinancePayment.find();
 
-        res.status(200).json(payments);
+        if (payments != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    payments
+                });
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "no payments"
+                });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
-/*
-Name - create Payment
-Date - 29/08/2021
- */
-export const createPayment = async(req, res) => {
+//add a payment
+export const createPayment = async (req, res) => {
     const payment = req.body;
 
     const newPayment = new FinancePayment(payment);
 
     try {
         await newPayment.save();
-
-        res.status(201).json(newPayment);
+        res.status(201).json
+            ({
+                replyCode: 1,
+                newPayment
+            });
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(409).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
     }
 }
 
-/*
-Name - gupdate Payment
-Date - 29/08/2021
- */
+//update payment details
 export const updatePayment = async (req, res) => {
     const { id: _id } = req.params;
     const payment = req.body;
 
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Payment with that id');
-    
-    const updatedPayment = await FinancePayment.findByIdAndUpdate(_id, { ...payment, _id}, { new: true });
+    try {
+        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Payment with that id');
 
-    res.json(updatedPayment);
+        const updatedPayment = await FinancePayment.findByIdAndUpdate(_id, { ...payment, _id }, { new: true });
+
+        if (updatePayment != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    updatedPayment
+                });
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "no data with that ID"
+                });
+        }
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: "Update payment dunction failed"
+            });
+    }
 
 }
 
-/*
-Name - delete Payment
-Date - 29/08/2021
- */
+//delete payment details
 export const deletePayment = async (req, res) => {
-    const { id } = req.params; 
+    const { id } = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Payment with that id: ${id}`);
+    try {
 
-    await FinancePayment.findByIdAndRemove(id); 
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Payment with that id: ${id}`);
 
-    res.json({ message: "Payment Deleted Successfully." });
-} 
+        await FinancePayment.findByIdAndRemove(id);
+
+        res.status(200).json
+            ({
+                replyCode: 1,
+                message: "Payment Deleted Successfully."
+            });
+
+    } catch (error) {
+        res.status(400).json
+            ({
+                replyCode: 2,
+                message: "Payment Delete function falied."
+            });
+    }
+
+}
+
+//get payment details (Card)
+export const getPaymentDetais = async (req, res) => {
+
+    const userID = req.params.id;
+
+    const PaymentDetais = await FinancePayment.find({ userID: userID });
+    try { 
+        if (PaymentDetais != null) {
+            res.status(200).json
+                ({
+                    replyCode: 1,
+                    PaymentDetais
+                });
+        } else {
+            res.status(200).json
+                ({
+                    replyCode: 0,
+                    message: "No Payment Details"
+                });
+        }
+    } catch (error) {
+        res.status(404).json
+            ({
+                replyCode: 2,
+                message: error.message
+            });
+    }
+}
