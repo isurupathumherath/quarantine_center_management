@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import moment from 'moment';
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const App = () => {
@@ -115,9 +116,9 @@ const App = () => {
                                         <td>{staffMembers.employeeId}</td>
                                     </a>
 
-                                    <td>{staffMembers.startedDate}</td>
-                                    <td>{staffMembers.endDate}</td>
-                                    <td>{staffMembers.createdAt}</td>
+                                    <td>{moment(staffMembers.startedDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    <td>{moment(staffMembers.endDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    <td>{moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
 
                                     <td>
                                         {/* <a className="" href={`/updateStaffMember/${staffMembers.employeeId}`}>
