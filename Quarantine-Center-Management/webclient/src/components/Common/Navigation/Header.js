@@ -1,13 +1,20 @@
 import React, { Component } from "react";
+import ProfileDetails from "../../UserManagement/ProfileDetails";
+import {logout} from '../../UserManagement/Session';
 
 function Header() {
 
   var user = JSON.parse(localStorage.getItem("currentUser"));
-  function logout() {
+  function logoutbtn() {
+    logout();
     localStorage.removeItem("currentUser")
     window.location.href = "/login"
   }
   // const user = JSON.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')):null
+
+  function ProfileDetails() {
+    window.location.href = "/Profile"
+  }
 
   return (
     <div>
@@ -289,8 +296,8 @@ function Header() {
 
             {user ? (<div className="dropdown show"><a className="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {user.uName}
-            </a><div className="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" onClick={logout}>Logout</a></div></div>) : (<>
+            </a><div className="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" onClick={ProfileDetails}>Profile</a>
+                <a class="dropdown-item" onClick={logoutbtn}>Logout</a></div></div>) : (<>
                   <li class="nav-item">
                     <a class="nav-link header-login" href={"/login"}>
                       login / Signup

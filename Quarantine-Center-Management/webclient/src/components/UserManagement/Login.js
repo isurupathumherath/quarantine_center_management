@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { authenticate, getUser } from './Session'
 
 function LoginScreen() {
 
@@ -20,6 +21,9 @@ function LoginScreen() {
                 icon: 'success',
                 confirmButtonText: 'Cool'
             })
+            authenticate(result);
+            // sessionStorage.setItem('User_id', JSON.stringify(result._id));
+            // sessionStorage.setItem('token', JSON.stringify(result));
             localStorage.setItem('currentUser', JSON.stringify(result));
             window.location.href = '/home'
 

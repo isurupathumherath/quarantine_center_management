@@ -26,7 +26,7 @@ class ProfileDetails extends Component {
 
     render() {
         
-            const {fName,lName,uName,email,password} = this.state.profile;
+            const {fName,lName,uName,email,password,dob,nic,mName,address} = this.state.profile;
         return (
             <div>
                 Profile Details
@@ -47,6 +47,21 @@ class ProfileDetails extends Component {
 
                         <dt className="col-sm-3">password :</dt>
                         <dd className="col-sm-9"> {password} </dd>
+
+                        <dt className="col-sm-3">dob :</dt>
+                        <dd className="col-sm-9"> {dob} </dd>
+
+                        <dt className="col-sm-3">nic :</dt>
+                        <dd className="col-sm-9"> {nic} </dd>
+
+                        <dt className="col-sm-3">mName :</dt>
+                        <dd className="col-sm-9"> {mName} </dd>
+
+                        <dt className="col-sm-3">address :</dt>
+                        <dd className="col-sm-9"> {address} </dd>
+
+                        <dt className="col-sm-3">uName :</dt>
+                        <dd className="col-sm-9"> {uName} </dd>
   
                         </dl>
                 </div>
