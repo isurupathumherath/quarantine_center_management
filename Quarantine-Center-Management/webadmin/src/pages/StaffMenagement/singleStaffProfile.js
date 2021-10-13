@@ -18,6 +18,8 @@ const App = props => {
     // state
     const [staffMembers, setStaffMembers] = useState([]);
 
+    console.log(props);
+    
     useEffect(() => {
 
         axios

@@ -155,7 +155,7 @@ const App = props => {
     };
 
     return (
-        <div className="container " style={{ marginLeft: "50px" }}>
+        <div className="container" style={{ marginLeft: "50px" }}>
             <center>
                 <div className="card" style={{ width: "50%", }}>
                     <div className="card-body"></div>

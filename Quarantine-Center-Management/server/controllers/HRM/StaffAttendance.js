@@ -75,10 +75,10 @@ Date - 22/08/2021
 exports.readByDatabaseId = (req, res) => {
     const { id } = req.params
     console.log(req.params.id)
-    QEmployee.findOne({ id })
-        .exec((err, qemployee) => {
+    Attendance.find({ employeeId: id })
+        .exec((err, at) => {
             if (err) console.log(err);
-            res.json(qemployee);
+            res.json(at);
         });
 };
 

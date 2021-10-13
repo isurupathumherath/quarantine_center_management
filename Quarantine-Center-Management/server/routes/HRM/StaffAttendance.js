@@ -8,13 +8,13 @@ const express = require('express');
 const router = express.Router();
 
 //Import Cntroller Methos
-const { create, showAll } = require('../../controllers/HRM/StaffAttendance');
+const { create, showAll, readByDatabaseId } = require('../../controllers/HRM/StaffAttendance');
 
 //Controller Routes
 router.post('/add', create);
 
 router.get('/', showAll);
-// router.get('/getByEmpId/:id', readByEmpId);
+router.get('/get/:id', readByDatabaseId);
 // router.get('/updateFetch/:id', readByDatabaseId);
 
 // router.delete('/remove/:id', removebyId);

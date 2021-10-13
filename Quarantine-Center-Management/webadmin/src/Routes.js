@@ -24,24 +24,26 @@ import EditProfile from './components/UserManagement/EditProfile';
 import Register from './components/UserManagement/Register';
 
 //Page Route
-import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
-import allStaffMembers from './pages/StaffMenagement/allStaffMembers' //--Added by Isuru Pathum Herath--
-import updateStaffMember from './pages/StaffMenagement/updateStaffMember' //--Added by Isuru Pathum Herath--
-import addSalary from './pages/StaffMenagement/addSalaryforStaff' //--Added by Isuru Pathum Herath--
-import addQuaratineStaff from './pages/StaffMenagement/addQuaratineStaff' //--Added by Isuru Pathum Herath--
-import singleProfile from './pages/StaffMenagement/singleStaffProfile'  //--Added by Isuru Pathum Herath--
-import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--Added by Isuru Pathum Herath-- | TEMP
-import addTask from './pages/StaffMenagement/addTaskStaffMember'  //--Added by Isuru Pathum Herath--
-import showEmployeeTask from './pages/StaffMenagement/showEmployeeTasks' //--Added by Isuru Pathum Herath--
-import staffAnalytic from './pages/StaffMenagement/StaffAnalytics' //--Added by Isuru Pathum Herath--
-import staffLogin from './pages/StaffMenagement/staffLogin' //--Added by Isuru Pathum Herath--
-import staffLandingPage from './pages/StaffMenagement/StaffLandingPage' //--Added by Isuru Pathum Herath--
-import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added by Isuru Pathum Herath--
-import PrivateRoute from './PrivateRoute'; //--Added by Isuru Pathum Herath--
-import PrivateRouteAdmin from './PrivateRouteAdmin'; //--Added by Isuru Pathum Herath--
-import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEdit'; //--Added by Isuru Pathum Herath--
-import qStaff from './pages/StaffMenagement/showQEmployee'; //--Added by Isuru Pathum Herath--
-import calender from './pages/StaffMenagement/Attendance'; //--Added by Isuru Pathum Herath--
+import addStaffMember from './pages/StaffMenagement/addStaffMember'                     //--Added by Isuru Pathum Herath--
+import allStaffMembers from './pages/StaffMenagement/allStaffMembers'                   //--Added by Isuru Pathum Herath--
+import updateStaffMember from './pages/StaffMenagement/updateStaffMember'               //--Added by Isuru Pathum Herath--
+import addSalary from './pages/StaffMenagement/addSalaryforStaff'                       //--Added by Isuru Pathum Herath--
+import addQuaratineStaff from './pages/StaffMenagement/addQuaratineStaff'               //--Added by Isuru Pathum Herath--
+import singleProfile from './pages/StaffMenagement/singleStaffProfile'                  //--Added by Isuru Pathum Herath--
+import filterStaffMember from './pages/StaffMenagement/filterStaffMember'               //--Added by Isuru Pathum Herath-- | TEMP
+import addTask from './pages/StaffMenagement/addTaskStaffMember'                        //--Added by Isuru Pathum Herath--
+import showEmployeeTask from './pages/StaffMenagement/showEmployeeTasks'                //--Added by Isuru Pathum Herath--
+import staffAnalytic from './pages/StaffMenagement/StaffAnalytics'                      //--Added by Isuru Pathum Herath--
+import staffLogin from './pages/StaffMenagement/staffLogin'                             //--Added by Isuru Pathum Herath--
+import staffLandingPage from './pages/StaffMenagement/StaffLandingPage'                 //--Added by Isuru Pathum Herath--
+import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin'                   //--Added by Isuru Pathum Herath--
+import PrivateRoute from './PrivateRoute';                                              //--Added by Isuru Pathum Herath--
+import PrivateRouteAdmin from './PrivateRouteAdmin';                                    //--Added by Isuru Pathum Herath--
+import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEdit';    //--Added by Isuru Pathum Herath--
+import qStaff from './pages/StaffMenagement/showQEmployee';                             //--Added by Isuru Pathum Herath--
+import calender from './pages/StaffMenagement/Attendance';                              //--Added by Isuru Pathum Herath--
+
+
 
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
@@ -57,7 +59,7 @@ const Routes = () => {
                         <Route path="/staffLogin" exact component={staffLogin} />                                   {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/staffLandingPage/:id" exact component={staffLandingPage} />            {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />              {/*--Added by Isuru Pathum Herath--*/}
-                        <PrivateRoute path="/editStaffProfile/:id" exact component={staffMemberProfileEdit} />             {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRoute path="/editStaffProfile/:id" exact component={staffMemberProfileEdit} />      {/*--Added by Isuru Pathum Herath--*/}
                     </Switch>
 
                     {getAdminUser() && (
@@ -81,6 +83,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showQStaff" exact component={qStaff} />                               {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/attendance/:id" exact component={calender} />                           {/*--Added by Isuru Pathum Herath--*/}
 
                         <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
@@ -89,7 +92,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
-                        <PrivateRouteAdmin path="/calender" exact component={calender} />
+
 
 
 

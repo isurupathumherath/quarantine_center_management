@@ -89,13 +89,13 @@ function LoginScreen(props) {
     return (
 
         <div>
-            <div class="account-page">
+            <div class="container card" style={{ marginLeft: "-100px", marginRight: "100px" }}>
                 {loading}
-                <div className="row align-items-center justify-content-center">
-                    <div class="col-md-12 col-lg-6 login-left">
+                <div className="row align-items-center justify-content-center" >
+                    <div class="col-lg-6">
                         <img src="https://img.freepik.com/free-vector/happy-business-colleagues-team-portrait_179970-1271.jpg?size=626&ext=jpg" style={{ height: 500, widows: 500 }} class="img-fluid" alt="Doccure Login" />
                     </div>
-                    <div className="col-md-12 col-lg-4 login-right">
+                    <div className="col-lg-6">
                         <h2 style={{ fontSize: '35px', marginTop: '5px' }}> Staff Login </h2><br />
 
 
@@ -121,7 +121,7 @@ function LoginScreen(props) {
 
 
                             <button onClick={Login}
-                                className="btn btn-success btn-block btn-lg login-btn"
+                                className="btn btn-info btn-block btn-lg login-btn"
                                 style={{ marginTop: '15px' }}><i class="fas fa-sign-in-alt"> Login</i>
                             </button>
                             <br />

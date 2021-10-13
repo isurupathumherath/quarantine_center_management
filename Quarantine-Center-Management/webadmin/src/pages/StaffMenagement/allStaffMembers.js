@@ -135,6 +135,10 @@ const App = () => {
                                         <a className="" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
                                             <i className="far fa-trash-alt"></i>&nbsp;
                                         </a>
+                                        &nbsp;
+                                        <a href={`/attendance/${staffMembers.employeeId}`} style={{ textDecoration: 'none' }}>
+                                            <i class="fas fa-calendar-week"></i>&nbsp;
+                                        </a>
                                     </td>
                                 </tr>
                             ))}
