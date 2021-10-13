@@ -124,7 +124,7 @@ const UpdateStaffMember = props => {
             <br />
             <div>
 
-                <button className="btn btn-primary">Update</button>
+                <button className="btn btn-primary btn-lg btn-block">Update</button>
             </div>
         </form>
     )
@@ -170,10 +170,14 @@ const UpdateStaffMember = props => {
     return (
 
         <div className="container p-5">
-            <br />
-            <h1 align="center">UPDATE STAFF MEMBER</h1>
+            <div className="card bg-light mb-3">
+                <div className="card-body">
+                    <h1 align="center">UPDATE STAFF MEMBER</h1>
+                    <br />
+                    {showUpdateForm()}
+                </div>
+            </div>
 
-            {showUpdateForm()}
 
         </div>
     )

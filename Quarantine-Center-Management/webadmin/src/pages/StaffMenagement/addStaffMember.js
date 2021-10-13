@@ -120,7 +120,7 @@ const App = () => {
     <div className="container " style={{ marginLeft: "50px" }}>
       <div className="card" style={{ width: "1300px" }}>
         <div className="card-body"></div>
-        <h1 align="center">ADD NEW EMPLOYEE</h1>
+        <h1 align="center">REGISTER NEW EMPLOYEE</h1>
         <br />
 
         {/* {JSON.stringify(state)} */}
@@ -212,7 +212,7 @@ const App = () => {
 
               <br />
               <div>
-                <button className="btn btn-primary">Add</button>
+                <button className="btn btn-primary btn-lg btn-block">Register New Staff Member</button>
               </div>
               <br />
             </form>

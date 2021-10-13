@@ -149,11 +149,16 @@ const App = () => {
 
     return (
 
-        <div className="container-fluid" style={{ marginTop: "-45px" }}>
-            <div className="card" style={{ width: "1350px", marginTop: "0px" }}>
+        <div className="container-fluid">
+            <div className="card">
                 <div className="card-body">
                     <h1 align="center" style={{ marginTop: "20px" }}>Staff Member Task</h1>
                     <br />
+                    {/* <center>
+                        <div>
+                            <img src="https://lh3.googleusercontent.com/proxy/mbw5zqLZauuEyK55SvAMFy9ocmfkXLNM85DFJgQEncskkB3ZqQCQFOl3Idpr987etcvE-961ETSbkVgCGTh2CqVXtymyaF4yLL5RXDFkbVLleIhGlIPgnEt7YSSvC17C5kOlTrTR8Q" style={{ height: 400, width: 400 }} class="img-fluid" alt="Doccure Login" />
+                        </div>
+                    </center> */}
                     <form onSubmit={handleSubmit} style={{ marginTop: '50px', marginLeft: '20px' }}>
                         <div class="container-fluid">
                             <div class="row">
@@ -202,7 +207,7 @@ const App = () => {
                                 </div>
                                 <div class="col" style={{ marginTop: '30px', marginLeft: '20px' }}>
                                     <div>
-                                        <button className="btn btn-primary" style={{ width: "100px" }}>Add</button>
+                                        <button className="btn btn-primary btn-lg btn-block" style={{ width: "100px" }}>Add</button>
                                     </div>
                                 </div>
 
@@ -218,6 +223,7 @@ const App = () => {
                     <hr style={{ marginLeft: '0px' }} />
                     <div class="row">
                         <div class="col">
+                            <h3 align="center">Task Details</h3>
                             <form style={{ marginTop: '40px' }}>
 
                                 <div className="input-group mb-2 col-lg-12">
@@ -275,8 +281,10 @@ const App = () => {
                             </table>
                         </div>
                         <br />
-                        <div class="col" style={{ marginTop: '40px', marginLeft: '0px' }}>
-                            <div className="input-group mb-2 col-lg-12">
+                        <div class="col">
+                            <h3 align="center">Employee Details</h3>
+                            <br />
+                            <div className="input-group mb-2 col-lg-12" style={{ marginTop: '8px' }}>
 
                                 <input
                                     className="form-control"
@@ -288,7 +296,7 @@ const App = () => {
 
                             </div>
 
-                            <table responsive className="table table-hover" style={{ marginTop: '40px'}}>
+                            <table responsive className="table table-hover" style={{ marginTop: '40px' }}>
                                 <thead>
                                     <tr>
                                         <th >#</th>

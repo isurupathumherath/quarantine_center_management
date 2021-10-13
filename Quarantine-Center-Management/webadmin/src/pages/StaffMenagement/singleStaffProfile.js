@@ -7,10 +7,13 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
+
 
 import '../../assets/HRM/staffProfile.css';
 
 const App = props => {
+
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
@@ -24,6 +27,11 @@ const App = props => {
                 setStaffMembers(response.data)
             })
             .catch(error => alert('Error Loading Staff Member Details'));
+
+        var date = staffMembers.DOB;
+        var momentDate = moment.utc(date).format('MM/DD/YYYY');
+        console.log(momentDate);
+
     }, []);
 
     return (
@@ -70,6 +78,8 @@ const App = props => {
                                         <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
                                     </div>
                                 </div>
+
+
                                 {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                     <span className="text-secondary">https://bootdey.com</span>
@@ -147,7 +157,7 @@ const App = props => {
                                         <h6 className="mb-0">Birthday</h6>
                                     </div>
                                     <div className="col-sm-9 text-blue">
-                                        {staffMembers.DOB}
+                                        {moment.utc(staffMembers.DOB).format('MM/DD/YYYY')}
                                     </div>
                                 </div>
                                 <hr />
@@ -165,7 +175,7 @@ const App = props => {
                                         <h6 className="mb-0">Added At</h6>
                                     </div>
                                     <div className="col-sm-9 text-blue">
-                                        {staffMembers.createdAt}
+                                        {moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                                     </div>
                                 </div>
                                 <hr />
@@ -174,7 +184,7 @@ const App = props => {
                                         <h6 className="mb-0">Last Update At</h6>
                                     </div>
                                     <div className="col-sm-9 text-blue">
-                                        {staffMembers.updatedAt}
+                                        {moment(staffMembers.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
                                     </div>
                                 </div>
 
