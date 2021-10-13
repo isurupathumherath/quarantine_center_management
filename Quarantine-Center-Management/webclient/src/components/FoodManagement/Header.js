@@ -7,7 +7,7 @@ export default function Header(props) {
     <div>
       <div
         className="row border border-light"
-        style={{ width: "100%", backgroundColor: "white", padding: "20px" }}
+        style={{ width: "98%",marginLeft: "20px", marginTop: "20px", backgroundColor: "white", padding: "20px" }}
       >
         <div className="col-md-12 btn-group">
           <i

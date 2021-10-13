@@ -1,6 +1,7 @@
 import React, { useState, useEffect, PureComponent } from "react";
 import axios from "axios";
 import Modal from "react-modal";
+import { Eye } from "react-feather";
 import moment from "moment";
 import pdfConverter from "jspdf";
 import html2canvas from "html2canvas";
@@ -13,13 +14,41 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  PieChart,
+  ResponsiveContainer,
+  Pie,
 } from "recharts";
 export default function FoodReport() {
   let [fromdate, setfromdate] = useState("");
   let [todate, settodate] = useState("");
   let [allorders, setallorders] = useState([]);
+  let [detailedorders, setDetailedorders] = useState([]);
 
+  let details = [];
   let orders = [];
+
+  let [datadiv, setDatadiv] = useState();
+  let [detailsdiv, setDetailsdiv] = useState();
+
+  // const data01 = [
+  //   { name: "Group A", value: 400 },
+  //   { name: "Group B", value: 300 },
+  //   { name: "Group C", value: 300 },
+  //   { name: "Group D", value: 200 },
+  // ];
+  // const data02 = [
+  //   { name: "A1", value: 100 },
+  //   { name: "A2", value: 300 },
+  //   { name: "B1", value: 100 },
+  //   { name: "B2", value: 80 },
+  //   { name: "B3", value: 40 },
+  //   { name: "B4", value: 30 },
+  //   { name: "B5", value: 50 },
+  //   { name: "C1", value: 100 },
+  //   { name: "C2", value: 200 },
+  //   { name: "D1", value: 150 },
+  //   { name: "D2", value: 50 },
+  // ];
 
   const monthNames = [
     "January",
@@ -48,8 +77,6 @@ export default function FoodReport() {
     allorders.map((post) => {
       fulltot = fulltot + post.Value;
     });
-
-    console.log(fulltot);
 
     var img = new Image();
     img.src = "assets/img/logo.png";
@@ -94,6 +121,61 @@ export default function FoodReport() {
     console.log(allorders);
   }
 
+  function fetchdata(details1) {
+    details1.map((post) => {
+      let obj1 = {
+        name: post.name,
+        Value: post.price,
+      };
+      details.push(obj1);
+    });
+
+    console.log(details);
+    setDetailedorders(details);
+
+    setDetailsdiv(
+      <div className="row">
+        <div className="col-md-6">
+          <h4>
+            <strong>
+              <center>Name</center>
+            </strong>
+          </h4>
+
+          {details1.map((post) => {
+            return (
+              <div>
+                <h5>
+                  <center>{post.name}</center>{" "}
+                </h5>
+                <h5></h5>
+              </div>
+            );
+          })}
+        </div>
+        <div className="col-md-6">
+          <h4>
+            <strong>
+              {" "}
+              <center>Price</center>{" "}
+            </strong>
+          </h4>
+          {details1.map((post) => {
+            return (
+              <div>
+                <h5>
+                  <center>{post.price}</center>
+                </h5>
+                <h5></h5>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+    details = [];
+  }
+
   function getData() {
     fromdate = fromdate + "-01";
     todate = todate + "-30";
@@ -102,6 +184,54 @@ export default function FoodReport() {
       .get(`http://localhost:8000/order/getbyyear/${fromdate}/${todate}`)
       .then((res) => {
         orders = res.data;
+
+        setDatadiv(
+          <div className="col-md-12">
+            <h4>All orders</h4>
+
+            <div>
+              <div
+                className="table-responsive"
+                style={{
+                  maxHeight: "450px",
+                  overflowY: "scroll",
+                  overflowX: "hidden",
+                }}
+              >
+                <table className="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Total</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ maxWidth: "100px" }}>
+                    {orders.map((post) => {
+                      return (
+                        <tr>
+                          <td>{post.orderID}</td>
+                          <td>Rs.{post.total}.00</td>
+                          <td>
+                            <Eye
+                              className="btn btn-outline-info btn-sm"
+                              color="black"
+                              style={{
+                                marginLeft: "10px",
+                              }}
+                              size="35px"
+                              onClick={() => fetchdata(post.orderDetails)}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        );
         orders.map((post, index) => {
           if (index == 0) {
             tot = tot + post.total;
@@ -142,8 +272,6 @@ export default function FoodReport() {
       .catch((err) => {
         alert(err.message);
       });
-
-    console.log("all orders");
   }
 
   return (
@@ -229,7 +357,6 @@ export default function FoodReport() {
                           </div>
                         </form>
                       </div>
-                      {console.log(allorders)}
 
                       <div id="chart" className="row">
                         <div className="col-md-12">
@@ -255,6 +382,38 @@ export default function FoodReport() {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <br />
+                <div className="row">
+                  <div className="col-md-5 border border-color-dark">
+                    {datadiv}
+                  </div>
+                  <div className="col-md-7 border-color-dark">
+                    {detailsdiv}
+                    <center>
+                      <PieChart width={400} height={400}>
+                        <Pie
+                          data={detailedorders}
+                          dataKey="Value"
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={60}
+                          fill="#8884d8"
+                        />
+                        <Pie
+                          data={detailedorders}
+                          dataKey="Value"
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={70}
+                          outerRadius={90}
+                          fill="#82ca9d"
+                          label
+                        />
+                        <Tooltip />
+                      </PieChart>
+                    </center>
                   </div>
                 </div>
               </div>
