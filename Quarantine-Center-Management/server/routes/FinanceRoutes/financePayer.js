@@ -1,21 +1,14 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payer routes
- */
-
+//payer details route 
 import express from 'express';
 
-import { getPayers, createPayer, updatePayer, deletePayer } from '../../controllers/FinanceControllers/financePayer';
+import { getPayers, createPayer, updatePayer, deletePayer, getPayerDetails } from '../../controllers/FinanceControllers/financePayer';
 
-const router = express.Router();
+const router = express.Router();  
 
-//http://localhost:5000/payer/createPayer
-
-//all the routes 
-router.get('/getallPayers', getPayers);
+router.get('/allPayerDetails', getPayers);
 router.post('/createPayer', createPayer);
 router.patch('/updatePayer/:id', updatePayer);
-router.delete('/deletePayer/:id', deletePayer); 
+router.delete('/deletePayer/:id', deletePayer);  
+router.get('/payerDetails/:id', getPayerDetails);   
 
 export default router;

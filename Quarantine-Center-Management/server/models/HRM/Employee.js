@@ -36,7 +36,8 @@ const EmployeeSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     DOB: {
         type: Date,
@@ -64,6 +65,10 @@ const EmployeeSchema = new mongoose.Schema({
     password: {
         type:String,
         min: 8,
+        required: true
+    },
+    accountStatus: {
+        type: String,
         required: true
     }
 }, {timestamps: true});

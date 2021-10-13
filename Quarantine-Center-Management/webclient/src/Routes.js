@@ -22,15 +22,21 @@ import FoodCart from "../../webclient/src/pages/FoodManagement/FoodCart";
 import AllOrders from "../../webclient/src/pages/FoodManagement/AllOrders";
 import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 
+/* Janith Gamage On - 11/10/2021  */
+import HomePage from "./pages/FinanceManagement/Fhome";
+import Checkout from "./pages/FinanceManagement/Fcheckout";
+import Payment from "./pages/FinanceManagement/Fpayment";
+import Inquary from './pages/FinanceManagement/Finquary';
+
 const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
                 <div>
-                <Header/>
-                <div class="content">
-                    <div class="container-fluid">
-                    {/* <Route path="/" exact component={App} /> */}
+                    <Header />
+                    <div class="content">
+                        <div class="container-fluid">
+                            {/* <Route path="/" exact component={App} /> */}
                             <Route path="/register" exact component={Register} />
                             <Route path="/login" exact component={Login} />
                             <Route path="/" exact component={Login} />
@@ -43,9 +49,15 @@ const Routes = () => {
                             <PrivateRoute path="/allOrders" exact component={AllOrders} />
                             <PrivateRoute path="/foodCart" exact component={FoodCart} />
                             <PrivateRoute path="/orderAdmin" exact component={OrderAdmin} />
+
+                            {/* Janith Gamage On - 11/10/2021   */}
+                            <Route path="/hometest" exact component={HomePage} />
+                            <Route path="/checkout" exact component={Checkout} />
+                            <Route path="/invoice" exact component={Payment} />
+                            <Route path="/inquary" exact component={Inquary} />
+                        </div>
                     </div>
-                </div>
-                <Footer/>
+                    <Footer />
                 </div>
             </Switch>
         </BrowserRouter>

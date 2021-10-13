@@ -1,22 +1,41 @@
-/*
-    Created by - Janith Gamage
-    On - 29/08/2021
-    Name - Finace payer model
- */
+//payer deatils schema
+import mongoose from "mongoose"; 
 
-import mongoose from "mongoose";
-
-//mongo db table (schema)
 const financePayerschema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    address: String,
-    email: String,
-    contactNumber: String,
-    status: String,
-    updatedDate: String,
-    tags: [String],
-    selectedFile: String,
+    firstName: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    contactNumber: {
+        type: Number,
+        max: 999999999,
+        required: true
+    },
+    status: {
+        type: String,
+        required: false
+    },
+    updatedDate: {
+        type: Date,
+        default: Date.now,
+        required: false
+    },
+    userID: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now
