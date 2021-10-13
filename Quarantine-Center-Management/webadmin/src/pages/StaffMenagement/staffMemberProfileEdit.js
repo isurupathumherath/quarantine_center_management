@@ -45,132 +45,139 @@ const UpdateStaffMember = props => {
     }, []);
 
     const showUpdateForm = () => (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h3>General Details</h3>
-                <br />
-                <div class="row">
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">First Name</label>
-                            <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+        <div className="card container">
+            <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <h3>General Details</h3>
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">First Name</label>
+                                <input onChange={handleChange('firstName')} value={firstName} type="text" className="form-control" placeholder="Enter the First Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Middle Name</label>
+                                <input onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Middle Name</label>
-                            <input onChange={handleChange('middleName')} value={middleName} type="text" className="form-control" placeholder="Enter the Middle Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Last Name</label>
+                                <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Staff Member Type</label>
+                                <select id="type" value={type} onChange={handleChange("type")} className="form-control">
+                                    <option value="" disabled selected>Select a Staff Member Type</option>
+                                    <option value="Attendant">Attendant</option>
+                                    <option value="Nurisng">Nurisng</option>
+                                    <option value="Doctor">Doctor</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Last Name</label>
-                            <input onChange={handleChange('lastName')} value={lastName} type="text" className="form-control" placeholder="Enter the Last Name" pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Staff Member Type</label>
-                            <select id="type" value={type} onChange={handleChange("type")} className="form-control">
-                                <option value="" disabled selected>Select a Staff Member Type</option>
-                                <option value="Attendant">Attendant</option>
-                                <option value="Nurisng">Nurisng</option>
-                                <option value="Doctor">Doctor</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
 
 
-                <div class="row">
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Mobile Number</label>
-                            <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" pattern="[0-9]{9,10}" title="Invalid Mobile Number." required />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Mobile Number</label>
+                                <input onChange={handleChange('mobileNumber')} value={mobileNumber} type="text" className="form-control" placeholder="Enter the Mobile Number" pattern="[0-9]{9,10}" title="Invalid Mobile Number." required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Email Address</label>
+                                <input onChange={handleChange('email')} value={email} type="email" className="form-control" placeholder="Enter the Email Address" title="Invalid Email Address." required />
+                            </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Email Address</label>
-                            <input onChange={handleChange('email')} value={email} type="email" className="form-control" placeholder="Enter the Email Address" title="Invalid Email Address." required />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Birth Day</label>
+                                <input type="date" onChange={handleChange('DOB')} value={DOB} className="form-control" placeholder="Enter the Date of Birth" required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">NIC Number</label>
+                                <input onChange={handleChange("NIC")} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" pattern="[0-9]{12}" title="Invalid NIC Number." required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Account Status</label>
+                                <select id="accountStatus" value={accountStatus} onChange={handleChange("accountStatus")} className="form-control">
+                                    <option value="" disabled selected>Select a Account Status</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Active">Active</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Birth Day</label>
-                            <input type="date" onChange={handleChange('DOB')} value={DOB} className="form-control" placeholder="Enter the Date of Birth" required />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">NIC Number</label>
-                            <input onChange={handleChange("NIC")} value={NIC} type="text" className="form-control" placeholder="Enter the NIC" pattern="[0-9]{12}" title="Invalid NIC Number." required />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Account Status</label>
-                            <select id="accountStatus" value={accountStatus} onChange={handleChange("accountStatus")} className="form-control">
-                                <option value="" disabled selected>Select a Account Status</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Active">Active</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="form-group">
-                    <label className="text-muted">Address</label>
-                    <textarea onChange={handleChange("address")} value={address} type="text" className="form-control" placeholder="Enter the Address" required />
-                </div>
-                <div>
-                    <button className="btn btn-danger float-md-right">Clear</button>
-                </div>
-                <div>
-                    <button className="btn btn-primary float-md-right">Update General Details</button>
-                </div>
+                    <div className="form-group">
+                        <label className="text-muted">Address</label>
+                        <textarea onChange={handleChange("address")} value={address} type="text" className="form-control" placeholder="Enter the Address" required />
+                    </div>
 
-            </form>
-            <br />
-            <br />
-            <br />
-            <form>
-                <h3>Authentication Details</h3>
-                <br />
-                <div class="row">
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">New Username</label>
-                            <input style={{ textAlign: "center" }} onChange={handleChange('username')} value={username} type="text" className="form-control" placeholder="Enter Your New Username" pattern="[A-Za-z0-9]{1,50}" title="Characters can only be A-Z and a-z and must be less than 50 characters." required />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">New Password</label>
-                            <input style={{ textAlign: "center" }} onChange={handleChange('password')} value={password} type="text" className="form-control" placeholder="Enter Your New Password" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z" />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div className="form-group">
-                            <label className="text-muted">Confirm New Password</label>
-                            <input style={{ textAlign: "center" }} onChange={handleChange('confirmPassword')} value={confirmPassword} type="text" className="form-control" placeholder="Enter New Password Confirmation" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z and must be less than 250 characters" required />
-                        </div>
-                    </div>
-                </div>
-                <div>
                     <div>
-                        <button className="btn btn-danger float-md-right">Clear</button>
+                        <button className="btn btn-primary btn-lg btn-block">Update General Details</button>
+                    </div>
+                    <br />
+                    <div>
+                        <button className="btn btn-danger btn-lg btn-block">Clear</button>
+                    </div>
+
+                </form>
+                <br />
+                <br />
+                <br />
+                <form>
+                    <h3>Authentication Details</h3>
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">New Username</label>
+                                <input style={{ textAlign: "center" }} onChange={handleChange('username')} value={username} type="text" className="form-control" placeholder="Enter Your New Username" pattern="[A-Za-z0-9]{1,50}" title="Characters can only be A-Z and a-z and must be less than 50 characters." required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">New Password</label>
+                                <input style={{ textAlign: "center" }} onChange={handleChange('password')} value={password} type="text" className="form-control" placeholder="Enter Your New Password" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group">
+                                <label className="text-muted">Confirm New Password</label>
+                                <input style={{ textAlign: "center" }} onChange={handleChange('confirmPassword')} value={confirmPassword} type="text" className="form-control" placeholder="Enter New Password Confirmation" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z and must be less than 250 characters" required />
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <button className="btn btn-primary float-md-right">Update General Details</button>
+
+
+                        <div>
+                            <button className="btn btn-primary btn-lg btn-block">Update General Details</button>
+                        </div>
+                        <br />
+                        <div>
+                            <button className="btn btn-danger btn-lg btn-block">Clear</button>
+                        </div>
                     </div>
-                </div>
-                <br />
-            </form>
+                    <br />
+                </form>
+            </div>
         </div>
     )
 
@@ -214,12 +221,16 @@ const UpdateStaffMember = props => {
 
     return (
 
-        <div className="container p-5">
-            <br />
-            <h1 align="center">UPDATE STAFF MEMBER</h1>
+        <div className="card" style={{marginLeft: "-150px"}}>
+            <div className="card-body"></div>
+            <div className="container">
+                <br />
+                <h1 align="center">UPDATE STAFF MEMBER</h1>
 
-            {showUpdateForm()}
-            <br /><br /><br />
+                {showUpdateForm()}
+                <br /><br /><br />
+
+            </div>
 
         </div>
     )
