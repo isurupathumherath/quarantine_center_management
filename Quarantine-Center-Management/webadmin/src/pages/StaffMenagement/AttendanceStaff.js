@@ -43,11 +43,11 @@ const EventCalendar = (props) => {
     }, [])
 
 
-    return (<div>
-        <div className="">
-            <div>
-                <h1 align="center">Staff Attendance</h1><span style={{}} /><br />
-                <div align="center" className="row">
+    return (
+        <div className="card" style={{ marginRight: "70px", marginLeft: "-80px" }}>
+            <div className="card-body" style={{ marginRight: "200px" }}>
+                <h1 align="center" style={{ marginLeft: "130px" }}>Staff Attendance</h1><br />
+                <div align="center" className="row" style={{ marginLeft: "130px" }}>
                     <div className="col">
                         <h4>Name : {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}</h4>
                     </div>
@@ -57,9 +57,9 @@ const EventCalendar = (props) => {
                 </div>
             </div>
             <br />
-            <div className="card text-blue bg-warning mb-3" style={{ width: '100%' }}>
+            <div className="card text-blue bg-warning " style={{ width: '100%' }}>
 
-                <div class="card border-primary mb-3"
+                <div class="card border-primary md-3"
                     style={{
                         width: '100%',
                         height: '100%',
@@ -73,14 +73,18 @@ const EventCalendar = (props) => {
                             events={events}
                             startAccessor="start"
                             endAccessor="end"
-                            style={{ height: 550, fontSize: '14px' }}
+                            style={{ height: 400, fontSize: '14px' }}
                         />
                     </div>
+
                 </div>
+                <a className="btn btn-danger btn-lg btn-block" href={`/staffLandingPage/${staffMembers.employeeId}`}>
+                    <i class="fas fa-arrow-circle-left">&nbsp; Go Back</i>
+                </a>
                 <br />
+
             </div>
         </div>
-    </div>
 
     )
 }

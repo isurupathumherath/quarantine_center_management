@@ -42,6 +42,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';                            
 import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEdit';    //--Added by Isuru Pathum Herath--
 import qStaff from './pages/StaffMenagement/showQEmployee';                             //--Added by Isuru Pathum Herath--
 import calender from './pages/StaffMenagement/Attendance';                              //--Added by Isuru Pathum Herath--
+import calenderStaff from './pages/StaffMenagement/AttendanceStaff';                    //--Added by Isuru Pathum Herath--
 
 
 
@@ -60,6 +61,9 @@ const Routes = () => {
                         <PrivateRoute path="/staffLandingPage/:id" exact component={staffLandingPage} />            {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/staffFirstLogin/:id" exact component={staffFirstLogin} />              {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRoute path="/editStaffProfile/:id" exact component={staffMemberProfileEdit} />      {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRoute path="/calenderStaff/:id" exact component={calenderStaff} />               {/*--Added by Isuru Pathum Herath--*/}
+
+                        
                     </Switch>
 
                     {getAdminUser() && (

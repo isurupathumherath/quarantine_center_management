@@ -385,7 +385,7 @@ const App = (props, { history }) => {
                     </div>
                     <br />
                     <div class="row">
-                        <a className="btn btn-info btn-lg btn-block" href={`/attendance/${staffMembers.employeeId}`}>
+                        <a className="btn btn-info btn-lg btn-block" href={`/calenderStaff/${staffMembers.employeeId}`}>
                             <i class="fas fa-calendar-week">&nbsp; View My Attendance</i>
                         </a>
                     </div>
