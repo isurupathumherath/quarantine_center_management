@@ -308,7 +308,7 @@ export default function FoodAdmin() {
       <Header name="All Foods" icon="fa-database" />
       <div
         className="container"
-        style={{ width: "100%", marginRight: "100px", marginLeft: "20px" }}
+        style={{ width: "100%", marginRight: "100px"}}
       >
         <div className="content-container-fluid">
           <div className="row">
@@ -439,7 +439,7 @@ export default function FoodAdmin() {
                   <div
                     className="table-responsive"
                     style={{
-                      maxHeight: "450px",
+                      maxHeight: "530px",
                       overflowY: "scroll",
                     }}
                   >

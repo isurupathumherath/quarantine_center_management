@@ -368,7 +368,7 @@ export default function OrderAdmin() {
   return (
     <div>
       <Header name="All order details" icon="fa-snowflake-o" />
-      <div className="container" style={{ width: "90%", fontSize: "18px" }}>
+      <div className="container" style={{ width: "100%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
           <div className="col">
             <div
@@ -473,7 +473,7 @@ export default function OrderAdmin() {
       <div className="row">
         <div
           className="col-md-12"
-          style={{ marginLeft: "45px", maxWidth: "97%" }}
+          style={{ maxWidth: "100%" }}
         >
           <div
             className="card"
@@ -595,7 +595,7 @@ export default function OrderAdmin() {
       <div className="row">
         <div
           className="col-md-12"
-          style={{ marginLeft: "45px", maxWidth: "97%" }}
+          style={{  maxWidth: "100%" }}
         >
           <div
             className="card"

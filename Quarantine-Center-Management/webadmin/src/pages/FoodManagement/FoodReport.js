@@ -187,7 +187,13 @@ export default function FoodReport() {
 
         setDatadiv(
           <div className="col-md-12">
-            <h4>All orders</h4>
+            <h4
+            style={{
+              color: "#0057d1",
+              fontSize: "30px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}>All orders</h4>
 
             <div>
               <div
@@ -278,10 +284,10 @@ export default function FoodReport() {
     <div>
       <Header name="Report Generation" icon="fa-bar-chart" style="100%" />
       {/* <img src="/assets/img/logo.png" alt="Logo" /> */}
-      <div className="container" style={{ width: "88%", fontSize: "18px" }}>
+      <div className="container" style={{ width: "89%", fontSize: "18px" }}>
         <div
           className="row"
-          style={{ padding: "0px 0px 10px 0px", marginLeft: "-70px" }}
+          style={{ padding: "0px 0px 10px 0px", marginLeft: "-90px" }}
         >
           <div className="col">
             <div
@@ -300,7 +306,7 @@ export default function FoodReport() {
                     <div className="card">
                       <div className="card-header">
                         <h4 id="sss" className="card-title">
-                          Add/Update
+                          Fetch data
                         </h4>
                       </div>
                       <div className="card-body">

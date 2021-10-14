@@ -6,10 +6,10 @@ export default function Header(props) {
       <div
         className="row border border-light"
         style={{
-          width: "98%",
+          width: "100%",
           backgroundColor: "white",
           padding: "20px",
-          marginLeft: "27px",
+          marginLeft: "5px",
         }}
       >
         <div className="col-md-12 btn-group">
