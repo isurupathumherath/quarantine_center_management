@@ -353,6 +353,19 @@ exports.staffFirstLogin = (req, res) => {
 }
 
 /*
+Name - Staff Authentication Details Update
+Date - 15/10/2021
+ */
+exports.staffAuth = (req, res) => {
+    console.log(req.params.id)
+    const { password } = req.body;
+    Employee.findOneAndUpdate({ employeeId: req.params.id }, { password }, { new: true }).exec((err, post) => {
+        if (err) console.log(err);
+        res.json(post);
+    })
+}
+
+/*
 Name - Update Employee Details by Id
 Date - 11/09/2021
  */

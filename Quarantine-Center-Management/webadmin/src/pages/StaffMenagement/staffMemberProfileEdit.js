@@ -12,6 +12,7 @@ import { authenticate, getUser } from './staffHelper'
 
 const UpdateStaffMember = props => {
     // state
+    const [staffMembers, setStaffMembers] = useState([]);
     const [state, setState] = useState({
         firstName: '',
         middleName: '',
@@ -27,12 +28,15 @@ const UpdateStaffMember = props => {
         username: '',
         password: '',
         confirmPassword: '',
+        profileURL: '',
+        uname: '',
+        pswd: '',
     });
 
     const employeeID = getUser();
 
     //destructure values from state
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, username, password, confirmPassword } = state;
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, username, password, confirmPassword, profileURL, uname, pswd } = state;
 
     console.log(`PROP TEST: ${props.match.params._id}`)
 
@@ -40,9 +44,10 @@ const UpdateStaffMember = props => {
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
-                console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus } = response.data
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus })
+                console.log(response);
+                setStaffMembers(response.data);
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, profileURL } = response.data
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, profileURL })
             })
             .catch(error => alert('Error Loading Update Staff'));
     }, []);
@@ -142,16 +147,16 @@ const UpdateStaffMember = props => {
                 <br />
                 <br />
                 <br />
-                <form>
+                <form onSubmit={handleAuth}>
                     <h3>Authentication Details</h3>
                     <br />
                     <div class="row">
-                        <div class="col">
+                        {/* <div class="col">
                             <div className="form-group">
                                 <label className="text-muted">New Username</label>
                                 <input style={{ textAlign: "center" }} onChange={handleChange('username')} value={username} type="text" className="form-control" placeholder="Enter Your New Username" pattern="[A-Za-z0-9]{1,50}" title="Characters can only be A-Z and a-z and must be less than 50 characters." required />
                             </div>
-                        </div>
+                        </div> */}
                         <div class="col">
                             <div className="form-group">
                                 <label className="text-muted">New Password</label>
@@ -186,16 +191,16 @@ const UpdateStaffMember = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type })
+        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL })
         axios
-            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type })
+            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL })
             .then(response => {
 
                 console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type } = response.data
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL } = response.data
 
                 //empty state
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type });
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL });
                 //show success alert
                 // alert(`Staff Member ${firstName} is Updated`);
                 Swal.fire(
@@ -214,6 +219,120 @@ const UpdateStaffMember = props => {
                     footer: 'Please try again'
                 })
             })
+    };
+
+    const handleAuth = event => {
+        event.preventDefault()
+        console.table({ username, password })
+        if (password == confirmPassword) {
+            axios
+                .put(`http://localhost:8000/employee/staffAuth/${props.match.params.id}`, { password })
+                .then(response => {
+
+                    console.log(response)
+                    if (response.data == '') {
+                        Swal.fire({
+                            title: 'Change Failed!',
+                            text: 'Username is already in use!',
+                            icon: 'error',
+                            confirmButtonText: 'Try again'
+                        });
+                    }
+                    else {
+                        //show success alert
+                        // alert(`Employee ${response.data.firstName} is Created`);
+                        Swal.fire(
+                            `New Username & Password Added`,
+                            'Click Ok to continue',
+                            'success'
+                        )
+
+                        axios
+                            .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
+                            .then(response => {
+                                // console.log(response)
+                                setStaffMembers(response.data)
+                            })
+                            .catch(error => alert('Error Loading Staff Member Details'));
+
+                        //Send Activated Message via an Email
+
+                        const sendEmail = response.data.email;
+                        const username = response.data.username;
+
+                        async function main() {
+                            var transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: process.env.MAIL_SERVER_USERNAME,
+                                    pass: process.env.MAIL_SERVER_PASSWORD
+                                }
+                            });
+
+                            var mailOptions = {
+                                from: 'quarantine@out.com',
+                                to: `${sendEmail}`,
+                                subject: 'Your Account Activated',
+                                text: `
+                            Hi
+                        
+                            Your account under username - ${username} has been changed password If it is not you please contact administrator.
+   
+                            This is an auto generated email. If you have any issue with login to the system feel free to contact the support center 0761714844
+                            
+                            Thank You`
+                            };
+
+                            transporter.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+                                }
+                            });
+                        }
+
+                        //empty state
+                        setState({
+                            ...state,
+                            username: "",
+                            password: "",
+                            confirmPassword: "",
+
+                        });
+
+                    }
+                    const { username, password } = response.data
+
+                    //empty state
+                    setState({ ...state, username, password });
+                    //show success alert
+                    // alert(`Staff Member ${firstName} is Updated`);
+                    Swal.fire(
+                        `Staff Member ${firstName} is Authentication Details Updated`,
+                        'Click Ok to continue',
+                        'success'
+                    )
+                })
+                .catch(error => {
+                    console.log(error.Response)
+                    // alert(error.response.data.error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${error.response.data.error}`,
+                        footer: 'Please try again'
+                    })
+                })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: `Passwords are not matched`,
+                // text: `${error.response.data.error}`,
+                footer: 'Please try again'
+            })
+        }
+
     };
 
     return (
