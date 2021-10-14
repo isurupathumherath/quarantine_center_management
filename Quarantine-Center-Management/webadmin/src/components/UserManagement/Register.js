@@ -299,7 +299,7 @@ class Register extends Component {
                                     </div>
                                 </form>
                                 <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                    <a class="forgot-link" href={"./Login"}>Already have an account?</a>
+                                    
                                 </div><br />
 
 
