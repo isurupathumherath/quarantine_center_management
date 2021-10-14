@@ -29,7 +29,6 @@ class ProfileDetails extends Component {
         doc.text(200, 100,  [this.state.profile.mName])
         doc.text(200, 120, [this.state.profile.lName])
         doc.text(200, 140, [this.state.profile.uName])
-        doc.text(200, 160, [this.state.profile.nic])
         doc.text(200, 180, [this.state.profile.address])
         doc.text(200, 200, [this.state.profile.dob])
         doc.text(200, 220, [this.state.profile.email])
