@@ -52,10 +52,6 @@ class Register extends Component {
             fnameError = "First name is required";
         }
 
-        if (!this.state.mName) {
-            mnameError = "Middle name is required";
-        }
-
         if (!this.state.lName) {
             lnameError = "Last name is required";
         }
@@ -80,7 +76,7 @@ class Register extends Component {
             nicError = "National Identity Number is required";
         }
 
-        if (emailError || fnameError || lnameError || mnameError || nicError || addressError || dobError || pwdError || unameError) {
+        if (emailError || fnameError || lnameError || nicError || addressError || dobError || pwdError || unameError) {
             this.setState({ emailError, fnameError, lnameError, mnameError, nicError, addressError, dobError, pwdError, unameError });
             return false;
         }
@@ -119,6 +115,7 @@ class Register extends Component {
 
         axios.post("http://localhost:8000/profile/create", data).then((res) => {
             if (res.data.success) {
+                window.location.href='/login';
                 const Swal = require('sweetalert2');
                 Swal.fire({
                     title: 'Success!',
@@ -304,7 +301,7 @@ class Register extends Component {
                                 </div><br />
 
 
-                                <button className="btn btn-success btn-block btn-lg login-btn" type="submit" onClick={this.onSubmit}>
+                                <button className="btn btn-success btn-block btn-lg login-btn" type="submit" href={"./Login"} onClick={this.onSubmit}>
                                     <i className="far fa-check-square"> </i>
                                     &nbsp; Create
                                 </button><br />
