@@ -43,6 +43,19 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
 
+import AddTempCheckup from './components/MedicalTests/AddTempCheckup';
+import AddPCR from './components/MedicalTests/AddPCR';
+import DashboardMed from './components/MedicalTests/Dashboard';
+import ViewPCR from './components/MedicalTests/ViewPCR';
+import ViewCheckups from './components/MedicalTests/ViewCheckups';
+import UpdatePCR from './components/MedicalTests/UpdatePCR';
+import UpdateCheckup from './components/MedicalTests/UpdateCheckup';
+import DeleteCheckup from './components/MedicalTests/DeleteCheckup';
+import Reportpg1 from './components/MedicalTests/Reportpg1';
+import MedReport from './components/MedicalTests/MedReport';
+import Repo from './components/MedicalTests/Repo';
+
+
 
 const Routes = () => {
     return (
@@ -84,6 +97,19 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
+
+                        <PrivateRouteAdmin path="/addPCR" exact component={AddPCR}/>
+                        <PrivateRouteAdmin path="/addCheckup" exact component={AddTempCheckup}/>
+                        <PrivateRouteAdmin path="/Medicaltests/dashboard" exact component={DashboardMed}/>
+                        <PrivateRouteAdmin path="/ViewPCR" exact component={ViewPCR}/>
+                        <PrivateRouteAdmin path="/ViewCheckups" exact component={ViewCheckups}/>
+                        <PrivateRouteAdmin path="/UpdatePCR" exact component={UpdatePCR}/>
+                        <PrivateRouteAdmin path="/UpdateCheckup" exact component={UpdateCheckup}/>
+                        <PrivateRouteAdmin path="/DeleteCheckup" exact component={DeleteCheckup}/>
+                        <PrivateRouteAdmin path="/Reportpg1" exact component={Reportpg1}/>
+                        <PrivateRouteAdmin path="/MedReport" exact component={MedReport}/>
+                        <PrivateRouteAdmin path="/Repo" exact component={Repo}/>
+              
 
                     </Switch>
                 </BrowserRouter>
