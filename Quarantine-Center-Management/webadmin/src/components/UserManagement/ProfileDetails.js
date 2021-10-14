@@ -2,6 +2,7 @@ import React, { useEffect, Component } from 'react';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'
+import moment from 'moment';
 
 class ProfileDetails extends Component {
 
@@ -89,7 +90,7 @@ class ProfileDetails extends Component {
                             <dd className="col-sm-9">: {uName} </dd>
 
                             <dt className="col-sm-3">Date of Birth </dt>
-                            <dd className="col-sm-9">: {dob} </dd>
+                            <dd className="col-sm-9">: {moment.utc(dob).format('DD/MM/YYYY')} </dd>
 
                             <dt className="col-sm-3">NIC :</dt>
                             <dd className="col-sm-9">: {nic} </dd>

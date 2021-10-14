@@ -11,6 +11,7 @@ import Register from './components/UserManagement/Register';
 //import Register from "./components/UserManagement/Test";
 import Home from './components/UserManagement/Home';
 import Login from './components/UserManagement/Login';
+import ProfileDetails from "./components/UserManagement/ProfileDetails";
 import EditProfile from './components/UserManagement/EditProfile';
 import { Provider } from 'react-redux';
 import AllFood from "../../webclient/src/pages/FoodManagement/AllFood";
@@ -38,7 +39,7 @@ class App extends Component {
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
           <Route path="/home" exact component={Home} />
-
+          <Route path="/Profile" exact component={ProfileDetails} />
           {/*<Route path="/edit/:id" component={EditProfile} />*/}
           {/* Janith */}
           {/* <Route path="/login" exact component={Login} /> */}
