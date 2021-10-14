@@ -39,18 +39,20 @@ const SidebarNav = styled.nav`
     z-index: 10;
     top: 60px;
 
+  transition: 350ms;
+  z-index: 10;
+  top: 60px;
 `;
 
 const SidebarWrap = styled.div`
-    width: 100%;
-    top: 60px;
-
-`
+  width: 100%;
+  top: 60px;
+`;
 
 const Sidebar = () => {
-    const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
-    const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => setSidebar(!sidebar);
 
     return (
         <div class="sidebar" id="sidebar">
