@@ -11,6 +11,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducers } from './reducers/FinanceReducers';
 
+import Routes from "./Routes";
+
 /* Janith Gamage On - 13/09/2021  */
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
@@ -19,7 +21,7 @@ ReactDOM.render(
     <OrderContextProvider>
       <FavouriteContextProvider>
         <React.StrictMode>
-          <App />
+          <Routes />
         </React.StrictMode>
       </FavouriteContextProvider>
     </OrderContextProvider>

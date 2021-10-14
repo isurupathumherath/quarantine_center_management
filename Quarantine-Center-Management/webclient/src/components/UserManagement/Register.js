@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { AlignCenter } from 'react-feather';
 
 class Register extends Component {
 
@@ -51,10 +52,6 @@ class Register extends Component {
             fnameError = "First name is required";
         }
 
-        if (!this.state.mName) {
-            mnameError = "Middle name is required";
-        }
-
         if (!this.state.lName) {
             lnameError = "Last name is required";
         }
@@ -79,7 +76,7 @@ class Register extends Component {
             nicError = "National Identity Number is required";
         }
 
-        if (emailError || fnameError || lnameError || mnameError || nicError || addressError || dobError || pwdError || unameError) {
+        if (emailError || fnameError || lnameError || nicError || addressError || dobError || pwdError || unameError) {
             this.setState({ emailError, fnameError, lnameError, mnameError, nicError, addressError, dobError, pwdError, unameError });
             return false;
         }
@@ -118,6 +115,7 @@ class Register extends Component {
 
         axios.post("http://localhost:8000/profile/create", data).then((res) => {
             if (res.data.success) {
+                window.location.href = '/login';
                 const Swal = require('sweetalert2');
                 Swal.fire({
                     title: 'Success!',
@@ -144,176 +142,173 @@ class Register extends Component {
 
     render() {
         return (
-            <div class="content ">
-                <div class="container-fluid">
+            <div>
+                <div style={{ paddingLeft: '300px', paddingTop: '20px' }} className="col-md-12 col-lg-10">
+                    <div style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }} className="card card-registration card-registration-2">
+                        <div><br />
+                            <h1 style={{ paddingLeft: '40px' }}>Paitent Registration</h1><hr />
+                            <div className="row align-items-center justify-content-center">
+                                <div className="col-md-12 col-lg-5 login-left">
+                                    <h2>General Information</h2>
+                                    <form className="needs-validation" noValidate>
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>First Name</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="fName"
+                                                placeholder="Enter First Name"
+                                                value={this.state.fName}
+                                                onChange={this.handleInputChange}
+                                                pattern="[A-Za-z]{1,250}" title="Characters can only be A-Z and a-z and must be less than 250 characters."
+                                                required />
 
-                    <div class="row">
-                        <div class="col-md-8 offset-md-2 ">
 
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.fnameError}
+                                            </div>
 
-                            <div class="account-content">
-                                <div class="row align-items-center justify-content-center">
-
-                                    <div class="col-md-12 col-lg-6 ">
-                                        <div class="login-header">
-                                            <h2>Patient Register</h2>
                                         </div>
 
-                                        <form className="needs-validation" noValidate>
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>First Name</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="fName"
-                                                    placeholder="Enter First Name"
-                                                    value={this.state.fName}
-                                                    onChange={this.handleInputChange}
-                                                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z."
-                                                    required />
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Middle Name</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="mName"
+                                                placeholder="Enter Middle Name"
+                                                pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z"
+                                                value={this.state.mName}
+                                                onChange={this.handleInputChange} />
 
-
-                                                <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                    {this.state.fnameError}
-                                                </div>
-
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.mnameError}
                                             </div>
 
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Middle Name</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="mName"
-                                                    placeholder="Enter Middle Name"
-                                                    value={this.state.mName}
-                                                    onChange={this.handleInputChange} />
+                                        </div>
 
-                                                <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                    {this.state.mnameError}
-                                                </div>
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Last Name</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="lName"
+                                                placeholder="Enter Last Name"
+                                                pattern="[A-Za-z]{1,250}" title="Characters can only be A-Z and a-z and must be less than 250 characters"
+                                                value={this.state.lName}
+                                                onChange={this.handleInputChange} />
 
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.lnameError}
                                             </div>
 
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Last Name</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="lName"
-                                                    placeholder="Enter Last Name"
-                                                    value={this.state.lName}
-                                                    onChange={this.handleInputChange} />
+                                        </div>
 
-                                                <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                    {this.state.lnameError}
-                                                </div>
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>National Identity Number</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="nic"
+                                                placeholder="Enter National Identity Number"
+                                                pattern="[0-9]{12}"
+                                                value={this.state.nic}
+                                                onChange={this.handleInputChange} />
 
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.nicError}
                                             </div>
 
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>National Identity Number</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="nic"
-                                                    placeholder="Enter National Identity Number"
-                                                    value={this.state.nic}
-                                                    onChange={this.handleInputChange} />
+                                        </div>
 
-                                                <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                    {this.state.nicError}
-                                                </div>
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Date of Birth</label>
+                                            <input type="date"
+                                                className="form-control"
+                                                name="dob"
+                                                placeholder="Enter Date of Birth"
+                                                value={this.state.dob}
+                                                onChange={this.handleInputChange} />
 
+
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.dobError}
                                             </div>
-
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Date of Birth</label>
-                                                <input type="date"
-                                                    className="form-control"
-                                                    name="dob"
-                                                    placeholder="Enter Date of Birth"
-                                                    value={this.state.dob}
-                                                    onChange={this.handleInputChange} />
-
-
-                                                    <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                        {this.state.dobError}
-                                                    </div>
-                                            </div>
-
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Email</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="email"
-                                                    placeholder="Enter Email"
-                                                    value={this.state.email}
-                                                    onChange={this.handleInputChange} />
-
-                                                <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                    {this.state.emailError}
-                                                </div>
-
-                                            </div>
-
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Address</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="address"
-                                                    placeholder="Enter Address"
-                                                    value={this.state.address}
-                                                    onChange={this.handleInputChange} />
-
-
-                                                    <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                        {this.state.addressError}
-                                                    </div>
-                                            </div>
-
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Username</label>
-                                                <input type="text"
-                                                    className="form-control"
-                                                    name="uName"
-                                                    placeholder="Enter Username"
-                                                    value={this.state.uName}
-                                                    onChange={this.handleInputChange} />
-
-
-                                                    <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                        {this.state.unameError}
-                                                    </div>
-                                            </div>
-
-                                            <div className="form-group" style={{ marginBottom: '15px' }}>
-                                                <label style={{ marginBottom: '5px' }}>Password</label>
-                                                <input type="password"
-                                                    className="form-control"
-                                                    name="password"
-                                                    placeholder="Enter Password"
-                                                    value={this.state.password}
-                                                    onChange={this.handleInputChange} />
-
-
-                                                    <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                        {this.state.pwdError}
-                                                    </div>
-                                            </div><br/>
-
-
-                                            <div  style={{ float: "right", fontSize: 12, color: "red" }}>
-                                                <a class="forgot-link" href={"./Login"}>Already have an account?</a>
-                                            </div><br/>
-
-
-                                            <button className="btn btn-success btn-block btn-lg login-btn" type="submit" onClick={this.onSubmit}>
-                                                <i className="far fa-check-square"> </i>
-                                                &nbsp; Create
-                                            </button><br />
-
-                                        </form><br />
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div><br /><br />
-                        </div>
+                                <div style={{ border: '0px' }} className="col-md-12 col-lg-6 login-right">
+                                    <h2>Other Details</h2>
+                                    <form className="needs-validation" noValidate>
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Email</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="email"
+                                                placeholder="Enter Email"
+                                                value={this.state.email}
+                                                onChange={this.handleInputChange} />
+
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.emailError}
+                                            </div>
+
+                                        </div>
+
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Address</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="address"
+                                                placeholder="Enter Address"
+                                                pattern="{1,300}"
+                                                value={this.state.address}
+                                                onChange={this.handleInputChange} />
+
+
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.addressError}
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Username</label>
+                                            <input type="text"
+                                                className="form-control"
+                                                name="uName"
+                                                placeholder="Enter Username"
+                                                value={this.state.uName}
+                                                onChange={this.handleInputChange} />
+
+
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.unameError}
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group" style={{ marginBottom: '15px' }}>
+                                            <label style={{ marginBottom: '5px' }}>Password</label>
+                                            <input type="password"
+                                                className="form-control"
+                                                name="password"
+                                                placeholder="Enter Password"
+                                                value={this.state.password}
+                                                onChange={this.handleInputChange} />
+
+
+                                            <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                                {this.state.pwdError}
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div style={{ float: "right", fontSize: 12, color: "red" }}>
+                                        <a class="forgot-link" href={"./Login"}>Already have an account?</a>
+                                    </div><br />
+
+
+                                    <button className="btn btn-success btn-block btn-lg login-btn" type="submit" href={"./Login"} onClick={this.onSubmit}>
+                                        <i className="far fa-check-square"> </i>
+                                        &nbsp; Create
+                                    </button><br />
+                                </div>
+                            </div>
+                        </div><br /><br /><br />
                     </div>
                 </div>
             </div>
