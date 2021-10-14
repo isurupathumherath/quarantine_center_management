@@ -172,10 +172,10 @@ const App = (props, { history }) => {
 
     return (
 
-        <div className="container my-4" >
-            <div class="card bg-light mb-3">
+        <div style={{ marginLeft: "-250px" }}>
+            <div class="card bg-light mb-3" >
                 <br />
-                <h1 align="center">{staffMembers.firstName}'s Profile</h1><br />
+                <h1 align="center">Welcome {staffMembers.firstName}</h1><br />
                 <div className="main-body">
                     {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
                     <ol className="breadcrumb">

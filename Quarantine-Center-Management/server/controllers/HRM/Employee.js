@@ -14,7 +14,7 @@ Date - 22/08/2021
  */
 exports.create = (req, res) => {
 
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus } = req.body
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL } = req.body
 
     // Validate Email & Phone Number /^\d*(?:\.\d{1,2})?$/
     var validator = require("email-validator");
@@ -104,7 +104,7 @@ exports.create = (req, res) => {
         }
 
         //Check Server Errors
-        Employee.create({ employeeId, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password, accountStatus }, (err, employee) => {
+        Employee.create({ employeeId, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, username, password, accountStatus, profileURL }, (err, employee) => {
 
             //Check Server Errors
             if (err) {

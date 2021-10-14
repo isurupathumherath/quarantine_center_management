@@ -46,8 +46,9 @@ const UpdateStaffMember = props => {
 
     const showUpdateForm = () => (
         <div className="card container">
-            <div className="card-body">
+            <div className="card-body" >
                 <form onSubmit={handleSubmit}>
+                    <br />
                     <h3>General Details</h3>
                     <br />
                     <div class="row">
@@ -221,16 +222,22 @@ const UpdateStaffMember = props => {
 
     return (
 
-        <div className="card" style={{marginLeft: "-150px"}}>
+        <div className="card bg-light mb-3" style={{ marginLeft: "-150px" }}>
+            <br />
             <div className="card-body"></div>
             <div className="container">
                 <br />
                 <h1 align="center">UPDATE STAFF MEMBER</h1>
 
                 {showUpdateForm()}
+                <div>
+                    <button className="btn btn-danger btn-lg btn-block">Clear</button>
+                </div>
                 <br /><br /><br />
 
+                <br />
             </div>
+
 
         </div>
     )

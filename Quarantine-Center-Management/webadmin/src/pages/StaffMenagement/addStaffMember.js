@@ -8,11 +8,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import firebase from './firebase';
+import 'firebase/storage'
+
+const storage = firebase.storage();
 
 // // import DatePicker from 'react-datepicker';
 // react-datepicker/dist/react-datepicker.css
 const App = () => {
   // state
+  const [file, setFile] = useState(null);
+  const [profileURL, setURL] = useState("");
+
   const [state, setState] = useState({
     firstName: "",
     middleName: "",
@@ -23,7 +30,7 @@ const App = () => {
     NIC: "",
     address: "",
     type: "",
-    accountStatus: ""
+    accountStatus: "",
   });
 
   //destructure values from state
@@ -46,12 +53,33 @@ const App = () => {
   //     setState({...state, [name]: event.target.value});
   // };
 
+  //Change Hander
   function handleChange(name) {
     return function (event) {
       setState({ ...state, [name]: event.target.value });
     };
   }
 
+  function handleChangeImage(e) {
+    setFile(e.target.files[0]);
+  }
+
+  //Save Image
+  function handleUpload(e) {
+    e.preventDefault();
+    const ref = storage.ref(`/images/${file.name}`);
+    const uploadTask = ref.put(file);
+    uploadTask.on("state_changed", console.log, console.error, () => {
+      ref
+        .getDownloadURL()
+        .then((url) => {
+          setFile(null);
+          setURL(url);
+        });
+    });
+  }
+
+  //Submit Handler
   const handleSubmit = (event) => {
     event.preventDefault();
     console.table({
@@ -65,6 +93,7 @@ const App = () => {
       address,
       type,
       accountStatus,
+      profileURL,
     });
 
     axios
@@ -79,6 +108,7 @@ const App = () => {
         address,
         type,
         accountStatus,
+        profileURL,
       })
       .then((response) => {
         console.log(response);
@@ -103,6 +133,7 @@ const App = () => {
           type: "",
           accountStatus: "",
         });
+
       })
       .catch((error) => {
         console.log(error.Response);
@@ -127,8 +158,28 @@ const App = () => {
 
         <div className="card">
           <div className="card-body">
-            <form onSubmit={handleSubmit}>
+            <center>
+              <div class="row container ">
+                <div class="col">
+                  <label className="text-muted"> <b>Upload Profile Picture (This is Optional)</b></label><br /><br />
+                  <div >
+                    <form onSubmit={handleUpload}>
+                      <input type="file" onChange={handleChangeImage} />
+                      <button disabled={!file}>upload to firebase</button>
+                    </form>
+                    <br />
+                    <img src={profileURL} alt="" style={{ width: "250px", height: "250px" }} />
+                  </div>
+                </div>
+              </div>
+            </center>
 
+            <br />
+            <br />
+
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+              </div>
               <div class="row">
                 <div class="col">
                   <div className="form-group">
@@ -177,6 +228,9 @@ const App = () => {
                     <input onChange={handleChange('email')} value={email} type="email" className="form-control" placeholder="Enter the Email Address" title="Invalid Email Address." required />
                   </div>
                 </div>
+                <div class="col">
+
+                </div>
               </div>
 
               <div class="row">
@@ -218,6 +272,7 @@ const App = () => {
             </form>
           </div>
         </div>
+
       </div>
     </div>
   );

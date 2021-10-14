@@ -43,7 +43,7 @@ import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEd
 import qStaff from './pages/StaffMenagement/showQEmployee';                             //--Added by Isuru Pathum Herath--
 import calender from './pages/StaffMenagement/Attendance';                              //--Added by Isuru Pathum Herath--
 import calenderStaff from './pages/StaffMenagement/AttendanceStaff';                    //--Added by Isuru Pathum Herath--
-
+import imageUpload from './pages/StaffMenagement/imageUpload';
 
 
 import viewTickets from './components/TicketManagement/adminAllTickets';
@@ -77,6 +77,7 @@ const Routes = () => {
 
                         <Route path="/" exact component={App} />
 
+                        <Route path="/imageUpload" exact component={imageUpload} />
                         <PrivateRouteAdmin path="/addStaffMember" exact component={addStaffMember} />                   {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/allStaffMembers" exact component={allStaffMembers} />                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/updateStaffMember/:id" exact component={updateStaffMember} />         {/*--Added by Isuru Pathum Herath--*/}
