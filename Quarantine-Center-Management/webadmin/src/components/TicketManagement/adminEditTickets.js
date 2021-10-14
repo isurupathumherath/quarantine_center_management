@@ -56,7 +56,7 @@ export default class adminEditTickets extends Component {
             if (res.data.success) {
                 Swal.fire({
                     title: 'Done',
-                    text: 'Are you sure you want to reply?',
+                    text: 'Reply has been send',
                     icon: 'success',
                     confirmButtonText: 'Yes'
                 })
@@ -97,15 +97,15 @@ export default class adminEditTickets extends Component {
         });
     }
 
-    // createAndDownloadPdf = () => {
-    //     axios.post('http://localhost:8000/create-pdf', this.state)
-    //       .then(() => axios.get('http://localhost:8000/fetch-pdf', { responseType: 'blob' }))
-    //       .then((res) => {
-    //         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-    
-    //         saveAs(pdfBlob, 'Subject.pdf');
-    //       })
-    //   }
+    createAndDownloadPdf = () => {
+        axios.post('http://localhost:8000/create-pdf', this.state)
+            .then(() => axios.get('http://localhost:8000/fetch-pdf', { responseType: 'blob' }))
+            .then((res) => {
+                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+                saveAs(pdfBlob, 'Subject.pdf');
+            })
+    }
 
 
     render() {
@@ -190,18 +190,17 @@ export default class adminEditTickets extends Component {
                         </div>
 
                         <button className="btn btn-success" type="submit" style={{ marginTop: '15px' }} onClick={this.onSubmit} >
-                        <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane"></i>
                             &nbsp;Reply
                         </button>
                         <a style={{ marginLeft: '15px', marginTop: '15px' }} className="btn btn-primary" href={'/Mailer'}>
-                          <i className="fas fa-edit"></i>&nbsp;Mail
+                            <i className="fas fa-edit"></i>&nbsp;Mail
                         </a>
+                            <button className="btn btn-warning" style={{  marginLeft: '15px', marginTop: '15px'  }} onClick={this.createAndDownloadPdf}>
+                            <i class="fa fa-file-pdf-o" ></i>
+                                &nbsp;Download File
+                            </button>
                     </form>
-
-                    {/* <div>
-                        <button className="btn btn-success" onClick={this.createAndDownloadPdf}>Download File</button>
-                    </div> */}
-
                 </div>
             </div>
         );

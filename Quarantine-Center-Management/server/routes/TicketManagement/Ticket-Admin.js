@@ -7,7 +7,7 @@
 const express = require('express');
 const tickets = require('../../models/TicketManagement/Ticket-Admin');
 const pdf = require('html-pdf');
-const pdfTemp1 = require('../../documents');
+const pdfReport = require('../../documents');
 
 const router = express.Router();
 
@@ -143,7 +143,7 @@ router.delete('/ticket/delete/:id', (req, res) => {
 //create the PDF
 
 router.post('/create-pdf', (req, res) => {
-    pdf.create(pdfTemp1(req.body), {}).toFile('pdfsub.pdf', (err) => {
+    pdf.create(pdfReport(req.body), {}).toFile('pdfsub.pdf', (err) => {
         if (err) {
             res.send(Promise.reject());
         }
@@ -155,7 +155,7 @@ router.post('/create-pdf', (req, res) => {
 //get the PDF
 
 router.get('/fetch-pdf', (req, res) => {
-    res.sendFile('pdfsub.pdf', { root: `${__dirname}/../../..` });
+    res.sendFile('pdfsub.pdf', { root:'C:/Users/DELL/Desktop/New folder (2)/itp_project-g17/Quarantine-Center-Management/server'});
 })
 
 

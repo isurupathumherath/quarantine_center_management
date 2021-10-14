@@ -147,7 +147,7 @@ export default class clientAddTicket extends Component {
                                     onChange={this.handleInputChange} />
                             </div>
 
-                            <button className="btn btn-success" type="submit" onClick={this.onSubmit}>
+                            <button className="btn btn-success" type="submit" onClick={this.onSubmit} >
                                 <i className="far fa-check-square"></i>
                                 &nbsp;Submit
                             </button>

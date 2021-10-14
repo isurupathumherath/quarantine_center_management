@@ -16,6 +16,7 @@ import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 //pages
 import Login from "./pages/Common/Loginexaple";
 import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
+import formLandingPage from './pages/TicketManagement/formLandingPage'; //--Added by Vishara Prabuddhi--
 // import viewMyTicket from './pages/TicketManagement/viewMyTicket'; //--Added by Vishara Prabuddhi--
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route path="/login" exact component={Login} />
               {/* vishara */}
               <Route path="/addticket" exact component={addTicket}/> 
+              <Route path="/formLandingPage" exact component={formLandingPage}/> 
               {/* <Route path="/viewMyTicket" exact component={viewMyTicket}/>  */}
               {/* Chamodh */}
               <Route path="/allFood" exact component={AllFood} />
