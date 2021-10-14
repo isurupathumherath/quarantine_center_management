@@ -191,7 +191,7 @@ const App = (props, { history }) => {
 
     return (
 
-        <div style={{ marginLeft: "-250px" }}>
+        <div style={{ marginLeft: "-250px", marginTop: "-100px" }}>
             <div class="card bg-light mb-3" >
                 <br />
                 <h1 align="center">Welcome {staffMembers.firstName}</h1><br />

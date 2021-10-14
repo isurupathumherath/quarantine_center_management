@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { authenticate, getUser } from './staffHelper'
 
 const UpdateStaffMember = props => {
     // state
@@ -27,6 +28,8 @@ const UpdateStaffMember = props => {
         password: '',
         confirmPassword: '',
     });
+
+    const employeeID = getUser();
 
     //destructure values from state
     const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, username, password, confirmPassword } = state;
@@ -133,10 +136,7 @@ const UpdateStaffMember = props => {
                     <div>
                         <button className="btn btn-primary btn-lg btn-block">Update General Details</button>
                     </div>
-                    <br />
-                    <div>
-                        <button className="btn btn-danger btn-lg btn-block">Clear</button>
-                    </div>
+
 
                 </form>
                 <br />
@@ -170,10 +170,6 @@ const UpdateStaffMember = props => {
 
                         <div>
                             <button className="btn btn-primary btn-lg btn-block">Update General Details</button>
-                        </div>
-                        <br />
-                        <div>
-                            <button className="btn btn-danger btn-lg btn-block">Clear</button>
                         </div>
                     </div>
                     <br />
@@ -222,7 +218,7 @@ const UpdateStaffMember = props => {
 
     return (
 
-        <div className="card bg-light mb-3" style={{ marginLeft: "-150px" }}>
+        <div className="card bg-light mb-3" style={{ marginLeft: "-150px", marginTop: "-100px" }}>
             <br />
             <div className="card-body"></div>
             <div className="container">
@@ -231,7 +227,9 @@ const UpdateStaffMember = props => {
 
                 {showUpdateForm()}
                 <div>
-                    <button className="btn btn-danger btn-lg btn-block">Clear</button>
+                    <a className="btn btn-danger btn-lg btn-block" href={`/staffLandingPage/${employeeID}`} style={{ textDecoration: 'none' }}>
+                        <i class="">Go Back</i>&nbsp;
+                    </a>
                 </div>
                 <br /><br /><br />
 
