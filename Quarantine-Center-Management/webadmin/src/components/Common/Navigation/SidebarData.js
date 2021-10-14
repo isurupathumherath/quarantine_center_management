@@ -7,14 +7,14 @@ import * as HiIcons from 'react-icons/hi';
 export const SidebarData = [
     {
         title: 'User management',
-        path: '/user',
-        icon: <AiIcons.AiOutlineUser/>,
+        path: '/dashboard',
+        icon: <AiIcons.AiOutlineUser />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'Dashboard',
-                path: '/finance/dashboard',
+                path: '/dashboard',
                 icon: <RiIcons.RiDashboardLine />
             },
             {
@@ -27,22 +27,23 @@ export const SidebarData = [
                 path: '/finance/report',
                 icon: <HiIcons.HiDocumentReport />
             },
+
         ]
     },
     {
         title: 'Inventory management',
         path: '/inventory',
-        icon: <AiIcons.AiFillEnvironment/>, 
+        icon: <AiIcons.AiFillEnvironment />,
     },
     {
         title: 'Ticketing system',
         path: '/ticketing',
-        icon: <AiIcons.AiTwotoneRocket/>, 
+        icon: <AiIcons.AiTwotoneRocket />,
     },
     {
         title: 'Food management',
         path: '/food',
-        icon: <AiIcons.AiOutlineFolder/>, 
+        icon: <AiIcons.AiOutlineFolder />,
     },
     {
         title: 'Medical Test details',
@@ -54,37 +55,57 @@ export const SidebarData = [
     {
         title: 'Room management',
         path: '/room',
-        icon: <AiIcons.AiOutlineChrome/>, 
+        icon: <AiIcons.AiOutlineChrome />,
     },
     {
         title: 'Staff management',
         path: '/staff',
-        icon: <AiIcons.AiOutlineRadiusUpleft/>, 
+        icon: <IoIcons.IoIosPerson />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
+                title: 'ANALIYTICS',
+                path: '/staffAnalytic',
+                icon: <IoIcons.IoMdPodium />
+            },
+            {
                 title: 'ADD STAFF MEMBER',
                 path: '/addStaffMember',
-                icon: <RiIcons.RiDashboardLine />
+                icon: <IoIcons.IoMdPersonAdd />
             },
             {
                 title: 'ALL STAFF',
                 path: '/allStaffMembers',
-                icon: <IoIcons.IoIosPaper />
+                icon: <IoIcons.IoMdPeople />
             },
             {
                 title: 'ADD SALARY',
                 path: '/addSalary',
-                icon: <HiIcons.HiDocumentReport />
+                icon: <IoIcons.IoMdWallet />
             },
-            
+            {
+                title: 'ADD QUARANTINE',
+                path: '/addQuaratineStaff',
+                icon: <IoIcons.IoIosSad />
+            },
+            {
+                title: 'ADD TASKS',
+                path: '/addTask',
+                icon: <IoIcons.IoIosListBox />
+            },
+            {
+                title: 'EMP LOGIN',
+                path: '/staffLogin',
+                icon: <IoIcons.IoIosListBox />
+            },
+
         ]
     },
     {
         title: 'Finance Managment',
         path: '/finance',
-        icon: <AiIcons.AiFillCreditCard/>,
+        icon: <AiIcons.AiFillCreditCard />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
@@ -104,11 +125,6 @@ export const SidebarData = [
                 icon: <HiIcons.HiDocumentReport />
             },
         ],
-    },
-    {
-        title: 'Login',
-        path: '/login',
-        icon: <AiIcons.AiOutlineLogin/>, 
     },
     // {
     //     title: 'Reports',

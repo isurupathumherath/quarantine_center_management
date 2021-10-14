@@ -10,20 +10,28 @@
     "axios": "^0.21.4",
     "babel-preset-es2015": "^6.24.1",
     "bootstrap": "^5.1.0",
+    "jspdf": "^2.4.0",
+    "jspdf-autotable": "^3.5.20",
     "mdbreact": "^5.1.0",
+    "nodemailer": "^6.6.5",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-confirm-alert": "^2.7.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-datepicker": "^4.2.1",
     "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
+    "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "react-table": "^7.7.0",
     "react-to-pdf": "0.0.14",
     "recharts": "^2.1.4",
+    "react-select": "^5.0.0",
     "styled-components": "^5.3.1",
+    "sweetalert2": "^11.1.7",
+    "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -31,12 +39,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
