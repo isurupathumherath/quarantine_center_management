@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-
+import Swal from 'sweetalert2';
+ 
 // const emailRegex = RegExp(
 //     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 // );
@@ -53,7 +54,7 @@ class InquaryForm extends Component {
 
 
     handleSubmit = e => {
-        // e.preventDefault();
+        e.preventDefault();
 
         if (formValid(this.state)) {
             console.log(`
@@ -66,10 +67,37 @@ class InquaryForm extends Component {
                 type : ${this.state.type}
             `)
 
-            alert("tets1")
             const res = axios.post('http://localhost:8000/inquary/createInquary', this.state);
 
+            Swal.fire({
+                title: 'Inquary Added Suucessfully',
+                icon: 'success',
+                html:
+                    '"Inquary Service" ' +
+                    'This Service is only avaliable for Payment Inquary purposes only. ' +
+                    'Please use Ticket Service for other Inquaries,' +
+                    '<span style="color:blue"><a href="/ticket">Ticket Service</a></span>',
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                    '<a href="/inquary">Proceed</a>',
+                cancelButtonText:
+                    'Cancel',
+            })
+
         } else {
+            Swal.fire({
+                title: 'Invlaid inputs',
+                icon: 'error',
+                html:
+                    'Please check again!',
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                    'ok',
+                cancelButtonText:
+                    'Cancel',
+            })
             console.error("FORM INVALID - DISPLAY ERROR MASAGE")
         }
     }
@@ -90,12 +118,12 @@ class InquaryForm extends Component {
                         ? "minimum 3 characaters required"
                         : "";
                 break;
-            case "type":
-                formErrors.type =
-                    value.length < 3
-                        ? "minimum 3 characaters required"
-                        : "";
-                break;
+            // case "type":
+            //     formErrors.type =
+            //         value.length < 3
+            //             ? "minimum 3 characaters required"
+            //             : "";
+            //     break;
             case "piority":
                 formErrors.piority =
                     value.length < 0 ? "minimum 3 characaters required" : "";
@@ -136,18 +164,46 @@ class InquaryForm extends Component {
                         </Form.Group>
                         <Form.Group as={Col} md="6" style={{ marginTop: '2%' }}>
                             <Form.Label>Inquary type</Form.Label>
-                            <Form.Control
+                            {/* <Form.Control
                                 //className={formErrors.firstName.length > 0 ? "error" : null}
                                 placeholder="Type"
                                 type="text"
                                 name="type"
                                 noValidate
                                 onChange={this.handleChange}
-                            />
+                            /> */}
+                            <Form.Select
+                                name="type"
+                                noValidate
+                                onChange={this.handleChange}
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '.375rem 2.25rem .375rem .75rem',
+                                    fontSize: '1rem',
+                                    fontWeight: '400',
+                                    lineHeight: '1.5',
+                                    color: '#212529',
+                                    backgroundImage : 'url(data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3e%3cpath fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 5l6 6 6-6"/%3e%3c/svg%3e)',
+                                    backgroundColor: '#fff',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'right .75rem center',
+                                    backgroundSize: '16px 12px',
+                                    border: '1px solid #ced4da',
+                                    borderRadius: '.25rem',
+                                    transition: 'border-color .15s ease-in-out,box-shadow .15s ease-in-out',
+                                    appearance: 'none'
+                                }}
+                            >
+                                <option>Open this select menu</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Other">Other</option>
+                                <option value="Technical">Technical</option>
+                            </Form.Select>
                             {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
-                            {formErrors.type.length > 0 && (
+                            {/* {formErrors.type.length > 0 && (
                                 <span className="errorMessage" style={{ color: 'red' }}>{formErrors.type}</span>
-                            )}
+                            )} */}
                         </Form.Group>
                         <Form.Group as={Col} md="6" style={{ marginTop: '2%' }}>
                             <Form.Label>Inquary Piority</Form.Label>
@@ -201,7 +257,7 @@ class InquaryForm extends Component {
                         </Col>
                     </Row>
                 </Form>
-            </div>
+            </div >
         )
     }
 }

@@ -9,15 +9,73 @@
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> 
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
   <!-- Janith Gamage On - 13/09/2021  -->
   <!-- template css -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css"> 
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <title>Doccure</title>
+  <title>React App</title>
+
+  <style>
+    .testprogressbar {
+      counter-reset: step;
+    }
+
+    .testprogressbar li {
+      list-style-type: none;
+      width: 30%;
+      float: left;
+      font-size: 12px;
+      position: relative;
+      text-align: center;
+      text-transform: uppercase;
+      color: #7d7d7d;
+    }
+
+    .testprogressbar li:before {
+      width: 30px;
+      height: 30px;
+      content: counter(step);
+      counter-increment: step;
+      line-height: 30px;
+      border: 2px solid #7d7d7d;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      background-color: white;
+    }
+
+    .testprogressbar li:after {
+      width: 100%;
+      height: 2px;
+      content: '';
+      position: absolute;
+      background-color: #7d7d7d;
+      top: 15px;
+      left: -50%;
+      z-index: -1;
+    }
+
+    .testprogressbar li:first-child:after {
+      content: none;
+    }
+
+    .testprogressbar li.active {
+      color: green;
+    }
+
+    .testprogressbar li.active:before {
+      border-color: #55b776;
+    }
+
+    .testprogressbar li.active+li:after {
+      background-color: #55b776;
+    }
+  </style>
 </head>
 
 <body>
@@ -26,14 +84,14 @@
   <div class="main-wrapper">
     <div id="root"></div>
   </div>
- 
-  
+
+
   <!-- Janith Gamage On - 13/09/2021  -->
   <!-- template scripts -->
-  <script src="assets/js/jquery.min.js"></script> 
+  <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script> 
-  <script src="assets/js/slick.js"></script> 
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/slick.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
 

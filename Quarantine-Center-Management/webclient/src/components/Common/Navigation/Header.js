@@ -61,6 +61,9 @@ function Header() {
                   <li>
                     <a href={"/inquary"}>Inquary</a>
                   </li>
+                  <li>
+                    <a href={'/payment'}>Payment</a>
+                  </li>
                 </ul>
               </li>
               <li class="has-submenu">
