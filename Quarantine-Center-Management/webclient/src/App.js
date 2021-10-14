@@ -11,6 +11,7 @@ import Register from './components/UserManagement/Register';
 //import Register from "./components/UserManagement/Test";
 import Home from './components/UserManagement/Home';
 import Login from './components/UserManagement/Login';
+import ProfileDetails from "./components/UserManagement/ProfileDetails";
 import EditProfile from './components/UserManagement/EditProfile';
 import { Provider } from 'react-redux';
 import AllFood from "../../webclient/src/pages/FoodManagement/AllFood";
@@ -19,6 +20,7 @@ import FoodAdmin from "../../webclient/src/pages/FoodManagement/FoodAdmin";
 import FoodCart from "../../webclient/src/pages/FoodManagement/FoodCart";
 import AllOrders from "../../webclient/src/pages/FoodManagement/AllOrders";
 import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
+import Favourites from "../../webclient/src/pages/FoodManagement/Favourites";
 
 /* Janith Gamage On - 11/10/2021  */
 import HomePage from "./pages/FinanceManagement/Fhome";
@@ -38,7 +40,7 @@ class App extends Component {
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
           <Route path="/home" exact component={Home} />
-
+          <Route path="/Profile" exact component={ProfileDetails} />
           {/*<Route path="/edit/:id" component={EditProfile} />*/}
           {/* Janith */}
           {/* <Route path="/login" exact component={Login} /> */}
@@ -49,6 +51,7 @@ class App extends Component {
           <Route path="/allOrders" exact component={AllOrders} />
           <Route path="/foodCart" exact component={FoodCart} />
           <Route path="/orderAdmin" exact component={OrderAdmin} />
+          <Route path="/favourites" exact component={Favourites} />
 
           {/* Janith Gamage On - 11/10/2021   */}
           <Route path="/hometest" exact component={HomePage} />
