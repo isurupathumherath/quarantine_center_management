@@ -250,7 +250,7 @@ const App = () => {
                                 </a> */}
                                             &nbsp;
                                             <a className="btn btn-danger" href="#" onClick={() => deleteStaffSalaryMember(staffSalary.EmployeeID)}>
-                                                <i className="far fa-trash-alt"></i>&nbsp;
+                                                <i className="far fa-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>

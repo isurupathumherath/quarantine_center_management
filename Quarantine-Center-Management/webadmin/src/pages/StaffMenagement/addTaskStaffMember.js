@@ -272,7 +272,7 @@ const App = () => {
                                             <td>{staffTask.Description}</td>
                                             <td>
                                                 <a className="btn btn-danger" href="#" onClick={() => deleteTask(staffTask._id)}>
-                                                    <i className="far fa-trash-alt"></i>&nbsp;
+                                                    <i className="far fa-trash-alt"></i>
                                                 </a>
                                             </td>
                                         </tr>
