@@ -19,7 +19,7 @@ const App = props => {
     const [staffMembers, setStaffMembers] = useState([]);
 
     console.log(props);
-    
+
     useEffect(() => {
 
         axios
@@ -37,10 +37,11 @@ const App = props => {
     }, []);
 
     return (
-        <div className="container" >
-            <h1 align="center">{staffMembers.firstName}'s Profile</h1><br />
-            <div className="main-body">
-                {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
+        <div className="container card bg-light " >
+            <div className="card-body ">
+                <h1 align="center ">{staffMembers.firstName}'s Profile</h1><br />
+                <div className="main-body ">
+                    {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
@@ -48,41 +49,41 @@ const App = props => {
                     </ol>
                 </nav> */}
 
-                <div className="row gutters-sm">
-                    <div className="col-md-4 mb-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="d-flex flex-column align-items-center text-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                                    <div className="mt-3">
-                                        <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
-                                        <p className="text-secondary mb-1">{staffMembers.type}</p>
-                                        <p className="text-muted font-size-sm">{staffMembers.address}</p>
-                                        {/* <button className="btn btn-info">Follow</button> <br/> */}
+                    <div className="row gutters-sm">
+                        <div className="col-md-4 mb-3">
+                            <div className="card border-success">
+                                <div className="card-body">
+                                    <div className="d-flex flex-column align-items-center text-center">
+                                        <img src={staffMembers.profileURL} alt="PROFILE PICTURE NOT AVAILABLE" className="rounded-circle" width="150" />
+                                        <div className="mt-3">
+                                            <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
+                                            <p className="text-secondary mb-1">{staffMembers.type}</p>
+                                            <p className="text-muted font-size-sm">{staffMembers.address}</p>
+                                            {/* <button className="btn btn-info">Follow</button> <br/> */}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="card mt-3">
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 className="mb-0">Account Status</h6>
-                                    <span className="text-success">{staffMembers.accountStatus}</span>
-                                </li>
-                                <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 className="mb-0">Username</h6>
-                                    <span className="text-success">{staffMembers.username}</span>
-                                </li>
-                                <br />
-                                <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <div className="col-sm-12">
-                                        <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
+                            <div className="card mt-3">
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 className="mb-0">Account Status</h6>
+                                        <span className="text-success">{staffMembers.accountStatus}</span>
+                                    </li>
+                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 className="mb-0">Username</h6>
+                                        <span className="text-success">{staffMembers.username}</span>
+                                    </li>
+                                    <br />
+                                    <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <div className="col-sm-12">
+                                            <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                     <span className="text-secondary">https://bootdey.com</span>
                                 </li>
@@ -102,94 +103,104 @@ const App = props => {
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                     <span className="text-secondary">bootdey</span>
                                 </li> */}
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="col-md-8">
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Staff ID</h6>
+                        <div className="col-md-8">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Staff ID</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.employeeId}
+                                        </div>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.employeeId}
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Full Name</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Full Name</h6>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Email</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.email}
+                                        </div>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Mobile Number</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.mobileNumber}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Email</h6>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Address</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.address}
+                                        </div>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.email}
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Birthday</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {moment.utc(staffMembers.DOB).format('MM/DD/YYYY')}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Mobile Number</h6>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">NIC</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.NIC}
+                                        </div>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.mobileNumber}
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Account Status</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {staffMembers.accountStatus}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Address</h6>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Added At</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                                        </div>
                                     </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.address}
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Last Update At</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-blue">
+                                            {moment(staffMembers.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Birthday</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {moment.utc(staffMembers.DOB).format('MM/DD/YYYY')}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">NIC</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {staffMembers.NIC}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Added At</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Last Update At</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-blue">
-                                        {moment(staffMembers.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
-                                    </div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -129,9 +129,11 @@ const App = props => {
 
                         });
 
+                        //Go to Landing Page
+                        setTimeout(() => { window.location.href = `/staffLandingPage/${props.match.params.id}` }, 2000);
+
                     }
-                    //Go to Landing Page
-                    setTimeout(() => { window.location.href = `/staffLandingPage/${props.match.params.id}` }, 2000);
+
                 })
                 .catch((error) => {
                     console.log(error.Response);

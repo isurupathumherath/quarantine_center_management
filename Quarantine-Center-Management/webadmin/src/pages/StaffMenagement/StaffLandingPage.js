@@ -160,6 +160,25 @@ const App = (props, { history }) => {
     }
 
     useEffect(() => {
+
+        // Use Javascript
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        // document.getElementById("date").setAttribute("min", today);
+        document.getElementById("date").setAttribute("max", today);
+        // document.getElementById("date").setAttribute("value", today);
+
+
         window.onload();
         fetchTaskDetails();
         axios
@@ -190,7 +209,7 @@ const App = (props, { history }) => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                        <img src={staffMembers.profileURL} alt="PROFILE PICTURE IS NOT AVAILABLE" className="rounded-circle" width="150" />
                                         <div className="mt-3">
                                             <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
                                             {/* <p className="text-secondary mb-1">{staffMembers.type}</p>
@@ -357,12 +376,12 @@ const App = (props, { history }) => {
             <div className="card">
                 <br />
                 <h4 align="center">Mark Your Attendance</h4>
-                <form onSubmit={handleSubmit} style={{ marginLeft: "20px", marginRight: "20px" }}>
+                <form onSubmit={handleSubmit} style={{ marginLeft: "20px", marginRight: "20px" }}><br />
                     <div class="row">
                         <div class="col">
                             <div className="form-group ">
                                 <label className="text-muted">Date</label>
-                                <input type="date" onChange={handleChange('date')} value={date} className="form-control" placeholder="Enter the Date of Birth" required />
+                                <input type="date" id="date" onChange={handleChange('date')} value={date} className="form-control" placeholder="Enter the Date of Birth" required />
                             </div>
                         </div>
                         <div class="col">

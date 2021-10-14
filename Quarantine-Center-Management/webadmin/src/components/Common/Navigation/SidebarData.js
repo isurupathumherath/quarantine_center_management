@@ -91,13 +91,7 @@ export const SidebarData = [
                 title: 'TASKS',
                 path: '/addTask',
                 icon: <IoIcons.IoIosListBox />
-            },
-            {
-                title: 'EMP LOGIN',
-                path: '/staffLogin',
-                icon: <IoIcons.IoIosListBox />
-            },
-
+            }
         ]
     },
     {
