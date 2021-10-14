@@ -143,7 +143,7 @@ const App = () => {
                         <ReactHTMLTableToExcel
                             className='btn btn-outline-primary btn-lg btn-block'
                             table='table'
-                            filename='Staff Member Excel'
+                            filename='Quarantined Staff Member Excel'
                             sheet='Sheet'
                             buttonText='Download Excel Sheet'
                         />
