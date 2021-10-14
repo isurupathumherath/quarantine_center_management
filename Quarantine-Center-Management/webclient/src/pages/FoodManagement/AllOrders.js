@@ -28,7 +28,7 @@ export default function AllOrders() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/order/getactivebypatient/102")
+      .get("http://localhost:8000/order/getactivebypatient/613b2cac1aaf8d0fdcf35ff3")
       .then((res) => {
         setOrders(res.data);
         setongoinglength(res.data.length);
@@ -38,7 +38,7 @@ export default function AllOrders() {
       });
 
     axios
-      .get("http://localhost:8000/order/getcompletedbypatient/102")
+      .get("http://localhost:8000/order/getcompletedbypatient/613b2cac1aaf8d0fdcf35ff3")
       .then((res) => {
         setCompleteorders(res.data);
         setcompletelength(res.data.length);
