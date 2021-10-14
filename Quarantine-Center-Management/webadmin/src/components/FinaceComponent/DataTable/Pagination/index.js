@@ -27,14 +27,14 @@ const PaginationComponent = ({
         return pages;
     }, [totalPages, currentPage])
 
-    // if (totalPages === 0) return null;
+    if (totalPages === 0) return null;
 
     return (
         <div>
             <Pagination>
                 <Pagination.Prev
                     onClick={() => onPageChange(currentPage - 1)}
-                    disabled={currentPage === 1} />
+                    disabled={currentPage === 1}  />
                 {paginationItems}
                 <Pagination.Next
                     onClick={() => onPageChange(currentPage + 1)}

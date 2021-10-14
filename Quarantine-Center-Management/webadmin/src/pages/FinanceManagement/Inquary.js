@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { TableHeader, Search, Pagination } from '../../components/FinaceComponent/DataTable'
 // import useFullpageLoader from "hooks/useFullPageLoader";
+import { CircularProgress } from '@material-ui/core';
 
 export default function FDashboard() {
 
@@ -147,7 +148,7 @@ export default function FDashboard() {
                     </div>
                 </div>
             </div>
-            <loader />
+            <CircularProgress />
         </div>
     )
 }
