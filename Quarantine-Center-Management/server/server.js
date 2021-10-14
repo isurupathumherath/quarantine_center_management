@@ -16,6 +16,8 @@ const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added b
 const employeeQuaratine = require("./routes/HRM/QuarantinedEmployee"); //--Added by Isuru Pathum Herath--
 const task = require("./routes/HRM/Task"); //--Added by Isuru Pathum Herath--
 const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru Pathum Herath--
+const stockRouter=require("./routes/InventoryManagement/stock");//--Added by Anupa Senevirathne--
+const MedicineRouter=require("./routes/InventoryManagement/medecine");//--Added by Anupa Senevirathne--
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
@@ -70,6 +72,9 @@ app.use("/comment", CommentRoute);
 app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use(profileRoutes);//--Added by Hirusha Rukmal--
+
+app.use("/stock",stockRouter);//--Added by Anupa Senevirathne--
+app.use("/meds",MedicineRouter);//--Added by Anupa Senevirathne--
 
 app.use("/invoice", FinanceInvoice);   
 app.use("/inquary", FinanceInquary);
