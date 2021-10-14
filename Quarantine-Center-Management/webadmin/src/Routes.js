@@ -43,6 +43,11 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
 
+/*--Added by Chamodh Iduranga--*/
+import OrderAdmin from "../../webadmin/src/pages/FoodManagement/OrderAdmin";
+import FoodAdmin from "../../webadmin/src/pages/FoodManagement/FoodAdmin";
+import FoodReport from "../../webadmin/src/pages/FoodManagement/FoodReport";
+
 
 const Routes = () => {
     return (
@@ -84,6 +89,11 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
+
+                            {/*--Added by Chamodh Iduranga--*/}
+                        <PrivateRouteAdmin path="/orderAdmin" exact component={OrderAdmin} />
+                        <PrivateRouteAdmin path="/foodadmin" exact component={FoodAdmin} />
+                        <PrivateRouteAdmin path="/foodreports" exact component={FoodReport} />
 
                     </Switch>
                 </BrowserRouter>
