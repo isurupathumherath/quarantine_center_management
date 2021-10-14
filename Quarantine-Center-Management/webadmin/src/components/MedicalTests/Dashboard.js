@@ -3,67 +3,90 @@ import axios from "axios"
 import {Link} from 'react-router-dom';
 
 
+
+
 export default function Dashboard(){
 
     return(
-        // <div className="page-wrapper">
-        //   <div className="content container-fluid">
-        //     <div className="btn-group">
-        //         <button className="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        //          PCR Tests' Details
-        //         </button>
-        //     <ul className="dropdown-menu">
 
-        //         <li><a className="dropdown-item" href="#">Add Details</a></li>
-        //         <li><a className="dropdown-item" href="#">View Details</a></li>
+      <div class="p-3 mb-2 bg-info text-dark bg-opacity-25" style={{
+        position:"relative",
+        left:"23px",
+      }} >
+        
+            <div >
+
+            <center><h1 class="p-3 mb-2 bg-primary text-white  bg-opacity-170" style={{
+              position:"relative",
+              left:"1px",
+              color:"black"
+            }}>MEDICAL TEST DETAILS' MANAGEMENT</h1></center><br/><br/>
+
+            {/* Dropdown button-PCR */}
+            <div   class="btn-group">
+              <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{
+                position:"relative",
+                left:"100px",
+                top:"50px",
+                width:"350px",
+                height:"100px",
+                backgroundColor:"black"
+              
+              }}>
+                PCR TESTS
+              </button>
+              <ul class="dropdown-menu  dropdown-menu-dark">
+              <li style={{
+                width:"350px",
+                height:"50px"
+              }}><a class="dropdown-item" href="/addPCR">Add PCR Tests</a></li>
+              <li><a class="dropdown-item" href="/ViewPCR">View PCR Tests</a></li>
+              </ul>
+            </div>
+
+
+            {/* Dropdown button-Temp Checkups */}
+            <div   class="btn-group">
+              <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style={{
+                position:"relative",
+                left:"370px",
+                top:"50px",
+                width:"350px",
+                height:"100px",
+                backgroundColor:"black"
+              }}>
+                Body Temperature Checkups
+              </button>
+              <ul class="dropdown-menu  dropdown-menu-dark">
+              <li style={{
+                 width:"350px",
+                 height:"50px"
+              }}><a class="dropdown-item" href="/addCheckup">Add Checkups</a></li>
+              <li><a class="dropdown-item" href="/ViewCheckups">View Checkups</a></li>
+              </ul>
+            </div>
+      </div>
+
+      <div style={{backgrountColor:"black"}}>
+
+    <Link to={"/Repo"} > <button style={{position:"relative",top:"200px",left:"400px", width:"350px",backgroundColor:"lightskyblue",fontSize:"20px",
+                height:"60px"}} type="button" class="btn btn-info" >Generate a Report</button></Link>
+
+      </div>
+
+
+          
+           
+            {/* <div class="d-grid gap-2 col-6 mx-auto">
+                    <Link to={"/addPCR"}><button class="btn btn-primary" type="button">Add PCR</button></Link><br/><br/><br/>
+                    <Link to={"/ViewPCR"}><button class="btn btn-primary" type="button">View PCR</button></Link><br/><br/><br/>
+                    <Link to={"/addCheckup"}> <button class="btn btn-primary" type="button">Add Checkups</button></Link><br/><br/><br/>
+                    <Link to={"/ViewCheckups"}><button class="btn btn-primary" type="button">View Checkups</button></Link><br/><br/><br/>
+            <button class="btn btn-primary" type="button">Generate a Report</button>
+            </div> */}
+      </div> 
+
     
-    
-        //     </ul>
-        //     </div>
-
-        //     <div className="btn-group">
-        //          <button className="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        //          Body Temperature Checkups' Details
-        //         </button>
-        //     <ul className="dropdown-menu">
-        //         <li><a className="dropdown-item" href="#">Add Details</a></li>
-        //         <li><a className="dropdown-item" href="#">View Details</a></li>
-        //     </ul>
-        //     </div>
-
-        //   </div>
-        // </div>
-
-/* <div>
-        <div>
-<label for="cars">PCR Tets:</label>
-<select name="cars" id="cars">
-<Link to={'/addPCR'}><option value="volvo" >Add details</option></Link >
-
-
-
-<option value="saab">View details</option>
-
-</select>
-</div>
-
-<div>
-<label for="cars">Temp Checkups:</label>
-<select name="cars" id="cars">
-<option value="volvo"><Link to={`/addCheckup`}><button value= "Add details"></button></Link></option>
-<option value="saab">View details</option>
-
-</select>
-</div>
-</div> */
-     <div>
-         <Link to={"/addPCR"}><button>Add PCR</button></Link>
-         <Link to={"/ViewPCR"}><button>View PCR</button></Link>
-         <Link to={"/addCheckup"}> <button>Add Checkups</button></Link>
-         <Link to={"/ViewCheckups"}><button>View Checkups</button></Link>
-     </div>
-
- 
     )
 
 

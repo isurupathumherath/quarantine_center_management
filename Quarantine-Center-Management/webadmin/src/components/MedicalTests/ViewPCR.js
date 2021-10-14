@@ -2,11 +2,22 @@ import React,{useState,useEffect} from "react"
 import axios from "axios"
 import {Link} from 'react-router-dom';
 
+const customer5={
+  paddingTop: '12px',
+  paddingBottom: '12px',
+  textAlign: 'left',
+  backgroundColor: '#278ea5',
+  color: 'black'
+}
+
+
 
 export default function ViewPCR(){
 
   
-  const [PCRTests, setPCRTests] = useState([]); 
+const [PCRTests, setPCRTests] = useState([]); 
+const [wordEntered, setWordEntered] = useState("");
+
   useEffect(() => {  
     function getPCRTests() {     
        axios.get("http://localhost:8000/PCRTest/display").then((res) => {  
@@ -42,6 +53,40 @@ const setData = (PCRTests) => {
 
 }
 
+const getData = () => {
+  axios
+      .get("http://localhost:8000/PCRTest/display")
+      .then((res) => {
+        setPCRTests(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+}
+
+
+
+const handleFilter = (event) => {
+  const searchWord = event.target.value;
+  console.log(searchWord);
+  setWordEntered(searchWord);
+  axios.get("http://localhost:8000/PCRTest/display")
+  .then(response => {
+      console.log(response)
+      const newFilter = PCRTests.filter((response) => {
+          return response.PCRTestId.toLowerCase().includes(searchWord.toLowerCase());
+      });
+
+      if (searchWord === "") {
+          console.log("EMPLTY");
+          getData();
+      } else {
+        setPCRTests(newFilter);
+      }
+  })
+  .catch(error => console.log(error));
+};
+
 
 
   return (
@@ -49,33 +94,72 @@ const setData = (PCRTests) => {
       <div>
   
         <div class="page-wrapper">
+        <h1 style={{
+          textShadow:"5px 5px 3.5px #278ea5",
+          fontWeight: "bold",
+          position: "relative",
+          left: "200px",
+          top:"-70px"
+        }}>Details of PCR Tests</h1>
+        <div className="row"> 
+            <div className="col-lg-9 mt-2 mb-2">
+            </div>
+            <div className="col-lg-3 mt-2 mb-2" style={{position:"relative",right:"130px",top:"-6px",height:"42.5px"}}>
+
+            <input 
+                    className="form-control" 
+                    type="search"          
+                    placeholder="Search by PCR Test Id..."
+                    value={wordEntered}
+                    onChange={handleFilter}>
+                </input>
+                </div>
+                </div>
   
           <div class="content container-fluid">
   
-            <Link to={`/newitem`}>
+            <Link to={"/addPCR"}>
   
-              <button id="view">Add New +</button>
+              <button class="btn btn-primary" style={{
+                backgroundColor: "black",
+                border: "5px solid #278ea5",
+                position:"relative",
+                top:"-90px",
+                left:"-95px"
+
+              }} id="view">Add New +</button>
   
             </Link>
   
-            <br></br>
-  
-              <table class="table">
-  
-                  <th>Patient Id</th>
-  
-                  <th>PCR Test Id</th>
+            <br/><br/>
+           
 
-                  <th>Test Number</th>
+            
+  
+              <table   style={{
+                outline: "1px groove black",
+                position:"relative",
+                left:"-95px",
+                top:"-100px"
 
-                  <th>Test Date</th>
+                
+                
+              }} class="table" >
+  
+                  <th style={customer5}>Patient Id</th>
+  
+                  <th style={customer5}>PCR Test Id</th>
 
-                  <th>Test Time</th>
+                  <th style={customer5}>Test Number</th>
 
-                  <th>Result</th>
+                  <th style={customer5}>Test Date</th>
+
+                  <th style={customer5}>Test Time</th>
+
+                  <th style={customer5} >Result</th>
   
   
-                  <th>Actions</th>
+                  <th style={customer5}>Actions</th>
   
                 <tbody>
   
@@ -103,13 +187,16 @@ const setData = (PCRTests) => {
   
                           <Link to={"/UpdatePCR"}>
   
-                            <button id="view" onClick={()=>setData(PCRTests)}>Update</button>
+                            <button  class="btn btn-primary"  style={{
+
+                              backgroundColor: "black"
+                            }}id="view" onClick={()=>setData(PCRTests)}>Update</button>
 
                           </Link>
-                          <Link to={"/addPCR"}>
+                          {/* <Link to={"/addPCR"}>
                             <button id="view" onClick={()=>setData(PCRTests)}>Delete</button>
   
-                          </Link>
+                          </Link> */}
   
                         </td>
   

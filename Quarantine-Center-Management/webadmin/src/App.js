@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //common navigation components
@@ -30,6 +30,9 @@ import ViewCheckups from './components/MedicalTests/ViewCheckups';
 import UpdatePCR from './components/MedicalTests/UpdatePCR';
 import UpdateCheckup from './components/MedicalTests/UpdateCheckup';
 import DeleteCheckup from './components/MedicalTests/DeleteCheckup';
+import Reportpg1 from './components/MedicalTests/Reportpg1';
+import MedReport from './components/MedicalTests/MedReport';
+import Repo from './components/MedicalTests/Repo';
 
 
 
@@ -61,6 +64,10 @@ class App extends Component {
               <Route path="/UpdatePCR" exact component={UpdatePCR}/>
               <Route path="/UpdateCheckup" exact component={UpdateCheckup}/>
               <Route path="/DeleteCheckup" exact component={DeleteCheckup}/>
+              <Route path="/Reportpg1" exact component={Reportpg1}/>
+              <Route path="/MedReport" exact component={MedReport}/>
+              <Route path="/Repo" exact component={Repo}/>
+              
             </Switch>
           </div>
         </div>

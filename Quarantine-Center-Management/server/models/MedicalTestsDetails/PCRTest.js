@@ -19,7 +19,7 @@ const PCRTestSchema = new Schema({
     },
 
     TestDate : {
-        type : Date,
+        type : String,
         required : true
     },
 

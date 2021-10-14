@@ -15,6 +15,8 @@ import financePaymentRoutes from "./routes/FinanceRoutes/financePayment"; //--Ad
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer"; //--Added by Janith Gamage--
 const PCRTestsRouter = require("./routes/MedicalTestsDetails/PCRTests.js");//--Added by Mathishi Adya Dissanayake--
 const TempCheckupsRouter = require("./routes/MedicalTestsDetails/TempCheckups");//--Added by Mathishi Adya Dissanayake--
+const PCRRepoRouter = require("./routes/MedicalTestsDetails/PCRReport1");//--Added by Mathishi Adya Dissanayake--
+
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute"); //--Added by Chamodh iduranga--
 const CommentRoute = require("./routes/foodroute/commentRoute"); //--Added by Chamodh iduranga--
@@ -49,6 +51,8 @@ app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
 app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
 app.use("/PCRTest",PCRTestsRouter);//--Added by Mathishi Adya Dissanayake--
 app.use("/TempCheckup",TempCheckupsRouter);//--Added by Mathishi Adya Dissanayake--
+
+
 
 app.use("/foods", FoodsRoute); //--Added by Chamodh iduranga--
 app.use("/comment", CommentRoute); //--Added by Chamodh iduranga--

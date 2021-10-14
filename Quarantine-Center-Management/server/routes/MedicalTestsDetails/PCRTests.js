@@ -84,4 +84,107 @@ router.route("/display/:id").get(async (req,res) =>{
 
 })
 
+//PCR Test grouping by results
+router.route("/PCRReport/:date/:lastday").get((req,res)=>{
+
+    let delivered_date = req.params.date;
+
+    let lastday = req.params.lastday;
+
+    PCRTest.aggregate([{
+
+        $match:{$and:[{"TestDate":{
+
+            $gte:(delivered_date), $lte:(lastday)
+
+        } },]
+
+    }}
+
+       
+
+        ,{$group:{
+
+        _id : { Result :"$Result"},
+
+     
+
+       
+
+      total : {$sum : 1 }
+
+     
+
+    }
+
+   
+
+    }]).then((PCRTest)=>{
+
+        res.status(200).send(PCRTest)
+
+    }).catch((err)=>{
+
+        console.log(err)
+
+    })
+
+})
+
+//PCR Test grouping by Result and Test Number
+
+router.route("/PCRReport/group2/:date/:lastday").get((req,res)=>{
+
+    let delivered_date = req.params.date;
+
+    let lastday = req.params.lastday;
+
+    PCRTest.aggregate([{
+
+        $match:{$and:[{"TestDate":{
+
+            $gte:(delivered_date), $lte:(lastday)
+
+        } },]
+
+    }}
+
+       
+
+        ,{$group:{
+
+        _id : { Result :"$Result",TestNo :"$TestNo"},
+
+     
+
+       
+
+      total : {$sum : 1 }
+
+     
+
+    }
+
+   
+
+    }]).then((PCRTest)=>{
+
+        res.status(200).send(PCRTest)
+
+    }).catch((err)=>{
+
+        console.log(err)
+
+    })
+
+})
+
+
+
+
+
+
+
+
+
 module.exports = router;

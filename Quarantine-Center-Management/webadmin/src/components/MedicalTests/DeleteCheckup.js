@@ -27,19 +27,15 @@ useEffect(() => {
 
 
   const onDelete = () =>{
-    axios.put(`http://localhost:8000/TempCheckup/delete/${checkupid}`,{
-            
-            PatientId,
-            CheckupId,
-            CheckupDate,
-            CheckupTime,
-            Result
-    }).then(()=>{
-        alert("Body Temperature Checkup details updated successfully !")
+    axios.delete(`http://localhost:8000/TempCheckup/delete/${checkupid}`).then(()=>{
+     
+        alert("Body Temperature Checkup details deleted successfully !");
+        window.location.replace('/ViewCheckups');
     }).catch((err)=>{
         alert(err)
     })
   }
+
 
   // submit = () => {
   //   confirmAlert({
@@ -58,7 +54,7 @@ useEffect(() => {
   //   });
   // };
 
-  const options = {
+    const options = {
     title: 'Delete Record',
     message: 'Are you sure to do this?',
     buttons: [
@@ -68,13 +64,13 @@ useEffect(() => {
       },
       {
         label: 'No',
-        onClick: () => alert('Click No')
+        
       }
     ],
     
   };
   
-  confirmAlert(options);
+  
 
 
 
@@ -82,10 +78,23 @@ useEffect(() => {
   return(
         
     <div>
-        <div class="page-wrapper">
+        <div style={{backgroundColor:"#AED6F1 ",position:"relative",right:"100px"}} class="page-wrapper">
+
+        <h1 style={{
+        textShadow:"5px 5px 3.5px #278ea5",
+        fontWeight: "bold",
+        position: "relative",
+        left: "120px",
+        top:"-45px"
+      }}>Delete Body Temperature Checkup Details</h1>
+
             <div class="content container-fluid">
               <div>      
-                <form>
+                <form style={{
+                position: "relative",
+                left: "175px",
+                top:"-70px"
+              }} >
   
                   
                   <div class="form-group" class="col-sm-7">
@@ -120,7 +129,7 @@ useEffect(() => {
   
                     <label for="CheckupDate">Date of the checkup</label>
                     {/* <input type="text"  value={CheckupId}/> */}
-                    <input type="date" class="form-control" id="CheckupDate" placeholder="CheckupDate" value={Date.parse(CheckupDate)}
+                    <input type="text" class="form-control" id="CheckupDate" placeholder="CheckupDate" value={CheckupDate}
                       onChange={(e)=>{
   
                         setCheckupDate(e.target.value);
@@ -160,8 +169,27 @@ useEffect(() => {
                   <br/>
                   <br/>
     
-                  <button type="submit" class="btn btn-primary" onClick={confirmAlert(options)}>Delete</button>
+                  <button style={{
+                  color:"black",
+                  backgroundColor:" #278ea5",
+                  position: "relative",
+                  fontWeight: "bold",
+                  left: "225px"
+                }} type="submit" class="btn btn-primary" onClick={confirmAlert(options)}>Delete</button>
                 </form>
+
+                <a href="/Medicaltests/dashboard" style={{
+                position:"relative",
+                top:"-50px",
+                left:"130px"
+              }}>Back to the dashboard</a>
+
+              <a href="/ViewCheckups" style={{
+                position:"relative",
+                top:"-50px",
+                left:"500px"
+              }}>View all Checkups</a>
+
              </div>
            </div>
        </div>
