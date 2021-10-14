@@ -89,6 +89,8 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showQStaff" exact component={qStaff} />                               {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/attendance/:id" exact component={calender} />                           {/*--Added by Isuru Pathum Herath--*/}
+                        {/* <PrivateRouteAdmin path="/staffAnalytic" exact component={staffAnalytic} />                           --Added by Isuru Pathum Herath-- */}
+
 
                         <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />

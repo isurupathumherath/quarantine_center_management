@@ -17,7 +17,7 @@ const employeeQuaratine = require("./routes/HRM/QuarantinedEmployee"); //--Added
 const task = require("./routes/HRM/Task"); //--Added by Isuru Pathum Herath--
 const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru Pathum Herath--
 const attendance = require("./routes/HRM/StaffAttendance"); //--Added by Isuru Pathum Herath--
-
+const salaryCalculation = require("./routes/HRM/salaryCalculation"); //--Added by Isuru Pathum Herath--
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
@@ -60,6 +60,7 @@ app.use(ticketRoutes); //--Added by Vishara Prabuddhi--
 
 app.use("/employee", employeeRoutes); //--Added by Isuru Pathum Herath--
 app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
+app.use("/cal-salary", salaryCalculation); //--Added by Isuru Pathum Herath--
 app.use("/qEmployee", employeeQuaratine); //--Added by Isuru Pathum Herath--
 app.use("/task", task); //--Added by Isuru Pathum Herath--
 app.use("/staffLogin", employeLogin); //--Added by Isuru Pathum Herath--
