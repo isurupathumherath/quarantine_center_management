@@ -1,8 +1,8 @@
-import React from 'react'
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
-import * as HiIcons from 'react-icons/hi';
+import React from "react";
+import * as AiIcons from "react-icons/ai";
+import * as IoIcons from "react-icons/io";
+import * as RiIcons from "react-icons/ri";
+import * as HiIcons from "react-icons/hi";
 
 export const SidebarData = [
     {
@@ -41,10 +41,29 @@ export const SidebarData = [
         icon: <AiIcons.AiTwotoneRocket />,
     },
     {
-        title: 'Food management',
-        path: '/food',
+        title: "Food management",
+        path: "/food",
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
         icon: <AiIcons.AiOutlineFolder />,
-    },
+        subNav: [
+          {
+            title: "Dash Board",
+            path: "/orderAdmin",
+            icon: <RiIcons.RiDashboardLine />,
+          },
+          {
+            title: "Manage Foods",
+            path: "/foodadmin",
+            icon: <IoIcons.IoIosPaper />,
+          },
+          {
+            title: "Reports",
+            path: "/foodreports",
+            icon: <HiIcons.HiDocumentReport />,
+          },
+        ],
+      },
     {
         title: 'Medical details',
         path: '/medical',

@@ -50,6 +50,10 @@ import Payer from './pages/FinanceManagement/Payer';
 import Payment from './pages/FinanceManagement/Payment';
 
 
+/*--Added by Chamodh Iduranga--*/
+import OrderAdmin from "../../webadmin/src/pages/FoodManagement/OrderAdmin";
+import FoodAdmin from "../../webadmin/src/pages/FoodManagement/FoodAdmin";
+import FoodReport from "../../webadmin/src/pages/FoodManagement/FoodReport";
 
 
 const Routes = () => {
@@ -99,6 +103,10 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/finance/payer" exact component={Payer} />
                         <PrivateRouteAdmin path="/finance/payment" exact component={Payment} /> 
 
+                            {/*--Added by Chamodh Iduranga--*/}
+                        <PrivateRouteAdmin path="/orderAdmin" exact component={OrderAdmin} />
+                        <PrivateRouteAdmin path="/foodadmin" exact component={FoodAdmin} />
+                        <PrivateRouteAdmin path="/foodreports" exact component={FoodReport} />
 
                     </Switch>
                 </BrowserRouter>

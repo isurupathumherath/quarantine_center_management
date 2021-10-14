@@ -5,30 +5,23 @@ import { Check } from "react-feather";
 import { Trash2 } from "react-feather";
 import { Loader } from "react-feather";
 import { Eye } from "react-feather";
-import ModelCss from "../../assets/FoodManagement/css/modelCss.css";
-import jsPDF from "jspdf";
-import moment from "moment";
+import Swal from "sweetalert2";
 import Header from "../../components/FoodManagement/Header";
-
-export default function AllOrders() {
+export default function OrderAdmin() {
   let count = 0;
   let [orders, setOrders] = useState([]);
-  let [allorders, setallorders] = useState([]);
   let [completeorders, setCompleteorders] = useState([]);
   let [foods, setFoods] = useState([]);
   let [active, setActive] = useState(1);
+  let [orderid, setOrderid] = useState(1);
   const [modelOpen, setmodelOpen] = useState(false);
+  let f1 = [];
   let [completelength, setcompletelength] = useState(0);
   let [ongoinglength, setongoinglength] = useState(0);
-  let recipt = [];
-
-  let t1 = 0;
-
-  let f1 = [];
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/order/getactivebypatient/613b2cac1aaf8d0fdcf35ff3")
+      .get("http://localhost:8000/order/active")
       .then((res) => {
         setOrders(res.data);
         setongoinglength(res.data.length);
@@ -38,7 +31,7 @@ export default function AllOrders() {
       });
 
     axios
-      .get("http://localhost:8000/order/getcompletedbypatient/613b2cac1aaf8d0fdcf35ff3")
+      .get("http://localhost:8000/order/complete")
       .then((res) => {
         setCompleteorders(res.data);
         setcompletelength(res.data.length);
@@ -46,21 +39,195 @@ export default function AllOrders() {
       .catch((err) => {
         alert(err.message);
       });
-
-    axios
-      .get("http://localhost:8000/order/getallbypatientid/102")
-      .then((res) => {
-        setallorders(res.data);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
   }, []);
 
-  allorders.map((post) => (t1 = t1 + post.total));
+  function changeFoodStatus(id2, status1) {
+    let newFoodStatus;
+    console.log(id2, status1);
+    if (status1 == 1) {
+      Swal.fire({
+        title: "Do you want to Deactivate order item?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFoodStatus = {
+            status: 2,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/changefoodstatus/${id2}`,
+              newFoodStatus
+            )
+            .then(() => {
+              axios
+                .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+                .then((res) => {
+                  f1 = res.data;
+                  setFoods(f1.orderDetails);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    } else if (status1 == 2) {
+      Swal.fire({
+        title: 'Do you want to Activate order item"?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newFoodStatus = {
+            status: 1,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/changefoodstatus/${id2}`,
+              newFoodStatus
+            )
+            .then(() => {
+              axios
+                .get(`http://localhost:8000/order/getbyorder/${orderid}`)
+                .then((res) => {
+                  f1 = res.data;
+                  setFoods(f1.orderDetails);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    }
+  }
+
+  function changeOrderStatus(id2, status1) {
+    let newStatus;
+    console.log(id2, status1);
+    if (status1 == 1) {
+      Swal.fire({
+        title: "Confirm order is completed?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newStatus = {
+            status: 2,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/updateorderstatus/${id2}`,
+              newStatus
+            )
+            .then(() => {
+              axios
+                .get("http://localhost:8000/order/active")
+                .then((res) => {
+                  setOrders(res.data);
+                  setongoinglength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+
+              axios
+                .get("http://localhost:8000/order/complete")
+                .then((res) => {
+                  setCompleteorders(res.data);
+                  setcompletelength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    } else if (status1 == 2) {
+      Swal.fire({
+        title: "Confirm order is not completed?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          newStatus = {
+            status: 1,
+          };
+          axios
+            .put(
+              `http://localhost:8000/order/updateorderstatus/${id2}`,
+              newStatus
+            )
+            .then(() => {
+              axios
+                .get("http://localhost:8000/order/active")
+                .then((res) => {
+                  setOrders(res.data);
+                  setongoinglength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+
+              axios
+                .get("http://localhost:8000/order/complete")
+                .then((res) => {
+                  setCompleteorders(res.data);
+                  setcompletelength(res.data.length);
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
+            })
+            .catch((err) => {
+              alert(err);
+              alert("asd");
+            });
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+      });
+    }
+  }
 
   function modalopen(oid) {
     setActive(2);
+    setOrderid(oid);
     axios
       .get(`http://localhost:8000/order/getbyorder/${oid}`)
       .then((res) => {
@@ -77,86 +244,12 @@ export default function AllOrders() {
     setmodelOpen(false);
   }
 
-  function receiptgenerate() {
-    let n = 200;
-    let p = 235;
-    let q = 0;
-    let c = 0;
-    let ftotal = 0;
-    var img = new Image();
-    img.src = "assets/img/logo.png";
-    var doc = new jsPDF("landscape", "px", "a4", "false");
-    doc.setFont("Helvertica", "bold");
-    doc.addImage(img, "png", 280, 10, 90, 50);
-    doc.setFontSize(22);
-    doc.text(220, 70, "Qurentine center management");
-    doc.setFontSize(18);
-    doc.text(100, 100, "Contact Number:   011-2298476");
-    doc.text(400, 100, "Location:  Anuradhapura Colombo");
-    doc.text(100, 130, "Date: ");
-    doc.text(150, 130, moment().format("YYYY-MM-DD"));
-    doc.text(
-      50,
-      150,
-      "-----------------------------------------------------------------------------------------------------------------------------"
-    );
-
-    doc.text(300, 175, "Food Name: ");
-    doc.text(500, 175, "Price: ");
-    doc.setFontSize(16);
-    doc.setFont("Helvertica", "italic");
-    orders.map((post) => {
-      doc.text(100, n + 30, "Order ID: ");
-      doc.text(175, n + 30, post.orderID);
-      doc.text(100, n, "Order Date: ");
-      doc.text(175, n, post.orderedDate.substr(0, 10));
-
-      post.orderDetails.map((data) => {
-        doc.text(300, p, data.name);
-        doc.text(500, p, "Rs." + String(data.price) + ".00");
-        c = c + 1;
-
-        p >= 415 ? doc.addPage() : (q = 1);
-        p >= 415 ? (p = 0) : (q = 2);
-        console.log(n);
-
-        p = p + 30;
-      });
-      doc.setTextColor("red");
-      doc.text(465, p, "Total: " + "Rs." + String(post.total) + ".00");
-      ftotal = ftotal + post.total;
-      doc.setTextColor("black");
-      doc.text(
-        50,
-        p + 30,
-        "******************************************************************************************************************************"
-      );
-      p = p + 60;
-      n = p;
-      p = p + 30;
-      // n >= 440 ? doc.addPage() : (q = 1);
-      // n >= 440 ? (p = 30) : (q = 2);
-      // n >= 440 ? (n = 30) : (q = 2);
-    });
-
-    doc.text(100, p, "Number of items ordered = ");
-    doc.text(280, p, String(c));
-    doc.setTextColor("red");
-    doc.text(380, p, "Total payment = ");
-    doc.text(480, p, "Rs." + String(ftotal) + ".00");
-
-    doc.save("xb.pdf");
-  }
-  function reportgenerate() {
-    console.log("report");
-  }
-
   function filterContent(data, userSearch) {
     // setPackages(res.data.filter((item) =>item.seller === seller));
 
     if (userSearch == null) {
       axios
-        .get("http://localhost:8000/order/getactivebypatient/102")
+        .get("http://localhost:8000/order/active/")
         .then((res) => {
           setOrders(res.data);
         })
@@ -180,7 +273,7 @@ export default function AllOrders() {
     console.log(userSearch);
 
     axios
-      .get("http://localhost:8000/order/getactivebypatient/102")
+      .get("http://localhost:8000/order/active/")
       .then((res) => {
         filterContent(res.data, userSearch);
         console.log(res.data);
@@ -195,9 +288,50 @@ export default function AllOrders() {
 
     if (userSearch1 == null) {
       axios
-        .get("http://localhost:8000/order/getactivebypatient/102")
+        .get("http://localhost:8000/order/complete/")
         .then((res) => {
           setCompleteorders(res.data1);
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    let result1 = data1.filter((post) =>
+      post.orderedDate.includes(userSearch1)
+    );
+
+    if (result1 != null) {
+    } else if (result1.length == 0) {
+      //document.getElementById("txt2").innerHTML = "No Result Found!";
+    } else {
+    }
+
+    setCompleteorders(result1);
+  }
+
+  function handleSearch1(e) {
+    let userSearch1 = e;
+    console.log(userSearch1);
+
+    axios
+      .get("http://localhost:8000/order/complete/")
+      .then((res) => {
+        filterContent1(res.data, userSearch1);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  function filterContent1(data1, userSearch1) {
+    // setPackages(res.data.filter((item) =>item.seller === seller));
+
+    if (userSearch1 == null) {
+      axios
+        .get("http://localhost:8000/order/getactivebypatient/102")
+        .then((res) => {
+          setOrders(res.data1);
         })
         .catch((err) => {
           alert(err.message);
@@ -233,31 +367,30 @@ export default function AllOrders() {
 
   return (
     <div>
-      <Header name="Order details" icon="fa-credit-card" />
-      <div className="container" style={{ width: "90%", fontSize: "18px" }}>
+      <Header name="All order details" icon="fa-snowflake-o" />
+      <div className="container" style={{ width: "100%", fontSize: "18px" }}>
         <div className="row" style={{ padding: "0px 0px 10px 0px" }}>
-          <div className="col-md-3">
+          <div className="col">
             <div
               className="border border-warning"
               style={{
                 width: "100%",
                 backgroundColor: "white",
                 borderRadius: "10px",
-                borderColor: "red",
-                border: "2px",
+                borderColor: "#00408C",
                 padding: "20px 20px 20px 20px",
                 margin: "10px 0px 0px 0px",
               }}
             >
               <div className="row">
-                <div className="col-8">
+                <div className="col-8 ">
                   <span style={{ color: "orange" }}>{ongoinglength}</span>
                   <br />
                   <span>Ongoing Orders</span>
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-hourglass-end"
+                    class="fa  fa-hourglass-end"
                     aria-hidden="true"
                     style={{
                       color: "orange",
@@ -269,7 +402,7 @@ export default function AllOrders() {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col">
             <div
               className="border border-success"
               style={{
@@ -285,7 +418,7 @@ export default function AllOrders() {
                 <div className="col-8">
                   <span style={{ color: "Green" }}>{completelength}</span>
                   <br />
-                  <span>Finished orders</span>
+                  <span>Completed orders</span>
                 </div>
                 <div className="col">
                   <i
@@ -301,7 +434,7 @@ export default function AllOrders() {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col">
             <div
               className="border border-danger"
               style={{
@@ -323,7 +456,7 @@ export default function AllOrders() {
                 </div>
                 <div className="col">
                   <i
-                    class="fa fa-building"
+                    class="fa  fa-building"
                     aria-hidden="true"
                     style={{
                       color: "red",
@@ -335,68 +468,23 @@ export default function AllOrders() {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div
-              className="border border-primary"
-              style={{
-                width: "100%",
-                backgroundColor: "white",
-                borderRadius: "10px",
-                borderColor: "#00408C",
-                padding: "20px 20px 20px 20px",
-                margin: "10px 0px 0px 0px",
-              }}
-            >
-              <div className="row">
-                <div className="col-8">
-                  <span style={{ color: "blue" }}>Rs.{t1}.00</span>
-                  <br />
-                  <span>Total Price</span>
-                </div>
-                <div className="col">
-                  <i
-                    class="fa fa-calculator"
-                    aria-hidden="true"
-                    style={{
-                      color: "blue",
-                      fontSize: "30px",
-                      marginTop: "10px",
-                    }}
-                  ></i>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-
-      <div className="row ">
-        <div className="col-md-12">
+      <div className="row">
+        <div
+          className="col-md-12"
+          style={{ maxWidth: "100%" }}
+        >
           <div
             className="card"
             style={{
               marginTop: "20px",
             }}
           >
-            <div className="card-body border border-secondary">
-              <div className="row">
-                <div className="col-md-9">
-                  <h4 className="card-title">Ongoing Orders</h4>
-                </div>
-                <div className="col-md-3">
-                  <button
-                    className="btn btn-info"
-                    style={{ marginLeft: "20px" }}
-                    onClick={receiptgenerate}
-                  >
-                    <i className="fa fa-save"></i> Generate receipt
-                  </button>
-                </div>
-              </div>
-
+            <div className="card-body  border border-secondary">
+              <h4 className="card-title">Ongoing Orders</h4>
               <div className="row">
                 <div className="col-md-4">
-                  {" "}
                   <input
                     type="text"
                     className="form-control"
@@ -411,6 +499,7 @@ export default function AllOrders() {
                 style={{
                   maxHeight: "450px",
                   overflowY: "scroll",
+                  overflowX: "hidden",
                 }}
               >
                 <table className="table table-striped">
@@ -418,20 +507,22 @@ export default function AllOrders() {
                     <tr>
                       <th>#</th>
                       <th>Order ID</th>
-                      <th>Total Price</th>
+                      <th>Patient ID</th>
                       <th>Instructions</th>
-                      <th>Delivery Date</th>
+                      <th>Ordered Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody style={{ maxWidth: "100px" }}>
                     {orders.map((post) => (
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
-                        <td>Rs.{post.total}.00</td>
-                        <td>{post.instructions}</td>
-                        <td>{post.deliveryDate}</td>
+                        <td>{post.patientID}</td>
+                        <td style={{ maxWidth: "300px", overflowX: "scroll" }}>
+                          {post.instructions}
+                        </td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -448,19 +539,48 @@ export default function AllOrders() {
                             {post.status == 1 ? (
                               <button
                                 className={
-                                  active == 1 ? "btn btn-warning btn-sm" : null
+                                  active == 1
+                                    ? "btn btn-outline-warning btn-sm"
+                                    : null
                                 }
                                 key={post.foodID}
                                 size="35px"
                                 style={{ marginLeft: "10px" }}
-                                disabled
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
                               >
                                 <i
                                   class="fas fa-spinner fa-spin"
                                   style={{ color: "black" }}
                                 ></i>
                               </button>
+                            ) : post.status == 2 ? (
+                              <Check
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-success btn-sm"
+                                    : null
+                                }
+                                color="black"
+                                size="35px"
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                                style={{ marginLeft: "10px" }}
+                              />
                             ) : null}
+                            {/* <Trash2
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-danger btn-sm"
+                                  : null
+                              }
+                              color="black"
+                              // onClick={() => deleteFood(post.foodID)}
+                              style={{ marginLeft: "10px" }}
+                              size="35px"
+                            /> */}
                           </div>
                         </td>
                       </tr>
@@ -472,16 +592,18 @@ export default function AllOrders() {
           </div>
         </div>
       </div>
-
       <div className="row">
-        <div className="col-md-12">
+        <div
+          className="col-md-12"
+          style={{  maxWidth: "100%" }}
+        >
           <div
-            className="card  border border-secondary"
+            className="card"
             style={{
               marginTop: "20px",
             }}
           >
-            <div className="card-body">
+            <div className="card-body  border border-secondary">
               <h4 className="card-title">Completed Orders</h4>
               <div className="row">
                 <div className="col-md-4">
@@ -506,9 +628,9 @@ export default function AllOrders() {
                     <tr>
                       <th>#</th>
                       <th>Order ID</th>
-                      <th>Total Price</th>
+                      <th>Patient ID</th>
                       <th>Instructions</th>
-                      <th>Delivery Date</th>
+                      <th>Ordered Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -517,10 +639,11 @@ export default function AllOrders() {
                       <tr key={post.orderID}>
                         <td>{(count = count + 1)}</td>
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
-                        <td>Rs.{post.total}.00</td>
-                        <td>{post.instructions}</td>
-                        <td>{post.deliveryDate}</td>
-                        {/* substr(0, 10) */}
+                        <td>{post.patientID}</td>
+                        <td style={{ maxWidth: "300px", overflowX: "scroll" }}>
+                          {post.instructions}
+                        </td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -534,17 +657,47 @@ export default function AllOrders() {
                               style={{ marginLeft: "10px" }}
                               size="35px"
                             />
-                            {post.status == 2 ? (
+                            {post.status == 1 ? (
+                              <Loader
+                                className={
+                                  active == 1
+                                    ? "btn btn-outline-warning btn-sm"
+                                    : null
+                                }
+                                color="black"
+                                key={post.foodID}
+                                size="35px"
+                                style={{ marginLeft: "10px" }}
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
+                              />
+                            ) : post.status == 2 ? (
                               <Check
                                 className={
-                                  active == 1 ? "btn btn-success btn-sm" : null
+                                  active == 1
+                                    ? "btn btn-outline-success btn-sm"
+                                    : null
                                 }
                                 color="black"
                                 size="35px"
-                                disabled
+                                onClick={() =>
+                                  changeOrderStatus(post._id, post.status)
+                                }
                                 style={{ marginLeft: "10px" }}
                               />
                             ) : null}
+                            {/* <Trash2
+                              className={
+                                active == 1
+                                  ? "btn btn-outline-danger btn-sm"
+                                  : null
+                              }
+                              color="black"
+                              // onClick={() => deleteFood(post.foodID)}
+                              style={{ marginLeft: "10px" }}
+                              size="35px"
+                            /> */}
                           </div>
                         </td>
                       </tr>
@@ -557,59 +710,31 @@ export default function AllOrders() {
         </div>
       </div>
       <Modal
+        className="modal-lg"
         animation={true}
         isOpen={modelOpen}
+        style={{
+          content: {
+            width: "70%",
+            height: "60%",
+            margin: "auto",
+            opacity: "1",
+            marginLeft: "33%",
+            marginTop: "20%",
+            borderStyle: "solid",
+          },
+        }}
         onRequestClose={modalClose}
-        style={
-          (ModelCss,
-          {
-            display: "flex",
-
-            content: {
-              width: "70%",
-              height: "80%",
-              margin: "auto",
-              opacity: "1",
-              borderStyle: "solid",
-            },
-          })
-        }
       >
-        <div className="row">
-          <div className="col">
-            <h2
-              className="card-title d-flex justify-content-center"
-              style={{ fontWeight: "bold" }}
-            >
-              Quarentine Center Management
-            </h2>
-            <br />
-
-            <div className="row">
-              <div className="col-md-7">
-                <h4 className="card-title">
-                  <b>Contact Number:</b> 011-2289485
-                </h4>
-              </div>
-              <div className="col-md-5">
-                <h4 className="card-title">
-                  <b>Location:</b> We provide the best care available
-                </h4>
-              </div>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col-md-12">
-                <h4 className="card-title">
-                  <b>Order Details: </b>
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-12">
+        <div
+          className="row"
+          style={{
+            maxHeight: "450px",
+            overflowY: "scroll",
+          }}
+        >
+          <div className="col-md-12" style={{ padding: "20px" }}>
+            <h4>Order Details</h4>
             <table className="table table-striped">
               <thead>
                 <tr>
@@ -645,12 +770,18 @@ export default function AllOrders() {
                             key={post.foodID}
                             size="35px"
                             style={{ marginLeft: "10px" }}
+                            onClick={() =>
+                              changeFoodStatus(post._id, post.status)
+                            }
                           />
                         ) : post.status == 2 ? (
                           <Check
                             className="btn btn-outline-success btn-sm"
                             color="black"
                             size="35px"
+                            onClick={() =>
+                              changeFoodStatus(post._id, post.status)
+                            }
                             style={{ marginLeft: "10px" }}
                           />
                         ) : null}

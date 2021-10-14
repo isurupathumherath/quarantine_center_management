@@ -15,6 +15,10 @@ const orderdetailsschema = mongoose.Schema({
     {
       id: { type: String },
       name: { type: String },
+      image: { type: String },
+      price: { type: String },
+      description: { type: String },
+      type: { type: String },
     },
   ],
 });
