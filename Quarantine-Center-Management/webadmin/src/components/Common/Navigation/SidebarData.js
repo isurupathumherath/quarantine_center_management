@@ -102,24 +102,29 @@ export const SidebarData = [
     },
     {
         title: 'Finance Managment',
-        path: '/finance',
+        path: '/finance/fDashboard',
         icon: <AiIcons.AiFillCreditCard />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'Dashboard',
-                path: '/finance/dashboard',
+                path: '/finance/fDashboard',
                 icon: <RiIcons.RiDashboardLine />
             },
             {
-                title: 'Details',
-                path: '/finance/details',
+                title: 'Payment',
+                path: '/finance/payment',
                 icon: <IoIcons.IoIosPaper />
             },
             {
-                title: 'Report',
-                path: '/finance/report',
+                title: 'Payer',
+                path: '/finance/payer',
+                icon: <HiIcons.HiDocumentReport />
+            },
+            {
+                title: 'Inquary',
+                path: '/finance/inquary',
                 icon: <HiIcons.HiDocumentReport />
             },
         ],

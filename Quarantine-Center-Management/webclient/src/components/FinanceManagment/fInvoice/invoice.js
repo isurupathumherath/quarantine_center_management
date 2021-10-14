@@ -68,7 +68,7 @@ function Invoice() {
                                     <div class="invoice-info invoice-info2">
                                         <strong class="customer-text">Invoice To</strong>
                                         <p class="invoice-details">
-                                            {localStorage.getItem("firstName") + " " + localStorage.getItem("lastName")} <br />
+                                            {JSON.parse(localStorage.getItem('currentUser')).lName+ " " + localStorage.getItem("lastName")} <br />
                                             {localStorage.getItem("address")} <br />
                                             {localStorage.getItem("contactNumber")} <br />
                                         </p>
@@ -91,13 +91,13 @@ function Invoice() {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>General Consultation</td>
+                                                    <td>Food & Brevarage Order Total</td>
                                                     <td class="text-center">1</td>
                                                     <td class="text-center">$0</td>
                                                     <td class="text-right">$100</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Video Call Booking</td>
+                                                    <td>Room Booking Total</td>
                                                     <td class="text-center">1</td>
                                                     <td class="text-center">$0</td>
                                                     <td class="text-right">$250</td>
@@ -116,7 +116,7 @@ function Invoice() {
                                                 </tr>
                                                 <tr>
                                                     <th>Discount:</th>
-                                                    <td><span>-10%</span></td>
+                                                    <td><span>0%</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Total Amount:</th>

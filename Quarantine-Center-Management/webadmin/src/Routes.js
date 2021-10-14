@@ -43,6 +43,14 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
 
+import PayerDetails from './pages/FinanceManagement/PayerDetails';
+import FinanceDashboard from './pages/FinanceManagement/FinanceDashboard';
+import Inquary from './pages/FinanceManagement/Inquary';
+import Payer from './pages/FinanceManagement/Payer';
+import Payment from './pages/FinanceManagement/Payment';
+
+
+
 
 const Routes = () => {
     return (
@@ -84,6 +92,13 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
+
+                        {/* <PrivateRouteAdmin path="/finance/payer" exact component={PayerDetails} /> */}
+                        <PrivateRouteAdmin path="/finance/fDashboard" exact component={FinanceDashboard} />
+                        <PrivateRouteAdmin path="/finance/inquary" exact component={Inquary} />
+                        <PrivateRouteAdmin path="/finance/payer" exact component={Payer} />
+                        <PrivateRouteAdmin path="/finance/payment" exact component={Payment} /> 
+
 
                     </Switch>
                 </BrowserRouter>
