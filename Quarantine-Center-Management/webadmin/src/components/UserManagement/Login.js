@@ -40,7 +40,7 @@ function LoginScreen(props) {
 
 
     return (
-        <div className="">
+        <div className="container">
             <div className="card-body">
                 <div class="container">
                     <div class="login-wrapper">
