@@ -8,13 +8,13 @@ class ProfileDetails extends Component {
         super(props);
 
         this.state = {
-            profile: {}
+            profile: {},
         };
     }
 
     componentDidMount() {
-        const id = this.props.match.params.id;
-
+        const id = JSON.parse(localStorage.getItem('currentUser'))._id;
+        const getUser = JSON.parse(sessionStorage.getItem("token"));
         axios.get(`http://localhost:8000/profile/${id}`).then((res) => {
             if (res.data.success) {
                 this.setState({
@@ -25,13 +25,52 @@ class ProfileDetails extends Component {
         });
     }
 
+    onUpdate = () => {
+        window.location.href = '/update'
+    }
+
+    onDelete = (id) => {
+
+        axios.delete(`http://localhost:8000/profile/delete/${id}`).then((res) => {
+
+            const Swal = require('sweetalert2');
+            Swal.fire({
+                title: 'Success!',
+                text: 'Profile Deleted Successfully',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            })
+
+            window.location.href = '/login';
+            sessionStorage.removeItem("token")
+            localStorage.removeItem("currentUser")
+        })
+
+    }
+    //   const getUser = JSON.parse(sessionStorage.getItem("token"));
     render() {
-        const getUser = JSON.parse(sessionStorage.getItem("token"));
+
         return (
-            <div className="container" >
-                <h1 align="center">{getUser.fName}'s Profile</h1><br />
-                <div className="main-body">
-                    {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
+            <div>
+                <div class="breadcrumb-bar">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-md-10 col-10">
+                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                    </ol>
+                                </nav>
+                                <h2 class="breadcrumb-title">User Profile</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="container" ><br />
+                    <h1 align="center">{this.state.profile.fName}'s Profile</h1><br />
+                    <div className="main-body">
+                        {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
@@ -39,45 +78,45 @@ class ProfileDetails extends Component {
                         </ol>
                     </nav> */}
 
-                    <div className="row gutters-sm">
-                        <div className="col-md-4 mb-3">
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="d-flex flex-column align-items-center text-center">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                                        <div className="mt-3">
-                                            <h4>{getUser.fName + ' ' + getUser.lName}</h4>
-                                            <p className="text-muted font-size-sm">{getUser.address}</p>
-                                            {/* <button className="btn btn-info">Follow</button> <br/> */}
+                        <div className="row gutters-sm">
+                            <div className="col-md-4 mb-3">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <div className="d-flex flex-column align-items-center text-center">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                            <div className="mt-3">
+                                                <h4>{this.state.profile.fName + ' ' + this.state.profile.lName}</h4>
+                                                <p className="text-muted font-size-sm">{this.state.profile.address}</p>
+                                                {/* <button className="btn btn-info">Follow</button> <br/> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="card mt-3">
-                                <ul className="list-group list-group-flush">
-                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <h6 className="mb-0">Account Status</h6>
-                                        <span className="text-success">Active</span>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <h6 className="mb-0">Username</h6>
-                                        <span className="text-success">{getUser.uName}</span>
-                                    </li>
-                                    <br />
-                                    <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <div className="col-sm-12">
-                                            <a className="btn btn-info" style={{ width: "100%" }} href="">Edit</a>
+                                <div className="card mt-3">
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <h6 className="mb-0">Account Status</h6>
+                                            <span className="text-success">Active</span>
+                                        </li>
+                                        <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <h6 className="mb-0">Username</h6>
+                                            <span className="text-success">{this.state.profile.uName}</span>
+                                        </li>
+                                        <br />
+                                        <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <div className="col-sm-12">
+                                                <a className="btn btn-info" style={{ width: "100%", color: "white" }} onClick={() => this.onUpdate(localStorage.setItem('updateUser', JSON.parse(localStorage.getItem('currentUser'))._id))}>Edit</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                        <div className="col-sm-12">
-                                            <a className="btn btn-info " style={{ width: "100%" }} href="">Delete</a>
+                                        <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <div className="col-sm-12 ">
+                                                <a className="btn btn-info btn-danger " style={{ width: "100%", color: "white" }} onClick={() => this.onDelete(JSON.parse(localStorage.getItem('currentUser'))._id)}>Delete</a>
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                    {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                         <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                         <span className="text-secondary">https://bootdey.com</span>
                                     </li>
@@ -97,69 +136,70 @@ class ProfileDetails extends Component {
                                         <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                         <span className="text-secondary">bootdey</span>
                                     </li> */}
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="col-md-8">
-                            <div className="card mb-3">
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Username</h6>
+                            <div className="col-md-8">
+                                <div className="card mb-3">
+                                    <div className="card-body">
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Username</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {this.state.profile.uName}
+                                            </div>
                                         </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {getUser.uName}
+                                        <hr />
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Full Name</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {this.state.profile.fName + ' ' + this.state.profile.mName + ' ' + this.state.profile.lName}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Full Name</h6>
+                                        <hr />
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">NIC</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {this.state.profile.nic}
+                                            </div>
                                         </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {getUser.fName + ' ' + getUser.mName + ' ' + getUser.lName}
+                                        <hr />
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Email</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {this.state.profile.email}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">NIC</h6>
+                                        <hr />
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Address</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {this.state.profile.address}
+                                            </div>
                                         </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {getUser.nic}
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Email</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {getUser.email}
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Address</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {getUser.address}
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Birthday</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-blue">
-                                            {moment.utc(getUser.dob).format('DD/MM/YYYY')}
+                                        <hr />
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Birthday</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-blue">
+                                                {moment.utc(this.state.profile.dob).format('DD/MM/YYYY')}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>                            
+                        </div>
                     </div>
                 </div>
             </div>

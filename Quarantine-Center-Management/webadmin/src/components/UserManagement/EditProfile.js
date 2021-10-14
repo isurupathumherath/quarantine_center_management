@@ -90,87 +90,91 @@ class EditProfile extends Component {
     render() {
         return (
             <div className="col-md-8 mt-4 mx-auto">
-                <h1 className="h3 mb-3 font-weight-normal">Edit Profile</h1>
-                <form className="needs-validation" noValidate>
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>First Name</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="fName"
-                    placeholder="Enter First Name"
-                    value={this.state.fName}
-                    onChange={this.handleInputChange}
-                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                <div className="card">
+                    <div className="card-body">
+                        <h1 className="h3 mb-3 font-weight-normal">Edit Profile</h1>
+                        <form className="needs-validation" noValidate>
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>First Name</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="fName"
+                                    placeholder="Enter First Name"
+                                    value={this.state.fName}
+                                    onChange={this.handleInputChange}
+                                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>Middle Name</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="mName"
+                                    placeholder="Enter Last Name"
+                                    value={this.state.mName}
+                                    onChange={this.handleInputChange}
+                                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>Last Name</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="lName"
+                                    placeholder="Enter Last Name"
+                                    value={this.state.lName}
+                                    onChange={this.handleInputChange}
+                                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>User Name</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="uName"
+                                    placeholder="Enter User Name"
+                                    value={this.state.uName}
+                                    onChange={this.handleInputChange} />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>address</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="address"
+                                    placeholder="Enter address"
+                                    value={this.state.address}
+                                    onChange={this.handleInputChange} />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>Email</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="email"
+                                    placeholder="Enter Email"
+                                    value={this.state.email}
+                                    onChange={this.handleInputChange} />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                <label style={{ marginBottom: '5px' }}>Password</label>
+                                <input type="text"
+                                    className="form-control"
+                                    name="password"
+                                    placeholder="Enter Password"
+                                    value={this.state.password}
+                                    onChange={this.handleInputChange} />
+                            </div>
+
+                            <button className="btn btn-success" type="submit" onClick={this.onSubmit}>
+                                <i className="far fa-check-square"> </i>
+                                &nbsp; Update
+                            </button>
+
+                        </form>
                     </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>Middle Name</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="mName"
-                    placeholder="Enter Last Name"
-                    value={this.state.mName}
-                    onChange={this.handleInputChange}
-                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
-                    </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>Last Name</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="lName"
-                    placeholder="Enter Last Name"
-                    value={this.state.lName}
-                    onChange={this.handleInputChange}
-                    pattern="[A-Za-z]+" title="Characters can only be A-Z and a-z." required />
-                    </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>User Name</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="uName"
-                    placeholder="Enter User Name"
-                    value={this.state.uName}
-                    onChange={this.handleInputChange} />
-                    </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>address</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="address"
-                    placeholder="Enter address"
-                    value={this.state.address}
-                    onChange={this.handleInputChange} />
-                    </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>Email</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="email"
-                    placeholder="Enter Email"
-                    value={this.state.email}
-                    onChange={this.handleInputChange} />
-                    </div>
-
-                    <div className="form-group" style={{ marginBottom: '15px' }}>
-                    <label style={{ marginBottom: '5px' }}>Password</label>
-                    <input type ="text"
-                    className="form-control"
-                    name="password"
-                    placeholder="Enter Password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange} />
-                    </div>
-
-                    <button className="btn btn-success" type ="submit" onClick={this.onSubmit}>
-                    <i className="far fa-check-square"> </i>
-                    &nbsp; Update
-                    </button>
-
-                </form>
+                </div>
             </div>
         );
     }

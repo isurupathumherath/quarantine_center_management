@@ -291,7 +291,7 @@ function Header() {
 
             {user ? (<div className="dropdown show"><a className="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {user.uName}
-            </a><div className="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" onClick={ProfileDetails}>Profile</a>
+            </a><div className="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href={`/profile`}>Profile</a>
                 <a class="dropdown-item" onClick={logoutbtn}>Logout</a></div></div>) : (<>
                   <li class="nav-item">
                     <a class="nav-link header-login" href={"/login"}>

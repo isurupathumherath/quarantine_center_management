@@ -44,6 +44,7 @@ const Routes = () => {
                             <Route path="/" exact component={Login} />
                             <PrivateRoute path="/home" exact component={Home} />
                             <PrivateRoute path="/profile" exact component={ProfileDetails} />
+                            <PrivateRoute path="/update" exact component={EditProfile} />
 
                             {/* Chamodh */}
                             <PrivateRoute path="/allFood" exact component={AllFood} />
