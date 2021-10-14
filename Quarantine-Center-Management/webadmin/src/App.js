@@ -22,6 +22,8 @@ import AddNewBatchMed from './components/InventoryManagement/addNewBatchmed';
 import AddnewMeditem from './components/InventoryManagement/addnewMeditem';
 import Meditemupdate from './components/InventoryManagement/MedItemupdate';
 import UpdateFoodItem from './components/InventoryManagement/updateFooditem';
+import FooditemUpdate from './components/InventoryManagement/updateFooditem';
+import Summarymed from './components/InventoryManagement/summarymed';
 import SummaryFood from './components/InventoryManagement/summaryFood';
 
 //Page Route
@@ -35,7 +37,7 @@ import filterStaffMember from './pages/StaffMenagement/filterStaffMember'  //--A
 //pages
 import viewTickets from './components/TicketManagement/adminAllTickets';
 import replyTickets from './components/TicketManagement/adminEditTickets';
-import FooditemUpdate from './components/InventoryManagement/updateFooditem';
+
 class App extends Component {
   render() {
     return (
@@ -71,6 +73,7 @@ class App extends Component {
               <Route path="/Inventory/medbatches/update/whole" exact component={Meditemupdate}/>   {/* Anupa */}
               <Route path="/Inventory/food/update" exact component={FooditemUpdate}/>   {/* Anupa */}
               <Route path="/Inventory/food/summary" exact component={SummaryFood}/>   {/* Anupa */}
+              <Route path="/Inventory/med/summarymed" exact component={Summarymed}/>   {/* Anupa */}
             </Switch>
           </div>
         </div>

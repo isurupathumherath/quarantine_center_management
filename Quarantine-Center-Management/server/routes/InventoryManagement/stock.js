@@ -17,7 +17,27 @@ router.route("/add").post((req,res)=>{
         price_of_one,
         Batch
     })
+///newwwwww
+    // batch.findOne({
+    //     name:req.body.name
+    // }).then (inventory=>{if(inventory){
+    //     errors.name="name already exist";
+    //     alert("name already exit");
+    //     return res.status(400).json(errors);
+        
 
+    // }else {
+        
+    // newmed.save().then(()=>{
+    //     res.json("Stock added")
+    // }).catch((err)=>{
+    //     console.log(err);
+    // })
+    // }
+
+    // })
+
+///newwwwwwww
     newmed.save().then(()=>{
         res.json("Stock added")
     }).catch((err)=>{

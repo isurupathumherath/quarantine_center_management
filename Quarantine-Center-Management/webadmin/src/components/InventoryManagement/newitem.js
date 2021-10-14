@@ -47,7 +47,7 @@ export default function AddBatch() {
             let path = `/Inventory/food`; 
             history.push(path);
         }).catch((err)=>{
-            alert(err);
+            alert("err");
         })
     }
 

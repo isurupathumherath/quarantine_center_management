@@ -5,11 +5,12 @@ import { PieChart,Pie,Tooltip} from "recharts"
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-export default function SummaryFood (){
+export default function Summarymed (){
 
-  const [stocks, setstock] = useState([]);
-  const [item,setitem]=useState([]);
+  const [meds, setmeds] = useState([]);
+  const [medi,setmedi]=useState([]);
   const [ba,setba]=useState([]);
+  
   
   let data=[
    {}
@@ -17,28 +18,29 @@ export default function SummaryFood (){
   let x={}
   // ba.map((post)=>(data=[{name:post.batchnum,value:post.total_quantity*item.price_of_one}]))
   let b1=[];
+
+  let b2=[];
   let t0=0;
   let tot=0;
   let cost=0;
   useEffect(() => {
-    function getStock() {
-      axios
-        .get("http://localhost:8000/stock/get")
-        .then((res) => {
-          console.log(res.data);
-          setstock(res.data);
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
-    }
-
-    getStock();
+    function getmeds() {
+        axios
+          .get("http://localhost:8000/meds/get")
+          .then((res) => {
+            setmeds(res.data);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+      }
+      
+      getmeds();
   }, []);
 
   const getData = (name) => {
-    axios.get(`http://localhost:8000/stock/get/${name}`).then((res)=>{
-                setitem(res.data);
+    axios.get(`http://localhost:8000/meds/get/${name}`).then((res)=>{
+                setmedi(res.data);
                 b1=res.data;
                 setba(b1.Batch);
             }).catch((err)=>{
@@ -46,6 +48,7 @@ export default function SummaryFood (){
             })
             
   }
+
 
   const exportPDF = () => {
     let q=0;
@@ -61,9 +64,9 @@ export default function SummaryFood (){
     doc.setFontSize(15);
 
     const title = "Inventory Report";
-    const headers = [["Food Item", "Category","Unit Price"]];
+    const headers = [["Drug Name", "Category","Unit Price"]];
     
-    const data = stocks.map(elt=> [elt.name, elt.category ,elt.price_of_one]);
+    const data = meds.map(elt=> [elt.name, elt.category ,elt.price_of_one]);
     
     let content = {
       startY: 50,
@@ -82,7 +85,7 @@ export default function SummaryFood (){
     doc.text("Total Quantity",200,320);
     doc.text("Total Amount Spent",360,320);
 
-    stocks.map((da)=>{
+    meds.map((da)=>{
         doc.text("------------------------------------------------------------------------------------------------------------",left,top);
         top=top+30;
         doc.setTextColor("orange")
@@ -98,12 +101,12 @@ export default function SummaryFood (){
           doc.text(String(post.total_quantity),200,top);
 
 
-          doc.text(String(post.total_quantity*item.price_of_one),360,top);
+          doc.text(String(post.total_quantity*medi.price_of_one),360,top);
 
-          unitTot=unitTot+post.total_quantity*item.price_of_one;
+          unitTot=unitTot+post.total_quantity*medi.price_of_one;
           top=top+30;
-          top >= 720 ? doc.addPage() : (q = 1);
-          top >=720 ? (top=50):(q=2);
+          top >= 750 ? doc.addPage() : (q = 1);
+          top >=750 ? (top=50):(q=2);
         })  
         doc.text("__________",340,top);
         top=top+20;
@@ -165,13 +168,13 @@ export default function SummaryFood (){
     doc.text(String(Grandtotal),355,top);
     doc.text("__________",340,top+5);
     doc.text("__________",340,top+7);
-    doc.save("Inventory Food Report.pdf");
+    doc.save("Inventory Report.pdf");
     
   }
 
-  stocks.map((post)=>(t0=t0+1));
-  stocks.map((post)=>(cost=cost+post.price_of_one));
-  {ba.map((post)=>(tot=tot+post.total_quantity * item.price_of_one))}
+  meds.map((post)=>(t0=t0+1));
+  meds.map((post)=>(cost=cost+post.price_of_one));
+  {ba.map((post)=>(tot=tot+post.total_quantity * medi.price_of_one))}
     return (
         <div>
           <div class="page-wrapper">
@@ -187,9 +190,9 @@ export default function SummaryFood (){
 
                 <button id="delete"  class="btn btn-dark" onClick={()=>exportPDF()}>Generate Report +</button><br/><br/>
                 <div style={{width: "45%",float: "left",padding: "20px",border: "2px solid gray"}}>
-                    <center><h1>Total Summary of Food</h1></center>
+                    <center><h1>Total Summary of Medicine</h1></center>
                       <br/>
-                      <p>Total Food Items in Inventory - {t0}</p>
+                      <p>Total Medicine Items in Inventory - {t0}</p>
                       <hr/>
                     <center><h1>Pick an Item</h1></center>
                       <br/>
@@ -200,7 +203,7 @@ export default function SummaryFood (){
                           <th>Actions</th>
                       </thead>
                         <tbody>
-                      {stocks.map((sto) => {
+                      {meds.map((sto) => {
                         return(
                           <tr>
                       <td>{sto.name}</td>
@@ -215,15 +218,15 @@ export default function SummaryFood (){
                     </table>
                 </div>
                 
-                <div style={{width: "55%",float: "left",padding: "20px",border: "2px solid gray"}}>
-                    <center><h1>Selected Item : {item.name}</h1></center> 
+                <div style={{width: "55%",float: "left",padding: "20px",border: "2px solid gray" , maxHeight:"1600px",overflowY: "scroll"}}>
+                    <center><h1>Selected Item : {medi.name}</h1></center> 
                     <hr/>
                     <div style={{width: "45%",float: "left",padding: "20px"}}>
                    
                       <h4>Batch Numbers</h4>
                       <center>
                       {ba.map((m) => {
-                        data.push({name:m.batchnum,value:item.price_of_one*m.total_quantity})
+                        data.push({name:m.batchnum,value:medi.price_of_one*m.total_quantity})
                         return (
                           <h6>{m.batchnum}</h6>
                         );
@@ -236,7 +239,7 @@ export default function SummaryFood (){
                       <center>
                       {ba.map((m) => {
                         return (
-                          <h6>{m.total_quantity * item.price_of_one}</h6>
+                          <h6>{m.total_quantity * medi.price_of_one}</h6>
                         );
                       })}
                       

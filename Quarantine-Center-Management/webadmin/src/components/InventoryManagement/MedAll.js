@@ -101,9 +101,12 @@ const handleFilter = (event) => {
             </div>
           </div>
           <Link to={`/Inventory/medall/mednew`}>
-            <button id="view" class="btn btn-info">Add New +</button><br></br>
+            <button id="view" class="btn btn-info">Add New +</button>
           </Link>
-          <br></br>
+          <Link to={`/Inventory/med/summarymed`}>
+            <button class="btn btn-success" style={{ marginLeft: '.5rem' }} id="view">Summary</button>
+          </Link>
+          <br></br><br/>
             <table class="table table-striped">
             <thead>
                 <th>Name</th>
