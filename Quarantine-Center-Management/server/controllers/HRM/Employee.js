@@ -332,8 +332,8 @@ Date - 22/08/2021
  */
 exports.update = (req, res) => {
     const { employeeId } = req.params;
-    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus } = req.body;
-    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus }, { new: true }).exec((err, post) => {
+    const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL } = req.body;
+    Employee.findOneAndUpdate({ employeeId }, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL }, { new: true }).exec((err, post) => {
         if (err) console.log(err);
         res.json(post);
     })

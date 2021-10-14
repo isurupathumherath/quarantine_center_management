@@ -134,6 +134,10 @@ const App = () => {
           accountStatus: "",
         });
 
+        setURL({
+          profileURL: "",
+        })
+
       })
       .catch((error) => {
         console.log(error.Response);
