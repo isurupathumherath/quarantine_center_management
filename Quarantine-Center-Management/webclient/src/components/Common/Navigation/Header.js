@@ -2,14 +2,21 @@ import React, { Component } from "react";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CartImage from "../cartImage";
+import { logout } from '../../UserManagement/Session';
+import ProfileDetails from "../../UserManagement/ProfileDetails";
 
 function Header() {
   var user = JSON.parse(localStorage.getItem("currentUser"));
-  function logout() {
-    localStorage.removeItem("currentUser");
-    window.location.href = "/login";
+  function logoutbtn() {
+    logout();
+    localStorage.removeItem("currentUser")
+    window.location.href = "/login"
   }
   // const user = JSON.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')):null
+
+  function ProfileDetails() {
+    window.location.href = "/Profile"
+  }
 
   return (
     <div>
@@ -156,28 +163,28 @@ function Header() {
                 </ul>
               </li>
               <li class="has-submenu">
-                  <a href="#">
-                    Foods <i class="fas fa-chevron-down"></i>
-                  </a>
-                  <ul class="submenu">
-                    <li>
-                      <Link to={"/allFood"}>Foods Home</Link>
-                    </li>
-                    {/* <li>
+                <a href="#">
+                  Foods <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li>
+                    <Link to={"/allFood"}>Foods Home</Link>
+                  </li>
+                  {/* <li>
                       <Link to={"/orderAdmin"}>Order Details</Link>
                     </li> */}
-                    {/* <li>
+                  {/* <li>
                       <Link to={"/foodadmin"}>Foods Admin</Link>
                     </li> */}
-                    <li>
-                      <Link to={"/allOrders"}>Past Orders</Link>
-                    </li>
+                  <li>
+                    <Link to={"/allOrders"}>Past Orders</Link>
+                  </li>
 
-                    <li>
-                      <Link to={"/favourites"}>Favourites</Link>
-                    </li>
-                  </ul>
-                </li>
+                  <li>
+                    <Link to={"/favourites"}>Favourites</Link>
+                  </li>
+                </ul>
+              </li>
               <li class="has-submenu">
                 <a href="#">
                   Pages <i class="fas fa-chevron-down"></i>
@@ -263,14 +270,14 @@ function Header() {
           </div>
           <ul class="nav header-navbar-rht">
             <li class="nav-item contact-item">
-            <Link to={"/foodCart"}>
-                  <div
-                    className="input-group-append btn btn-outline-primary"
-                    style={{ marginRight: "30px", borderRadius: "20px" }}
-                  >
-                    <CartImage />
-                  </div>
-                </Link>
+              <Link to={"/foodCart"}>
+                <div
+                  className="input-group-append btn btn-outline-primary"
+                  style={{ marginRight: "30px", borderRadius: "20px" }}
+                >
+                  <CartImage />
+                </div>
+              </Link>
               <div class="header-contact-img">
                 <i class="far fa-hospital"></i>
               </div>
@@ -280,40 +287,16 @@ function Header() {
               </div>
             </li>
 
-            {user ? (
-              <div className="dropdown show">
-                <a
-                  className="btn btn-light dropdown-toggle"
-                  href="#"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  {user.uName}
-                </a>
-                <div
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuLink"
-                >
-                  <a class="dropdown-item" href="#">
-                    Profile
-                  </a>
-                  <a class="dropdown-item" onClick={logout}>
-                    Logout
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <>
-                <li class="nav-item">
-                  <a class="nav-link header-login" href={"/login"}>
-                    login / Signup
-                  </a>
-                </li>
-              </>
-            )}
+            {user ? (<div className="dropdown show"><a className="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {user.uName}
+            </a><div className="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href={`/profile`}>Profile</a>
+                <a class="dropdown-item" onClick={logoutbtn}>Logout</a></div></div>) : (<>
+                  <li class="nav-item">
+                    <a class="nav-link header-login" href={"/login"}>
+                      login / Signup
+                    </a>
+                  </li>
+                </>)}
           </ul>
         </nav>
       </header>
