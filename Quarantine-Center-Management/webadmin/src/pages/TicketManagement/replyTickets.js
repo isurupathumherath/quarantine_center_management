@@ -1,3 +1,9 @@
+/*
+    Created by - Vishara Prabuddhi
+    On - 30/08/2021
+    Name - Reply Ticket
+ */
+
 import React, { Component } from 'react'; 
 import Reply from '../../components/TicketManagement/adminEditTickets'; 
 
@@ -8,7 +14,7 @@ export default class replyTickets extends Component {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <Reply />
+            <Reply ticketID={this.props.match.params.id} />
           </div>
           </div>
         </div>
