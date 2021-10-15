@@ -40,8 +40,9 @@ import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added 
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 
-import viewTickets from './components/TicketManagement/adminAllTickets';
-import replyTickets from './components/TicketManagement/adminEditTickets';
+import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
+import replyTickets from './pages/TicketManagement/replyTickets'; //--Added by Vishara Prabuddhi--
+import Mailer from './components/TicketManagement/mailer';
 
 //Anupa
 import Allstock from './components/InventoryManagement/allStock';
@@ -107,6 +108,11 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/addQuaratineStaff" exact component={addQuaratineStaff} />             {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
+
+                        <PrivateRouteAdmin path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/Mailer" exact component={Mailer}/> {/*--Added by Vishara Prabuddhi--*/}
+                        
                         <PrivateRouteAdmin path="/add/food/:food" exact component={Addbatch}/>  {/* Anupa */}
                         <PrivateRouteAdmin path="/update/:food" exact component={UpdateStock}/>  {/* Anupa */}
                         <PrivateRouteAdmin path="/delete" exact component={Delete}/> {/* Anupa */}

@@ -28,6 +28,9 @@ import Payment from "./pages/FinanceManagement/Fpayment";
 import Invoice from "./pages/FinanceManagement/Finvoice";
 import Inquary from './pages/FinanceManagement/Finquary';
 //pages
+import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
+import formLandingPage from './pages/TicketManagement/formLandingPage'; //--Added by Vishara Prabuddhi--
+// import viewMyTicket from './pages/TicketManagement/viewMyTicket'; //--Added by Vishara Prabuddhi--
 //import Login from "./pages/Common/Loginexaple";
 
 class App extends Component {
@@ -59,6 +62,10 @@ class App extends Component {
           <Route path="/payment" exact component={Payment} />
           <Route path="/invoice" exact component={Invoice} /> 
           <Route path="/inquary" exact component={Inquary} />
+
+          {/* vishara */}
+          <Route path="/addticket" exact component={addTicket}/> 
+          <Route path="/formLandingPage" exact component={formLandingPage}/> 
         </Switch>
         <Footer />
       </Router>
