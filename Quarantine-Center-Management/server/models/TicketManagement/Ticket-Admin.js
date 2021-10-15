@@ -42,6 +42,10 @@ const TicketAdminSchema = new mongoose.Schema({
         type:String,
         required:true,
         default:'New'
+    }, 
+    userID: {
+        type:String,
+        required:true
     }
 
 

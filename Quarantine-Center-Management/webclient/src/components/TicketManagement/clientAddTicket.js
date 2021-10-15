@@ -4,10 +4,12 @@
     Name - Client Add Ticket
  */
 
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import axios from 'axios';
-const generateUniqueId = require('generate-unique-id');
+import {getUser} from '../UserManagement/Session'
 
+const userID = getUser();
+const generateUniqueId = require('generate-unique-id');
 
 export default class clientAddTicket extends Component {
     constructor(props) {
@@ -20,11 +22,13 @@ export default class clientAddTicket extends Component {
             reply: "",
             status: "",
             message: ""
+
         }
     }
 
     handleInputChange = (e) => {
-        const { name, value } = e.target;
+        console.log(userID);
+        const { name, value } = e.target
         this.setState({
             ...this.state,
             [name]: value
@@ -34,8 +38,8 @@ export default class clientAddTicket extends Component {
     handleChange = ({ target: { value, name } }) => this.setState({ [name]: value })
 
     onSubmit = (e) => {
-        e.preventDefault();
 
+        e.preventDefault();
         const { fullName, nic, email, departmentName, reply, status, message } = this.state;
 
         const refID = generateUniqueId({
@@ -51,7 +55,8 @@ export default class clientAddTicket extends Component {
             departmentName: departmentName,
             reply: "Null",
             status: "New",
-            message: message
+            message: message,
+            userID: userID
         }
 
         console.log(data)
@@ -69,9 +74,23 @@ export default class clientAddTicket extends Component {
                         message: ""
                     }
                 )
+                window.location.replace('/formLandingPage');
             }
         })
+       
     }
+
+    // onClickDemo = () => {
+    //     this.setState(
+    //       {
+    //         subjectId: "SUB34765",
+    //         StudentName: "Ahmed Azmie",
+    //         enrollmentCode: "EN45784",
+    //         studentId: "STD34638",
+    //         StudentAddress: "No123, 3rd Street, Rathmalana",
+    //         dateOfEnroll: "2021-09-20"
+    //       })
+    //   }
 
     render() {
         return (
@@ -87,7 +106,7 @@ export default class clientAddTicket extends Component {
 
                     <div className="col-md-8">
                         <h1 className="h3 mb-3 font-weight-normal"></h1>
-                        <form >
+                        <form onSubmit={this.onSubmit}>
                             <div className="form-group" >
                                 <label style={{ marginBottom: '5px' }}>Your Name</label>
                                 <input type="text"
@@ -95,7 +114,9 @@ export default class clientAddTicket extends Component {
                                     name="fullName"
                                     placeholder="Enter Full Name"
                                     value={this.state.fullName}
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange}
+                                    pattern="[a-zA-Z][a-zA-Z ]{4,}" 
+                                    required/>
                             </div>
 
                             <div className="form-group" >
@@ -106,7 +127,7 @@ export default class clientAddTicket extends Component {
                                     placeholder="Enter NIC"
                                     value={this.state.nic}
                                     min='10' max='12'
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange} required/>
                             </div>
 
                             <div className="form-group" >
@@ -117,7 +138,9 @@ export default class clientAddTicket extends Component {
                                     placeholder="Enter Email"
                                     value={this.state.email}
                                     min='10' max='12'
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange}
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                    required/>
                             </div>
 
 
@@ -144,10 +167,10 @@ export default class clientAddTicket extends Component {
                                     name="message"
                                     placeholder="Enter Message"
                                     value={this.state.message}
-                                    onChange={this.handleInputChange} />
+                                    onChange={this.handleInputChange} required/>
                             </div>
 
-                            <button className="btn btn-success" type="submit" onClick={this.onSubmit} >
+                            <button className="btn btn-success" type="submit"  >
                                 <i className="far fa-check-square"></i>
                                 &nbsp;Submit
                             </button>

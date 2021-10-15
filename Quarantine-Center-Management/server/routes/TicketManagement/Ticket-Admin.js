@@ -25,7 +25,7 @@ router.post('/ticket/save', (req, res) => {
                 error: err
             });
         }
-        
+
 
         const refCode = ticket.refID;
         // console.log(ticket.refID);
@@ -44,12 +44,14 @@ router.post('/ticket/save', (req, res) => {
             var mailOptions = {
                 from: 'quarantine@out.com',
                 to: `${email}`,
-                subject: 'Your Login Details',
+                subject: 'Your Ticket Details',
                 text: `
                             Hi
                         
-                            Your ticket reference code is ${refCode}
-                            Thank You`
+                            Your ticket reference number is ${refCode}
+                            Thank you for contacting us. We will get back to you soon.
+                        `
+
             };
 
             transporter.sendMail(mailOptions, function (error, info) {
@@ -155,8 +157,9 @@ router.post('/create-pdf', (req, res) => {
 //get the PDF
 
 router.get('/fetch-pdf', (req, res) => {
-    res.sendFile('pdfsub.pdf', { root:'C:/Users/DELL/Desktop/New folder (2)/itp_project-g17/Quarantine-Center-Management/server'});
+    res.sendFile('pdfsub.pdf', { root: 'Quarantine-Center-Management/server/pdfsub.pdf' });
 })
+
 
 
 module.exports = router;

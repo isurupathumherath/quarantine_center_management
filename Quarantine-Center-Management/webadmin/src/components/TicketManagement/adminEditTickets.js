@@ -6,6 +6,8 @@
 import { saveAs } from 'file-saver';
 import React, { Component } from 'react';
 import axios from 'axios';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const Swal = require('sweetalert2')
 
@@ -71,6 +73,7 @@ export default class adminEditTickets extends Component {
                         reply: ""
                     }
                 )
+                window.location.replace('/viewalltickets');
             }
         })
         // this.props.history.push("/viewalltickets");
@@ -96,6 +99,7 @@ export default class adminEditTickets extends Component {
             }
         });
     }
+    
 
     createAndDownloadPdf = () => {
         axios.post('http://localhost:8000/create-pdf', this.state)
@@ -104,7 +108,9 @@ export default class adminEditTickets extends Component {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
                 saveAs(pdfBlob, 'Subject.pdf');
+                console.log('test');
             })
+
     }
 
 
