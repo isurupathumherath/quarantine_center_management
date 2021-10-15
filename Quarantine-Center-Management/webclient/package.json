@@ -53,8 +53,8 @@
     "uniqid": "^5.4.0",
     "web-vitals": "^1.1.2",
     "react-file-base64": "^1.0.3",
-    "react-icons": "^4.2.0", 
-    "react-to-pdf": "^0.0.14", 
+    "react-icons": "^4.2.0",
+    "react-to-pdf": "^0.0.14",
     "redux": "^4.1.1"
   },
   "scripts": {
