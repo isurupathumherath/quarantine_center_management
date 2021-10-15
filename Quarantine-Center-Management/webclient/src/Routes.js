@@ -27,9 +27,8 @@ import Favourites from "../../webclient/src/pages/FoodManagement/Favourites";
 import HomePage from "./pages/FinanceManagement/Fhome";
 import Checkout from "./pages/FinanceManagement/Fcheckout";
 import Payment from "./pages/FinanceManagement/Fpayment";
-import Inquary from './pages/FinanceManagement/Finquary';
-
-
+import Invoice from "./pages/FinanceManagement/Finvoice";
+import Inquary from './pages/FinanceManagement/Finquary'; 
 
 const Routes = () => {
     return (
@@ -37,8 +36,8 @@ const Routes = () => {
             <Switch>
                 <div>
                     <Header />
-                    <div style={{padding:'0px'}} class="content">
-                        <div style={{padding:'0px'}} class="container-fluid">
+                    <div style={{ padding: '0px' }} class="content">
+                        <div style={{ padding: '0px' }} class="container-fluid">
                             {/* <Route path="/" exact component={App} /> */}
                             <Route path="/register" exact component={Register} />
                             <Route path="/login" exact component={Login} />
@@ -58,7 +57,8 @@ const Routes = () => {
                             {/* Janith Gamage On - 11/10/2021   */}
                             <PrivateRoute path="/hometest" exact component={HomePage} />
                             <PrivateRoute path="/checkout" exact component={Checkout} />
-                            <PrivateRoute path="/invoice" exact component={Payment} />
+                            <PrivateRoute path="/payment" exact component={Payment} />
+                            <PrivateRoute path="/invoice" exact component={Invoice} />
                             <PrivateRoute path="/inquary" exact component={Inquary} />
                         </div>
                     </div>

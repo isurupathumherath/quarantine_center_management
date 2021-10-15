@@ -9,10 +9,7 @@ export const getPayers = async (req, res) => {
     try {
         const payers = await FinancePayer.find();
         if (payers != null) {
-            res.status(200).json({
-                replyCode: 1,
-                payers
-            });
+            res.status(200).json(payers);
         } else {
             res.status(200).json({
                 replyCode: 0,

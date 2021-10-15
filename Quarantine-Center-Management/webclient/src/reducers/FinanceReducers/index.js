@@ -13,6 +13,8 @@ import ForderData from './forderData'
 import Fpayer from './fpayer'
 import Finquary from './finquary';
 
+import Foods from './food'
+
 
 export const reducers = combineReducers({
     invoice,
@@ -24,6 +26,7 @@ export const reducers = combineReducers({
     FroomData,
     ForderData,
     Fpayer,
-    Finquary
+    Finquary,
+    Foods
 });
 

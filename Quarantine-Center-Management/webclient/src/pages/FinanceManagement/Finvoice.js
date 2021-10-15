@@ -1,23 +1,15 @@
 /* Janith Gamage On - 11/10/2021  */
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-export default class HomePage extends Component {
+import { Invoice } from '../../components/FinanceManagment/fInvoice';
+
+import Fimage from '../../assets/PaymentManagment/img/Fmain2.jpg';
 
 
-    handlePayBtnClick() {
-        Swal.fire({
-            title: 'Online Payment Service',
-            icon: 'info',
-            showCancelButton: true,
-            focusConfirm: false, 
-            confirmButtonText:
-                '<a href="/checkout">Pay</a>',
-            cancelButtonText:
-                'Cancel',
-        })
-    }
+
+class InvoicePage extends Component {
 
     handleInquaryBtnClick() {
         Swal.fire({
@@ -38,10 +30,6 @@ export default class HomePage extends Component {
     }
 
     render() {
-
-        localStorage.setItem("userID", "102");
-        localStorage.setItem("userName", "Janith Gamage");
-
         return (
             <div>
                 <div class="breadcrumb-bar">
@@ -51,10 +39,10 @@ export default class HomePage extends Component {
                                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Start Payment</li>
+                                        <li class="breadcrumb-item active" aria-current="page">invoice</li>
                                     </ol>
                                 </nav>
-                                <h2 class="breadcrumb-title">Start Payment</h2>
+                                <h2 class="breadcrumb-title">Invoice</h2>
                             </div>
                             <div class="col-md-2 col-2">
                                 {/* <h2 class="breadcrumb-title float-right">Start Payment</h2> */}
@@ -75,21 +63,35 @@ export default class HomePage extends Component {
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <section class="section section-features">
+                        <div class="row">
+                            <div class="col-md-12"
+                                style={{
+                                    marginTop: '20px',
+                                    marginBottom: '20px'
+                                }}>
+                                <ul class="testprogressbar">
+                                    <li> <a href={'/checkout'}>Payer Details</a></li>
+                                    <li class="active"><a href={'/invoice'}>Payment Invoice</a></li>
+                                    <li><a href={'/payment'}>Payment</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <section class="section section-features" style={{ padding: '28px 0' }}>
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4">
-                                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', height: '500px' }}>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="card booking-card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
+                                            <div class="card-header">
+                                                <h4 class="card-title">Payment Invoice</h4>
+                                            </div>
                                             <div class="card-body">
-                                                <div class="info-widget">
-                                                    <button type="button" class="btn btn-block btn-outline-info active" onClick={this.handlePayBtnClick} >Pay</button>
-                                                </div>
+                                                <Invoice />
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4"></div>
-
+                                    <div class="col-md-6 col-lg-6">
+                                        <img src={Fimage} style={{ width: '90%' }} /> 
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -100,3 +102,5 @@ export default class HomePage extends Component {
         )
     }
 }
+
+export default InvoicePage;
