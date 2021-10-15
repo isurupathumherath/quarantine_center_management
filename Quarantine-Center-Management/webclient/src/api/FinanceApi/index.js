@@ -36,7 +36,9 @@ const inquary = url + '/inquary';
 //Calling the invoice CRUD 
 export const foodDetails = (userID) => axios.get(`${invoice + '/foodDetails'}/${userID}`);
 export const bookingDetails = (userID) => axios.get(`${invoice + '/bookingDetails'}/${userID}`);
-export const roomDetails = (userID) => axios.get(`${invoice + '/roomDetails'}/${userID}`);
+export const roomDetails = (roomID) => axios.get(`${invoice + '/roomDetails'}/${roomID}`);
+export const foodSetDetails = (id) => axios.get(`${invoice + '/foodSetDetails'}/${id}`);
+ 
 
 //Calling Payer CRUD API
 export const allPayerDetails = () => axios.get(payer + '/allPayerDetails');

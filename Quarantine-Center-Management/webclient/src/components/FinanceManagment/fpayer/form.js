@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Col, Row, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+
 import axios from 'axios';
 
 
@@ -64,20 +66,36 @@ class PayerForm extends Component {
             `)
 
             //add data to the local storage
-            localStorage.setItem("firstName",this.state.firstName);
-            localStorage.setItem("lastName",this.state.lastName);
-            localStorage.setItem("email",this.state.email);
-            localStorage.setItem("address",this.state.address);
-            localStorage.setItem("contactNumber",this.state.contactNumber);
+            localStorage.setItem("firstName", this.state.firstName);
+            localStorage.setItem("lastName", this.state.lastName);
+            localStorage.setItem("email", this.state.email);
+            localStorage.setItem("address", this.state.address);
+            localStorage.setItem("contactNumber", this.state.contactNumber);
 
-
-
-
-            alert("tets")
             const res = axios.post('http://localhost:8000/payer/createPayer', this.state);
+
+            Swal.fire({
+                title: 'Payer Details Saved',
+                icon: 'success',
+                focusConfirm: false,
+                confirmButtonText:
+                    '<a href="/invoice">Proceed</a>'
+            })
 
         } else {
             console.error("FORM INVALID - DISPLAY ERROR MASAGE")
+            Swal.fire({
+                title: 'Invalid Input',
+                icon: 'error',
+                html: 
+                    'Please Check Again',
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                    'Ok',
+                cancelButtonText:
+                    'Cancel',
+            })
         }
     }
 
@@ -216,15 +234,15 @@ class PayerForm extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={1} style={{ marginTop: '20px' }}>
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
-                            <button type="button" class="btn btn-block btn-outline-danger active">Cancel</button>
+                        <Col md={3} style={{ marginTop: '20px' }}>
+                            {/* <button type="button" class="btn btn-block btn-outline-danger active">Clear</button> */}
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
-                            <button type="button" class="btn btn-block btn-outline-info active">Clear</button>
+                        <Col md={3} style={{ marginTop: '20px' }}>
+                            <button type="button" class="btn btn-block btn-outline-info active">Cancel</button>
                         </Col>
-                        <Col md={3} style={{ marginTop: '65px' }}>
+                        <Col md={5} style={{ marginTop: '20px' }}>
                             <button type="submit" class="btn btn-block btn-outline-success active">Save Payment Details</button>
                         </Col>
                     </Row>

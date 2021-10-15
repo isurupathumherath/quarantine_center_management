@@ -7,14 +7,14 @@ export default function FoodDetails(props) {
         <img
           src={`img/${props.image}`}
           className="card-img-top"
-          style={{ width: "390px", height: "200px" }}
+          style={{ width: "100%", height: "200px" }}
           alt="..."
         />
 
-        <div className="col-md-4">
+        <div className="col-md-4" style={{ marginTop: "20px" }}>
           <h5 className="card-title">Name</h5>
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8" style={{ marginTop: "20px" }}>
           <p className="card-text">: {props.name}</p>
         </div>
       </div>

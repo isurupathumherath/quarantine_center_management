@@ -1,8 +1,8 @@
-import React from 'react'
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
-import * as HiIcons from 'react-icons/hi';
+import React from "react";
+import * as AiIcons from "react-icons/ai";
+import * as IoIcons from "react-icons/io";
+import * as RiIcons from "react-icons/ri";
+import * as HiIcons from "react-icons/hi";
 
 export const SidebarData = [
     {
@@ -55,10 +55,29 @@ export const SidebarData = [
         icon: <AiIcons.AiTwotoneRocket />,
     },
     {
-        title: 'Food management',
-        path: '/food',
+        title: "Food management",
+        path: "/food",
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
         icon: <AiIcons.AiOutlineFolder />,
-    },
+        subNav: [
+          {
+            title: "Dash Board",
+            path: "/orderAdmin",
+            icon: <RiIcons.RiDashboardLine />,
+          },
+          {
+            title: "Manage Foods",
+            path: "/foodadmin",
+            icon: <IoIcons.IoIosPaper />,
+          },
+          {
+            title: "Reports",
+            path: "/foodreports",
+            icon: <HiIcons.HiDocumentReport />,
+          },
+        ],
+      },
     {
         title: 'Medical details',
         path: '/medical',
@@ -116,24 +135,29 @@ export const SidebarData = [
     },
     {
         title: 'Finance Managment',
-        path: '/finance',
+        path: '/finance/fDashboard',
         icon: <AiIcons.AiFillCreditCard />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'Dashboard',
-                path: '/finance/dashboard',
+                path: '/finance/fDashboard',
                 icon: <RiIcons.RiDashboardLine />
             },
             {
-                title: 'Details',
-                path: '/finance/details',
+                title: 'Payment',
+                path: '/finance/payment',
                 icon: <IoIcons.IoIosPaper />
             },
             {
-                title: 'Report',
-                path: '/finance/report',
+                title: 'Payer',
+                path: '/finance/payer',
+                icon: <HiIcons.HiDocumentReport />
+            },
+            {
+                title: 'Inquary',
+                path: '/finance/inquary',
                 icon: <HiIcons.HiDocumentReport />
             },
         ],

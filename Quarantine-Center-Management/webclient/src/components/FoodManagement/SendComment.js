@@ -4,6 +4,7 @@ import { Send } from "react-feather";
 import axios from "axios";
 import uniqid from "uniqid";
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast, cssTransition } from "react-toastify";
 
 export default function DisplayComments(props) {
   const history = useHistory();
@@ -11,7 +12,7 @@ export default function DisplayComments(props) {
 
   function sendData(e) {
     e.preventDefault();
-
+    toast("Wow so easy!");
     const newComment = {
       commentID: uniqid(),
       foodID: `${props.foodID}`,
