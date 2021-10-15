@@ -58,4 +58,15 @@ router.post('/',(req,res)=>{
         }
     })
 })
-
+router.post('/booking',(req,res)=>{
+    var record= new booking({
+        fname: req.body.fname,
+        lname: req.body.lname,
+        nic: req.body.nic,
+        email: req.body.email,
+        checkin: req.body.checkin,
+        checkout: req.body.checkout,
+        roomid: req.body.roomid,
+        patientid: req.body.patientid,
+        price: req.body.price
+    })
