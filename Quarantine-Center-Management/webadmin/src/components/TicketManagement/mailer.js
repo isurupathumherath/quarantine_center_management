@@ -42,13 +42,13 @@ const Mailer = () => {
                     <form className="row" style={{ margin: "25px 85px 75px 100px" }}
                         onSubmit={sendEmail}>
                         <label>Recievers' Name</label>
-                        <input type="text" name="name" className="form-control" />
+                        <input type="text" name="name" className="form-control" required/>
 
                         <label style={{ marginTop: "30px" }}>Email Address</label>
-                        <input type="email" name="email" className="form-control" />
+                        <input type="email" name="email" className="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
 
                         <label style={{ marginTop: "30px" }}>Message</label>
-                        <textarea name="message" rows='4' className="form-control" />
+                        <textarea name="message" rows='4' className="form-control"  pattern="[A-Za-z]{5}" required/>
 
                         <input type="submit" value='Send' className="form-control btn btn-primary"
                             style={{ marginTop: "30px" }} />
