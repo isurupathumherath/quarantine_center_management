@@ -17,4 +17,13 @@ router.get('/',(req,res)=>{
         }
     })
 })
+router.get('/get_booking',(req,res)=>{
+    booking.find((err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            console.log(JSON.stringify(err,undefined,2))
+        }
+    })
+})
 
