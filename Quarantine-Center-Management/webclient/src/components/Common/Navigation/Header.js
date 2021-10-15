@@ -238,9 +238,6 @@ function Header() {
                   Tciket Management <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                  <a href="#">
-                    Ticket <i class="fas fa-chevron-down"></i>
-                  </a>
                   <ul class="submenu">
                     <li>
                       <a href="/addticket">Add Ticket</a>
