@@ -88,8 +88,8 @@ export default function Payment() {
                 localStorage.setItem("Gateway_Precentage", Gateway_Usage) 
             } 
 
-            <h1> {Gateway}</h1>
-            <h1> {Card} </h1>
+            {/* <h1> {Gateway}</h1>
+            <h1> {Card} </h1> */}
         </div>
     )
 }

@@ -5,8 +5,8 @@ var CardUsage_Precentage = parseInt(localStorage.getItem("Card_Precentage"))
 var GatewayUsage_Precentage = parseInt(localStorage.getItem("Gateway_Precentage"))
 
 const data = [
-  { name: 'Group A', value: CardUsage_Precentage },
-  { name: 'Group B', value: GatewayUsage_Precentage },
+  { name: 'Card Usage Precentage', value: CardUsage_Precentage },
+  { name: 'Payment Gateway Usage Precentage', value: GatewayUsage_Precentage },
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
