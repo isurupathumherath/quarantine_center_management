@@ -170,3 +170,29 @@ var storage = multer.diskStorage({
     cb(null, uniqid() + '-' +file.originalname )
   }
 })
+
+var upload = multer({ storage: storage }).single('file')
+
+router.post('/upload',function(req, res) {
+     
+    upload(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+
+    })
+
+
+})
+router.get('/feedback',(req,res)=>{
+    room.find((err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            console.log(JSON.stringify(err,undefined,2))
+        }
+    })
+})
