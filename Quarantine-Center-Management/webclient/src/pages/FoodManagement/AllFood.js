@@ -10,6 +10,7 @@ export default function AllFoods() {
   const [lunch, setLunch] = useState([]);
   const [appetizer, setAppetizer] = useState([]);
   const [beverage, setBeverage] = useState([]);
+  const [desert, setDesert] = useState([]);
 
   useEffect(() => {
     axios
@@ -25,6 +26,15 @@ export default function AllFoods() {
       .get("http://localhost:8000/foods/getbreakfastActive/")
       .then((res) => {
         setBreakfast(res.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    axios
+      .get("http://localhost:8000/foods/getdesertsactive/")
+      .then((res) => {
+        setDesert(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -68,18 +78,39 @@ export default function AllFoods() {
   }, []);
 
   return (
-    <section class="section home-tile-section">
+    <section
+      class="section home-tile-section"
+      style={{ backgroundColor: "#f4f4f4", padding: "10px" }}
+    >
+      <div
+        style={{
+          width: "100%",
+          marginBottom: "30px",
+        }}
+      >
+        <img
+          className="card-img-top"
+          src={`img/bg1.jpeg`}
+          alt="Food image"
+          style={{
+            height: "400px",
+          }}
+        />
+      </div>
+      <br />
+      <hr />
       <h2
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
-          color: "#3fd4c5",
           fontFamily: "'Bitter', serif",
+          color: "#0057d1",
           fontSize: "35px",
         }}
       >
         Available items
       </h2>
+
       <div
         style={{
           width: "100%",
@@ -102,13 +133,49 @@ export default function AllFoods() {
           </div>
         ))}
       </div>
+      <br />
+      <hr />
+
+      <h2
+        style={{
+          marginLeft: "20px",
+          textDecoration: "underline",
+          color: "#0057d1",
+          fontFamily: "'Bitter', serif",
+          fontSize: "35px",
+        }}
+      >
+        Beverages
+      </h2>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          overflow: "scroll",
+          marginTop: "20px",
+        }}
+      >
+        {beverage.map((post) => (
+          <div key={post.foodID}>
+            <FoodItem
+              key={post.foodID}
+              name={post.name}
+              price={post.price}
+              id={post.foodID}
+              description={post.description}
+              image={post.image}
+              type={post.type}
+            />
+          </div>
+        ))}
+      </div>
 
       {/* By type */}
       <h2
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
-          color: "#3fd4c5",
+          color: "#0057d1",
           fontFamily: "'Bitter', serif",
           fontSize: "35px",
         }}
@@ -142,7 +209,7 @@ export default function AllFoods() {
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
-          color: "#3fd4c5",
+          color: "#0057d1",
           fontFamily: "'Bitter', serif",
           fontSize: "35px",
         }}
@@ -176,7 +243,7 @@ export default function AllFoods() {
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
-          color: "#3fd4c5",
+          color: "#0057d1",
           fontFamily: "'Bitter', serif",
           fontSize: "35px",
         }}
@@ -206,7 +273,7 @@ export default function AllFoods() {
         ))}
       </div>
 
-      <h2
+      {/* <h2
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
@@ -238,18 +305,18 @@ export default function AllFoods() {
             />
           </div>
         ))}
-      </div>
+      </div> */}
 
       <h2
         style={{
           marginLeft: "20px",
           textDecoration: "underline",
-          color: "#3fd4c5",
+          color: "#0057d1",
           fontFamily: "'Bitter', serif",
           fontSize: "35px",
         }}
       >
-        Beverages
+        Desserts
       </h2>
       <div
         style={{
@@ -259,7 +326,7 @@ export default function AllFoods() {
           marginTop: "20px",
         }}
       >
-        {beverage.map((post) => (
+        {desert.map((post) => (
           <div key={post.foodID}>
             <FoodItem
               key={post.foodID}
