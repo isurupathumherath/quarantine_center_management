@@ -74,6 +74,7 @@ export default class clientAddTicket extends Component {
                         message: ""
                     }
                 )
+                
                 window.location.replace('/formLandingPage');
             }
         })

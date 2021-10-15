@@ -11,10 +11,14 @@ const Mailer = () => {
             "user_uJEsDqFOUnd8PW6qylaK0"
         ).then(res => {
             console.log(res);
+            Swal.fire({
+                title: 'Done!',
+                text: 'Ticket send successfully!!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+              })
         }).catch(err => console.log(err));
     }
-
-    
 
     return (
         <div className="card" style={{ padding: '50px', paddingTop: '60px' }}>

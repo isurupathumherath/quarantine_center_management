@@ -74,7 +74,7 @@ export default class adminAllTickets extends Component {
     return (
 
       // Table
-      <div className="card" style={{ padding: '40px', paddingTop: '50px', width: '1000px', boxShadow: '10px 10px 18px #888888' }}>
+      <div className="card" style={{ padding: '40px', paddingTop: '50px', width: '100%', boxShadow: '10px 10px 18px #888888' }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2">

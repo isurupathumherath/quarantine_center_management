@@ -121,6 +121,7 @@ export default class adminEditTickets extends Component {
             <div className="card" style={{ padding: '40px', paddingTop: '50px', boxShadow: '10px 10px 18px #888888' }}>
                 <div className="col-md-8 mt-4 mx-auto">
                     <h1 className="h3 mb-3 font-weight-normal">Reply Ticket</h1>
+                    <br/>
                     <form className="needs-validation" noValidate>
                         <div className="form-group" style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Full Name</label>
