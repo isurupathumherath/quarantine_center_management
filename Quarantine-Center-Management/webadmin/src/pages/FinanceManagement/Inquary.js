@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { TableHeader, Search, Pagination } from '../../components/FinaceComponent/DataTable'
 // import useFullpageLoader from "hooks/useFullPageLoader";
-import { CircularProgress } from '@material-ui/core';
 
 export default function FDashboard() {
 
-    const [comments, setComments] = useState([]);
+    const [data, setData] = useState([]);
     // const [loader, showLoader, hideLoader] = useFullpageLoader();
     const [totalItems, setTotalItems] = useState(0);
     const [currentpage, setCurrentPage] = useState();
@@ -15,22 +14,22 @@ export default function FDashboard() {
     const ITEMS_PER_PAGE = 10;
 
     const headers = [
-        { name: "No", field: "id", sortable: false },
-        { name: "Name", field: "firstName", sortable: true },
-        { name: "Email", field: "email", sortable: true },
-        { name: "Comment", field: "address", sortable: false },
-        { name: "Actions", field: "actions", sortable: false },
+        // { name: "No", field: "id", sortable: false },
+        // { name: "Name", field: "firstName", sortable: true },
+        // { name: "Email", field: "email", sortable: true },
+        // { name: "Comment", field: "address", sortable: false },
+        // { name: "Actions", field: "actions", sortable: false },
     ];
 
     useEffect(() => {
         const getData = () => {
             // showLoader();
 
-            fetch('http://localhost:8000/payer/allPayerDetails')
+            fetch('http://localhost:8000/payment/getAllPayemntDetails')
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
-                    setComments(json);
+                    setData(json);
                     console.log(json);
                 });
         };
@@ -38,35 +37,36 @@ export default function FDashboard() {
     }, []);
 
     const commentsData = useMemo(() => {
-        let computeComments = comments;
+        let computeComments = data;
 
-        if (search) {
-            computeComments = computeComments.filter(
-                comment =>
-                    comment.firstName.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.email.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.address.toLowerCase().includes(search.toLowerCase()) ||
-                    comment._id.toString().includes(search.toString())
-            );
-        }
+        // if (search) {
+        //     computeComments = computeComments.filter(
+        //         comment =>
+        //             comment.firstName.toLowerCase().includes(search.toLowerCase()) ||
+        //             comment.email.toLowerCase().includes(search.toLowerCase()) ||
+        //             comment.address.toLowerCase().includes(search.toLowerCase()) ||
+        //             comment._id.toString().includes(search.toString())
+        //     );
+        // }
 
-        setTotalItems(computeComments.length);
+        // setTotalItems(computeComments.length);
 
-        //sorting comments
-        if (sorting.field) {
-            const reversed = sorting.order === "asc" ? 1 : -1;
-            computeComments = computeComments.sort(
-                (a, b) =>
-                    reversed * a[sorting.field].localeCompare(b[sorting.field])
-            );
-        }
+        // //sorting comments
+        // if (sorting.field) {
+        //     const reversed = sorting.order === "asc" ? 1 : -1;
+        //     computeComments = computeComments.sort(
+        //         (a, b) =>
+        //             reversed * a[sorting.field].localeCompare(b[sorting.field])
+        //     );
+        // }
 
         //CURRENT PAGE SLICE
-        return computeComments.slice(
-            (currentpage - 1) * ITEMS_PER_PAGE,
-            (currentpage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-        );
-    }, [comments, currentpage, search, sorting]);
+        return computeComments;
+        // .slice(
+        //     (currentpage - 1) * ITEMS_PER_PAGE,
+        //     (currentpage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+        // );
+    }, [data, currentpage, search, sorting]);
 
 
     return (
@@ -110,7 +110,7 @@ export default function FDashboard() {
                                             setSorting({ field, order })}
                                     />
                                     <tbody>
-                                        {commentsData.map(comment => (
+                                        {/* {commentsData.map(comment => (
                                             <tr>
                                                 <th scope="row"> {comment._id}</th>
                                                 <td> {comment.firstName} </td>
@@ -130,7 +130,7 @@ export default function FDashboard() {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        ))}
+                                        ))} */}
                                     </tbody>
                                 </table>
                             </div>
@@ -148,7 +148,7 @@ export default function FDashboard() {
                     </div>
                 </div>
             </div>
-            <CircularProgress />
+            <loader />
         </div>
     )
 }

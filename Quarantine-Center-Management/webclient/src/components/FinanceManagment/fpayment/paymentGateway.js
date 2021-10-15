@@ -48,6 +48,7 @@ const PaymentGateway = ({ }) => {
             order_id: order_id,
             handler: async function (response) {
                 const data = {
+                    userID : "102",
                     orderCreationId: order_id,
                     razorpayPaymentId: response.razorpay_payment_id,
                     razorpayOrderId: response.razorpay_order_id,

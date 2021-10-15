@@ -14,10 +14,10 @@ export default function Payment() {
     const ITEMS_PER_PAGE = 25;
 
     const headers = [
-        { name: "No", field: "id", sortable: false },
-        { name: "Name", field: "name", sortable: true },
-        { name: "Email", field: "email", sortable: true },
-        { name: "Comment", field: "body", sortable: false },
+        { name: "User ID", field: "userID", sortable: false },
+        { name: "Payment Type", field: "type", sortable: true },
+        { name: "Payment ID", field: "paymentId", sortable: true },
+        { name: "Order ID", field: "orderId", sortable: false },
         { name: "Actions", field: "actions", sortable: false },
     ];
 
@@ -25,7 +25,7 @@ export default function Payment() {
         const getData = () => {
             // showLoader();
 
-            fetch('https://jsonplaceholder.typicode.com/comments')
+            fetch('http://localhost:8000/payment/getAllPayemntDetails')
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -42,10 +42,10 @@ export default function Payment() {
         if (search) {
             computeComments = computeComments.filter(
                 comment =>
-                    comment.name.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.email.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.body.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.id.toString().includes(search.toString())
+                    // comment.type.toString().includes(search.toString()) ||
+                    comment.userID.toString().includes(search.toString()) ||
+                    comment.paymentId.toString().includes(search.toString()) ||
+                    comment.orderId.toString().includes(search.toString())
             );
         }
 
@@ -85,20 +85,25 @@ export default function Payment() {
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <p class="float-left">
-                                {/* <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                /> */}
-                            </p>
-                            <p class="card-text float-right">
-                                <Search onSearch={(value) => {
-                                    setSearch(value);
-                                    setCurrentPage(1);
-                                }} />
-                            </p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4 class="card-title">Payment Details</h4>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <Pagination
+                                        total={totalItems}
+                                        itemsPerPage={ITEMS_PER_PAGE}
+                                        currentPage={currentpage}
+                                        onPageChange={page => setCurrentPage(page)}
+                                    />
+                                </div>
+                                <div class="col-md-2">
+                                    <Search onSearch={(value) => {
+                                        setSearch(value);
+                                        setCurrentPage(1);
+                                    }} />
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -109,40 +114,57 @@ export default function Payment() {
                                             setSorting({ field, order })}
                                     />
                                     <tbody>
-                                        {commentsData.map(comment => (
-                                            <tr>
-                                                <th scope="row"> {comment.id}</th>
-                                                <td> {comment.name} </td>
-                                                <td> {comment.email} </td>
-                                                <td> {comment.body} </td>
-                                                <td  >
-                                                    <div class="actions">
-                                                        <a class=" btn btn-sm bg-danger-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            <i class="fe fe-trash"></i> Delete
-                                                        </a>
-                                                        <a class=" btn btn-sm bg-success-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            <i class="fe fe-edit"></i> Edit
-                                                        </a>
-                                                        <a class=" btn btn-sm bg-info-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            ...
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                        {commentsData.map(comment => {
+                                            if (comment.razorpayDetails.paymentId === "null") {
+                                                return (
+                                                    <tr>
+                                                        <th scope="row"> {comment.userID}</th>
+                                                        <td> Card Payment </td>
+                                                        <td> null </td>
+                                                        <td> null </td>
+                                                        <td  >
+                                                            <div class="actions">
+                                                                <a class=" btn btn-sm bg-danger-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    <i class="fe fe-trash"></i> Delete
+                                                                </a>
+                                                                <a class=" btn btn-sm bg-success-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    <i class="fe fe-edit"></i> Edit
+                                                                </a>
+                                                                <a class=" btn btn-sm bg-info-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    ...
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+
+                                            } else {
+                                                return (
+                                                    <tr>
+                                                        <th scope="row"> {comment.userID}</th>
+                                                        <td> Payment Gateway </td>
+                                                        <td> {comment.razorpayDetails.paymentId} </td>
+                                                        <td> {comment.razorpayDetails.orderId} </td>
+                                                        <td  >
+                                                            <div class="actions">
+                                                                <a class=" btn btn-sm bg-danger-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    <i class="fe fe-trash"></i> Delete
+                                                                </a>
+                                                                <a class=" btn btn-sm bg-success-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    <i class="fe fe-edit"></i> Edit
+                                                                </a>
+                                                                <a class=" btn btn-sm bg-info-light ml-2" data-toggle="modal" href="#delete_modal">
+                                                                    ...
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            }
+                                        })}
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <p class="float-right">
-                                <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                />
-                            </p>
                         </div>
                     </div>
                 </div>
