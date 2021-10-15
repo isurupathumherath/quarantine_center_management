@@ -76,6 +76,7 @@ import FoodAdmin from "../../webadmin/src/pages/FoodManagement/FoodAdmin";
 import FoodReport from "../../webadmin/src/pages/FoodManagement/FoodReport";
 
 
+
 const Routes = () => {
     return (
         <div class="page-wrapper">

@@ -80,17 +80,18 @@ export default class clientAddTicket extends Component {
        
     }
 
-    // onClickDemo = () => {
-    //     this.setState(
-    //       {
-    //         subjectId: "SUB34765",
-    //         StudentName: "Ahmed Azmie",
-    //         enrollmentCode: "EN45784",
-    //         studentId: "STD34638",
-    //         StudentAddress: "No123, 3rd Street, Rathmalana",
-    //         dateOfEnroll: "2021-09-20"
-    //       })
-    //   }
+    onClickDemo = () => {
+        this.setState(
+          {
+            fullName: "Kamal Perera",
+            nic: "123456789v",
+            email: "prabuddhi456@gmail.com",
+            departmentName: "Medical Details",
+            reply: "Null",
+            status: "Null",
+            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          })
+      }
 
     render() {
         return (
@@ -126,7 +127,7 @@ export default class clientAddTicket extends Component {
                                     name="nic"
                                     placeholder="Enter NIC"
                                     value={this.state.nic}
-                                    min='10' max='12'
+                                    pattern="^[0-9]{9}[vVxX]$" 
                                     onChange={this.handleInputChange} required/>
                             </div>
 
@@ -167,15 +168,16 @@ export default class clientAddTicket extends Component {
                                     name="message"
                                     placeholder="Enter Message"
                                     value={this.state.message}
+                                    pattern="[A-Za-z]{5}"
                                     onChange={this.handleInputChange} required/>
                             </div>
-
                             <button className="btn btn-success" type="submit"  >
                                 <i className="far fa-check-square"></i>
                                 &nbsp;Submit
                             </button>
                         </form>
-
+                        <br></br>
+                        <button className="btn btn-outline-success btn-sm" style={{width:'100px'}} onClick={this.onClickDemo}>Demo</button>&nbsp;
                         <br></br><br></br><br></br>
                     </div>
                 </div>

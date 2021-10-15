@@ -3,11 +3,12 @@
     On - 30/08/2021
     Name - Reply Ticket
  */
-import { saveAs } from 'file-saver';
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { saveAs } from 'file-saver';
 
 const Swal = require('sweetalert2')
 
