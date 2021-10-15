@@ -69,8 +69,13 @@ export default function Dashboard(){
 
       <div style={{backgrountColor:"black"}}>
 
-    <Link to={"/Repo"} > <button style={{position:"relative",top:"200px",left:"400px", width:"350px",backgroundColor:"lightskyblue",fontSize:"20px",
-                height:"60px"}} type="button" class="btn btn-info" >Generate a Report</button></Link>
+    <Link to={"/Repo"} > <button style={{position:"relative",top:"200px",left:"100px", width:"380px",backgroundColor:"lightskyblue",fontSize:"20px",
+                height:"60px"}} type="button" class="btn btn-info" >Analysis of PCR Test Results</button></Link>
+
+
+    <Link to={"/CheckupRepo"} > <button style={{position:"relative",top:"200px",left:"400px", width:"380px",backgroundColor:"lightskyblue",fontSize:"20px",
+                height:"60px"}} type="button" class="btn btn-info" >Analysis of Temperature Checkup Results</button></Link>
+
 
       </div>
 

@@ -92,6 +92,55 @@ router.route("/displaytemp/:id").get(async (req,res) =>{
 
 })
 
+//Anlaysis of Results
+router.route("/TempRepo/:date/:lastday").get((req,res)=>{
+
+    let delivered_date = req.params.date;
+
+    let lastday = req.params.lastday;
+
+    TempCheckup.aggregate([{
+
+        $match:{$and:[{"CheckupDate":{
+
+            $gte:(delivered_date), $lte:(lastday)
+
+        } },]
+
+    }}
+
+       
+
+        ,{$group:{
+
+        _id : { CheckupDate:"$CheckupDate"},
+
+     
+
+       
+
+      total : {$sum : 1 }
+
+     
+
+    }
+
+   
+
+    }]).then((TempCheckup)=>{
+
+        res.status(200).send(TempCheckup)
+
+    }).catch((err)=>{
+
+        console.log(err)
+
+    })
+
+})
+
+
+
 
 
 module.exports = router;

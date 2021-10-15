@@ -187,9 +187,9 @@ const handleFilter = (event) => {
   
                           <Link to={"/UpdatePCR"}>
   
-                            <button  class="btn btn-primary"  style={{
+                            <button className="btn btn-warning" className="fas fa-edit" style={{
 
-                              backgroundColor: "black"
+                              // backgroundColor: "black"
                             }}id="view" onClick={()=>setData(PCRTests)}>Update</button>
 
                           </Link>

@@ -106,6 +106,7 @@ router.route("/PCRReport/:date/:lastday").get((req,res)=>{
         ,{$group:{
 
         _id : { Result :"$Result"},
+        
 
      
 

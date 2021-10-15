@@ -174,17 +174,17 @@ const handleFilter = (event) => {
     
                             <Link to={"/UpdateCheckup"}>
     
-                              <button class="btn btn-primary"  style={{
+                              <button class="btn btn-primary" className="fas fa-edit" style={{
 
-                                 backgroundColor: "black"
+                                
                                  }}id="view" onClick={()=>setData(Checkups)}>Update</button>
 
                             </Link>
                             <Link to = {"/DeleteCheckup"}>
-                              <button class="btn btn-primary"  style={{
+                              <button class="btn btn-primary" className="far fa-trash-alt" style={{
                                   position:"relative",
                                   left:"5px",
-                                  backgroundColor: "#A9A9A9"
+                                
                                   }} id="view" onClick={()=>setData(Checkups)}>Delete</button>
     
                             </Link>

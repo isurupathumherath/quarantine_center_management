@@ -54,6 +54,7 @@ import DeleteCheckup from './components/MedicalTests/DeleteCheckup';
 import Reportpg1 from './components/MedicalTests/Reportpg1';
 import MedReport from './components/MedicalTests/MedReport';
 import Repo from './components/MedicalTests/Repo';
+import CheckupRepo from './components/MedicalTests/ChechupRepo';
 
 
 
@@ -109,6 +110,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/Reportpg1" exact component={Reportpg1}/>
                         <PrivateRouteAdmin path="/MedReport" exact component={MedReport}/>
                         <PrivateRouteAdmin path="/Repo" exact component={Repo}/>
+                        <PrivateRouteAdmin path="/CheckupRepo" exact component={CheckupRepo}/>
               
 
                     </Switch>
