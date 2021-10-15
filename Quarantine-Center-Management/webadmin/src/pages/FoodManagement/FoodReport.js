@@ -184,6 +184,7 @@ export default function FoodReport() {
       .get(`http://localhost:8000/order/getbyyear/${fromdate}/${todate}`)
       .then((res) => {
         orders = res.data;
+        console.log(orders)
 
         setDatadiv(
           <div className="col-md-12">

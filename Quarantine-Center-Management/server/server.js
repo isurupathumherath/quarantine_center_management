@@ -9,7 +9,7 @@ const router = express.Router();
 require("dotenv").config();
 
 // import routes
-const ticketRoutes = require("./routes/Ticket-Admin"); //--Added by Vishara Prabuddhi--
+const ticketRoutes = require("./routes/TicketManagement/Ticket-Admin"); //--Added by Vishara Prabuddhi--
 
 const employeeRoutes = require("./routes/HRM/Employee"); //--Added by Isuru Pathum Herath--
 const employeeSalaryRoute = require("./routes/HRM/Employee-Salary"); //--Added by Isuru Pathum Herath--
@@ -18,6 +18,9 @@ const task = require("./routes/HRM/Task"); //--Added by Isuru Pathum Herath--
 const employeLogin = require("./routes/HRM/Employee-Login"); //--Added by Isuru Pathum Herath--
 const attendance = require("./routes/HRM/StaffAttendance"); //--Added by Isuru Pathum Herath--
 const salaryCalculation = require("./routes/HRM/salaryCalculation"); //--Added by Isuru Pathum Herath--
+
+const stockRouter=require("./routes/InventoryManagement/stock");//--Added by Anupa Senevirathne--
+const MedicineRouter=require("./routes/InventoryManagement/medecine");//--Added by Anupa Senevirathne--
 
 const FoodsRoute = require("./routes/foodroute/foodsRoute");
 const CommentRoute = require("./routes/foodroute/commentRoute");
@@ -73,9 +76,12 @@ app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use(profileRoutes);//--Added by Hirusha Rukmal--
 
-app.use("/payment", financePaymentRoutes);
-app.use("/payer", financePayerRoutes);
-app.use("/invoice", FinanceInvoice);
+app.use("/stock",stockRouter);//--Added by Anupa Senevirathne--
+app.use("/meds",MedicineRouter);//--Added by Anupa Senevirathne--
+
+app.use("/payment", financePaymentRoutes);  
+app.use("/payer", financePayerRoutes);  
+app.use("/invoice", FinanceInvoice);   
 app.use("/inquary", FinanceInquary);
 app.use("/payment", FinacePayment);
 

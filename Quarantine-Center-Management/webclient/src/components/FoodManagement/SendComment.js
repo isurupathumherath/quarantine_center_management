@@ -10,6 +10,8 @@ export default function DisplayComments(props) {
   const history = useHistory();
   const [comment, setComment] = useState("");
 
+  const fname = JSON.parse(localStorage.getItem('currentUser')).fName;
+
   function sendData(e) {
     e.preventDefault();
     toast("Wow so easy!");
@@ -17,7 +19,7 @@ export default function DisplayComments(props) {
       commentID: uniqid(),
       foodID: `${props.foodID}`,
       comment,
-      userID: "ava",
+      userID: fname,
     };
 
     axios

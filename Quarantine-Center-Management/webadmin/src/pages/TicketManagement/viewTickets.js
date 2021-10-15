@@ -1,6 +1,11 @@
+/*
+    Created by - Vishara Prabuddhi
+    On - 30/08/2021
+    Name - All Ticket Table
+ */
+
 import React, { Component } from 'react'; 
 import Test from '../../components/TicketManagement/adminAllTickets'; 
-// import Test2 from '../../components/TicketManagement/test'; 
 
 
 export default class viewTickets extends Component {
@@ -11,9 +16,6 @@ export default class viewTickets extends Component {
           <div className="col-lg-12">
             <Test />
           </div> 
-          {/* <div className="col-lg-12">
-            <Test2 />
-          </div> */}
           </div>
         </div>
      

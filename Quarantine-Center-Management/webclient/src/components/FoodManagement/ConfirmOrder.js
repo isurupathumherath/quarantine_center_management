@@ -12,6 +12,10 @@ export default function ConfirmOrder(props) {
   let [oid, setOrderID] = useState("");
   const orderedCtx = useContext(OrderContext);
 
+  const userid = JSON.parse(localStorage.getItem('currentUser'))._id;
+  const fname = JSON.parse(localStorage.getItem('currentUser')).fName;
+  const lname = JSON.parse(localStorage.getItem('currentUser')).lName;
+
   useEffect(() => {
     setDetails(orderedCtx.orders);
   });
@@ -28,7 +32,7 @@ export default function ConfirmOrder(props) {
     // console.log(oid);
     const newOrder = {
       orderID: oid,
-      patientID: "613b2cac1aaf8d0fdcf35ff3",
+      patientID: userid,
       orderDate: new Date().getDate(),
       total: totalPrice,
       instructions,
@@ -95,9 +99,9 @@ export default function ConfirmOrder(props) {
               </p>
               <h5>Delivery for,</h5>
               <p className="card-text">
-                Patient ID : 101 <br />
-                Name : Akila <br />
-                Room-No : 202
+                Patient ID : {userid} <br />
+                Name : {fname}  {lname} <br />
+           
               </p>
 
               <h4 style={{ color: "red" }}>Total price : Rs.{totalPrice}.00</h4>
