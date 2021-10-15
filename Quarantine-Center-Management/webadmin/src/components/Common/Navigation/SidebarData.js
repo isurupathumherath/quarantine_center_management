@@ -31,9 +31,23 @@ export const SidebarData = [
         ]
     },
     {
-        title: 'Inventory management',
+        title: 'Stock management',
         path: '/inventory',
         icon: <AiIcons.AiFillEnvironment />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'Food',
+                path: '/Inventory/food',
+                icon: <RiIcons.RiDashboardLine />
+            },
+            {
+                title: 'Medicine',
+                path: '/Inventory/medall',
+                icon: <IoIcons.IoIosPaper />
+            },
+        ]
     },
     {
         title: 'Ticketing system',

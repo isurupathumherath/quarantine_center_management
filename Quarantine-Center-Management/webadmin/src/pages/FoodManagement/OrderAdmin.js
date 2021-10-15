@@ -324,46 +324,7 @@ export default function OrderAdmin() {
       });
   }
 
-  function filterContent1(data1, userSearch1) {
-    // setPackages(res.data.filter((item) =>item.seller === seller));
 
-    if (userSearch1 == null) {
-      axios
-        .get("http://localhost:8000/order/getactivebypatient/102")
-        .then((res) => {
-          setOrders(res.data1);
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
-    }
-    let result1 = data1.filter((post) =>
-      post.orderedDate.includes(userSearch1)
-    );
-
-    if (result1 != null) {
-    } else if (result1.length == 0) {
-      //document.getElementById("txt2").innerHTML = "No Result Found!";
-    } else {
-    }
-
-    setCompleteorders(result1);
-  }
-
-  function handleSearch1(e) {
-    let userSearch1 = e;
-    console.log(userSearch1);
-
-    axios
-      .get("http://localhost:8000/order/getcompletedbypatient/102")
-      .then((res) => {
-        filterContent1(res.data, userSearch1);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }
 
   return (
     <div>

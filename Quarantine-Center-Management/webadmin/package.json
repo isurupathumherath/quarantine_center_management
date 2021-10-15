@@ -22,6 +22,7 @@
     "nodemailer": "^6.7.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
+    "react-confirm-alert": "^2.7.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-datepicker": "^4.2.1",
     "react-dom": "^17.0.2",
@@ -33,10 +34,11 @@
     "react-scripts": "4.0.3",
     "react-select": "^5.0.0",
     "recharts": "^2.1.4",
+    "semantic-ui-react": "^2.0.4",
     "styled-components": "^5.3.1",
     "sweetalert2": "^11.1.7",
-    "sweetalert2-react-content": "^4.1.1",
     "uniqid": "^5.4.0",
+    "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
