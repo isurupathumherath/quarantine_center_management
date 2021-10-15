@@ -90,3 +90,16 @@ router.post('/booking',(req,res)=>{
                         }
                     });
 
+
+var mailOptions = {
+                        from: 'quarantine@out.com',
+                        to: `${req.body.email}`,
+                        subject: 'Your Login Details',
+                        text: `
+                            Hi
+                        
+                            Test Mail
+
+                            Thank You`
+                    };
+
