@@ -11,7 +11,7 @@ class EditProfile extends Component {
             lName: "",
             uName: "",
             email: "",
-            password: ""
+            password: "",
         }
     }
 
@@ -42,7 +42,14 @@ class EditProfile extends Component {
 
         axios.put(`http://localhost:8000/profile/update/${id}`, data).then((res) => {
             if (res.data.success) {
-                alert("Profile Updated Successfully");
+                const Swal = require('sweetalert2');
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Profile Updated Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                window.location.href=`/profile`;
                 this.setState(
                     {
                         fName: "",
