@@ -102,7 +102,7 @@ class Dashboard extends Component {
               <ReactHTMLTableToExcel
                 className='btn btn-outline-success'
                 table='table'
-                filename='Ticket Details Excel'
+                filename='User Details Excel'
                 sheet='Sheet'
                 buttonText='Generate Sheet'
               />
