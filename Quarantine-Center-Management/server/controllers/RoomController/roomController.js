@@ -102,4 +102,26 @@ var mailOptions = {
 
                             Thank You`
                     };
+transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
 
+                }
+
+                main().catch(console.error);
+                }else{
+                    console.log(JSON.stringify(err,undefined,2))
+                }
+            })
+        }else{
+            console.log("no record dublicate");
+            res.send(err,undefined,2)
+
+            
+        }
+    })
+})
