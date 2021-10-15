@@ -1,7 +1,41 @@
 /* Janith Gamage On - 11/10/2021  */
 import React, { Component } from "react";
 
+import Swal from 'sweetalert2'
+
 export default class HomePage extends Component {
+
+
+    handlePayBtnClick() {
+        Swal.fire({
+            title: 'Online Payment Service',
+            icon: 'info',
+            showCancelButton: true,
+            focusConfirm: false, 
+            confirmButtonText:
+                '<a href="/checkout">Pay</a>',
+            cancelButtonText:
+                'Cancel',
+        })
+    }
+
+    handleInquaryBtnClick() {
+        Swal.fire({
+            title: 'Online Inquary Service',
+            icon: 'info',
+            html:
+                '"Inquary Service" ' +
+                'This Service is only avaliable for Payment Inquary purposes only. ' +
+                'Please use Ticket Service for other Inquaries,' +
+                '<span style="color:blue"><a href="/ticket">Ticket Service</a></span>',
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+                '<a href="/inquary">Proceed</a>',
+            cancelButtonText:
+                'Cancel',
+        })
+    }
 
     render() {
 
@@ -9,56 +43,59 @@ export default class HomePage extends Component {
         localStorage.setItem("userName", "Janith Gamage");
 
         return (
-            <div class="content">
-                <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col-md-8 offset-md-2">
-                            <div class="account-content">
-                                <div class="row align-items-center justify-content-center">
-                                    <div class="col-md-7 col-lg-6 login-left">
-                                        <img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Login" />
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 login-right">
-                                        <div class="login-header">
-                                            <h3>Login <span>Doccure</span></h3>
-                                        </div>
-                                        <form action="https://doccure-html.dreamguystech.com/template/index.html">
-                                            <div class="form-group form-focus">
-                                                <input type="email" class="form-control floating" />
-                                                <label class="focus-label">Email</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="password" class="form-control floating" />
-                                                <label class="focus-label">Password</label>
-                                            </div>
-                                            <div class="text-right">
-                                                <a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
-                                            </div>
-                                            <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
-                                            <div class="login-or">
-                                                <span class="or-line"></span>
-                                                <span class="span-or">or</span>
-                                            </div>
-                                            <div class="row form-row social-login">
-                                                <div class="col-6">
-                                                    <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
-                                                </div>
-                                                <div class="col-6">
-                                                    <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
-                                        </form>
-                                    </div>
-                                </div>
+            <div>
+                <div class="breadcrumb-bar">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-md-10 col-10">
+                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Start Payment</li>
+                                    </ol>
+                                </nav>
+                                <h2 class="breadcrumb-title">Start Payment</h2>
                             </div>
-
+                            <div class="col-md-2 col-2">
+                                {/* <h2 class="breadcrumb-title float-right">Start Payment</h2> */}
+                                <button type="button" class="btn btn-block btn-outline-info"
+                                    style={{
+                                        color: 'white',
+                                        fontWeight: 'bold',
+                                        border: '4px solid white'
+                                    }}
+                                    onClick={this.handleInquaryBtnClick}
+                                >
+                                    Inquary
+                                </button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <section class="section section-features">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', height: '500px' }}>
+                                            <div class="card-body">
+                                                <div class="info-widget">
+                                                    <button type="button" class="btn btn-block btn-outline-info active" onClick={this.handlePayBtnClick} >Pay</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
 
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
             </div>
         )
     }

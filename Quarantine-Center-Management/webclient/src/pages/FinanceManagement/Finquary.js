@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import { Inquary, InquaryList } from '../../components/FinanceManagment/finquary'
-
+import Fimage from '../../assets/PaymentManagment/img/Fmain4.jpg'; 
 class InquaryPage extends Component {
     render() {
         return (
@@ -28,7 +28,7 @@ class InquaryPage extends Component {
                         <section class="section section-features">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-5 col-lg-5">
+                                    <div class="col-md-6 col-lg-6">
                                         <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                                             <div class="card-body">
                                                 <div class="info-widget">
@@ -38,7 +38,10 @@ class InquaryPage extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-7 col-lg-7 theiaStickySidebar">
+                                    <div class="col-md-6 col-lg-6">
+                                        <img src={Fimage} style={{ width: '90%' }} /> 
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 theiaStickySidebar">
                                         <div class="card booking-card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
                                             <div class="card-header">
                                                 <h4 class="card-title">Inquaries</h4>

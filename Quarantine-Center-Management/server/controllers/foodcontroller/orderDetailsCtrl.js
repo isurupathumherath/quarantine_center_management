@@ -128,7 +128,7 @@ exports.updateUsers = async (req, res) => {
     { $set: { Favourites: Favourites } }
   )
     .then(() => {
-      res.status(200).send({ status: "Food updated" });
+      res.status(200).send({ status: "Favourite added" });
     })
     .catch((err) => {
       console.log(err);

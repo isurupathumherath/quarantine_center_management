@@ -28,6 +28,7 @@ import financePaymentRoutes from "./routes/FinanceRoutes/financePayment";
 import financePayerRoutes from "./routes/FinanceRoutes/financePayer";  
 import FinanceInvoice from "./routes/FinanceRoutes/financeInvoice";
 import FinanceInquary from "./routes/FinanceRoutes/financeInquary";
+import FinacePayment from './routes/FinanceRoutes/finacepayment';
 
 // App
 const app = express();
@@ -61,9 +62,6 @@ app.use("/salary", employeeSalaryRoute); //--Added by Isuru Pathum Herath--
 app.use("/qEmployee", employeeQuaratine); //--Added by Isuru Pathum Herath--
 app.use("/task", task); //--Added by Isuru Pathum Herath--
 app.use("/staffLogin", employeLogin); //--Added by Isuru Pathum Herath--
-
-app.use("/payment", financePaymentRoutes); //--Added by Janith Gamage--
-app.use("/payer", financePayerRoutes); //--Added by Janith Gamage--
  
 app.use("/foods", FoodsRoute);
 app.use("/comment", CommentRoute);
@@ -71,11 +69,12 @@ app.use("/order", OrderRoute);
 app.use("/orderdetails", OrderDetailsRoute);
 app.use(profileRoutes);//--Added by Hirusha Rukmal--
 
+app.use("/payment", financePaymentRoutes);  
+app.use("/payer", financePayerRoutes);  
 app.use("/invoice", FinanceInvoice);   
 app.use("/inquary", FinanceInquary);
+app.use("/payment", FinacePayment);
  
-
-
 // Post
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
