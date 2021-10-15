@@ -125,3 +125,25 @@ transporter.sendMail(mailOptions, function (error, info) {
         }
     })
 })
+
+router.put('/:id',(req,res)=>{
+    if(!ObjectID.isValid(req.params.id)){
+        return res.status(400).send(req.params.id)
+    }
+
+    var updateRecords={
+        roomName: req.body.roomName,
+        roomType: req.body.roomType,
+        description: req.body.description,
+        image: req.body.image,
+        total: req.body.total,
+    }
+
+    room.findByIdAndUpdate(req.params.id, { $set: updateRecords},{new:true}, (err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            console.log(JSON.stringify(err,undefined,2))
+        }
+    })
+})
