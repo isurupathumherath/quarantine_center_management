@@ -70,3 +70,23 @@ router.post('/booking',(req,res)=>{
         patientid: req.body.patientid,
         price: req.body.price
     })
+        //backend Validation
+    booking.findOne({email: req.body.email},(err,docs)=>{
+        if(!docs){
+            record.save((err,docs)=>{
+                if(!err){
+                    res.send(docs);
+
+                    //Mail Send
+                    const nodemailer = require("nodemailer");
+
+                async function main() {
+                    console.log("Mail Sending Started...");
+                    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'isurupathumherath1@gmail.com',
+                            pass: 'iph22923'
+                        }
+                    });
+
