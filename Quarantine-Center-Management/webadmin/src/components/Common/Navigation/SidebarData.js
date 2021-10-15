@@ -62,8 +62,8 @@ export const SidebarData = [
                 icon: <RiIcons.RiDashboardLine />
             },
             {
-                title: 'Details',
-                path: '/finance/details',
+                title: 'Email',
+                path: '/Mailer',
                 icon: <IoIcons.IoIosPaper />
             },
             {
