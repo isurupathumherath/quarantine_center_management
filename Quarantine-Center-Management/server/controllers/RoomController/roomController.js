@@ -147,3 +147,26 @@ router.put('/:id',(req,res)=>{
         }
     })
 })
+
+router.delete('/:id',(req,res)=>{
+    if(!ObjectID.isValid(req.params.id)){
+        return res.status(400).send(req.params.id)
+    }
+
+    room.findByIdAndRemove(req.params.id,(err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            console.log(JSON.stringify(err,undefined,2))
+        }
+    })
+})
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, 'public')
+  },
+  filename: function (req, file, cb) {
+    cb(null, uniqid() + '-' +file.originalname )
+  }
+})
