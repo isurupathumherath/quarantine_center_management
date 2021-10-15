@@ -41,3 +41,21 @@ router.get('/:id',(req,res)=>{
         }
     })
 })
+router.post('/',(req,res)=>{
+    var newRecord= new room({
+        roomName: req.body.roomName,
+        roomType: req.body.roomType,
+        description: req.body.description,
+        image: req.body.image,
+        total: req.body.total,
+    })
+
+    newRecord.save((err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            console.log(JSON.stringify(err,undefined,2))
+        }
+    })
+})
+
