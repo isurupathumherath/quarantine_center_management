@@ -210,3 +210,19 @@ router.post('/feedback',(req,res)=>{
         patientid: req.body.patientid,
         feedback: req.body.feedback,
     })
+
+    feedback.findOne({email: req.body.email},(err,docs)=>{
+        if(!docs){
+            record.save((err,docs)=>{
+                if(!err){
+                    res.send(docs)
+                }else{
+                    console.log(JSON.stringify(err,undefined,2))
+                }
+            })
+        }else{
+            console.log("no record dublicate");
+            res.send(err,undefined,2)
+        }
+    })
+})
