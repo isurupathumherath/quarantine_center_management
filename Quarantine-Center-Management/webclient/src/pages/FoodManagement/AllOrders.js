@@ -11,6 +11,9 @@ import moment from "moment";
 import Header from "../../components/FoodManagement/Header";
 
 export default function AllOrders() {
+
+  const userid = JSON.parse(localStorage.getItem('currentUser'))._id;
+
   let count = 0;
   let [orders, setOrders] = useState([]);
   let [allorders, setallorders] = useState([]);
@@ -27,8 +30,10 @@ export default function AllOrders() {
   let f1 = [];
 
   useEffect(() => {
+
+    console.log(userid)
     axios
-      .get("http://localhost:8000/order/getactivebypatient/613b2cac1aaf8d0fdcf35ff3")
+      .get(`http://localhost:8000/order/getactivebypatient/${userid}`)
       .then((res) => {
         setOrders(res.data);
         setongoinglength(res.data.length);
@@ -38,7 +43,7 @@ export default function AllOrders() {
       });
 
     axios
-      .get("http://localhost:8000/order/getcompletedbypatient/613b2cac1aaf8d0fdcf35ff3")
+      .get(`http://localhost:8000/order/getcompletedbypatient/${userid}`)
       .then((res) => {
         setCompleteorders(res.data);
         setcompletelength(res.data.length);
@@ -48,7 +53,7 @@ export default function AllOrders() {
       });
 
     axios
-      .get("http://localhost:8000/order/getallbypatientid/102")
+      .get(`http://localhost:8000/order/getallbypatientid/${userid}`)
       .then((res) => {
         setallorders(res.data);
       })
@@ -147,16 +152,14 @@ export default function AllOrders() {
 
     doc.save("xb.pdf");
   }
-  function reportgenerate() {
-    console.log("report");
-  }
+
 
   function filterContent(data, userSearch) {
     // setPackages(res.data.filter((item) =>item.seller === seller));
 
     if (userSearch == null) {
       axios
-        .get("http://localhost:8000/order/getactivebypatient/102")
+        .get(`http://localhost:8000/order/getactivebypatient/${userid}`)
         .then((res) => {
           setOrders(res.data);
         })
@@ -180,7 +183,7 @@ export default function AllOrders() {
     console.log(userSearch);
 
     axios
-      .get("http://localhost:8000/order/getactivebypatient/102")
+      .get(`http://localhost:8000/order/getactivebypatient/${userid}`)
       .then((res) => {
         filterContent(res.data, userSearch);
         console.log(res.data);
@@ -195,7 +198,7 @@ export default function AllOrders() {
 
     if (userSearch1 == null) {
       axios
-        .get("http://localhost:8000/order/getactivebypatient/102")
+        .get(`http://localhost:8000/order/getactivebypatient/${userid}`)
         .then((res) => {
           setCompleteorders(res.data1);
         })
@@ -221,7 +224,7 @@ export default function AllOrders() {
     console.log(userSearch1);
 
     axios
-      .get("http://localhost:8000/order/getcompletedbypatient/102")
+      .get(`http://localhost:8000/order/getcompletedbypatient/${userid}`)
       .then((res) => {
         filterContent1(res.data, userSearch1);
         console.log(res.data);
@@ -420,7 +423,7 @@ export default function AllOrders() {
                       <th>Order ID</th>
                       <th>Total Price</th>
                       <th>Instructions</th>
-                      <th>Delivery Date</th>
+                      <th>Order Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -431,7 +434,7 @@ export default function AllOrders() {
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.deliveryDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         <td>
                           <div className="input-group-append">
                             <Eye
@@ -508,7 +511,7 @@ export default function AllOrders() {
                       <th>Order ID</th>
                       <th>Total Price</th>
                       <th>Instructions</th>
-                      <th>Delivery Date</th>
+                      <th>Ordered Date</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -519,7 +522,7 @@ export default function AllOrders() {
                         <td style={{ color: "#20c0f3" }}>{post.orderID}</td>
                         <td>Rs.{post.total}.00</td>
                         <td>{post.instructions}</td>
-                        <td>{post.deliveryDate}</td>
+                        <td>{post.orderedDate.substr(0, 10)}</td>
                         {/* substr(0, 10) */}
                         <td>
                           <div className="input-group-append">

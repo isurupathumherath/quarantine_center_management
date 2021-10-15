@@ -6,7 +6,11 @@ export default function DisplayComments(props) {
     <div>
       <div className="row shadow-lg p-3 mb-2 bg-grey rounded">
         <h6>
-          {props.userID} : {props.comment}
+          <div className = "row">
+            <div className = "col-md-4" style={{fontWeight: "bold"}}>{props.userID}</div>
+            <div className = "col-md-12">{props.comment}</div>
+          </div>
+           
         </h6>
       </div>
     </div>

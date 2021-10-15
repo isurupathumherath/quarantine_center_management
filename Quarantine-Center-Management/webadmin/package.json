@@ -35,7 +35,6 @@
     "styled-components": "^5.3.1",
     "sweetalert2": "^11.1.7",
     "uniqid": "^5.4.0",
-    "react-select": "^5.0.0",
     "sweetalert2-react-content": "^4.1.1",
     "web-vitals": "^1.1.2"
   },

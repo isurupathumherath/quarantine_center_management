@@ -174,7 +174,7 @@ const handleFilter = (event) => {
                           <button id="view"  class="btn btn-secondary" >View</button>
                         </Link>
                         <Link to={`/Inventory/food/update`}>
-                          <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-warning" onClick={()=>setData(sto)}>Update</button>
+                          <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-warning"  onClick={()=>setData(sto)}>Update</button>
                         </Link>
                           <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-danger" onClick={() => submit(sto._id)}>Delete</button>
                         </td>
@@ -189,3 +189,15 @@ const handleFilter = (event) => {
     </div>
   );
 }
+
+// onClickDemo = () => {
+//   this.setState(
+//     {
+//       subjectId: "SUB34765",
+//       StudentName: "Ahmed Azmie",
+//       enrollmentCode: "EN45784",
+//       studentId: "STD34638",
+//       StudentAddress: "No123, 3rd Street, Rathmalana",
+//       dateOfEnroll: "2021-09-20"
+//     })
+// }
