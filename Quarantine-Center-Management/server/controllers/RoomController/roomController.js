@@ -226,3 +226,5 @@ router.post('/feedback',(req,res)=>{
         }
     })
 })
+
+module.exports = router
