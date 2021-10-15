@@ -44,8 +44,8 @@ export default function AddnewMeditem() {
             Batch
         }
 
-        axios.post(`http://localhost:8000/meds/add`,newitem).then(() => {
-            alert("New Med Item added");
+        axios.post(`http://localhost:8000/meds/add`,newitem).then((res) => {
+            alert("Medicine item added");
             let path = `/Inventory/medall`; 
             history.push(path);
         }).catch((err)=>{

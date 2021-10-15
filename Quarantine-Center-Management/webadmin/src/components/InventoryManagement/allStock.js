@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"; // in use effect it determines what would i want to display when page is loaded..used when reading data from DB
 import axios from "axios";
 import { Link } from "react-router-dom"; 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 
 export default function Allstock() {
   const [stocks, setstock] = useState([]);
@@ -45,9 +48,27 @@ export default function Allstock() {
   const onDelete = (id) => {
     axios.delete(`http://localhost:8000/stock/delete/${id}`)
     .then(() => {
-     alert("Item Deleted Successfully")
+     //alert("Item Deleted Successfully")
      getData();
   })
+}
+
+const submit = (x) => {
+
+  confirmAlert({
+    title: 'Confirm to submit',
+    message: 'Are you sure to do this.',
+    buttons: [
+      {
+        label: 'Yes',
+        onClick: () => onDelete(x)
+      },
+      {
+        label: 'No',
+        //onClick: () => alert('Click No')
+      }
+    ]
+  });
 }
   
 // const handleSearchArea=(e)=>{
@@ -100,10 +121,11 @@ const handleFilter = (event) => {
       <div class="page-wrapper">
         <div class="content container-fluid">
         <div style={{background:"white",padding:"20px",position: "relative",
-                left: "-190px",
-                top:"-40px",
+                left: "-220px",
+                top:"-80px",
                 height:"700px",
-                width:"1000px"}}>
+                width:"1000px",
+                overflowY: "scroll"}}>
         <center>
             <h1>All Foods</h1>
         </center>
@@ -154,7 +176,7 @@ const handleFilter = (event) => {
                         <Link to={`/Inventory/food/update`}>
                           <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-warning" onClick={()=>setData(sto)}>Update</button>
                         </Link>
-                          <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-danger" onClick={() => onDelete(sto._id)}>Delete</button>
+                          <button id="view" style={{ marginLeft: '.5rem' }} class="btn btn-danger" onClick={() => submit(sto._id)}>Delete</button>
                         </td>
                     </tr>
                   );

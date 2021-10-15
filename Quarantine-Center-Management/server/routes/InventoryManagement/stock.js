@@ -10,39 +10,39 @@ router.route("/add").post((req,res)=>{
     const name=req.body.name;
     const price_of_one=Number(req.body.price_of_one);
     const Batch=req.body.Batch;
-
-    const newmed=new batch({
-        category,
-        name,
-        price_of_one,
-        Batch
+/*
+    batch.find({name:req.body.name},(err,docs)=>{
+        if(!docs){
+            const newmed=new batch({
+                category,
+                name,
+                price_of_one,
+                Batch
+            })
+    
+            newmed.save().then(()=>{
+                res.json("Stock added")
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }
+        else{
+            res.json("This item is already there!!")
+        }
     })
-///newwwwww
-    // batch.findOne({
-    //     name:req.body.name
-    // }).then (inventory=>{if(inventory){
-    //     errors.name="name already exist";
-    //     alert("name already exit");
-    //     return res.status(400).json(errors);
-        
+*/
+        const newmed=new batch({
+            category,
+            name,
+            price_of_one,
+            Batch
+        })
 
-    // }else {
-        
-    // newmed.save().then(()=>{
-    //     res.json("Stock added")
-    // }).catch((err)=>{
-    //     console.log(err);
-    // })
-    // }
-
-    // })
-
-///newwwwwwww
-    newmed.save().then(()=>{
-        res.json("Stock added")
-    }).catch((err)=>{
-        console.log(err);
-    })
+        newmed.save().then(()=>{
+            res.json("Stock added")
+        }).catch((err)=>{
+            console.log(err);
+        })
 });
 
 router.route("/get").get(async(req,res)=>{
@@ -167,6 +167,26 @@ router.route("/update/addnew/:id").put(async(req,res)=>{
     })
 
 })
+///newwwwww
+    // batch.findOne({
+    //     name:req.body.name
+    // }).then (inventory=>{if(inventory){
+    //     errors.name="name already exist";
+    //     alert("name already exit");
+    //     return res.status(400).json(errors);
+        
 
+    // }else {
+        
+    // newmed.save().then(()=>{
+    //     res.json("Stock added")
+    // }).catch((err)=>{
+    //     console.log(err);
+    // })
+    // }
+
+    // })
+
+///newwwwwwww
 
 module.exports=router;

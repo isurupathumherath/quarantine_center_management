@@ -18,6 +18,7 @@ export default function UpdateBatch() {
     const [expiration_date, setexpire] = useState(null);
     const [total_quantity, setquantity] = useState(0);
     const [batchnum, setbatchnum] = useState(0);
+    const [take,setTake]=useState(0);
     
     useEffect(() => {
         function getstock(){
@@ -44,7 +45,8 @@ export default function UpdateBatch() {
     }, []);
 
     const UpdateBatch = () => {
-        let newquantity={total_quantity:total_quantity}
+        let x=total_quantity-take;
+        let newquantity={total_quantity:x}
         axios.put(`http://localhost:8000/stock/update/${food}`,
             newquantity,
         ).then((res)=>{             
@@ -61,7 +63,7 @@ export default function UpdateBatch() {
         <div style={{background:"white",padding:"20px",position: "relative",
                 left: "-190px",
                 top:"-40px",
-                height:"800px",
+                height:"880px",
                 width:"1000px"}}>
             <center>
                 <h1>Update batch of {name}</h1>
@@ -95,10 +97,14 @@ export default function UpdateBatch() {
                 <div class="form-group"> 
                     <label for="country">Total Quantity</label>
                         <input type="Number" class="form-control" id="TQ" name="TQ" value={total_quantity} min="1" onChange={(e) =>parseInt(setquantity(e.target.value))} required/>
-                </div>   
+                </div> 
+                <div class="form-group">
+                    <label for="country">Items need to be taken</label>
+                        <input type="Number" class="form-control" id="TQcal" name="TQcal" max={total_quantity} min="0" value={take} onChange={(e) =>parseInt(setTake(e.target.value))}/>
+                </div>  
 
                     
-                    <Link to={`/onestock/${id}`}><input type="submit" value="Update Record" class="btn btn-info" onClick={UpdateBatch}/><br></br><br/></Link> 
+                    <Link to={`/onestock/${id}`}><input type="submit" value="Update Record" class="btn btn-warning" onClick={UpdateBatch}/><br></br><br/></Link> 
                     
                 </form>
                 </div>

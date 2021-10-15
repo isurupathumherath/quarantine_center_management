@@ -43,10 +43,11 @@ export default function MedBatches(){
         <div className="page-wrapper">
         <div className="content container-fluid">
         <div style={{background:"white",padding:"20px",position: "relative",
-                left: "-190px",
-                top:"-40px",
+                left: "-220px",
+                top:"-80px",
                 height:"700px",
-                width:"1000px"}}>
+                width:"1000px",
+                overflowY: "scroll"}}>
              <center>
                 <h1>{medi.name}</h1>
              </center>   

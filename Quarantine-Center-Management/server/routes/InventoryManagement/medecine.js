@@ -11,18 +11,20 @@ router.route("/add").post((req,res)=>{
     const price_of_one=Number(req.body.price_of_one);
     const Batch=req.body.Batch;
 
-    const newmed=new meds({
-        category,
-        name,
-        price_of_one,
-        Batch
-    })
-
-    newmed.save().then(()=>{
-        res.json("Med added")
-    }).catch((err)=>{
-        console.log(err);
-    })
+    
+        const newmed=new meds({
+            category,
+            name,
+            price_of_one,
+            Batch
+        })
+     
+    
+        newmed.save().then(()=>{
+            res.json("Med added")
+        }).catch((err)=>{
+            console.log(err);
+        })
 });
 
 //get all med

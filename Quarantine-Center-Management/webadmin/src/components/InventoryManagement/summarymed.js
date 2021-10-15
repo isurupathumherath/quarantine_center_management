@@ -54,6 +54,7 @@ export default function Summarymed (){
     let q=0;
     let unitTot=0;
     let Grandtotal=0;
+    let tot_items=0;
     const unit = "pt";
     const size = "A4"; // Use A1, A2, A3 or A4
     const orientation = "portrait"; // portrait or landscape
@@ -105,6 +106,7 @@ export default function Summarymed (){
 
           unitTot=unitTot+post.total_quantity*medi.price_of_one;
           top=top+30;
+          tot_items=tot_items+post.total_quantity;
           top >= 750 ? doc.addPage() : (q = 1);
           top >=750 ? (top=50):(q=2);
         })  
@@ -164,6 +166,11 @@ export default function Summarymed (){
     top=top+30;
     doc.setTextColor("red")
     top=top+20;
+    doc.text("Total Number : ",marginLeft,top);
+    doc.text(" of Items",marginLeft,top+20);
+    doc.text(String(tot_items),150,top);
+    doc.text("__________",145,top+5);
+    doc.text("__________",145,top+7);
     doc.text("Grand Total :  ",253,top);
     doc.text(String(Grandtotal),355,top);
     doc.text("__________",340,top+5);
@@ -189,7 +196,7 @@ export default function Summarymed (){
                             padding: "20px"}}>
 
                 <button id="delete"  class="btn btn-dark" onClick={()=>exportPDF()}>Generate Report +</button><br/><br/>
-                <div style={{width: "45%",float: "left",padding: "20px",border: "2px solid gray"}}>
+                <div style={{width: "45%",float: "left",padding: "20px",border: "2px solid gray",maxHeight:"1600px",overflowY: "scroll"}}>
                     <center><h1>Total Summary of Medicine</h1></center>
                       <br/>
                       <p>Total Medicine Items in Inventory - {t0}</p>

@@ -19,6 +19,7 @@ const MedBatchUpdate=() =>{
     const [expiration_date, setexpire] = useState(null);
     const [total_quantity, setquantity] = useState(0);
     const [batchnum, setbatchnum] = useState(0);
+    const [take,setTake]=useState(0);
     
     useEffect(() => {
         function getmedi(){
@@ -46,11 +47,13 @@ const MedBatchUpdate=() =>{
 
 
     const UpdateBatch = () => {
-        let newquantity={total_quantity:total_quantity}
+        let x=total_quantity-take;
+        let newquantity={total_quantity:x}
         axios.put(`http://localhost:8000/meds/update/${med}`,
             newquantity,
         ).then((res)=>{             
             alert("Batch Updated");
+            
         }).catch((err)=>{
             alert(err.message);
         })
@@ -64,7 +67,7 @@ const MedBatchUpdate=() =>{
         <div style={{background:"white",padding:"20px",position: "relative",
                 left: "-190px",
                 top:"-40px",
-                height:"800px",
+                height:"880px",
                 width:"1000px"}}>
         <center>
                 <h1>Update Batch {batchnum} of {name}</h1>
@@ -98,7 +101,11 @@ const MedBatchUpdate=() =>{
                 <div class="form-group">
                     <label for="country">Total Quantity</label>
                         <input type="Number" class="form-control" id="TQ" name="TQ" value={total_quantity} onChange={(e) =>parseInt(setquantity(e.target.value))}/>
-                </div>    
+                </div> 
+                <div class="form-group">
+                    <label for="country">Items need to be taken</label>
+                        <input type="Number" class="form-control" id="TQcal" name="TQcal" max={total_quantity} min="0" value={take} onChange={(e) =>parseInt(setTake(e.target.value))}/>
+                </div>   
 
                     
                     <Link to={`/Inventory/medbatches/${id}`}><input type="submit" class="btn btn-warning" value="Update Record" onClick={UpdateBatch}/></Link> 
