@@ -46,6 +46,7 @@ class EditProfile extends Component {
 
         axios.put(`http://localhost:8000/profile/update/${id}`, data).then((res) => {
             if (res.data.success) {
+                window.location.href = `/profile/${id}`;
                 const Swal = require('sweetalert2');
                 Swal.fire({
                     title: 'Success!',

@@ -109,7 +109,7 @@ class Dashboard extends Component {
             </div>
 
 
-            <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
+            {/* <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
               <input
                 className="form-control"
                 type="search"
@@ -117,7 +117,7 @@ class Dashboard extends Component {
                 name="searchQuery"
                 onChange={this.handleSearchArea}>
               </input>
-            </div>
+            </div> */}
           </p>
           <table id="table" class="table">
             <thead>
