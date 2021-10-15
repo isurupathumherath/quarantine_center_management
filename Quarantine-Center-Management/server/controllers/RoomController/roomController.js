@@ -196,3 +196,17 @@ router.get('/feedback',(req,res)=>{
         }
     })
 })
+
+router.post('/feedback',(req,res)=>{
+    console.log(res);
+    var record= new feedback({
+        fname: req.body.fname,
+        lname: req.body.lname,
+        nic: req.body.nic,
+        email: req.body.email,
+        checkin: req.body.checkin,
+        checkout: req.body.checkout,
+        roomid: req.body.roomid,
+        patientid: req.body.patientid,
+        feedback: req.body.feedback,
+    })
