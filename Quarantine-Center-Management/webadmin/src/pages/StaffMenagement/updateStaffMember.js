@@ -166,16 +166,16 @@ const UpdateStaffMember = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL })
+        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL })
         axios
-            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL })
+            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL })
             .then(response => {
 
                 console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL } = response.data
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL } = response.data
 
                 //empty state
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, profileURL });
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL });
                 //show success alert
                 // alert(`Staff Member ${firstName} is Updated`);
                 Swal.fire(
