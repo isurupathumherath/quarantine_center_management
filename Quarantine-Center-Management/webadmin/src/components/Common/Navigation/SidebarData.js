@@ -81,32 +81,54 @@ export const SidebarData = [
         iconOpened: <RiIcons.RiArrowUpSFill />,
         icon: <AiIcons.AiOutlineFolder />,
         subNav: [
-          {
-            title: "Dash Board",
-            path: "/orderAdmin",
-            icon: <RiIcons.RiDashboardLine />,
-          },
-          {
-            title: "Manage Foods",
-            path: "/foodadmin",
-            icon: <IoIcons.IoIosPaper />,
-          },
-          {
-            title: "Reports",
-            path: "/foodreports",
-            icon: <HiIcons.HiDocumentReport />,
-          },
+            {
+                title: "Dash Board",
+                path: "/orderAdmin",
+                icon: <RiIcons.RiDashboardLine />,
+            },
+            {
+                title: "Manage Foods",
+                path: "/foodadmin",
+                icon: <IoIcons.IoIosPaper />,
+            },
+            {
+                title: "Reports",
+                path: "/foodreports",
+                icon: <HiIcons.HiDocumentReport />,
+            },
         ],
-      },
-    {
-        title: 'Medical details',
-        path: '/medical',
-        icon: <AiIcons.AiFillMedicineBox />,
     },
+    {
+        title: 'Medical Test details',
+        path: '/Medicaltests/dashboard',
+        icon: <AiIcons.AiFillMedicineBox/>, 
+        
+    },
+    
     {
         title: 'Room management',
         path: '/room',
         icon: <AiIcons.AiOutlineChrome />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'Add Room',
+                path: '/add_room',
+                icon: <IoIcons.IoMdPodium />
+            },
+            {
+                title: 'Update/Delete Room',
+                path: '/room',
+                icon: <IoIcons.IoMdPersonAdd />
+            },
+            {
+                title: 'Booking Report',
+                path: '/report',
+                icon: <IoIcons.IoMdPodium />
+            },
+        ]
+
     },
     {
         title: 'Staff management',

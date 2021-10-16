@@ -23,6 +23,11 @@ import ProfileDetails from './components/UserManagement/ProfileDetails';
 import EditProfile from './components/UserManagement/EditProfile';
 import Register from './components/UserManagement/Register';
 
+//component
+import Room from './components/RoomManagement/AllRooms';
+import RoomAdd from './components/RoomManagement/AddRooms';
+import Report from './components/RoomManagement/Report';
+
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember'                     //--Added by Isuru Pathum Herath--
 import allStaffMembers from './pages/StaffMenagement/allStaffMembers'                   //--Added by Isuru Pathum Herath--
@@ -44,6 +49,23 @@ import qStaff from './pages/StaffMenagement/showQEmployee';                     
 import calender from './pages/StaffMenagement/Attendance';                              //--Added by Isuru Pathum Herath--
 import calenderStaff from './pages/StaffMenagement/AttendanceStaff';                    //--Added by Isuru Pathum Herath--
 import imageUpload from './pages/StaffMenagement/imageUpload';
+
+
+// import viewTickets from './components/TicketManagement/adminAllTickets';
+// import replyTickets from './components/TicketManagement/adminEditTickets';
+
+import AddTempCheckup from './components/MedicalTests/AddTempCheckup';
+import AddPCR from './components/MedicalTests/AddPCR';
+import DashboardMed from './components/MedicalTests/Dashboard';
+import ViewPCR from './components/MedicalTests/ViewPCR';
+import ViewCheckups from './components/MedicalTests/ViewCheckups';
+import UpdatePCR from './components/MedicalTests/UpdatePCR';
+import UpdateCheckup from './components/MedicalTests/UpdateCheckup';
+import DeleteCheckup from './components/MedicalTests/DeleteCheckup';
+import Reportpg1 from './components/MedicalTests/Reportpg1';
+import MedReport from './components/MedicalTests/MedReport';
+import Repo from './components/MedicalTests/Repo';
+import CheckupRepo from './components/MedicalTests/ChechupRepo';
 
 
 import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
@@ -153,6 +175,19 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/register" exact component={Register} />
 
                         {/*--Added by Chamodh Iduranga--*/}
+                        <PrivateRouteAdmin path="/addPCR" exact component={AddPCR}/>
+                        <PrivateRouteAdmin path="/addCheckup" exact component={AddTempCheckup}/>
+                        <PrivateRouteAdmin path="/Medicaltests/dashboard" exact component={DashboardMed}/>
+                        <PrivateRouteAdmin path="/ViewPCR" exact component={ViewPCR}/>
+                        <PrivateRouteAdmin path="/ViewCheckups" exact component={ViewCheckups}/>
+                        <PrivateRouteAdmin path="/UpdatePCR" exact component={UpdatePCR}/>
+                        <PrivateRouteAdmin path="/UpdateCheckup" exact component={UpdateCheckup}/>
+                        <PrivateRouteAdmin path="/DeleteCheckup" exact component={DeleteCheckup}/>
+                        <PrivateRouteAdmin path="/Reportpg1" exact component={Reportpg1}/>
+                        <PrivateRouteAdmin path="/MedReport" exact component={MedReport}/>
+                        <PrivateRouteAdmin path="/Repo" exact component={Repo}/>
+                        <PrivateRouteAdmin path="/CheckupRepo" exact component={CheckupRepo}/>
+              
                         {/* <PrivateRouteAdmin path="/finance/payer" exact component={PayerDetails} /> */}
                         <PrivateRouteAdmin path="/finance/fDashboard" exact component={FinanceDashboard} />
                         <PrivateRouteAdmin path="/finance/inquary" exact component={Inquary} />
@@ -164,6 +199,9 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/foodadmin" exact component={FoodAdmin} />
                         <PrivateRouteAdmin path="/foodreports" exact component={FoodReport} />
 
+                        <PrivateRouteAdmin path="/report" component={ Report }/>
+                        <PrivateRouteAdmin path="/add_room" component={ RoomAdd }/>
+                        <PrivateRouteAdmin path="/room" component={ Room }/>
                     </Switch>
                 </BrowserRouter>
 
