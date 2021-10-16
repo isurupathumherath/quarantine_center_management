@@ -48,6 +48,8 @@ import staffMemberProfileEdit from './pages/StaffMenagement/staffMemberProfileEd
 import qStaff from './pages/StaffMenagement/showQEmployee';                             //--Added by Isuru Pathum Herath--
 import calender from './pages/StaffMenagement/Attendance';                              //--Added by Isuru Pathum Herath--
 import calenderStaff from './pages/StaffMenagement/AttendanceStaff';                    //--Added by Isuru Pathum Herath--
+import salaryCalculation from './pages/StaffMenagement/salaryCalculation';              //--Added by Isuru Pathum Herath--
+
 import imageUpload from './pages/StaffMenagement/imageUpload';
 
 
@@ -142,30 +144,31 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showQStaff" exact component={qStaff} />                               {/*--Added by Isuru Pathum Herath--*/}
-                        <PrivateRouteAdmin path="/attendance/:id" exact component={calender} />                           {/*--Added by Isuru Pathum Herath--*/}
-                        {/* <PrivateRouteAdmin path="/staffAnalytic" exact component={staffAnalytic} />                           --Added by Isuru Pathum Herath-- */}
+                        <PrivateRouteAdmin path="/attendance/:id" exact component={calender} />                         {/*--Added by Isuru Pathum Herath--*/}
+                        <PrivateRouteAdmin path="/salary/:id" exact component={salaryCalculation} />                    {/*--Added by Isuru Pathum Herath--*/}
 
 
-                        <PrivateRouteAdmin path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
-                        <PrivateRouteAdmin path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
-                        <PrivateRouteAdmin path="/Mailer" exact component={Mailer}/> {/*--Added by Vishara Prabuddhi--*/}
-                        
-                        <PrivateRouteAdmin path="/add/food/:food" exact component={Addbatch}/>  {/* Anupa */}
-                        <PrivateRouteAdmin path="/update/:food" exact component={UpdateStock}/>  {/* Anupa */}
-                        <PrivateRouteAdmin path="/delete" exact component={Delete}/> {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/food" exact component={Allstock}/> {/* Anupa */}
-                        <PrivateRouteAdmin path="/onestock/:name" exact component={Onestock}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/newitem" exact component={Newitem}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medall" exact component={MedAll}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medbatches/:med" exact component={MedBatches}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medDelete" exact component={MedBatchDelete}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medUpdate/:med" exact component={MedBatchUpdate}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medadd/:med" exact component={AddNewBatchMed}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medall/mednew" exact component={AddnewMeditem}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/medbatches/update/whole" exact component={Meditemupdate}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/food/update" exact component={FooditemUpdate}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/food/summary" exact component={SummaryFood}/>   {/* Anupa */}
-                        <PrivateRouteAdmin path="/Inventory/med/summarymed" exact component={Summarymed}/>   {/* Anupa */}
+
+                        <PrivateRouteAdmin path="/viewalltickets" exact component={viewTickets} /> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/edit/:id" exact component={replyTickets} /> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/Mailer" exact component={Mailer} /> {/*--Added by Vishara Prabuddhi--*/}
+
+                        <PrivateRouteAdmin path="/add/food/:food" exact component={Addbatch} />  {/* Anupa */}
+                        <PrivateRouteAdmin path="/update/:food" exact component={UpdateStock} />  {/* Anupa */}
+                        <PrivateRouteAdmin path="/delete" exact component={Delete} /> {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food" exact component={Allstock} /> {/* Anupa */}
+                        <PrivateRouteAdmin path="/onestock/:name" exact component={Onestock} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/newitem" exact component={Newitem} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medall" exact component={MedAll} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medbatches/:med" exact component={MedBatches} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medDelete" exact component={MedBatchDelete} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medUpdate/:med" exact component={MedBatchUpdate} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medadd/:med" exact component={AddNewBatchMed} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medall/mednew" exact component={AddnewMeditem} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medbatches/update/whole" exact component={Meditemupdate} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food/update" exact component={FooditemUpdate} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food/summary" exact component={SummaryFood} />   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/med/summarymed" exact component={Summarymed} />   {/* Anupa */}
                         <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
 
@@ -175,33 +178,33 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/register" exact component={Register} />
 
                         {/*--Added by Chamodh Iduranga--*/}
-                        <PrivateRouteAdmin path="/addPCR" exact component={AddPCR}/>
-                        <PrivateRouteAdmin path="/addCheckup" exact component={AddTempCheckup}/>
-                        <PrivateRouteAdmin path="/Medicaltests/dashboard" exact component={DashboardMed}/>
-                        <PrivateRouteAdmin path="/ViewPCR" exact component={ViewPCR}/>
-                        <PrivateRouteAdmin path="/ViewCheckups" exact component={ViewCheckups}/>
-                        <PrivateRouteAdmin path="/UpdatePCR" exact component={UpdatePCR}/>
-                        <PrivateRouteAdmin path="/UpdateCheckup" exact component={UpdateCheckup}/>
-                        <PrivateRouteAdmin path="/DeleteCheckup" exact component={DeleteCheckup}/>
-                        <PrivateRouteAdmin path="/Reportpg1" exact component={Reportpg1}/>
-                        <PrivateRouteAdmin path="/MedReport" exact component={MedReport}/>
-                        <PrivateRouteAdmin path="/Repo" exact component={Repo}/>
-                        <PrivateRouteAdmin path="/CheckupRepo" exact component={CheckupRepo}/>
-              
+                        <PrivateRouteAdmin path="/addPCR" exact component={AddPCR} />
+                        <PrivateRouteAdmin path="/addCheckup" exact component={AddTempCheckup} />
+                        <PrivateRouteAdmin path="/Medicaltests/dashboard" exact component={DashboardMed} />
+                        <PrivateRouteAdmin path="/ViewPCR" exact component={ViewPCR} />
+                        <PrivateRouteAdmin path="/ViewCheckups" exact component={ViewCheckups} />
+                        <PrivateRouteAdmin path="/UpdatePCR" exact component={UpdatePCR} />
+                        <PrivateRouteAdmin path="/UpdateCheckup" exact component={UpdateCheckup} />
+                        <PrivateRouteAdmin path="/DeleteCheckup" exact component={DeleteCheckup} />
+                        <PrivateRouteAdmin path="/Reportpg1" exact component={Reportpg1} />
+                        <PrivateRouteAdmin path="/MedReport" exact component={MedReport} />
+                        <PrivateRouteAdmin path="/Repo" exact component={Repo} />
+                        <PrivateRouteAdmin path="/CheckupRepo" exact component={CheckupRepo} />
+
                         {/* <PrivateRouteAdmin path="/finance/payer" exact component={PayerDetails} /> */}
                         <PrivateRouteAdmin path="/finance/fDashboard" exact component={FinanceDashboard} />
                         <PrivateRouteAdmin path="/finance/inquary" exact component={Inquary} />
                         <PrivateRouteAdmin path="/finance/payer" exact component={Payer} />
-                        <PrivateRouteAdmin path="/finance/payment" exact component={Payment} /> 
+                        <PrivateRouteAdmin path="/finance/payment" exact component={Payment} />
 
-                            {/*--Added by Chamodh Iduranga--*/}
+                        {/*--Added by Chamodh Iduranga--*/}
                         <PrivateRouteAdmin path="/orderAdmin" exact component={OrderAdmin} />
                         <PrivateRouteAdmin path="/foodadmin" exact component={FoodAdmin} />
                         <PrivateRouteAdmin path="/foodreports" exact component={FoodReport} />
 
-                        <PrivateRouteAdmin path="/report" component={ Report }/>
-                        <PrivateRouteAdmin path="/add_room" component={ RoomAdd }/>
-                        <PrivateRouteAdmin path="/room" component={ Room }/>
+                        <PrivateRouteAdmin path="/report" component={Report} />
+                        <PrivateRouteAdmin path="/add_room" component={RoomAdd} />
+                        <PrivateRouteAdmin path="/room" component={Room} />
                     </Switch>
                 </BrowserRouter>
 
