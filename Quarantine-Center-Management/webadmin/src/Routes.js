@@ -170,7 +170,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
 
                         <PrivateRouteAdmin path="/dashboard" exact component={Dashboard} />
-                        <PrivateRouteAdmin path="/update/:id" component={EditProfile} />
+                        <PrivateRouteAdmin path="/updateprofile/:id" component={EditProfile} />
                         <PrivateRouteAdmin path="/profile/:id" component={ProfileDetails} />
                         <PrivateRouteAdmin path="/register" exact component={Register} />
 
