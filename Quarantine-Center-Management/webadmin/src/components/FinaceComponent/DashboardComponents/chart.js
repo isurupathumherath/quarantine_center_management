@@ -14,13 +14,13 @@ export default class Example extends PureComponent {
   render() {
     return (
       <div>
-        <PieChart width={700} height={500} onMouseEnter={this.onPieEnter}>
+        <PieChart width={400} height={300} onMouseEnter={this.onPieEnter}>
           <Pie
             data={data}
-            cx={350}
-            cy={250}
-            innerRadius={0}
-            outerRadius={175}
+            cx={200}
+            cy={130}
+            innerRadius={50}
+            outerRadius={125}
             fill="#8884d8"
             paddingAngle={1}
             dataKey="value"

@@ -80,16 +80,21 @@ export default function Payment() {
                         Gateway = Gateway + 1;
                     }
                 })
-            } 
+            }
             {
                 Card_Usage = parseInt((Card / total) * 100),
                 Gateway_Usage = parseInt((Gateway / total) * 100),
                 localStorage.setItem("Card_Precentage", Card_Usage),
-                localStorage.setItem("Gateway_Precentage", Gateway_Usage) 
-            } 
+                localStorage.setItem("Gateway_Precentage", Gateway_Usage)
+            }
 
-            {/* <h1> {Gateway}</h1>
-            <h1> {Card} </h1> */}
+            <div class="card flex-fill mt-5" style={{ backgroundColor: 'black', boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Card Usage : {Card_Usage}</li>
+                    <li class="list-group-item">Payment Gateway Usage : {Gateway_Usage}</li>
+                    <li class="list-group-item">Total Payments : {total}</li>
+                </ul>
+            </div>
         </div>
     )
 }
