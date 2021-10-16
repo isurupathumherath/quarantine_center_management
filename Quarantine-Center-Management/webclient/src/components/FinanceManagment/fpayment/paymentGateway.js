@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 import Swal from "sweetalert2";
 
@@ -49,7 +50,7 @@ const PaymentGateway = ({ }) => {
             handler: async function (response) {
                 const data = {
                     // userID : "102",
-                    userID : JSON.parse(localStorage.getItem('currentUser'))._id, 
+                    userID: JSON.parse(localStorage.getItem('currentUser'))._id,
                     orderCreationId: order_id,
                     razorpayPaymentId: response.razorpay_payment_id,
                     razorpayOrderId: response.razorpay_order_id,
@@ -93,10 +94,51 @@ const PaymentGateway = ({ }) => {
     // }
     return (
         <div className="App">
-            <p>Buy React now!</p>
+            {/* <p>Buy React now!</p>
             <button className="App-link" onClick={displayRazorpay}>
                {localStorage.getItem("TotalPrice")}
-            </button>
+            </button> */}
+            <div class="col-12 col-md-12 col-lg-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Payment Gateway</h5>
+                    </div>
+                    <div class="card-body">
+                        <Form>
+                            <Row>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                        <Form.Label>Payer Name</Form.Label>
+                                        <Form.Control type="text" value={JSON.parse(localStorage.getItem('currentUser')).fName} readOnly />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6}>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Payer Address</Form.Label>
+                                        <Form.Control type="text" value={JSON.parse(localStorage.getItem('currentUser')).address} readOnly />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Payer Email Address</Form.Label>
+                                        <Form.Control type="text" value={JSON.parse(localStorage.getItem('currentUser')).email} readOnly />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                                        <Form.Label>Payer Total</Form.Label>
+                                        <Form.Control type="text" value={"Rs."+localStorage.getItem("TotalPrice")} readOnly />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            {/* <Button variant="primary" type="submit">
+                                Submit
+                            </Button> */}
+                        </Form>
+                        <button class="btn btn-primary" onClick={displayRazorpay}>Launch</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -23,7 +23,7 @@ const InquaryTable = () => {
         { name: "Inserted Date", field: "insertedDateTime", sortable: true },
         { name: "Status", field: "states", sortable: true },
         { name: "Type", field: "type", sortable: true },
-        { name: "Piority", field: "piority", sortable: false },
+        { name: "Piority", field: "piority", sortable: true },
     ];
 
     useEffect(() => {

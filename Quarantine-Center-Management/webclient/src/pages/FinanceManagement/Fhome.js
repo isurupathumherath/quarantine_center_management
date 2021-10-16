@@ -88,7 +88,7 @@ export default class HomePage extends Component {
                                                             <img src={ImagePayment} />
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h1>Payment Funcrtion</h1>
+                                                            <h1>Payment Function</h1>
                                                             <p style={{ marginTop: "45px" }}>
                                                                 Any Additional Servicer, Sub-Servicer, Subcontractor or any other Person, other than the Master Servicer, the Special Servicer, the Trustee, the Operating Advisor and the Certificate Administrator, that is performing activities that address the Servicing Criteria, unless (i) such Person’s activities relate only to 5% or less of the Mortgage Loans by unpaid principal balance as of any date of determination in accordance with Article XI or (ii) the Depositor reasonably determines that a Master Servicer or the Special Servicer may, for the purposes of the Exchange Act reporting requirements pursuant to applicable Commission guidance, take responsibility for the assessment of compliance with the Servicing Criteria of such Person. The Servicing Function Participants as of the Closing Date are listed on Exhibit GG hereto. Exhibit GG shall be updated and provided to the Depositor and the Certificate Administrator in accordance with Section
                                                             </p>
@@ -97,7 +97,7 @@ export default class HomePage extends Component {
                                                                     Commercially Useful Function means responsibility for the execution of a distinct element of the work of the contract, which is carried out by actually performing, managing, and supervising the work involved, evidencing the responsibilities and risks of a business owner such as negotiating the terms of (sub)contracts, taking on a financial risk commensurate with the contract or its subcontract, responsibility for acquiring the appropriate lines of credit and/or loans, or fulfilling responsibilities as a joint venture partner as described in the joint venture agreement.
                                                                 </p>
                                                             </span>
-                                                            <button style={{ marginTop: '50px' }} type="button" class="btn btn-block btn-outline-info active" onClick={this.handlePayBtnClick} >Pay</button>
+                                                            <button style={{ marginTop: '50px' }} type="button" class="btn btn-block btn-outline-info active" onClick={this.handlePayBtnClick} >Procced to Pay</button>
                                                         </div>
                                                     </div>
                                                 </div>
