@@ -8,11 +8,7 @@ export const getPaymnts = async (req, res) => {
         const payments = await FinancePayment.find();
 
         if (payments != null) {
-            res.status(200).json
-                ({
-                    replyCode: 1,
-                    payments
-                });
+            res.status(200).json(payments);
         } else {
             res.status(200).json
                 ({

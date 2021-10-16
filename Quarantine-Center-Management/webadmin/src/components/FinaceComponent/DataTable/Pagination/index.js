@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Pagination from 'react-bootstrap/Pagination';
+// import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationComponent = ({
     total = 0,
@@ -19,9 +19,12 @@ const PaginationComponent = ({
     const paginationItems = useMemo(() => {
         const pages = [];
         for (let i = 1; i <= totalPages; i++) {
-            pages.push(<Pagination.Item key={i} active={i === currentPage} onClick={() => onPageChange(i)}>
-                {i}
-            </Pagination.Item>);
+
+            pages.push(<li class="page-item" key={i} active={i === currentPage} onClick={() => onPageChange(i)}>
+                <a class="page-link">
+                    {i}
+                </a>
+            </li>);
         }
 
         return pages;
@@ -31,7 +34,7 @@ const PaginationComponent = ({
 
     return (
         <div>
-            <Pagination>
+            {/* <Pagination>
                 <Pagination.Prev
                     onClick={() => onPageChange(currentPage - 1)}
                     disabled={currentPage === 1}  />
@@ -39,7 +42,24 @@ const PaginationComponent = ({
                 <Pagination.Next
                     onClick={() => onPageChange(currentPage + 1)}
                     disabled={currentPage === totalPages} />
-            </Pagination>
+            </Pagination> */}
+            <ul class="pagination" style={{float:'right'}}>
+                <li class="page-item" onClick={() => onPageChange(currentPage - 1)}
+                    disabled={currentPage === 1} >
+                    <a class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {paginationItems}
+                <li class="page-item" onClick={() => onPageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages} >
+                    <a class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     )
 };

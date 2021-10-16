@@ -12,7 +12,14 @@ const useForm = () => {
         cardExpiration: '',
         cardSecurityCode: '',
         cardPostalCode: '',
-        focus: ''
+        focus: '',
+        userID: JSON.parse(localStorage.getItem('currentUser'))._id,
+        razorpayDetails:
+        {
+            orderId: 'null',
+            paymentId: 'null',
+            signature: 'null',
+        }
     })
 
     const dispatch = useDispatch();
@@ -38,21 +45,21 @@ const useForm = () => {
         e.preventDefault()
         setErrors(validateInfo(values))
 
-        dispatch(createPayment(values)); 
+        dispatch(createPayment(values));
 
         // if (formValid(this.state)) {
-            // console.log(`
-            //     --SUBMITING--
-            //     User ID : ${this.state.userID}
-            //     First name : ${this.state.firstName}
-            //     Last Name : ${this.state.lastName}
-            //     email : ${this.state.email}
-            //     address : ${this.state.address}
-            //     constactNumber : ${this.state.contactNumber}
-            // `)
+        // console.log(`
+        //     --SUBMITING--
+        //     User ID : ${this.state.userID}
+        //     First name : ${this.state.firstName}
+        //     Last Name : ${this.state.lastName}
+        //     email : ${this.state.email}
+        //     address : ${this.state.address}
+        //     constactNumber : ${this.state.contactNumber}
+        // `)
 
-            // alert("tets")
-            // const res = axios.post('http://localhost:8000/payment/createPaymentDetails', this.values);
+        // alert("tets")
+        // const res = axios.post('http://localhost:8000/payment/createPaymentDetails', this.values);
 
         // } else {
         //     console.error("FORM INVALID - DISPLAY ERROR MASAGE")

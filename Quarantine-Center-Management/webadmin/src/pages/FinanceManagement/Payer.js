@@ -11,13 +11,18 @@ export default function Payer() {
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" })
 
-    const ITEMS_PER_PAGE = 25;
+    const ITEMS_PER_PAGE = 10;
 
     const headers = [
-        { name: "No", field: "id", sortable: false },
-        { name: "Name", field: "name", sortable: true },
+        // { name: "No", field: "id", sortable: false },
+        // { name: "Name", field: "name", sortable: true },
+        // { name: "Email", field: "email", sortable: true },
+        // { name: "Comment", field: "body", sortable: false },
+        // { name: "Actions", field: "actions", sortable: false },
+        { name: "Created Date", field: "createdAt", sortable: false },
+        { name: "Name", field: "firstName", sortable: true },
         { name: "Email", field: "email", sortable: true },
-        { name: "Comment", field: "body", sortable: false },
+        { name: "Address", field: "address", sortable: false },
         { name: "Actions", field: "actions", sortable: false },
     ];
 
@@ -25,7 +30,7 @@ export default function Payer() {
         const getData = () => {
             // showLoader();
 
-            fetch('https://jsonplaceholder.typicode.com/comments')
+            fetch('http://localhost:8000/payer/allPayerDetails')
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -42,10 +47,10 @@ export default function Payer() {
         if (search) {
             computeComments = computeComments.filter(
                 comment =>
-                    comment.name.toLowerCase().includes(search.toLowerCase()) ||
+                    comment.firstName.toLowerCase().includes(search.toLowerCase()) ||
                     comment.email.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.body.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.id.toString().includes(search.toString())
+                    comment.address.toLowerCase().includes(search.toLowerCase()) 
+                    // comment.id.toString().includes(search.toString())
             );
         }
 
@@ -85,24 +90,29 @@ export default function Payer() {
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <p class="float-left">
-                                {/* <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                /> */}
-                            </p>
-                            <p class="card-text float-right">
-                                <Search onSearch={(value) => {
-                                    setSearch(value);
-                                    setCurrentPage(1);
-                                }} />
-                            </p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4 class="card-title">Payer Details</h4>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <Pagination
+                                        total={totalItems}
+                                        itemsPerPage={ITEMS_PER_PAGE}
+                                        currentPage={currentpage}
+                                        onPageChange={page => setCurrentPage(page)}
+                                    />
+                                </div>
+                                <div class="col-md-2">
+                                    <Search onSearch={(value) => {
+                                        setSearch(value);
+                                        setCurrentPage(1);
+                                    }} />
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="datatable table table-stripped" width={{ width: '100%' }}>
+                                <table class="datatable table table-stripped">
                                     <TableHeader
                                         headers={headers}
                                         onSorting={(field, order) =>
@@ -111,10 +121,11 @@ export default function Payer() {
                                     <tbody>
                                         {commentsData.map(comment => (
                                             <tr>
-                                                <th scope="row"> {comment.id}</th>
-                                                <td> {comment.name} </td>
+                                                {/* <th scope="row"> {comment.id}</th> */}
+                                                <td> {comment.createdAt} </td>
+                                                <td> {comment.firstName} </td>
                                                 <td> {comment.email} </td>
-                                                <td> {comment.body} </td>
+                                                <td> {comment.address} </td>
                                                 <td  >
                                                     <div class="actions">
                                                         <a class=" btn btn-sm bg-danger-light ml-2" data-toggle="modal" href="#delete_modal">
@@ -134,20 +145,10 @@ export default function Payer() {
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <p class="float-right">
-                                <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                />
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
             <loader />
-        </div>
+        </div >
     )
 }

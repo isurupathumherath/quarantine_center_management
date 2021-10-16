@@ -10,12 +10,12 @@ import { Col, Form, Row, Modal, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Swal from 'sweetalert2';
 
+import StesShow from './statesShow'
+
 import { deleteInquary, updateInquary } from '../../../actions/FinanceAction/finquary';
 
-import StesShow from './statesShow';
 
-
-const InquaryItem = ({ Inquary_states, item, setCurrentId, currentID }) => {
+const InquaryItem = ({ item, setCurrentId, currentID, Inquary_states }) => {
     const dispatch = useDispatch();
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -26,15 +26,15 @@ const InquaryItem = ({ Inquary_states, item, setCurrentId, currentID }) => {
     const handleOnclick = (event) => {
         setCurrentId(item._id);
         setModalShow(true)
-    } 
+    }
 
     return (
         <div>
             <AccordionItem key={item._id}>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                        Inquary ID :  {item._id}
-                        <StesShow Inquary_states={Inquary_states} />
+                        Inquary ID :  {item._id} 
+                        <StesShow Inquary_states={Inquary_states} /> 
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -73,43 +73,13 @@ const InquaryItem = ({ Inquary_states, item, setCurrentId, currentID }) => {
                         </Row>
                     </Scrollbars>
                     <Row>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                            <button type="button" class="btn btn-block btn-outline-danger active" onClick={handleDelete}>Delete</button>
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                            <button type="submit" class="btn btn-block btn-outline-success active" onClick={handleOnclick} >Update</button>
+                        <Col md={10} style={{ marginTop: '25px' }}>
+                        </Col> 
+                        <Col md={2} style={{ marginTop: '25px' }}>
+                            <button type="submit" class="btn btn-block btn-outline-secondary active" onClick={handleOnclick} >Reply</button>
                         </Col>
                     </Row>
                     <hr style={{ border: '1px solid #d3d3d3' }} />
-                    <Row style={{ padding: '20px' }}>
-                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', width: '100%' }}>
-                            <div class="card-header">
-                                <h4 class="card-title">Response</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12" style={{ fontWeight: 'bold', fontSize: '16px' }}>
-                                    </div>
-                                    <div class="col-md-12" >
-                                    </div>
-                                    <div class="col-md-12  mt-3"
-                                        style={{
-                                            padding: '18px 2px 0px 18px',
-                                            border: '1px solid black',
-                                            backgroundColor: '#f4f4f4',
-                                            borderRadius: '2px'
-                                        }}>
-                                        <p class="comment-content">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Row>
                 </AccordionItemPanel>
             </AccordionItem>
             <MyVerticallyCenteredModal
@@ -128,11 +98,9 @@ function MyVerticallyCenteredModal(props) {
     console.log(props.test);
 
     const [inquaryData, setInquaryData] = useState({
-        title: null,
-        type: null,
-        description: null,
-        piority: null,
-        states: "2",
+        replyTitle: null,
+        replyDescription: null,
+        states: null,
     });
 
     const inquary = useSelector((state) => (props.test ? state.Finquary.find((message) => message._id === props.test) : null));
@@ -147,10 +115,8 @@ function MyVerticallyCenteredModal(props) {
     const clear = () => {
         // set{props.test}(0);
         setInquaryData({
-            title: '',
-            type: '',
-            description: '',
-            piority: '',
+            replyTitle: '',
+            replyDescription: '',
         });
     };
 
@@ -167,7 +133,7 @@ function MyVerticallyCenteredModal(props) {
                 showCancelButton: true,
                 focusConfirm: false,
                 confirmButtonText:
-                    '<a href="/inquary">Ok</a>',
+                    '<a href="/finance/inquary">Ok</a>',
                 cancelButtonText:
                     'Cancel',
             })
@@ -176,6 +142,16 @@ function MyVerticallyCenteredModal(props) {
         }
         setValidated(true);
     };
+
+    var Inquary_states = "";
+
+    if (inquaryData.states == '1') {
+        Inquary_states = "Pending";
+    } else if (inquaryData.states === '3') {
+        Inquary_states = "Working on";
+    } else if (inquaryData.states === '2') {
+        Inquary_states = "Completeted";
+    }
 
     return (
         <Modal
@@ -193,40 +169,46 @@ function MyVerticallyCenteredModal(props) {
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Row className="mb-3">
                         <Form.Group as={Col} md="12" controlId="validationCustom01">
-                            <Form.Label>Title</Form.Label>
+                            <Form.Label>Reply Title</Form.Label>
                             <Form.Control
                                 required
                                 type="text"
-                                placeholder="title"
-                                name="title"
-                                value={inquaryData.title}
-                                onChange={(event) => setInquaryData({ ...inquaryData, title: event.target.value })}
+                                placeholder="replyTitle"
+                                name="replyTitle"
+                                onChange={(event) => setInquaryData({ ...inquaryData, replyTitle: event.target.value })}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} md="6" className='mt-3' controlId="validationCustom02">
-                            <Form.Label>Type</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="type"
+                        <Form.Group as={Col} md="12 mt-2" controlId="validationCustom01">
+                            <Form.Label>Inquary States</Form.Label>
+                            <Form.Select
                                 name="type"
-                                value={inquaryData.type}
-                                onChange={(event) => setInquaryData({ ...inquaryData, type: event.target.value })}
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                        <Form.Group as={Col} md="6" className='mt-3' controlId="validationCustom01">
-                            <Form.Label>Piority</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="piority"
-                                name="piority"
-                                value={inquaryData.piority}
-                                onChange={(event) => setInquaryData({ ...inquaryData, piority: event.target.value })}
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                noValidate
+                                onChange={(event) => setInquaryData({ ...inquaryData, states: event.target.value })}
+                                style={{
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '.375rem 2.25rem .375rem .75rem',
+                                    fontSize: '1rem',
+                                    fontWeight: '400',
+                                    lineHeight: '1.5',
+                                    color: '#212529',
+                                    backgroundImage: 'url(data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3e%3cpath fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 5l6 6 6-6"/%3e%3c/svg%3e)',
+                                    backgroundColor: '#fff',
+                                    backgroundRepeat: 'no-repeat',
+                                    backgroundPosition: 'right .75rem center',
+                                    backgroundSize: '16px 12px',
+                                    border: '1px solid #ced4da',
+                                    borderRadius: '.25rem',
+                                    transition: 'border-color .15s ease-in-out,box-shadow .15s ease-in-out',
+                                    appearance: 'none'
+                                }}
+                            >
+                                <option>{Inquary_states}</option>
+                                <option value="1">Pending</option>
+                                <option value="2">Closed</option>
+                                <option value="3">Working On</option>
+                            </Form.Select>
                         </Form.Group>
                         <Form.Group as={Col} md="12" className='mt-3' controlId="validationCustom01">
                             <Form.Label>Description</Form.Label>
@@ -235,10 +217,9 @@ function MyVerticallyCenteredModal(props) {
                                 type="text"
                                 as="textarea"
                                 rows={3}
-                                placeholder="description"
-                                name="description"
-                                value={inquaryData.description}
-                                onChange={(event) => setInquaryData({ ...inquaryData, description: event.target.value })}
+                                placeholder="replyDescription"
+                                name="descreplyDescriptionription"
+                                onChange={(event) => setInquaryData({ ...inquaryData, replyDescription: event.target.value })}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>

@@ -97,7 +97,7 @@ import PayerDetails from './pages/FinanceManagement/PayerDetails';
 import FinanceDashboard from './pages/FinanceManagement/FinanceDashboard';
 import Inquary from './pages/FinanceManagement/Inquary';
 import Payer from './pages/FinanceManagement/Payer';
-import Payment from './pages/FinanceManagement/Payment';
+import Payment from './pages/FinanceManagement/Payment'; 
 
 
 /*--Added by Chamodh Iduranga--*/

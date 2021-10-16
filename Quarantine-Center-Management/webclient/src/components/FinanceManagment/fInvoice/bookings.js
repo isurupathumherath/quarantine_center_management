@@ -16,7 +16,7 @@ export default function Booking() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:8000/invoice/bookingDetails/' +  localStorage.getItem("userID"))
+            fetch('http://localhost:8000/invoice/bookingDetails/' + localStorage.getItem("userID"))
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
@@ -30,10 +30,10 @@ export default function Booking() {
     const Data = useMemo(() => {
         let computeBookingData = bookingData;
         return computeBookingData;
-    }, [bookingData]); 
+    }, [bookingData]);
 
-    const resultBooking = bookingData.reduce((total, currentValue) => total = total + currentValue.price, 0); 
-    console.log("Booking" + resultBooking);  
+    const resultBooking = bookingData.reduce((total, currentValue) => total = total + currentValue.price, 0);
+    console.log("Booking" + resultBooking);
 
     localStorage.setItem("bookingTotal", resultBooking);
 
@@ -113,6 +113,7 @@ function MyVerticallyCenteredModal(props) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            style={{ marginLeft: "30%" }}
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">

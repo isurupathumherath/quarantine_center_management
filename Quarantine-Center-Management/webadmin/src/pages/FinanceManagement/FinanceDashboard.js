@@ -1,153 +1,157 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { TableHeader, Search, Pagination } from '../../components/FinaceComponent/DataTable'
-// import useFullpageLoader from "hooks/useFullPageLoader";
+import { Card } from '@material-ui/core';
+import { useRef, useState, useEffect } from "react";
+import "hammerjs";
+import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 
-export default function FDashboard() {
+import { InquaryTable, PaymentTable, Charts, Calculation } from '../../components/FinaceComponent/DashboardComponents';
 
-    const [comments, setComments] = useState([]);
-    // const [loader, showLoader, hideLoader] = useFullpageLoader();
-    const [totalItems, setTotalItems] = useState(0);
-    const [currentpage, setCurrentPage] = useState();
-    const [search, setSearch] = useState("");
-    const [sorting, setSorting] = useState({ field: "", order: "" })
+export default function FInquary() {
+    const [key, setKey] = useState('Closed');
+    const pdfExportComponent = useRef(null);
 
-    const ITEMS_PER_PAGE = 25;
-
-    const headers = [
-        { name: "No", field: "id", sortable: false },
-        { name: "Name", field: "name", sortable: true },
-        { name: "Email", field: "email", sortable: true },
-        { name: "Comment", field: "body", sortable: false },
-        { name: "Actions", field: "actions", sortable: false },
-    ];
-
-    useEffect(() => {
-        const getData = () => {
-            // showLoader();
-
-            fetch('https://jsonplaceholder.typicode.com/comments')
-                .then(response => response.json())
-                .then(json => {
-                    // hideLoader();
-                    setComments(json);
-                    console.log(json);
-                });
-        };
-        getData();
-    }, []);
-
-    const commentsData = useMemo(() => {
-        let computeComments = comments;
-
-        if (search) {
-            computeComments = computeComments.filter(
-                comment =>
-                    comment.name.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.email.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.body.toLowerCase().includes(search.toLowerCase()) ||
-                    comment.id.toString().includes(search.toString())
-            );
-        }
-
-        setTotalItems(computeComments.length);
-
-        //sorting comments
-        if (sorting.field) {
-            const reversed = sorting.order === "asc" ? 1 : -1;
-            computeComments = computeComments.sort(
-                (a, b) =>
-                    reversed * a[sorting.field].localeCompare(b[sorting.field])
-            );
-        }
-
-        //CURRENT PAGE SLICE
-        return computeComments.slice(
-            (currentpage - 1) * ITEMS_PER_PAGE,
-            (currentpage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-        );
-    }, [comments, currentpage, search, sorting]);
-
-
+    const handleExportWithComponent = event => {
+        pdfExportComponent.current.save();
+    };
     return (
         <div>
-            <div class="page-header">
-                <div class="row">
-                    <div class="col">
-                        <h3 class="page-title">Finance Managment</h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Payer Details</li>
-                        </ul>
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-10">
+                            <h3 class="page-title">Welcome Admin!</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            <button type="button" class="btn btn-secondary" onClick={handleExportWithComponent} >Export Report</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <p class="float-left">
-                                {/* <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                /> */}
-                            </p>
-                            <p class="card-text float-right">
-                                <Search onSearch={(value) => {
-                                    setSearch(value);
-                                    setCurrentPage(1);
-                                }} />
-                            </p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="datatable table table-stripped" width={{ width: '100%' }}>
-                                    <TableHeader
-                                        headers={headers}
-                                        onSorting={(field, order) =>
-                                            setSorting({ field, order })}
-                                    />
-                                    <tbody>
-                                        {commentsData.map(comment => (
-                                            <tr>
-                                                <th scope="row"> {comment.id}</th>
-                                                <td> {comment.name} </td>
-                                                <td> {comment.email} </td>
-                                                <td> {comment.body} </td>
-                                                <td  >
-                                                    <div class="actions">
-                                                        <a class=" btn btn-sm bg-danger-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            <i class="fe fe-trash"></i> Delete
-                                                        </a>
-                                                        <a class=" btn btn-sm bg-success-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            <i class="fe fe-edit"></i> Edit
-                                                        </a>
-                                                        <a class=" btn btn-sm bg-info-light ml-2" data-toggle="modal" href="#delete_modal">
-                                                            ...
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                <PDFExport ref={pdfExportComponent}>
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-primary border-primary">
+                                            <i class="fe fe-users"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>168</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+                                        <h6 class="text-muted">Doctors</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <p class="float-right">
-                                <Pagination
-                                    total={totalItems}
-                                    itemsPerPage={ITEMS_PER_PAGE}
-                                    currentPage={currentpage}
-                                    onPageChange={page => setCurrentPage(page)}
-                                />
-                            </p>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-success">
+                                            <i class="fe fe-credit-card"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>487</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Patients</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-danger border-danger">
+                                            <i class="fe fe-money"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>485</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Appointment</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$62523</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Payemnt Usgae</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <Charts />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <Calculation />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Status</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="morrisLine"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <InquaryTable />
+                        <PaymentTable />
+                    </div>
+                </PDFExport>
             </div>
-            <loader />
         </div>
     )
 }
