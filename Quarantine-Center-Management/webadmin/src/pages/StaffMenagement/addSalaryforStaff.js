@@ -138,8 +138,14 @@ const App = () => {
                 fetchSalaryDetails();
             })
             .catch(error => {
-                console.log(error.Response)
-                alert(error.response.data.error)
+                // console.log(error.Response)
+                // alert(error.response.data.error)
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Enter Valid Data'
+                })
             })
     };
 
@@ -193,7 +199,7 @@ const App = () => {
                             </div>
                             <div class="col" style={{ marginTop: '30px', marginLeft: '20px' }}>
                                 <div>
-                                    <button className="btn btn-primary" style={{ width: "100px" }}>Add</button>
+                                    <button type="submit" className="btn btn-primary" style={{ width: "100px" }}>Add</button>
                                 </div>
                             </div>
                         </div>

@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 import { getUser, logout } from './staffHelper';
 import '../../assets/HRM/staffProfile.css';
@@ -352,7 +353,7 @@ const App = (props, { history }) => {
                                             <h6 className="mb-0">Added At</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {staffMembers.createdAt}
+                                            {moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                                         </div>
                                     </div>
                                     <hr />
@@ -361,7 +362,7 @@ const App = (props, { history }) => {
                                             <h6 className="mb-0">Last Update At</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {staffMembers.updatedAt}
+                                            {moment(staffMembers.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
                                         </div>
                                     </div>
 
