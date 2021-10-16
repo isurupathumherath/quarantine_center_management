@@ -23,6 +23,11 @@ import ProfileDetails from './components/UserManagement/ProfileDetails';
 import EditProfile from './components/UserManagement/EditProfile';
 import Register from './components/UserManagement/Register';
 
+//component
+import Room from './components/RoomManagement/AllRooms';
+import RoomAdd from './components/RoomManagement/AddRooms';
+import Report from './components/RoomManagement/Report';
+
 //Page Route
 import addStaffMember from './pages/StaffMenagement/addStaffMember' //--Added by Isuru Pathum Herath--
 import allStaffMembers from './pages/StaffMenagement/allStaffMembers' //--Added by Isuru Pathum Herath--
@@ -178,6 +183,9 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/foodadmin" exact component={FoodAdmin} />
                         <PrivateRouteAdmin path="/foodreports" exact component={FoodReport} />
 
+                        <PrivateRouteAdmin path="/report" component={ Report }/>
+                        <PrivateRouteAdmin path="/add_room" component={ RoomAdd }/>
+                        <PrivateRouteAdmin path="/room" component={ Room }/>
                     </Switch>
                 </BrowserRouter>
 

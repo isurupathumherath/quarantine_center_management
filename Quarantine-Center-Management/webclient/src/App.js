@@ -21,6 +21,10 @@ import AllOrders from "../../webclient/src/pages/FoodManagement/AllOrders";
 import OrderAdmin from "../../webclient/src/pages/FoodManagement/OrderAdmin";
 import Favourites from "../../webclient/src/pages/FoodManagement/Favourites";
 
+import Booking from './components/RoomManagement/Booking';
+import BookingView from './components/RoomManagement/BookingView';
+import Feedback from './components/RoomManagement/Feedback';
+
 /* Janith Gamage On - 11/10/2021  */
 import HomePage from "./pages/FinanceManagement/Fhome";
 import Checkout from "./pages/FinanceManagement/Fcheckout";
@@ -66,6 +70,11 @@ class App extends Component {
           {/* vishara */}
           <Route path="/addticket" exact component={addTicket}/> 
           <Route path="/formLandingPage" exact component={formLandingPage}/> 
+          
+          
+          <Route path="/booking" component={ Booking } />
+          <Route path="/bookingView" component={ BookingView } />
+          <Route path="/feedback" component={ Feedback } />
         </Switch>
         <Footer />
       </Router>
