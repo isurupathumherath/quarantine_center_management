@@ -40,9 +40,29 @@ import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added 
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 
-import viewTickets from './components/TicketManagement/adminAllTickets';
-import replyTickets from './components/TicketManagement/adminEditTickets';
+import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
+import replyTickets from './pages/TicketManagement/replyTickets'; //--Added by Vishara Prabuddhi--
+import Mailer from './components/TicketManagement/mailer';
 
+//Anupa
+import Allstock from './components/InventoryManagement/allStock';
+import Onestock from './components/InventoryManagement/onestock';
+import Delete from './components/InventoryManagement/deleteBatch';
+import UpdateStock from './components/InventoryManagement/updateBatch';
+import Addbatch from './components/InventoryManagement/addBatch';
+import Newitem from './components/InventoryManagement/newitem';
+import MedAll from './components/InventoryManagement/MedAll';
+import MedBatches from './components/InventoryManagement/MedBatches';
+import MedBatchDelete from './components/InventoryManagement/medBatchDelete';
+import MedBatchUpdate from './components/InventoryManagement/medbatchupdate';
+import AddNewBatchMed from './components/InventoryManagement/addNewBatchmed';
+import AddnewMeditem from './components/InventoryManagement/addnewMeditem';
+import Meditemupdate from './components/InventoryManagement/MedItemupdate';
+import UpdateFoodItem from './components/InventoryManagement/updateFooditem';
+import FooditemUpdate from './components/InventoryManagement/updateFooditem';
+import Summarymed from './components/InventoryManagement/summarymed';
+import SummaryFood from './components/InventoryManagement/summaryFood';
+//Anupa
 import PayerDetails from './pages/FinanceManagement/PayerDetails';
 import FinanceDashboard from './pages/FinanceManagement/FinanceDashboard';
 import Inquary from './pages/FinanceManagement/Inquary';
@@ -89,6 +109,26 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/addTask" exact component={addTask} />                                 {/*--Added by Isuru Pathum Herath--*/}
                         <PrivateRouteAdmin path="/showEmployeeTask/:id" exact component={showEmployeeTask} />           {/*--Added by Isuru Pathum Herath--*/}
 
+                        <PrivateRouteAdmin path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/Mailer" exact component={Mailer}/> {/*--Added by Vishara Prabuddhi--*/}
+                        
+                        <PrivateRouteAdmin path="/add/food/:food" exact component={Addbatch}/>  {/* Anupa */}
+                        <PrivateRouteAdmin path="/update/:food" exact component={UpdateStock}/>  {/* Anupa */}
+                        <PrivateRouteAdmin path="/delete" exact component={Delete}/> {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food" exact component={Allstock}/> {/* Anupa */}
+                        <PrivateRouteAdmin path="/onestock/:name" exact component={Onestock}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/newitem" exact component={Newitem}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medall" exact component={MedAll}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medbatches/:med" exact component={MedBatches}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medDelete" exact component={MedBatchDelete}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medUpdate/:med" exact component={MedBatchUpdate}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medadd/:med" exact component={AddNewBatchMed}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medall/mednew" exact component={AddnewMeditem}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/medbatches/update/whole" exact component={Meditemupdate}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food/update" exact component={FooditemUpdate}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/food/summary" exact component={SummaryFood}/>   {/* Anupa */}
+                        <PrivateRouteAdmin path="/Inventory/med/summarymed" exact component={Summarymed}/>   {/* Anupa */}
                         <PrivateRouteAdmin path="/viewticket" exact component={viewTickets} />
                         <PrivateRouteAdmin path="/edit/:id" component={replyTickets} />
 

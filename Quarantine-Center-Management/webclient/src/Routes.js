@@ -30,6 +30,11 @@ import Payment from "./pages/FinanceManagement/Fpayment";
 import Invoice from "./pages/FinanceManagement/Finvoice";
 import Inquary from './pages/FinanceManagement/Finquary'; 
 
+// Vishara
+import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
+import formLandingPage from './pages/TicketManagement/formLandingPage'; //--Added by Vishara Prabuddhi--
+
+
 const Routes = () => {
     return (
         <BrowserRouter>
@@ -60,6 +65,11 @@ const Routes = () => {
                             <PrivateRoute path="/payment" exact component={Payment} />
                             <PrivateRoute path="/invoice" exact component={Invoice} />
                             <PrivateRoute path="/inquary" exact component={Inquary} />
+                        
+                            {/* vishara */}
+                            <PrivateRoute path="/addticket" exact component={addTicket}/> 
+                            <PrivateRoute path="/formLandingPage" exact component={formLandingPage}/> 
+                            
                         </div>
                     </div>
                     <Footer />

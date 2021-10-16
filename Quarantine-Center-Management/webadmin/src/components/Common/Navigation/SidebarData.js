@@ -13,14 +13,48 @@ export const SidebarData = [
         iconOpened: <RiIcons.RiArrowUpSFill />,
     },
     {
-        title: 'Inventory management',
+        title: 'Stock management',
         path: '/inventory',
         icon: <AiIcons.AiFillEnvironment />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'Food',
+                path: '/Inventory/food',
+                icon: <RiIcons.RiDashboardLine />
+            },
+            {
+                title: 'Medicine',
+                path: '/Inventory/medall',
+                icon: <IoIcons.IoIosPaper />
+            },
+        ]
     },
     {
         title: 'Ticketing system',
-        path: '/ticketing',
+        path: '/viewalltickets',
         icon: <AiIcons.AiTwotoneRocket />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'All Tickets',
+                path: '/viewalltickets',
+                icon: <RiIcons.RiDashboardLine />
+            },
+            {
+                title: 'Details',
+                path: '/finance/details',
+                icon: <IoIcons.IoIosPaper />
+            },
+            {
+                title: 'Report',
+                path: '/finance/report',
+                icon: <HiIcons.HiDocumentReport />
+            },
+        ]
+        
     },
     {
         title: "Food management",

@@ -200,6 +200,24 @@ function Header() {
               </li>
               <li class="has-submenu">
                 <a href="#">
+                  Tciket Management <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <a href="#">
+                    Ticket <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <ul class="submenu">
+                    <li>
+                      <a href="/addticket">Add Ticket</a>
+                    </li>
+                    <li>
+                      <a href="">View My Ticket</a>
+                    </li>
+                  </ul>
+                 </ul> 
+              </li>
+              <li class="has-submenu">
+                <a href="#">
                   Blog <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="submenu">
