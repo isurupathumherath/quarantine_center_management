@@ -26,7 +26,7 @@ router.post('/orders', async (req, res) => {
     });
 
     const options = {
-      amount: 50000,
+      amount: 1572000,
       currency: 'LKR',
       receipt: 'receipt_order_74394',
     };
