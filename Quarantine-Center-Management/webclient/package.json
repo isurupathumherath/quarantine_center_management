@@ -59,11 +59,7 @@
     "redux-thunk": "^2.3.0",
     "sweetalert2": "^11.1.7",
     "uniqid": "^5.4.0",
-    "web-vitals": "^1.1.2",
-    "react-file-base64": "^1.0.3",
-    "react-icons": "^4.2.0",
-    "react-to-pdf": "^0.0.14",
-    "redux": "^4.1.1"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

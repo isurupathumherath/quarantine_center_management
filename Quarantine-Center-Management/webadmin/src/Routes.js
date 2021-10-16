@@ -40,8 +40,8 @@ import staffFirstLogin from './pages/StaffMenagement/staffFirstLogin' //--Added 
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 
-import viewTickets from './components/TicketManagement/adminAllTickets';
-import replyTickets from './components/TicketManagement/adminEditTickets';
+// import viewTickets from './components/TicketManagement/adminAllTickets';
+// import replyTickets from './components/TicketManagement/adminEditTickets';
 
 import AddTempCheckup from './components/MedicalTests/AddTempCheckup';
 import AddPCR from './components/MedicalTests/AddPCR';
