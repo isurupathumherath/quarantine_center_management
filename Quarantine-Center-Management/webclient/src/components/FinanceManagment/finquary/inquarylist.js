@@ -19,21 +19,23 @@ const InquaryList = ({ }) => {
 
     const inquarys = useSelector((state) => state.Finquary);
 
+    var Inquary_states = "";
+
     return (
         !inquarys.length ? <CircularProgress /> : (
             <div>
                 <Accordion allowZeroExpanded>
                     {inquarys.map((item) => {
-                        if (item.states == '1') {
-                            item.states = "Pending";
-                        }else if(item.states === '2'){
-                            item.states = "Working on";
-                        }else if(item.states === '2'){
-                            item.states = "Completeted"; 
+                         if (item.states == '1') {
+                            Inquary_states = "Pending";
+                        } else if (item.states === '3') {
+                            Inquary_states = "Working on";
+                        } else if (item.states === '2') {
+                            Inquary_states = "Completeted";
                         }
                         return (
                             <div key={item._id} class="mb-2">
-                                <InqauryListitem item={item} currentID={currentId} setCurrentId={setCurrentId} />
+                                <InqauryListitem Inquary_states={Inquary_states} item={item} currentID={currentId} setCurrentId={setCurrentId} />
                             </div>
                         )
                     })}

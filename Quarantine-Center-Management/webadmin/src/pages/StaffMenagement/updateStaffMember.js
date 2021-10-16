@@ -8,9 +8,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
+import firebase from './firebase';
+import 'firebase/storage'
+
+const storage = firebase.storage();
 
 const UpdateStaffMember = props => {
     // state
+
+    const [file, setFile] = useState(null);
+    const [profileURL, setURL] = useState("");
+
     const [state, setState] = useState({
         firstName: '',
         middleName: '',
@@ -30,13 +38,19 @@ const UpdateStaffMember = props => {
 
     console.log(`PROP TEST: ${props.match.params._id}`)
 
+    function handleChangeImage(e) {
+        setFile(e.target.files[0]);
+    }
+
     useEffect(() => {
         axios
             .get(`http://localhost:8000/employee/profile/${props.match.params.id}`)
             .then(response => {
                 console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus } = response.data
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus })
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus, profileURL } = response.data
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, NIC, address, type, accountStatus });
+                setURL(profileURL);
+                console.log(profileURL)
             })
             .catch(error => alert('Error Loading Update Staff'));
     }, []);
@@ -124,7 +138,7 @@ const UpdateStaffMember = props => {
             <br />
             <div>
 
-                <button className="btn btn-primary">Update</button>
+                <button className="btn btn-primary btn-lg btn-block">Update</button>
             </div>
         </form>
     )
@@ -135,18 +149,33 @@ const UpdateStaffMember = props => {
         }
     }
 
+    //Save Image
+    function handleUpload(e) {
+        e.preventDefault();
+        const ref = storage.ref(`/images/${file.name}`);
+        const uploadTask = ref.put(file);
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            ref
+                .getDownloadURL()
+                .then((url) => {
+                    setFile(null);
+                    setURL(url);
+                });
+        });
+    }
+
     const handleSubmit = event => {
         event.preventDefault()
-        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type })
+        console.table({ firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL })
         axios
-            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type })
+            .put(`http://localhost:8000/employee/update/${props.match.params.id}`, { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL })
             .then(response => {
 
                 console.log(response)
-                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type } = response.data
+                const { firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL } = response.data
 
                 //empty state
-                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type });
+                setState({ ...state, firstName, middleName, lastName, mobileNumber, email, DOB, address, NIC, type, accountStatus, profileURL });
                 //show success alert
                 // alert(`Staff Member ${firstName} is Updated`);
                 Swal.fire(
@@ -169,11 +198,32 @@ const UpdateStaffMember = props => {
 
     return (
 
-        <div className="container p-5">
-            <br />
-            <h1 align="center">UPDATE STAFF MEMBER</h1>
+        <div className="container card">
+            <div className="card-body">
+                <div className="card bg-light mb-3">
+                    <div className="card-body">
+                        <h1 align="center">UPDATE STAFF MEMBER</h1>
+                        <center>
+                            <div class="row container ">
+                                <div class="col">
+                                    <label className="text-muted"> <b>Upload Profile Picture (This is Optional)</b></label><br /><br />
+                                    <div >
+                                        <form onSubmit={handleUpload}>
+                                            <input type="file" onChange={handleChangeImage} />
+                                            <button disabled={!file}>upload to firebase</button>
+                                        </form>
+                                        <br />
+                                        <img src={profileURL} alt="" style={{ width: "250px", height: "300px" }} />
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                        <br />
+                        {showUpdateForm()}
+                    </div>
+                </div>
+            </div>
 
-            {showUpdateForm()}
 
         </div>
     )
