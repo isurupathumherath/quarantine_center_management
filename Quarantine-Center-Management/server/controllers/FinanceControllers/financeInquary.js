@@ -9,10 +9,7 @@ export const getInquary = async (req, res) => {
     try {
         const inquaryes = await FinanceInquary.find();
         if (inquaryes != null) {
-            res.status(200).json({
-                replyCode: 1,
-                inquaryes
-            });
+            res.status(200).json(inquaryes);
         } else {
             res.status(200).json({
                 replyCode: 0,
