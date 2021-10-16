@@ -8,11 +8,12 @@ const express = require('express');
 const router = express.Router();
 
 //Import Cntroller Methos
-const {create, showAll, removebyId} = require('../../controllers/HRM/Employee-Salary');
+const { create, showAll, removebyId, getByYear } = require('../../controllers/HRM/Employee-Salary');
 
 //Controller Routes
 router.post('/add', create);
 router.get('/all-salary', showAll);
+router.get('/get-salary-range/:from/:to', getByYear);
 router.delete('/remove/:id', removebyId);
 
 module.exports = router;

@@ -12,9 +12,9 @@ Date - 22/08/2021
  */
 exports.create = (req, res) => {
 
-    const {EmployeeID, Grade, PerDay, AdditionalHour} = req.body;
+    const { EmployeeID, Grade, PerDay, AdditionalHour } = req.body;
 
-    switch(true) {
+    switch (true) {
         case !EmployeeID:
             return res.status(400).json({
                 error: 'Employee ID is reqired'
@@ -29,8 +29,8 @@ exports.create = (req, res) => {
             });
     }
 
-    EmployeeSalary.create({EmployeeID, Grade, PerDay, AdditionalHour}, (err, salary) => {
-        if(err) {
+    EmployeeSalary.create({ EmployeeID, Grade, PerDay, AdditionalHour }, (err, salary) => {
+        if (err) {
             console.log(err)
             res.status(400).json({
                 error: 'Salary adding failed! Try Again'
@@ -49,9 +49,9 @@ Date - 22/08/2021
 exports.showAll = (req, res) => {
     EmployeeSalary.find({})
         // .limit(10)
-        .sort({ createdAt: -1})
+        .sort({ createdAt: -1 })
         .exec((err, EmployeeSalary) => {
-            if(err) console.log(err);
+            if (err) console.log(err);
             res.json(EmployeeSalary);
         });
 };
@@ -63,10 +63,30 @@ Date - 11/09/2021
 exports.removebyId = (req, res) => {
     const { id } = req.params.id;
     console.log(id);
-    EmployeeSalary.findOneAndRemove({id}).exec((err, post) => {
-        if(err) console.log(err);
+    EmployeeSalary.findOneAndRemove({ id }).exec((err, post) => {
+        if (err) console.log(err);
         res.json({
             message: 'Staff Salary Record Deleted'
         });
-    }) 
+    })
 }
+
+/*
+Name - Get Salary Details by date
+Date - 16/10/2021
+ */
+exports.getByYear = async (req, res) => {
+    let start = req.params.from;
+    let end = req.params.to;
+    try {
+        const salary = await EmployeeSalary.find({
+            orderedDate: { $gte: start, $lt: end },
+        });
+
+        console.log(salary);
+        res.status(200).json(salary);
+        // res.status(200).json(end);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+};
