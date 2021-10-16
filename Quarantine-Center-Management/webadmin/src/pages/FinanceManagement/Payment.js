@@ -15,8 +15,8 @@ export default function Payment() {
 
     const headers = [
         { name: "User ID", field: "userID", sortable: false },
-        { name: "Payment Type", field: "type", sortable: true },
-        { name: "Payment ID", field: "paymentId", sortable: true },
+        { name: "Payment Type", field: "type", sortable: false },
+        { name: "Payment ID", field: "paymentId", sortable: false },
         { name: "Order ID", field: "orderId", sortable: false },
         { name: "Actions", field: "actions", sortable: false },
     ];
