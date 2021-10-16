@@ -127,7 +127,7 @@ const App = () => {
                 //show success alert
                 // alert(`Salary Added for ${response.data.EmployeeID}`);
                 Swal.fire(
-                    `Staff Member ${response.data.EmployeeID} Salary Added`,
+                    `Staff Member ${response.data.EmployeeID} Task Added`,
                     'Click OK to continue!',
                     'success'
                 )

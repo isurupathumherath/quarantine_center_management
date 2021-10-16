@@ -182,7 +182,7 @@ const App = props => {
                                     <div class="col">
                                         <div className="form-group">
                                             <label className="text-muted">New Password</label>
-                                            <input style={{ textAlign: "center" }} onChange={handleChange('password')} value={password} type="text" className="form-control" placeholder="Enter Your New Password" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z" />
+                                            <input style={{ textAlign: "center" }} onChange={handleChange('password')} value={password} type="password" className="form-control" placeholder="Enter Your New Password" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z" />
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@ const App = props => {
                                     <div class="col">
                                         <div className="form-group">
                                             <label className="text-muted">Confirm New Password</label>
-                                            <input style={{ textAlign: "center" }} onChange={handleChange('confirmPassword')} value={confirmPassword} type="text" className="form-control" placeholder="Enter New Password Confirmation" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z and must be less than 250 characters" required />
+                                            <input style={{ textAlign: "center" }} onChange={handleChange('confirmPassword')} value={confirmPassword} type="password" className="form-control" placeholder="Enter New Password Confirmation" pattern="[A-Za-z0-9]{8,100}+" title="Characters can only be A-Z and a-z and must be less than 250 characters" required />
                                         </div>
                                     </div>
                                 </div>
