@@ -366,7 +366,7 @@ export default function FoodAdmin() {
                     <div className="form-group">
                       <label>Price</label>
                       <input
-                        type="text"
+                        type="number"
                         pattern="[0-9]+"
                         className="form-control"
                         placeholder="Enter price"
