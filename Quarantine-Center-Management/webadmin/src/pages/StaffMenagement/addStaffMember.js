@@ -152,8 +152,8 @@ const App = () => {
   };
 
   return (
-    <div className="container " style={{ marginLeft: "50px" }}>
-      <div className="card" style={{ width: "1300px" }}>
+    <div className="container">
+      <div className="card" style={{}}>
         <div className="card-body"></div>
         <h1 align="center">REGISTER NEW EMPLOYEE</h1>
         <br />

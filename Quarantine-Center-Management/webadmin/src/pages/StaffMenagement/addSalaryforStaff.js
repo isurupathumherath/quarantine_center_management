@@ -157,7 +157,7 @@ const App = () => {
     return (
 
         <div>
-            <div className="card" style={{ width: "1400px", marginTop: "0px" }}>
+            <div className="card" style={{ width: "", marginTop: "0px" }}>
                 <div className="card-body"></div>
                 <h1 align="center">Staff Salary</h1>
                 <br />

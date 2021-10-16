@@ -72,8 +72,8 @@ const App = () => {
     }, [])
 
     return (
-        <div style={{ marginLeft: "50px" }}>
-            <div className="card" style={{ width: "1300px" }}>
+        <div style={{}}>
+            <div className="card" style={{ width: "" }}>
                 <div className="card-body">
                     <h1 align="center">Quarantined Staff Members</h1>
                     <br />
