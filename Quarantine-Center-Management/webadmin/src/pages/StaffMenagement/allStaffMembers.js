@@ -15,6 +15,8 @@ const App = () => {
 
     const [staffMembers, setStaffMembers] = useState([])
     const [wordEntered, setWordEntered] = useState("");
+    const [count, setCount] = useState([]);
+
 
     //Fetch All staff Members
     const fetchStaffMembers = () => {
@@ -22,6 +24,7 @@ const App = () => {
             .then(response => {
                 console.log(response)
                 setStaffMembers(response.data)
+                setCount(response.data.length);
             })
             .catch(error => alert("Error Fetching Staff Members"));
     }
@@ -82,17 +85,49 @@ const App = () => {
                     <h1 align="center">Staff Members</h1>
                     <br />
                     <div>
-                        <form style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
-                            <div className="col-lg-3 mt-2 mb-2">
-                                <input
-                                    className="form-control"
-                                    type="search"
-                                    placeholder="Search"
-                                    value={wordEntered}
-                                    onChange={handleFilter}
-                                />
+                        <center>
+                            <div
+                                className="border border-info"
+                                style={{
+                                    width: "100%",
+                                    backgroundColor: "white",
+                                    borderRadius: "10px",
+                                    borderColor: "#00408C",
+                                    padding: "20px 20px 20px 20px",
+                                    margin: "10px 0px 0px 0px",
+                                    align: "center"
+                                }}
+                            >
+                                <div className="row">
+                                    <div className="col">
+                                        <span style={{ color: "blue" }}><h3>{count}</h3></span>
+                                        <span><h3>Number of Staff Members</h3></span>
+                                    </div>
+                                    {/* <div className="col">
+                                        <i
+                                            class="fa  fa-hourglass-end"
+                                            aria-hidden="true"
+                                            style={{
+                                                color: "blue",
+                                                fontSize: "30px",
+                                                marginTop: "10px",
+                                            }}
+                                        ></i>
+                                    </div> */}
+                                </div>
                             </div>
-                        </form>
+                            <form style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px', width: "100%" }}>
+                                <div className="col-lg-3 mt-2 mb-2">
+                                    <input
+                                        className="form-control"
+                                        type="search"
+                                        placeholder="Search"
+                                        value={wordEntered}
+                                        onChange={handleFilter}
+                                    />
+                                </div>
+                            </form>
+                        </center>
                     </div>
 
 
