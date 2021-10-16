@@ -43,6 +43,7 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import viewTickets from './pages/TicketManagement/viewTickets'; //--Added by Vishara Prabuddhi--
 import replyTickets from './pages/TicketManagement/replyTickets'; //--Added by Vishara Prabuddhi--
 import Mailer from './components/TicketManagement/mailer';
+import chartPage from './pages/TicketManagement/chartPage';
 
 //Anupa
 import Allstock from './components/InventoryManagement/allStock';
@@ -113,6 +114,7 @@ const Routes = () => {
                         <PrivateRouteAdmin path="/viewalltickets" exact component={viewTickets}/> {/*--Added by Vishara Prabuddhi--*/}
                         <PrivateRouteAdmin path="/edit/:id" exact component={replyTickets}/> {/*--Added by Vishara Prabuddhi--*/}
                         <PrivateRouteAdmin path="/Mailer" exact component={Mailer}/> {/*--Added by Vishara Prabuddhi--*/}
+                        <PrivateRouteAdmin path="/report" exact component={chartPage}/> {/*--Added by Vishara Prabuddhi--*/}
                         
                         <PrivateRouteAdmin path="/add/food/:food" exact component={Addbatch}/>  {/* Anupa */}
                         <PrivateRouteAdmin path="/update/:food" exact component={UpdateStock}/>  {/* Anupa */}

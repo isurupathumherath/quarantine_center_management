@@ -25,7 +25,7 @@ const Mailer = () => {
             <div className="row">
                 <div className="col-md-4">
                     <div class="contact-info">
-                        <img src="https://cdn.dribbble.com/users/1096380/screenshots/6184458/gmail.gif" style={{ width: '600px', marginTop: '80px' }} alt="image" />
+                        <img src="https://cdn.dribbble.com/users/1096380/screenshots/6184458/gmail.gif" style={{ width: '500px', marginTop: '80px' }} alt="image" />
                     </div>
                 </div>
                 <div className="container border"

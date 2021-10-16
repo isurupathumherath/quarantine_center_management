@@ -243,7 +243,7 @@ function Header() {
                       <a href="/addticket">Add Ticket</a>
                     </li>
                     <li>
-                      <a href="">View My Ticket</a>
+                      <a href="/viewMyTicket">View My Ticket</a>
                     </li>
                   </ul>
                  </ul> 

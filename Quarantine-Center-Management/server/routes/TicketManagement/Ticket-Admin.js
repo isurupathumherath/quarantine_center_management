@@ -106,6 +106,29 @@ router.get("/ticket/:id", (req, res) => {
     });
 });
 
+//chmod
+router.get("/getticketsbypatientid/:id", (req, res) => {
+
+    let patientID = req.params.id;
+
+
+
+    const food = tickets.find({ userID: patientID }).exec((err, post) => {
+
+        if (err) {
+
+            console.log(err);
+
+        } else {
+
+            res.send(post);
+
+        }
+
+    });
+
+});
+
 // //get a specific ticket for myticket part
 // router.get("/ticket/:userID", (req, res) => {
 //     let userID = req.params.id;
@@ -125,7 +148,7 @@ router.get("/ticket/:id", (req, res) => {
 //update tickets
 
 router.put('/ticket/update/:id', (req, res) => {
-    
+
 
     const email = req.body.email;
     console.log(email);
@@ -140,52 +163,54 @@ router.put('/ticket/update/:id', (req, res) => {
                 return res.status(400).json({
                     error: err
                 });
-            }
+            }else{
 
-
-            const refCode = ticket.refID;
-            const tReply = ticket.reply;
-            // console.log(ticket.refID);
+                const refCode = ticket.refID;
+                const tReply = ticket.reply;
+                // console.log(ticket.refID);
     
-            const nodemailer = require("nodemailer");
+                const nodemailer = require("nodemailer");
     
-            async function main() {
-                var transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: process.env.MAIL_SERVER_USERNAME,
-                        pass: process.env.MAIL_SERVER_PASSWORD
-                    }
+                async function main() {
+                    var transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: process.env.MAIL_SERVER_USERNAME,
+                            pass: process.env.MAIL_SERVER_PASSWORD
+                        }
+                    });
+    
+                    var mailOptions = {
+                        from: 'quarantine@out.com',
+                        to: `${email}`,
+                        subject: 'Your Ticket Details',
+                        text: `
+                                    Hi
+                                
+                                    Your ticket reference number is ${refCode}
+                                    Reply to your ticket is ${tReply}
+                                `
+    
+                    };
+    
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+    
+                }
+    
+                main().catch(console.error);
+                return res.status(200).json({
+                    success: "Updated Successfully"
                 });
     
-                var mailOptions = {
-                    from: 'quarantine@out.com',
-                    to: `${email}`,
-                    subject: 'Your Ticket Details',
-                    text: `
-                                Hi
-                            
-                                Your ticket reference number is ${refCode}
-                                Reply to your ticket is ${tReply}
-                            `
-    
-                };
-    
-                transporter.sendMail(mailOptions, function (error, info) {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        console.log('Email sent: ' + info.response);
-                    }
-                });
-    
             }
-    
-            main().catch(console.error);
 
-            return res.status(200).json({
-                success: "Updated Successfully"
-            });
+         
         }
     );
 });
@@ -205,23 +230,23 @@ router.delete('/ticket/delete/:id', (req, res) => {
     });
 });
 
-//create the PDF
+// //create the PDF
 
-router.post('/create-pdf', (req, res) => {
-    pdf.create(pdfReport(req.body), {}).toFile('pdfsub.pdf', (err) => {
-        if (err) {
-            res.send(Promise.reject());
-        }
+// router.post('/create-pdf', (req, res) => {
+//     pdf.create(pdfReport(req.body), {}).toFile('pdfsub.pdf', (err) => {
+//         if (err) {
+//             res.send(Promise.reject());
+//         }
 
-        res.send(Promise.resolve());
-    });
-});
+//         res.send(Promise.resolve());
+//     });
+// });
 
-//get the PDF
+// //get the PDF
 
-router.get('/fetch-pdf', (req, res) => {
-    res.sendFile('pdfsub.pdf', { root: 'Quarantine-Center-Management/server/pdfsub.pdf' });
-})
+// router.get('/fetch-pdf', (req, res) => {
+//     res.sendFile('pdfsub.pdf', { root: 'Quarantine-Center-Management/server/pdfsub.pdf' });
+// })
 
 
 

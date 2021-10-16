@@ -66,11 +66,11 @@ export const SidebarData = [
                 path: '/Mailer',
                 icon: <IoIcons.IoIosPaper />
             },
-            {
-                title: 'Report',
-                path: '/finance/report',
-                icon: <HiIcons.HiDocumentReport />
-            },
+            // {
+            //     title: 'Report',
+            //     path: '/report',
+            //     icon: <HiIcons.HiDocumentReport />
+            // },
         ]
         
     },

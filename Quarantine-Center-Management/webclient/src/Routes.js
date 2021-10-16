@@ -33,7 +33,7 @@ import Inquary from './pages/FinanceManagement/Finquary';
 // Vishara
 import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
 import formLandingPage from './pages/TicketManagement/formLandingPage'; //--Added by Vishara Prabuddhi--
-
+import viewMyTicket from './pages/TicketManagement/viewMyTicket'; //--Added by Vishara Prabuddhi--
 
 const Routes = () => {
     return (
@@ -69,7 +69,7 @@ const Routes = () => {
                             {/* vishara */}
                             <PrivateRoute path="/addticket" exact component={addTicket}/> 
                             <PrivateRoute path="/formLandingPage" exact component={formLandingPage}/> 
-                            
+                            <PrivateRoute path="/viewMyTicket" exact component={viewMyTicket}/> 
                         </div>
                     </div>
                     <Footer />
