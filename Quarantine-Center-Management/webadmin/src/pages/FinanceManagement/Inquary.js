@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
-import { Closed, Pending, InquaryList } from '../../components/FinaceComponent/inquary'
+import { Closed, Pending, InquaryList, WorkingOn, InquaryTable } from '../../components/FinaceComponent/inquary'
 
 export default function FInquary() {
     const [key, setKey] = useState('Closed');
@@ -20,6 +20,9 @@ export default function FInquary() {
                     </div>
                 </div>
                 <div class="row">
+                    <InquaryTable />
+                </div>
+                <div class="row">
                     <div class="col-sm-12">
                         <Tabs
                             id="controlled-tab-example"
@@ -35,11 +38,11 @@ export default function FInquary() {
                             <Tab eventKey="Pending" title="Pending">
                                 <Pending />
                             </Tab>
-                            <Tab eventKey="Inquary" title="Inquary">
-                                <InquaryList />
+                            <Tab eventKey="WorkingON" title="Working On">
+                                <WorkingOn />
                             </Tab>
-                            <Tab eventKey="contact" title="Contact" disabled>
-                            </Tab>
+                            {/* <Tab style={{display:"none"}} eventKey="contact" title="Contact" disabled>
+                            </Tab> */}
                         </Tabs>
                     </div>
                 </div>

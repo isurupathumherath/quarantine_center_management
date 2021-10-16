@@ -1,35 +1,52 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { CircularProgress } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ClosedLIst = () => {
+import { Accordion } from 'react-accessible-accordion';
+
+import InquaryItem from './inquaryItem';
+import { allInquaryDetails } from "../../../actions/FinanceAction/finquary";
+
+import 'react-accessible-accordion/dist/fancy-example.css';
+
+const InquaryPendingList = ({ }) => {
+    const [currentId, setCurrentId] = useState(0);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(allInquaryDetails());
+    }, [currentId, dispatch]);
+
+    const inquarys = useSelector((state) => state.Finquary);
+
+    var Inquary_states = "";
+
     return (
-        <div>
-            <div class="col-md-12 col-xl-12 col-sm-12">
-                <div class="blog grid-blog">
-                    <div class="blog-image">
-                        {/* <a href="#"><img class="img-fluid" src="assets/img/blog/blog-01.jpg" alt="Post Image" /></a> */}
-                    </div>
-                    <div class="blog-content">
-                        <ul class="entry-meta meta-item">
-                            <li>
-                                <div class="post-author">
-                                    <a href="profile.html"><span>Dr. Ruby Perrin</span></a>
-                                </div>
-                            </li>
-                            <li><i class="far fa-clock"></i> 4 Dec 2019</li>
-                        </ul>
-                        <h3 class="blog-title"><a href="#">Doccure – Making your clinic painless visit?</a></h3>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
-                    </div>
-                    <div class="row pt-3">
-                        <div class="col"><a href="edit-blog.html" class="text-success"><i class="far fa-edit"></i> Edit</a></div>
-
-                        <div class="col text-right"><a href="javascript:void(0);" class="text-danger" data-toggle="modal" data-target="#deleteNotConfirmModal"><i class="far fa-trash-alt"></i> Inactive</a></div>
+        !inquarys.length ? <CircularProgress /> : (
+            <div>
+                <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }} >
+                    <div class="card-body">
+                        <Accordion allowZeroExpanded>
+                            {inquarys.map((item) => {
+                                if (item.states == '1') {
+                                    Inquary_states = "Pending";
+                                } else if (item.states === '3') {
+                                    Inquary_states = "Working on";
+                                } else if (item.states === '2') {
+                                    Inquary_states = "Completeted";
+                                    return (
+                                        <div key={item._id} class="mb-2">
+                                            <InquaryItem Inquary_states={Inquary_states} item={item} currentID={currentId} setCurrentId={setCurrentId} />
+                                        </div>
+                                    )
+                                }
+                            })}
+                        </Accordion>
                     </div>
                 </div>
-
             </div>
-        </div >
-    )
-}
+        )
+    );
+};
 
-export default ClosedLIst;
+export default InquaryPendingList;

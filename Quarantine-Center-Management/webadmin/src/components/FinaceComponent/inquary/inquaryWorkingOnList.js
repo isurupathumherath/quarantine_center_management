@@ -9,7 +9,7 @@ import { allInquaryDetails } from "../../../actions/FinanceAction/finquary";
 
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-const InquaryPendingList = ({ }) => {
+const InquaryWorkingOnList = ({ }) => {
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
 
@@ -30,13 +30,13 @@ const InquaryPendingList = ({ }) => {
                             {inquarys.map((item) => {
                                 if (item.states == '1') {
                                     Inquary_states = "Pending";
+                                } else if (item.states === '3') {
+                                    Inquary_states = "Working on"; 
                                     return (
                                         <div key={item._id} class="mb-2">
                                             <InquaryItem Inquary_states={Inquary_states} item={item} currentID={currentId} setCurrentId={setCurrentId} />
                                         </div>
                                     )
-                                } else if (item.states === '3') {
-                                    Inquary_states = "Working on";
                                 } else if (item.states === '2') {
                                     Inquary_states = "Completeted";
                                 }
@@ -49,4 +49,4 @@ const InquaryPendingList = ({ }) => {
     );
 };
 
-export default InquaryPendingList;
+export default InquaryWorkingOnList;

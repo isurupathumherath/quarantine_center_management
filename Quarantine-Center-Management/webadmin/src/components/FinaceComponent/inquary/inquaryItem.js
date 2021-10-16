@@ -73,15 +73,10 @@ const InquaryItem = ({ item, setCurrentId, currentID, Inquary_states }) => {
                         </Row>
                     </Scrollbars>
                     <Row>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                            {/* <button type="button" class="btn btn-block btn-outline-danger active" onClick={handleDelete}>Delete</button> */}
-                        </Col>
-                        <Col md={3} style={{ marginTop: '25px' }}>
-                            <button type="submit" class="btn btn-block btn-outline-success active" onClick={handleOnclick} >Reply</button>
+                        <Col md={10} style={{ marginTop: '25px' }}>
+                        </Col> 
+                        <Col md={2} style={{ marginTop: '25px' }}>
+                            <button type="submit" class="btn btn-block btn-outline-secondary active" onClick={handleOnclick} >Reply</button>
                         </Col>
                     </Row>
                     <hr style={{ border: '1px solid #d3d3d3' }} />
