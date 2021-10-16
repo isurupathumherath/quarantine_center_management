@@ -11,6 +11,22 @@ class ProfileDetails extends Component {
         const a = this.state.profile.uName
         var doc = new jsPDF('portrait', 'px', 'a4', 'false');
 
+        // var img = new Image();
+        // img.src = "assets/logo.png";
+        // doc.setFont("Helvertica", "bold");
+        // doc.setFontSize(22);
+        // doc.addImage(img, "png", 280, 10, 90, 50);
+        // doc.text(220, 70, "Qurentine center management");
+        // doc.setFontSize(18);
+        // doc.text(100, 100, "Contact Number:   011-2298476");
+        // doc.text(400, 100, "Location:  Anuradhapura Colombo");
+
+        // doc.text(
+        //     50,
+        //     145,
+        //     "-----------------------------------------------------------------------------------------------------------------------------"
+        // );
+
         doc.setFont('Helvertica', 'bold')
         doc.text(60, 60, "Profile details of ")
         doc.text(150, 60, [a])
@@ -30,8 +46,9 @@ class ProfileDetails extends Component {
         doc.text(200, 100, [this.state.profile.mName])
         doc.text(200, 120, [this.state.profile.lName])
         doc.text(200, 140, [this.state.profile.uName])
+        doc.text(200, 160, [this.state.profile.nic])
         doc.text(200, 180, [this.state.profile.address])
-        doc.text(200, 200, [this.state.profile.dob])
+        doc.text(200, 200, [moment.utc(dob).format('DD/MM/YYYY')])
         doc.text(200, 220, [this.state.profile.email])
 
         doc.save('users.pdf')
@@ -149,7 +166,7 @@ class ProfileDetails extends Component {
                                         <br />
                                         <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                             <div className="col-sm-12">
-                                                <button className="btn btn-success" style={{  width: "100%"}}>
+                                                <button className="btn btn-success" style={{ width: "100%" }}>
                                                     <a onClick={this.pdfGenerate} style={{ textDecoration: 'none', color: 'white' }}>
                                                         Generate report
                                                     </a>

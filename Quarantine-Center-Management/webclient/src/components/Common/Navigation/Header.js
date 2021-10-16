@@ -68,7 +68,7 @@ function Header() {
               </li>
               <li class="has-submenu">
                 <a href="#">
-                  UserManagement <i class="fas fa-chevron-down"></i>
+                  User Management <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="submenu">
                   <li>
@@ -79,41 +79,6 @@ function Header() {
                   </li>
                   <li>
                     <a href={"/login"}>Login</a>
-                  </li>
-                  <li>
-                    <a href="my-patients.html">Patients List</a>
-                  </li>
-                  <li>
-                    <a href="patient-profile.html">Patients Profile</a>
-                  </li>
-                  <li>
-                    <a href="chat-doctor.html">Chat</a>
-                  </li>
-                  <li>
-                    <a href="invoices.html">Invoices</a>
-                  </li>
-                  <li>
-                    <a href="doctor-profile-settings.html">Profile Settings</a>
-                  </li>
-                  <li>
-                    <a href="reviews.html">Reviews</a>
-                  </li>
-                  <li>
-                    <a href="doctor-register.html">Doctor Register</a>
-                  </li>
-                  <li class="has-submenu">
-                    <a href="doctor-blog.html">Blog</a>
-                    <ul class="submenu">
-                      <li>
-                        <a href="doctor-blog.html">Blog</a>
-                      </li>
-                      <li>
-                        <a href="blog-details.html">Blog view</a>
-                      </li>
-                      <li>
-                        <a href="doctor-add-blog.html">Add Blog</a>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
               </li>

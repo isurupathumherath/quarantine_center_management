@@ -23,9 +23,15 @@ class Register extends Component {
             nicError: "",
             dobError: "",
             addressError: "",
-            unameError: ""
+            unameError: "",
+            formErrors: { email: '', password: '' },
+            emailValid: false,
+            passwordValid: false,
+            formvalid: false
         }
     }
+
+
 
     validate = () => {
         let lnameError = "";
@@ -38,25 +44,31 @@ class Register extends Component {
         let addressError = "";
         let unameError = "";
 
+        var cnic_no_regex = new RegExp('^[0-9+]{9}[vV|xX]$');
+        var new_cnic_no_regex = new RegExp('^[0-9+]{12}$');
 
-        if (!this.state.email.includes("@")) {
-            emailError = "Invalid Email";
-        }
-
-        if (!this.state.email) {
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
+            emailError = "Invalid Email Format";
+        } else if (!this.state.email) {
             emailError = "Email is required";
         }
 
         if (!this.state.fName) {
             fnameError = "First name is required";
+        } else if (!/^[a-zA-Z]+$/.test(this.state.fName)) {
+            fnameError = "Characters can only be A-Z and a-z";
         }
 
         if (!this.state.mName) {
             mnameError = "Middle name is required";
+        } else if (!/^[a-zA-Z]+$/.test(this.state.mName)) {
+            mnameError = "Characters can only be A-Z and a-z";
         }
 
         if (!this.state.lName) {
             lnameError = "Last name is required";
+        } else if (!/^[a-zA-Z]+$/.test(this.state.lName)) {
+            lnameError = "Characters can only be A-Z and a-z";
         }
 
         if (!this.state.dob) {
@@ -69,14 +81,24 @@ class Register extends Component {
 
         if (!this.state.password) {
             pwdError = "Password is required";
+        } else if (this.state.password.length < 8) {
+            pwdError = "Enter a password with minimun 8 characters"
         }
 
         if (!this.state.uName) {
             unameError = "Username is required";
+        } else if (this.state.uName.length < 8) {
+            unameError = "Enter a username with minimun 8 characters"
         }
 
         if (!this.state.nic) {
             nicError = "National Identity Number is required";
+        } else if (!/^[0-9+]{9}[vV|xX]$/.test(this.state.nic) && !/^[0-9+]{12}$/.test(this.state.nic)) {
+            nicError = "Invalid National Identity Number format";
+        } else if (this.state.nic.length > 12) {
+            nicError = "Invalid National Identity Number format";
+        } else if (this.state.nic.length < 10) {
+            nicError = "Invalid National Identity Number format";
         }
 
         if (emailError || fnameError || lnameError || mnameError || nicError || addressError || dobError || pwdError || unameError) {
@@ -144,10 +166,10 @@ class Register extends Component {
 
     render() {
         return (
-            <div style={{paddingLeft:'0px', paddingTop:'20px'}} className="col-md-12 col-lg-12">
+            <div style={{ paddingLeft: '0px', paddingTop: '20px' }} className="col-md-12 col-lg-12">
                 <div className="card card-registration card-registration-2">
-                    <div><br/>
-                        <h1 style={{paddingLeft:'40px'}}>Paitent Registration</h1><hr/>
+                    <div><br />
+                        <h1 style={{ paddingLeft: '40px' }}>Paitent Registration</h1><hr />
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12 col-lg-5 login-left">
                                 <h2>General Information</h2>
@@ -208,7 +230,7 @@ class Register extends Component {
                                             className="form-control"
                                             name="nic"
                                             placeholder="Enter National Identity Number"
-                                            pattern="[0-9]{12}" 
+                                            pattern="[0-9]{12}"
                                             value={this.state.nic}
                                             onChange={this.handleInputChange} />
 
@@ -299,7 +321,7 @@ class Register extends Component {
                                     </div>
                                 </form>
                                 <div style={{ float: "right", fontSize: 12, color: "red" }}>
-                                    
+
                                 </div><br />
 
 

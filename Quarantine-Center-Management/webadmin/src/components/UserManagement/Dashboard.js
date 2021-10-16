@@ -102,14 +102,14 @@ class Dashboard extends Component {
               <ReactHTMLTableToExcel
                 className='btn btn-outline-success'
                 table='table'
-                filename='Ticket Details Excel'
+                filename='User Details Excel'
                 sheet='Sheet'
                 buttonText='Generate Sheet'
               />
             </div>
 
 
-            <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
+            {/* <div className="col-lg-3 mt-2 mb-2 float-right top-nav-search">
               <input
                 className="form-control"
                 type="search"
@@ -117,7 +117,7 @@ class Dashboard extends Component {
                 name="searchQuery"
                 onChange={this.handleSearchArea}>
               </input>
-            </div>
+            </div> */}
           </p>
           <table id="table" class="table">
             <thead>
@@ -143,7 +143,7 @@ class Dashboard extends Component {
                   <td>{profiles.uName}</td>
                   <td>{profiles.email}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/update/${profiles._id}`}>
+                    <a className="btn btn-warning" href={`/updateprofile/${profiles._id}`}>
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;

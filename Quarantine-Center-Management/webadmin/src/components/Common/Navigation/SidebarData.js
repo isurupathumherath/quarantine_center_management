@@ -11,24 +11,6 @@ export const SidebarData = [
         icon: <AiIcons.AiOutlineUser />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
-        subNav: [
-            {
-                title: 'Dashboard',
-                path: '/dashboard',
-                icon: <RiIcons.RiDashboardLine />
-            },
-            {
-                title: 'Details',
-                path: '/finance/details',
-                icon: <IoIcons.IoIosPaper />
-            },
-            {
-                title: 'Report',
-                path: '/finance/report',
-                icon: <HiIcons.HiDocumentReport />
-            },
-
-        ]
     },
     {
         title: 'Stock management',
