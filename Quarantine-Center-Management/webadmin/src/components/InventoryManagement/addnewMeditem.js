@@ -67,11 +67,11 @@ export default function AddnewMeditem() {
             <form onSubmit={AddAPIData}> 
             <div class="form-group">
                     <label for="fname">Item Name</label>
-                    <input type="text" id="iname" class="form-control" name="iname" value={name} onChange={(e) => setname(e.target.value)} pattern="[A-Za-z]{2,}" required/>
+                    <input type="text" id="iname" class="form-control" name="iname" value={name} onChange={(e) => setname(e.target.value)} pattern="[A-Za-z][A-Za-z ]{2,25}" required/>
             </div>
             <div class="form-group">
                     <label for="lname">Category</label>
-                    <input type="text" id="category" class="form-control" name="category" value={category} onChange={(e) => setcategory(e.target.value)} pattern="[A-Za-z]{2,}" required/>
+                    <input type="text" id="category" class="form-control" name="category" value={category} onChange={(e) => setcategory(e.target.value)} pattern="[A-Za-z][A-Za-z ]{2,25}" required/>
             </div>
             <div class="form-group">
                     <label for="country">Price of One</label>
