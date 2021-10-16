@@ -60,10 +60,47 @@ export default class myTickets extends Component {
         //     });
     }
 
+
+    
+    onDelete = (id) => {
+
+        axios.delete(`http://localhost:8000/ticket/delete/${id}`).then((res) => {
+          Swal.fire({
+            title: 'Done!',
+            text: 'Entry has been deleted',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          })
+          axios
+
+          .get(`http://localhost:8000/getticketsbypatientid/${id}`)
+
+          .then((res) => {
+
+              console.log(res.data);
+              this.setState({
+                  ticket: res.data
+
+              });
+              console.log(this.state.ticket)
+
+          })
+
+          .catch((err) => {
+
+              alert(err.message);
+
+          });
+        });
+      }
+
     render() {
         // const { refID, fullName, nic, departmentName, message } = this.state.ticket;
 
         return (
+
+
+            
             <div style={{ marginTop: '20px' }}>
                 {/* <h4>{refID}</h4> */}
 
@@ -86,12 +123,18 @@ export default class myTickets extends Component {
                             <h4 className="col-sm-3">Reply</h4>
                             <h6 className="col-sm-9">{post.reply}</h6>
                         </div>
+                        <a className="btn btn-outline-warning" href="/addticket" onClick={() => this.onDelete(post._id)}>
+                          <i className="far fa-trash-alt"></i>&nbsp;Delete
+                        </a>
                     </div>
                 ))}
-
             </div>
 
         )
     }
 
 }
+
+
+
+

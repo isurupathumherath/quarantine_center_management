@@ -14,7 +14,7 @@ const Swal = require('sweetalert2')
 
 export default class adminEditTickets extends Component {
 
-    
+
 
     constructor(props) {
         super(props);
@@ -101,7 +101,7 @@ export default class adminEditTickets extends Component {
                 });
 
                 console.log(this.state.refID);
-                
+
             }
         });
     }
@@ -159,6 +159,11 @@ export default class adminEditTickets extends Component {
                 <div className="col-md-8 mt-4 mx-auto">
                     <h1 className="h3 mb-3 font-weight-normal">Reply Ticket</h1>
                     <br />
+                    <div className="col-md-4">
+                        <div class="contact-info">
+                            <img src="https://i.pinimg.com/originals/e3/1b/75/e31b752875679b64fce009922f9f0dda.gif" style={{ width: '500px', marginTop: '80px' }} alt="image" />
+                        </div>
+                    </div>
                     <form className="needs-validation" noValidate>
                         <div className="form-group" style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Full Name</label>
@@ -246,14 +251,14 @@ export default class adminEditTickets extends Component {
                             &nbsp;Download File
                         </button> */}
 
-                        
+
                     </form>
 
-                    <button onClick = {this.pdfGenerate} className="btn btn-warning" style={{marginLeft: '200px', marginTop: '-65px'  }}>
-                    <i class="fa fa-file-pdf-o" ></i>
-                            
-                            Genarate report
-                        </button>
+                    <button onClick={this.pdfGenerate} className="btn btn-warning" style={{ marginLeft: '200px', marginTop: '-65px' }}>
+                        <i class="fa fa-file-pdf-o" ></i>
+
+                        Genarate report
+                    </button>
                 </div>
             </div>
         );
