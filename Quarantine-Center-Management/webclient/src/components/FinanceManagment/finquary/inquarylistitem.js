@@ -12,8 +12,10 @@ import Swal from 'sweetalert2';
 
 import { deleteInquary, updateInquary } from '../../../actions/FinanceAction/finquary';
 
+import StesShow from './statesShow';
 
-const InquaryItem = ({ item, setCurrentId, currentID }) => {
+
+const InquaryItem = ({ Inquary_states, item, setCurrentId, currentID }) => {
     const dispatch = useDispatch();
     const [modalShow, setModalShow] = React.useState(false);
 
@@ -24,7 +26,7 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
     const handleOnclick = (event) => {
         setCurrentId(item._id);
         setModalShow(true)
-    }
+    } 
 
     return (
         <div>
@@ -32,17 +34,7 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
                 <AccordionItemHeading>
                     <AccordionItemButton>
                         Inquary ID :  {item._id}
-                        <span
-                            style={{
-                                marginLeft: '50%',
-                                padding: '11px',
-                                borderRadius: '8px',
-                                backgroundColor: '#6c757d',
-                                color: 'white',
-                                fontWeight: 'bold'
-                            }}>
-                            Inquary states : {item.states}
-                        </span>
+                        <StesShow Inquary_states={Inquary_states} />
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -66,7 +58,7 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
                                     <Form.Control type="text" placeholder="" value={item.piority} readOnly />
                                 </Form.Group>
                             </Col>
-                            <Col md={4}> 
+                            <Col md={4}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Inquary type</Form.Label>
                                     <Form.Control type="text" placeholder="" value={item.type} readOnly />
@@ -93,8 +85,8 @@ const InquaryItem = ({ item, setCurrentId, currentID }) => {
                         </Col>
                     </Row>
                     <hr style={{ border: '1px solid #d3d3d3' }} />
-                    <Row style={{ padding: '20px'}}>
-                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',width: '100%' }}>
+                    <Row style={{ padding: '20px' }}>
+                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', width: '100%' }}>
                             <div class="card-header">
                                 <h4 class="card-title">Response</h4>
                             </div>
@@ -134,7 +126,7 @@ export default InquaryItem;
 function MyVerticallyCenteredModal(props) {
 
     console.log(props.test);
-    
+
     const [inquaryData, setInquaryData] = useState({
         title: null,
         type: null,
@@ -171,7 +163,7 @@ function MyVerticallyCenteredModal(props) {
             dispatch(updateInquary(props.test, inquaryData));
             Swal.fire({
                 title: 'Inquary Updated Suucessfully',
-                icon: 'success', 
+                icon: 'success',
                 showCancelButton: true,
                 focusConfirm: false,
                 confirmButtonText:

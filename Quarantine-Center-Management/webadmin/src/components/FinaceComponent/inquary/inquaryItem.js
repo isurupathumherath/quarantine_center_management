@@ -10,6 +10,8 @@ import { Col, Form, Row, Modal, Button } from 'react-bootstrap';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Swal from 'sweetalert2';
 
+import StesShow from './statesShow'
+
 import { deleteInquary, updateInquary } from '../../../actions/FinanceAction/finquary';
 
 
@@ -31,18 +33,8 @@ const InquaryItem = ({ item, setCurrentId, currentID, Inquary_states }) => {
             <AccordionItem key={item._id}>
                 <AccordionItemHeading>
                     <AccordionItemButton>
-                        Inquary ID :  {item._id}
-                        <span
-                            style={{
-                                marginLeft: '50%',
-                                padding: '11px',
-                                borderRadius: '8px',
-                                backgroundColor: '#6c757d',
-                                color: 'white',
-                                fontWeight: 'bold'
-                            }}>
-                            Inquary states : {Inquary_states}
-                        </span>
+                        Inquary ID :  {item._id} 
+                        <StesShow Inquary_states={Inquary_states} /> 
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -86,38 +78,13 @@ const InquaryItem = ({ item, setCurrentId, currentID, Inquary_states }) => {
                         <Col md={3} style={{ marginTop: '25px' }}>
                         </Col>
                         <Col md={3} style={{ marginTop: '25px' }}>
-                            <button type="button" class="btn btn-block btn-outline-danger active" onClick={handleDelete}>Delete</button>
+                            {/* <button type="button" class="btn btn-block btn-outline-danger active" onClick={handleDelete}>Delete</button> */}
                         </Col>
                         <Col md={3} style={{ marginTop: '25px' }}>
                             <button type="submit" class="btn btn-block btn-outline-success active" onClick={handleOnclick} >Reply</button>
                         </Col>
                     </Row>
                     <hr style={{ border: '1px solid #d3d3d3' }} />
-                    {/* <Row style={{ padding: '20px'}}>
-                        <div class="card" style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',width: '100%' }}>
-                            <div class="card-header">
-                                <h4 class="card-title">Response</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12" style={{ fontWeight: 'bold', fontSize: '16px' }}>
-                                    </div>
-                                    <div class="col-md-12" >
-                                    </div>
-                                    <div class="col-md-12  mt-3"
-                                        style={{
-                                            padding: '18px 2px 0px 18px',
-                                            border: '1px solid black',
-                                            backgroundColor: '#f4f4f4',
-                                            borderRadius: '2px'
-                                        }}>
-                                        <p class="comment-content">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Row> */}
                 </AccordionItemPanel>
             </AccordionItem>
             <MyVerticallyCenteredModal
@@ -171,7 +138,7 @@ function MyVerticallyCenteredModal(props) {
                 showCancelButton: true,
                 focusConfirm: false,
                 confirmButtonText:
-                    '<a href="/inquary">Ok</a>',
+                    '<a href="/finance/inquary">Ok</a>',
                 cancelButtonText:
                     'Cancel',
             })
@@ -180,6 +147,16 @@ function MyVerticallyCenteredModal(props) {
         }
         setValidated(true);
     };
+
+    var Inquary_states = "";
+
+    if (inquaryData.states == '1') {
+        Inquary_states = "Pending";
+    } else if (inquaryData.states === '3') {
+        Inquary_states = "Working on";
+    } else if (inquaryData.states === '2') {
+        Inquary_states = "Completeted";
+    }
 
     return (
         <Modal
@@ -203,13 +180,12 @@ function MyVerticallyCenteredModal(props) {
                                 type="text"
                                 placeholder="replyTitle"
                                 name="replyTitle"
-                                value={inquaryData.replyTitle}
                                 onChange={(event) => setInquaryData({ ...inquaryData, replyTitle: event.target.value })}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col} md="12 mt-2" controlId="validationCustom01">
-                            <Form.Label>Inquary States</Form.Label>       
+                            <Form.Label>Inquary States</Form.Label>
                             <Form.Select
                                 name="type"
                                 noValidate
@@ -233,7 +209,7 @@ function MyVerticallyCenteredModal(props) {
                                     appearance: 'none'
                                 }}
                             >
-                                <option>Open this select menu</option>
+                                <option>{Inquary_states}</option>
                                 <option value="1">Pending</option>
                                 <option value="2">Closed</option>
                                 <option value="3">Working On</option>
@@ -248,7 +224,6 @@ function MyVerticallyCenteredModal(props) {
                                 rows={3}
                                 placeholder="replyDescription"
                                 name="descreplyDescriptionription"
-                                value={inquaryData.replyDescription}
                                 onChange={(event) => setInquaryData({ ...inquaryData, replyDescription: event.target.value })}
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
