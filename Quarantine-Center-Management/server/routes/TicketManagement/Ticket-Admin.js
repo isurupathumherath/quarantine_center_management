@@ -90,7 +90,7 @@ router.get('/tickets', (req, res) => {
     });
 });
 
-//get a specific ticket
+//get a specific ticket for reply part
 router.get("/ticket/:id", (req, res) => {
     let ticketId = req.params.id;
 
@@ -105,6 +105,22 @@ router.get("/ticket/:id", (req, res) => {
         });
     });
 });
+
+// //get a specific ticket for myticket part
+// router.get("/ticket/:userID", (req, res) => {
+//     let userID = req.params.id;
+
+//     tickets.findById(ticketId, (err, ticket) => {
+//         if (err) {
+//             return res.status(400).json({ success: false, err })
+//         }
+
+//         return res.status(200).json({
+//             success: true,
+//             ticket
+//         });
+//     });
+// });
 
 //update tickets
 
