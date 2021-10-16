@@ -27,6 +27,11 @@ export default function FoodAdmin() {
   let [option, setOption] = useState(1);
   let count = 0;
 
+  let [err1, sererr1] = useState("");
+  let [err2, seterr2] = useState("");
+  let [err3, seterr3] = useState("");
+  
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/foods/")
@@ -352,6 +357,7 @@ export default function FoodAdmin() {
                     </div>
                     <div className="form-group">
                       <label>Food Name</label>
+                      <h6  style={{color: "#FF0000" }}>{err1}</h6>
                       <input
                         type="text"
                         className="form-control"
@@ -359,12 +365,18 @@ export default function FoodAdmin() {
                         placeholder="Enter name"
                         onChange={(e) => {
                           setName(e.target.value);
+                          if(e.target.value.length <= 3){
+                            sererr1("Enter more than 3 charactors")
+                          }else if(e.target.value.length >= 4){
+                            sererr1("")
+                          }
                         }}
                         required
                       />
                     </div>
                     <div className="form-group">
                       <label>Price</label>
+                      <h6  style={{color: "#FF0000" }}>{err2}</h6>
                       <input
                         type="number"
                         pattern="[0-9]+"
@@ -373,6 +385,11 @@ export default function FoodAdmin() {
                         value={price}
                         onChange={(e) => {
                           setPrice(e.target.value);
+                          if(e.target.value > 4000){
+                            seterr2("Price should be lower than Rs.4000.00 ")
+                          }else if(e.target.value <= 4000){
+                            seterr2("")
+                          }
                         }}
                         required
                       />
@@ -398,6 +415,7 @@ export default function FoodAdmin() {
 
                     <div className="form-group">
                       <label>Description</label>
+                      <h6  style={{color: "#FF0000" }}>{err3}</h6>
                       <input
                         type="text"
                         className="form-control"
@@ -405,6 +423,11 @@ export default function FoodAdmin() {
                         value={description}
                         onChange={(e) => {
                           setDescription(e.target.value);
+                          if(e.target.value.length <= 10){
+                            seterr3("Enter more than 10 charactors")
+                          }else if(e.target.value.length >= 10){
+                            seterr3("")
+                          }
                         }}
                         required
                       />
