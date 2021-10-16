@@ -34,6 +34,9 @@ import Inquary from './pages/FinanceManagement/Finquary';
 import addTicket from './pages/TicketManagement/addTicket'; //--Added by Vishara Prabuddhi--
 import formLandingPage from './pages/TicketManagement/formLandingPage'; //--Added by Vishara Prabuddhi--
 
+import Booking from './components/RoomManagement/Booking';
+import BookingView from './components/RoomManagement/BookingView';
+import Feedback from './components/RoomManagement/Feedback';
 
 const Routes = () => {
     return (
@@ -70,6 +73,10 @@ const Routes = () => {
                             <PrivateRoute path="/addticket" exact component={addTicket}/> 
                             <PrivateRoute path="/formLandingPage" exact component={formLandingPage}/> 
                             
+
+                            <PrivateRoute path="/booking" exact component={ Booking } />
+                            <PrivateRoute path="/bookingView" exact component={ BookingView } />
+                            <PrivateRoute path="/feedback" exact component={ Feedback } />
                         </div>
                     </div>
                     <Footer />
