@@ -8,46 +8,46 @@ import mongoose from "mongoose";
 
 //mongo db table (schema)
 const financePaymentschema = mongoose.Schema({
-    paymentAmount:{
+    paymentAmount: {
         type: String,
-        required: false 
+        required: false
     },
-    invoiceNumber:{
+    invoiceNumber: {
         type: String,
-        required: false 
+        required: false
     },
-    paymentType:{
+    paymentType: {
         type: String,
-        required: false 
+        required: false
     },
-    cardNumber:{
+    cardNumber: {
         type: String,
-        required: true 
+        required: false
     },
-    cardName:{
+    cardName: {
         type: String,
-        required: true 
+        required: false
     },
-    cardSecurityCode:{
+    cardSecurityCode: {
         type: String,
-        required: true 
+        required: false
     },
-    cardExpiration:{
+    cardExpiration: {
         type: Date,
-        required: true 
+        required: false
     },
-    payedDateTime:{
+    payedDateTime: {
         type: Date,
         default: Date.now,
         required: false
     },
-    invoicEexpirationDate:{
+    invoicEexpirationDate: {
         type: Date,
-        required: false 
+        required: false
     },
-    states:{
+    states: {
         type: String,
-        required: false 
+        required: false
     },
     userID: {
         type: String,
@@ -57,6 +57,12 @@ const financePaymentschema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    razorpayDetails: {
+        orderId: String,
+        paymentId: String,
+        signature: String,
+    },
+    success: Boolean,
 });
 
 

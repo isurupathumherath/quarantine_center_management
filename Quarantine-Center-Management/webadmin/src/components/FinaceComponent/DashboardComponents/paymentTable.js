@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { TableHeader, Search, Pagination } from '../../components/FinaceComponent/DataTable'
+import { TableHeader, Search, Pagination } from '../DataTable'
 // import useFullpageLoader from "hooks/useFullPageLoader";
+import { Scrollbars } from 'react-custom-scrollbars';
 
 export default function Payment() {
 
@@ -70,50 +71,41 @@ export default function Payment() {
 
     return (
         <div>
-            <div class="page-header">
-                <div class="row">
-                    <div class="col">
-                        <h3 class="page-title">Payment Managment</h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Payment Details</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h4 class="card-title">Payment Details</h4>
-                                </div>
-                                <div class="col-md-6 mt-2">
-                                    <Pagination
-                                        total={totalItems}
-                                        itemsPerPage={ITEMS_PER_PAGE}
-                                        currentPage={currentpage}
-                                        onPageChange={page => setCurrentPage(page)}
-                                    />
-                                </div>
-                                <div class="col-md-2">
-                                    <Search onSearch={(value) => {
-                                        setSearch(value);
-                                        setCurrentPage(1);
-                                    }} />
-                                </div>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4 class="card-title">Payment Details</h4>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <Pagination
+                                    total={totalItems}
+                                    itemsPerPage={ITEMS_PER_PAGE}
+                                    currentPage={currentpage}
+                                    onPageChange={page => setCurrentPage(page)}
+                                />
+                            </div>
+                            <div class="col-md-2">
+                                <Search onSearch={(value) => {
+                                    setSearch(value);
+                                    setCurrentPage(1);
+                                }} />
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            {/* <Scrollbars style={{ width: "100%", height: "200px" }}> */}
                                 <table class="datatable table table-stripped" width={{ width: '100%' }}>
+
                                     <TableHeader
                                         headers={headers}
                                         onSorting={(field, order) =>
                                             setSorting({ field, order })}
                                     />
                                     <tbody>
+
                                         {commentsData.map(comment => {
                                             if (comment.razorpayDetails.paymentId === "null") {
                                                 return (
@@ -162,14 +154,14 @@ export default function Payment() {
                                                 )
                                             }
                                         })}
+
                                     </tbody>
                                 </table>
-                            </div>
+                            {/* </Scrollbars> */}
                         </div>
                     </div>
                 </div>
             </div>
-            <loader />
         </div>
     )
 }

@@ -1,21 +1,22 @@
 require('dotenv').config();
-const express = require('express');
-const Razorpay = require('razorpay');
-const crypto = require('crypto');
-const mongoose = require('mongoose');
+import { Router } from 'express';
+import Razorpay from 'razorpay';
+import { createHmac } from 'crypto';
+import { Schema, model } from 'mongoose';
+import PaymentDetails from '../../models/FinanceModels/financePaymentschema';
 
-const router = express.Router();
+const router = Router();
 
-const PaymentDetailsSchema = mongoose.Schema({
-  razorpayDetails: {
-    orderId: String,
-    paymentId: String,
-    signature: String,
-  },
-  success: Boolean,
-});
+// const PaymentDetailsSchema = Schema({
+//   razorpayDetails: {
+//     orderId: String,
+//     paymentId: String,
+//     signature: String,
+//   },
+//   success: Boolean,
+// });
 
-const PaymentDetails = mongoose.model('PaymentDetails', PaymentDetailsSchema);
+// const PaymentDetails = model('PaymentDetails', PaymentDetailsSchema);
 
 router.post('/orders', async (req, res) => {
   try {
@@ -47,9 +48,10 @@ router.post('/success', async (req, res) => {
       razorpayPaymentId,
       razorpayOrderId,
       razorpaySignature,
+      userID,
     } = req.body;
 
-    const shasum = crypto.createHmac('sha256', process.env.RAZORPAY_SECRET);
+    const shasum = createHmac('sha256', process.env.RAZORPAY_SECRET);
     shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
     const digest = shasum.digest('hex');
 
@@ -57,6 +59,7 @@ router.post('/success', async (req, res) => {
       return res.status(400).json({ msg: 'Transaction not legit!' });
 
     const newPayment = PaymentDetails({
+      userID : userID,
       razorpayDetails: {
         orderId: razorpayOrderId,
         paymentId: razorpayPaymentId,
@@ -77,4 +80,4 @@ router.post('/success', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
