@@ -8,25 +8,73 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { getUser, logout } from './staffHelper'; 
+import { getUser, logout } from './staffHelper';
 import '../../assets/HRM/staffProfile.css';
 const Swal = require('sweetalert2');
 
-
 const App = (props, { history }) => {
+
+    function handleChange(name) {
+        return function (event) {
+            setState({ ...state, [name]: event.target.value });
+        };
+    }
+
+    const handleSubmit = (employeeId) => {
+        event.preventDefault();
+        console.table({
+            employeeId, date, inTime, outTime,
+        });
+
+        axios
+            .post(`http://localhost:8000/attendance/add`, {
+                employeeId, date, inTime, outTime
+            })
+            .then((response) => {
+                console.log(response);
+                //show success alert
+                // alert(`Employee ${response.data.firstName} is Created`);
+                Swal.fire(
+                    `${staffMembers.firstName} is Marked`,
+                    'Click Ok to continue',
+                    'success'
+                )
+                //empty state
+                setState({
+                    ...state,
+                    date: '', inTime: '', outTime: '',
+                });
+            })
+            .catch((error) => {
+                console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Enter Valid Data'
+                })
+                // alert(error.response.data.error);
+            });
+    };
 
     // state
     const [staffMembers, setStaffMembers] = useState([]);
     const [staffTask, setTasks] = useState([]);
     const [state, setState] = useState({
         dStatus: "Done",
-        uStatus: "Pending"
+        uStatus: "Pending",
+        date: '',
+        inTime: '',
+        outTime: '',
     });
 
     //destructure values from state
     const {
         dStatus,
-        uStatus
+        uStatus,
+        date,
+        inTime,
+        outTime
     } = state;
 
     //Fetch All Salary Details
@@ -112,6 +160,25 @@ const App = (props, { history }) => {
     }
 
     useEffect(() => {
+
+        // Use Javascript
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        // document.getElementById("date").setAttribute("min", today);
+        document.getElementById("date").setAttribute("max", today);
+        // document.getElementById("date").setAttribute("value", today);
+
+
         window.onload();
         fetchTaskDetails();
         axios
@@ -123,10 +190,13 @@ const App = (props, { history }) => {
     }, []);
 
     return (
-        <div className="container" >
-            <h1 align="center">{staffMembers.firstName}'s Profile</h1><br />
-            <div className="main-body">
-                {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
+
+        <div style={{ marginLeft: "-250px", marginTop: "-100px" }}>
+            <div class="card bg-light mb-3" >
+                <br />
+                <h1 align="center">Welcome {staffMembers.firstName}</h1><br />
+                <div className="main-body">
+                    {/* <nav aria-label="breadcrumb" className="main-breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
@@ -134,56 +204,59 @@ const App = (props, { history }) => {
                     </ol>
                 </nav> */}
 
-                <div className="row gutters-sm">
-                    <div className="col-md-4 mb-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="d-flex flex-column align-items-center text-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                                    <div className="mt-3">
-                                        <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
-                                        {/* <p className="text-secondary mb-1">{staffMembers.type}</p>
+                    <div className="row gutters-sm">
+                        <div className="col-md-4 mb-3">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="d-flex flex-column align-items-center text-center">
+                                        <img src={staffMembers.profileURL} alt="PROFILE PICTURE IS NOT AVAILABLE" className="rounded-circle" width="150" />
+                                        <div className="mt-3">
+                                            <h4>{staffMembers.firstName + ' ' + staffMembers.lastName}</h4>
+                                            {/* <p className="text-secondary mb-1">{staffMembers.type}</p>
                                         <p className="text-muted font-size-sm">{staffMembers.address}</p> */}
-                                        {/* <button className="btn btn-info">Follow</button> <br/> */}
+                                            {/* <button className="btn btn-info">Follow</button> <br/> */}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="card mt-3">
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 className="mb-0">Account Status</h6>
-                                    <span className="text-secondary">{staffMembers.accountStatus}</span>
-                                </li>
-                                <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 className="mb-0">Username</h6>
-                                    <span className="text-secondary">{staffMembers.username}</span>
-                                </li>
-                                <br />
-                                <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <div className="col-sm-12">
-                                        <a className="btn btn-info" style={{ width: "100%" }} href={`/updateStaffMember/${staffMembers.employeeId}`}>Edit</a>
+                            <div className="card mt-3">
+                                <ul className="list-group list-group-flush">
+                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 className="mb-0">Account Status</h6>
+                                        <span className="text-secondary">{staffMembers.accountStatus}</span>
+                                    </li>
+                                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 className="mb-0">Username</h6>
+                                        <span className="text-secondary">{staffMembers.username}</span>
+                                    </li>
+                                    <br />
+                                    <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <div className="col-sm-12">
+                                            <a className="btn btn-info" style={{ width: "100%" }} href={`/editStaffProfile/${staffMembers.employeeId}`}>Edit</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <div className="col-sm-12">
-                                        {getUser() && (
-                                            <a href={`/staffLogin/`} >
-                                                <li onClick={() => logout()}
-                                                    className="btn btn-danger"
-                                                    style={{ cursor: 'pointer', width: "100%" }}
+                                    <div className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <div className="col-sm-12">
+                                            {getUser() && (
+                                                <a href={`/staffLogin/`} >
+                                                    <li onClick={() => logout()}
+                                                        className="btn btn-danger"
+                                                        style={{ cursor: 'pointer', width: "100%" }}
 
-                                                >
-                                                    Logout
-                                                </li>
-                                            </a>
-                                        )}
+                                                    >
+                                                        Logout
+                                                    </li>
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+
+
+
+                                    {/* <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
                                     <span className="text-secondary">https://bootdey.com</span>
                                 </li>
@@ -203,136 +276,183 @@ const App = (props, { history }) => {
                                     <h6 className="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                     <span className="text-secondary">bootdey</span>
                                 </li> */}
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="col-md-8">
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Staff ID</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.employeeId}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Full Name</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Email</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.email}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Mobile Number</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.mobileNumber}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Address</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.address}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Birthday</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.DOB}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">NIC</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.NIC}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Added At</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.createdAt}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div className="row">
-                                    <div className="col-sm-3">
-                                        <h6 className="mb-0">Last Update At</h6>
-                                    </div>
-                                    <div className="col-sm-9 text-secondary">
-                                        {staffMembers.updatedAt}
-                                    </div>
-                                </div>
 
+                        <div className="col-md-8">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Staff ID</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.employeeId}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Full Name</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.firstName + ' ' + staffMembers.middleName + ' ' + staffMembers.lastName}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Email</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.email}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Mobile Number</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.mobileNumber}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Address</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.address}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Birthday</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.DOB}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">NIC</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.NIC}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Added At</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.createdAt}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0">Last Update At</h6>
+                                        </div>
+                                        <div className="col-sm-9 text-secondary">
+                                            {staffMembers.updatedAt}
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <h4 align="center">Your Tasks</h4>
-            <div>
-                <table responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', marginRight: '40px' }}>
-                    <thead>
-                        <tr>
-                            <th >#</th>
-                            <th >Task Name</th>
-                            <th >Priority</th>
-                            <th >Status</th>
-                            <th>Description</th>
-                            <th> &nbsp;&nbsp;&nbsp;&nbsp; Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {staffTask.map((staffTask, i) => (
-                            <tr key={i}>
-                                <th scope="row">{i + 1}</th>
-                                <td>{staffTask.TaskName}</td>
-                                <td>{staffTask.Priority}</td>
-                                <td>{staffTask.Status}</td>
-                                <td>{staffTask.Description}</td>
 
-                                <td>
-                                    &nbsp;
-                                    <a className="btn btn-success" href="#" onClick={() => taskDone(staffTask._id)}>
-                                        <i class="fas fa-check-circle"></i>&nbsp;
-                                    </a>
-                                    &nbsp;
-                                    <a className="btn btn-warning" href="#" onClick={() => taskPending(staffTask._id)}>
-                                        <i class="fas fa-undo-alt"></i>&nbsp;
-                                    </a>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="card">
+                <br />
+                <h4 align="center">Mark Your Attendance</h4>
+                <form onSubmit={handleSubmit} style={{ marginLeft: "20px", marginRight: "20px" }}><br />
+                    <div class="row">
+                        <div class="col">
+                            <div className="form-group ">
+                                <label className="text-muted">Date</label>
+                                <input type="date" id="date" onChange={handleChange('date')} value={date} className="form-control" placeholder="Enter the Date of Birth" required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group ">
+                                <label className="text-muted">In Time</label>
+                                <input type="time" onChange={handleChange('inTime')} value={inTime} className="form-control" placeholder="Enter the Date of Birth" required />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div className="form-group ">
+                                <label className="text-muted">Out Time</label>
+                                <input type="time" onChange={handleChange('outTime')} value={outTime} className="form-control" placeholder="Enter the Date of Birth" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <a className="btn btn-primary btn-lg btn-block" href="#" onClick={() => handleSubmit(staffMembers.employeeId)}>
+                            <i class="fas fa-check-circle">&nbsp; Mark My Attendance</i>
+                        </a>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <a className="btn btn-info btn-lg btn-block" href={`/calenderStaff/${staffMembers.employeeId}`}>
+                            <i class="fas fa-calendar-week">&nbsp; View My Attendance</i>
+                        </a>
+                    </div>
+                    <br />
+                </form>
+
+            </div>
+
+            <div className="card">
+                <div className="card-body">
+                    <h4 align="center">Your Tasks</h4>
+                    <div>
+                        <table responsive className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th >#</th>
+                                    <th >Task Name</th>
+                                    <th >Priority</th>
+                                    <th >Status</th>
+                                    <th>Description</th>
+                                    <th> &nbsp;&nbsp;&nbsp;&nbsp; Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {staffTask.map((staffTask, i) => (
+                                    <tr key={i}>
+                                        <th scope="row">{i + 1}</th>
+                                        <td>{staffTask.TaskName}</td>
+                                        <td>{staffTask.Priority}</td>
+                                        <td>{staffTask.Status}</td>
+                                        <td>{staffTask.Description}</td>
+
+                                        <td>
+                                            &nbsp;
+                                            <a className="btn btn-success" href="#" onClick={() => taskDone(staffTask._id)}>
+                                                <i class="fas fa-check-circle"></i>&nbsp;
+                                            </a>
+                                            &nbsp;
+                                            <a className="btn btn-warning" href="#" onClick={() => taskPending(staffTask._id)}>
+                                                <i class="fas fa-undo-alt"></i>&nbsp;
+                                            </a>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <br /><br />
         </div >

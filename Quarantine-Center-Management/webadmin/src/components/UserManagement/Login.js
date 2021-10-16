@@ -40,56 +40,58 @@ function LoginScreen(props) {
 
 
     return (
-        <div>
-            <div class=" main-wrapper login-body">
-                <div class="login-wrapper">
-                    <div class="container">
-                        <div class="loginbox">
-                            <div class="login-left">
-                                <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo" />
-                            </div>
-                            <div class="login-right">
-                                <div class="login-right-wrap">
-                                    <h1>Login</h1>
-                                    <p class="account-subtitle">Access to our dashboard</p>
+        <div className="container">
+            <div className="card-body">
+                <div class="container">
+                    <div class="login-wrapper">
+                        <div class="">
+                            <div class="loginbox">
+                                <div class="login-left">
+                                    <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo" />
+                                </div>
+                                <div class="login-right">
+                                    <div class="login-right-wrap">
+                                        <h1>Login</h1>
+                                        <p class="account-subtitle">Access to our dashboard</p>
 
 
-                                    <div>
-                                        <div className="form-group" style={{ marginBottom: '15px' }}>
-                                            <label style={{ marginBottom: '5px' }}>Email</label>
-                                            <input required type='email'
-                                                className="form-control"
-                                                placeholder="Enter your email"
-                                                value={email}
-                                                onChange={(e) => { setEmail(e.target.value) }} />
+                                        <div>
+                                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                                <label style={{ marginBottom: '5px' }}>Email</label>
+                                                <input required type='email'
+                                                    className="form-control"
+                                                    placeholder="Enter your email"
+                                                    value={email}
+                                                    onChange={(e) => { setEmail(e.target.value) }} />
+                                            </div>
+
+                                            <div className="form-group" style={{ marginBottom: '15px' }}>
+                                                <label style={{ marginBottom: '5px' }}>Password</label>
+                                                <input required type='password'
+                                                    className="form-control"
+                                                    placeholder="Enter your password"
+                                                    value={password}
+                                                    onChange={(e) => { setPassword(e.target.value) }} />
+                                            </div><br />
+
+
+
+                                            <button onClick={Login}
+                                                className="btn btn-primary btn-block"
+                                                style={{ marginTop: '15px' }}><i className="far fa-check-square" /> Login
+                                            </button>
+                                            <br />
+                                            <br />
+                                            <div class="text-center dont-have">Staff <a href="/staffLogin">Login</a></div>
+
                                         </div>
 
-                                        <div className="form-group" style={{ marginBottom: '15px' }}>
-                                            <label style={{ marginBottom: '5px' }}>Password</label>
-                                            <input required type='password'
-                                                className="form-control"
-                                                placeholder="Enter your password"
-                                                value={password}
-                                                onChange={(e) => { setPassword(e.target.value) }} />
-                                        </div><br />
-
-
-
-                                        <button onClick={Login}
-                                            className="btn btn-primary btn-block"
-                                            style={{ marginTop: '15px' }}><i className="far fa-check-square" /> Login
-                                        </button>
-                                        <br />
-                                        <br />
-                                        <div class="text-center dont-have">Staff <a href="/staffLogin">Login</a></div>
 
                                     </div>
 
-
                                 </div>
-
-                            </div>
-                        </div><br /><br /><br />
+                            </div><br /><br /><br />
+                        </div>
                     </div>
                 </div>
             </div>

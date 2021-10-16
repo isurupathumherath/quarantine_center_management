@@ -7,11 +7,75 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const App = () => {
 
     const [staffMembers, setStaffMembers] = useState([])
     const [wordEntered, setWordEntered] = useState("");
+
+    // state
+    const [state, setState] = useState({
+        startedDate: '',
+        endDate: '',
+    });
+
+    //destructure values from state
+    const {
+        startedDate, endDate
+    } = state;
+
+    function handleChange(name) {
+        return function (event) {
+            setState({ ...state, [name]: event.target.value });
+        };
+    }
+
+
+
+    const handleSubmit = (employeeId) => {
+        // event.preventDefault();
+        // console.table({
+        //     from,
+        //     to,
+        // });
+
+        alert(employeeId)
+        axios
+            .post(`http://localhost:8000/qEmployee/add`, {
+                employeeId,
+                startedDate,
+                endDate,
+            })
+            .then((response) => {
+                console.log(response);
+                //show success alert
+                // alert(`Employee ${response.data.firstName} is Created`);
+                Swal.fire(
+                    `Employee ${response.data.employeeId} is Added`,
+                    'Click Ok to continue',
+                    'success'
+                )
+                //empty state
+                setState({
+                    ...state,
+                    // startedDate: "",
+                    // endDate: "",
+                });
+            })
+            .catch((error) => {
+                console.log(error.Response);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error.response.data.error}`,
+                    // text: `${error.response.data.error}`,
+                    footer: 'Please try again'
+                })
+                // alert(error.response.data.error);
+            });
+    };
+
+
 
     //Fetch All staff Members
     const fetchStaffMembers = () => {
@@ -32,7 +96,8 @@ const App = () => {
             .then(response => {
                 console.log(response)
                 const newFilter = staffMembers.filter((response) => {
-                    return response.NIC.toLowerCase().includes(searchWord.toLowerCase());
+                    return response.NIC.toLowerCase().includes(searchWord.toLowerCase()) ||
+                        response.employeeId.toLowerCase().includes(searchWord.toLowerCase());
                 });
 
                 if (searchWord === "") {
@@ -50,7 +115,7 @@ const App = () => {
     }, [])
 
     return (
-        <div style={{ marginLeft: "20px" }}>
+        <div>
             <div className="card" style={{ width: "1400px" }}>
                 <div className="card-body"></div>
                 <h1 align="center">Add Quarantined Staff Member</h1>
@@ -75,7 +140,7 @@ const App = () => {
                             <th>Employee ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>NIC Number</th>
+                            <th>Type</th>
                             <th>From</th>
                             <th>To</th>
 
@@ -93,27 +158,27 @@ const App = () => {
 
                                 <td>{staffMembers.firstName}</td>
                                 <td>{staffMembers.lastName}</td>
-                                <td>{staffMembers.NIC}</td>
+                                <td>{staffMembers.type}</td>
+
                                 <td>
                                     <div className="form-group">
-                                        <input type="date" className="form-control" required />
+                                        <input type="date" className="form-control" onChange={handleChange('startedDate')} value={startedDate} required />
                                     </div>
                                 </td>
                                 <td>
                                     <div className="form-group">
-                                        <input type="date" className="form-control" required />
+                                        <input type="date" className="form-control" onChange={handleChange('endDate')} value={endDate} required />
                                     </div>
                                 </td>
-                                <td/>
+                                <td />
 
 
                                 <td>
-                                    {/* {() => deleteStaffMember(staffMembers.employeeId)} */}
-                                    <a className="" href="#" onClick="">
-                                        <i className="fa fa-plus-square" width="20px"></i>&nbsp;
+                                    <a className="" href="#" onClick={() => handleSubmit(staffMembers.employeeId)}>
+                                        <i class="fas fa-plus-square">&nbsp; Add</i>
                                     </a>
                                 </td>
-                                <td/>
+                                <td />
                             </tr>
                         ))}
                     </tbody>

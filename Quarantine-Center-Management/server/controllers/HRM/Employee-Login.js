@@ -32,21 +32,3 @@ exports.staffLogin = (req, res) => {
             res.json(employee);
         });
 };
-
-
-
-
-
-
-
-
-    // .exec((err, employee) => {
-    //     if (err) console.log(err);
-    //     if (employee == null) {
-    //         res.json({
-    //             message: 'Invalid User Credentials'
-    //         });
-    //     }
-    //     else
-    //         res.send(employee);
-    // });

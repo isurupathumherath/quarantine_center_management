@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import moment from 'moment';
 // import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const App = () => {
@@ -17,10 +18,9 @@ const App = () => {
     const [wordEntered, setWordEntered] = useState("");
     const [count, setCount] = useState([]);
 
-
     //Fetch All staff Members
     const fetchStaffMembers = () => {
-        axios.get("http://localhost:8000/employee/all-employees")
+        axios.get("http://localhost:8000/qEmployee/showAll")
             .then(response => {
                 console.log(response)
                 setStaffMembers(response.data)
@@ -30,13 +30,13 @@ const App = () => {
     }
 
     //Delete staff Member by ID
-    const deleteStaffMember = (employeeId) => {
+    const deleteQStaff = (employeeId) => {
         axios
-            .delete(`http://localhost:8000/employee/remove/${employeeId}`)
+            .delete(`http://localhost:8000/qEmployee/remove/${employeeId}`)
             .then(response => {
                 // alert(response.data.message);
                 Swal.fire(
-                    `Staff Member ${employeeId} is Deleted`,
+                    `Staff Member ${employeeId} is Removed`,
                     `${response.data.message}`,
                     'success'
                 )
@@ -50,18 +50,11 @@ const App = () => {
         const searchWord = event.target.value;
         console.log(searchWord);
         setWordEntered(searchWord);
-        axios.get("http://localhost:8000/employee/all-employees")
+        axios.get("http://localhost:8000/qEmployee/showAll")
             .then(response => {
                 console.log(response)
                 const newFilter = staffMembers.filter((response) => {
-                    return response.NIC.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.employeeId.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.firstName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.middleName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.lastName.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.type.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.email.toLowerCase().includes(searchWord.toLowerCase()) ||
-                        response.mobileNumber.toString().toLowerCase().includes(searchWord.toLowerCase());
+                    return response.NIC.toLowerCase().includes(searchWord.toLowerCase())
                 });
 
                 if (searchWord === "") {
@@ -82,7 +75,7 @@ const App = () => {
         <div style={{ marginLeft: "50px" }}>
             <div className="card" style={{ width: "1300px" }}>
                 <div className="card-body">
-                    <h1 align="center">Staff Members</h1>
+                    <h1 align="center">Quarantined Staff Members</h1>
                     <br />
                     <div>
                         <center>
@@ -101,7 +94,7 @@ const App = () => {
                                 <div className="row">
                                     <div className="col">
                                         <span style={{ color: "blue" }}><h3>{count}</h3></span>
-                                        <span><h3>Number of Staff Members</h3></span>
+                                        <span><h3>Number of Quarantine Staff Members</h3></span>
                                     </div>
                                     {/* <div className="col">
                                         <i
@@ -129,6 +122,10 @@ const App = () => {
                             </form>
                         </center>
                     </div>
+                    <div>
+
+                    </div>
+
 
 
                     <table id="table" class="table" responsive className="table table-hover" style={{ marginTop: '40px', marginLeft: '20px', width: '95%' }}>
@@ -136,12 +133,10 @@ const App = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Employee ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Employee Type</th>
-                                <th>NIC Number</th>
-                                <th>Email Address</th>
-                                <th>Mobile Number</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Added At</th>
+
                                 <th></th>
                             </tr>
                         </thead>
@@ -154,25 +149,17 @@ const App = () => {
                                         <td>{staffMembers.employeeId}</td>
                                     </a>
 
-                                    <td>{staffMembers.firstName}</td>
-                                    <td>{staffMembers.lastName}</td>
-                                    <td>{staffMembers.type}</td>
-                                    <td>{staffMembers.NIC}.{toString}</td>
-                                    <td>{staffMembers.email}</td>
-                                    <td>{staffMembers.mobileNumber}</td>
-                                    {/* <td>{staffMembers.createdAt}</td> */}
+                                    <td>{moment(staffMembers.startedDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    <td>{moment(staffMembers.endDate).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    <td>{moment(staffMembers.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</td>
 
                                     <td>
-                                        <a className="" href={`/updateStaffMember/${staffMembers.employeeId}`}>
+                                        {/* <a className="" href={`/updateStaffMember/${staffMembers.employeeId}`}>
                                             <i className="fas fa-edit"></i>&nbsp;
                                         </a>
-                                        &nbsp;
-                                        <a className="" href="#" onClick={() => deleteStaffMember(staffMembers.employeeId)}>
+                                        &nbsp; */}
+                                        <a className="" href="#" onClick={() => deleteQStaff(staffMembers.employeeId)}>
                                             <i className="far fa-trash-alt"></i>&nbsp;
-                                        </a>
-                                        &nbsp;
-                                        <a href={`/attendance/${staffMembers.employeeId}`} style={{ textDecoration: 'none' }}>
-                                            <i class="fas fa-calendar-week"></i>&nbsp;
                                         </a>
                                     </td>
                                 </tr>
@@ -180,18 +167,25 @@ const App = () => {
                         </tbody>
                     </table>
                     <br />
-                    <div style={{ marginTop: '', marginLeft: "1030px" }}>
+                    <a className="btn btn-primary btn-lg btn-block" href={`/addQuaratineStaff/`}>
+                        Add a New Quarantine Staff Member
+                    </a>
+
+                    <br />
+                    <div >
                         <ReactHTMLTableToExcel
-                            className='btn btn-outline-success'
+                            className='btn btn-outline-primary btn-lg btn-block'
                             table='table'
-                            filename='Staff Member Excel'
+                            filename='Quarantined Staff Member Excel'
                             sheet='Sheet'
                             buttonText='Download Excel Sheet'
                         />
+
                     </div>
+
                 </div>
             </div>
-        </div>
+        </div >
     )
 
 }

@@ -153,26 +153,20 @@ export const SidebarData = [
                 icon: <IoIcons.IoMdPeople />
             },
             {
-                title: 'ADD SALARY',
+                title: 'SALARY',
                 path: '/addSalary',
                 icon: <IoIcons.IoMdWallet />
             },
             {
-                title: 'ADD QUARANTINE',
-                path: '/addQuaratineStaff',
+                title: 'QUARANTINE',
+                path: '/showQStaff',
                 icon: <IoIcons.IoIosSad />
             },
             {
-                title: 'ADD TASKS',
+                title: 'TASKS',
                 path: '/addTask',
                 icon: <IoIcons.IoIosListBox />
-            },
-            {
-                title: 'EMP LOGIN',
-                path: '/staffLogin',
-                icon: <IoIcons.IoIosListBox />
-            },
-
+            }
         ]
     },
     {
