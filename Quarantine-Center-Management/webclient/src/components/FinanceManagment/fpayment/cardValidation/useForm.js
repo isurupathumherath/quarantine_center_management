@@ -42,28 +42,14 @@ const useForm = () => {
     }
 
     const handleSubmit = e => {
-        e.preventDefault()
-        setErrors(validateInfo(values))
+        e.preventDefault() 
 
-        dispatch(createPayment(values));
-
-        // if (formValid(this.state)) {
-        // console.log(`
-        //     --SUBMITING--
-        //     User ID : ${this.state.userID}
-        //     First name : ${this.state.firstName}
-        //     Last Name : ${this.state.lastName}
-        //     email : ${this.state.email}
-        //     address : ${this.state.address}
-        //     constactNumber : ${this.state.contactNumber}
-        // `)
-
-        // alert("tets")
-        // const res = axios.post('http://localhost:8000/payment/createPaymentDetails', this.values);
-
-        // } else {
-        //     console.error("FORM INVALID - DISPLAY ERROR MASAGE")
-        // }
+        if (values =="") {
+            console.log("test")
+            setErrors(validateInfo(values)) 
+        } else {
+            dispatch(createPayment(values));
+        }
     };
 
     return { handleChange, handleFocus, handleSubmit, values, errors };

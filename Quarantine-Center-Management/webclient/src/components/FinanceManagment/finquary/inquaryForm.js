@@ -38,7 +38,8 @@ class InquaryForm extends Component {
             description: null,
             piority: null,
             states: "1",
-            userID: localStorage.getItem("userID"),
+            // userID: localStorage.getItem("userID"),
+            userID: JSON.parse(localStorage.getItem('currentUser'))._id, 
             formErrors: {
                 title: "",
                 type: "",

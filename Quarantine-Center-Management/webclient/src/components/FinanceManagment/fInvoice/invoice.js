@@ -31,6 +31,10 @@ function Invoice() {
         })
     }
 
+    var Total = (parseInt(localStorage.getItem('orderToatal')) + parseInt(localStorage.getItem('bookingTotal')));
+
+    localStorage.setItem("TotalPrice",Total)
+
     return (
         <div id="example">
             <div class="invoice-content">
@@ -68,7 +72,7 @@ function Invoice() {
                                     <div class="invoice-info invoice-info2">
                                         <strong class="customer-text">Invoice To</strong>
                                         <p class="invoice-details">
-                                            {JSON.parse(localStorage.getItem('currentUser')).lName+ " " + localStorage.getItem("lastName")} <br />
+                                            {JSON.parse(localStorage.getItem('currentUser')).fName + " " + JSON.parse(localStorage.getItem('currentUser')).lName} <br />
                                             {localStorage.getItem("address")} <br />
                                             {localStorage.getItem("contactNumber")} <br />
                                         </p>
@@ -93,14 +97,14 @@ function Invoice() {
                                                 <tr>
                                                     <td>Food & Brevarage Order Total</td>
                                                     <td class="text-center">1</td>
-                                                    <td class="text-center">$0</td>
-                                                    <td class="text-right">$100</td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-right">{localStorage.getItem('orderToatal')}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Room Booking Total</td>
                                                     <td class="text-center">1</td>
                                                     <td class="text-center">$0</td>
-                                                    <td class="text-right">$250</td>
+                                                    <td class="text-right">{localStorage.getItem('bookingTotal')}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -112,7 +116,7 @@ function Invoice() {
                                             <tbody>
                                                 <tr>
                                                     <th>Subtotal:</th>
-                                                    <td><span>$350</span></td>
+                                                    <td><span>Rs. {Total}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Discount:</th>
@@ -120,7 +124,7 @@ function Invoice() {
                                                 </tr>
                                                 <tr>
                                                     <th>Total Amount:</th>
-                                                    <td><span>$315</span></td>
+                                                    <td><span>Rs. {Total}</span></td>
                                                 </tr>
                                             </tbody>
                                         </table>

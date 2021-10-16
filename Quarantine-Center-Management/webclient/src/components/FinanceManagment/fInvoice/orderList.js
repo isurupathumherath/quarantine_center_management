@@ -11,15 +11,22 @@ const OrderList = ({ }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(gteOrderData(localStorage.getItem("userID")));
+        // dispatch(gteOrderData(localStorage.getItem("userID")));
+        dispatch(gteOrderData(JSON.parse(localStorage.getItem('currentUser'))._id));
+
     }, [currentID, dispatch])
 
     const orders = useSelector((state) => state.ForderData);
 
-    // const resultOrder = orders.reduce((total, currentValue) => total = total + currentValue.total, 0);
-    // console.log("order" + resultOrder);
+    // const resultOrder = orders.reduce((total, currentValue) => total = total + currentValue.price, 0);
+    // console.log("Order" + resultOrder);
 
-    // localStorage.setItem("orderToatal", resultOrder);
+    // localStorage.setItem("orderTotal", resultOrder);
+
+    const resultOrder = orders.reduce((total, currentValue) => total = total + currentValue.total, 0);
+    console.log("order" + resultOrder);
+
+    localStorage.setItem("orderToatal", resultOrder);
     var idTest = 0
 
     return (

@@ -39,7 +39,8 @@ class PayerForm extends Component {
             address: null,
             lastName: null,
             firstName: null,
-            userID: localStorage.getItem("userID"),
+            // userID: localStorage.getItem("userID"),
+            userID: JSON.parse(localStorage.getItem('currentUser'))._id, 
             formErrors: {
                 contactNumber: "",
                 email: "",

@@ -40,15 +40,16 @@ const PaymentGateway = ({ }) => {
 
         const options = {
             key: "rzp_test_dabcL4yPyzeWS3", // Enter the Key ID generated from the Dashboard
-            amount: amount.toString(),
+            amount: localStorage.getItem("TotalPrice").toString(),
             currency: currency,
-            name: "Soumya Corp.",
+            name: JSON.parse(localStorage.getItem('currentUser')).fName,
             description: "Test Transaction",
             // image: { logo },
             order_id: order_id,
             handler: async function (response) {
                 const data = {
-                    userID : "102",
+                    // userID : "102",
+                    userID : JSON.parse(localStorage.getItem('currentUser'))._id, 
                     orderCreationId: order_id,
                     razorpayPaymentId: response.razorpay_payment_id,
                     razorpayOrderId: response.razorpay_order_id,
@@ -66,18 +67,18 @@ const PaymentGateway = ({ }) => {
                     showCancelButton: true,
                     focusConfirm: false,
                     confirmButtonText:
-                        '<a href="/index">Back To Home</a>',
+                        '<a href="/home">Back To Home</a>',
                     cancelButtonText:
                         'Cancel',
                 })
             },
             prefill: {
-                name: "Soumya Dey",
-                email: "SoumyaDey@example.com",
+                name: JSON.parse(localStorage.getItem('currentUser')).fName,
+                email: JSON.parse(localStorage.getItem('currentUser')).email,
                 contact: "9999999999",
             },
             notes: {
-                address: "Soumya Dey Corporate Office",
+                address: JSON.parse(localStorage.getItem('currentUser')).address,
             },
             theme: {
                 color: "#61dafb",
@@ -94,7 +95,7 @@ const PaymentGateway = ({ }) => {
         <div className="App">
             <p>Buy React now!</p>
             <button className="App-link" onClick={displayRazorpay}>
-                Pay ₹500
+               {localStorage.getItem("TotalPrice")}
             </button>
         </div>
     );

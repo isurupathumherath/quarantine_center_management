@@ -14,7 +14,8 @@ const InquaryList = ({ }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(InquaryDetails(localStorage.getItem("userID")));
+        // dispatch(InquaryDetails(localStorage.getItem("userID")));
+        dispatch(InquaryDetails(JSON.parse(localStorage.getItem('currentUser'))._id)); 
     }, [currentId, dispatch]);
 
     const inquarys = useSelector((state) => state.Finquary);

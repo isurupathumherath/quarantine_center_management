@@ -16,7 +16,8 @@ export default function Booking() {
 
     useEffect(() => {
         const getData = () => {
-            fetch('http://localhost:8000/invoice/bookingDetails/' + localStorage.getItem("userID"))
+            // fetch('http://localhost:8000/invoice/bookingDetails/' + localStorage.getItem("userID"))
+            fetch('http://localhost:8000/invoice/bookingDetails/' + JSON.parse(localStorage.getItem('currentUser'))._id) 
                 .then(response => response.json())
                 .then(json => {
                     // hideLoader();
