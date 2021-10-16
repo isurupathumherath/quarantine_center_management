@@ -84,6 +84,23 @@ function Header() {
               </li>
               <li class="has-submenu">
                 <a href="#">
+                  Room Management <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                  <li>
+                    <a href={"/bookingView"}>Available Rooms</a>
+                  </li>
+                  <li>
+                    <a href={"/booking"}>Booking</a>
+                  </li>
+                  <li>
+                    <a href={"/feedback"}>Feedback</a>
+                  </li>
+
+              </ul>
+              </li>
+              <li class="has-submenu">
+                <a href="#">
                   Patients <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="submenu">
