@@ -25,6 +25,7 @@
     "component": "^1.1.0",
     "es6-promise": "^4.2.8",
     "feather-icons-react": "^0.4.3",
+    "generate-unique-id": "^2.0.1",
     "goober": "^2.0.41",
     "hammerjs": "^2.0.8",
     "isomorphic-fetch": "^3.0.0",

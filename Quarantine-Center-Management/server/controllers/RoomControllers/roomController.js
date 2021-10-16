@@ -6,7 +6,7 @@ var uniqid = require('uniqid')
 
 var { room } = require('../../models/RoomModels/room')
 var { booking } = require('../../models/RoomModels/booking')
-var { feedback } = require('../models/RoomModels/feedback')
+var { feedback } = require('../../models/RoomModels/feedback')
 
 router.get('/',(req,res)=>{
     room.find((err,docs)=>{

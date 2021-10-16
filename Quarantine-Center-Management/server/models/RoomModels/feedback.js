@@ -12,4 +12,6 @@ var feedback = mongoose.model('feedback',{
     feedback: {type:String},
 })
 
+
 module.exports = { feedback }
+
