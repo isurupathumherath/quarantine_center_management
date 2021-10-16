@@ -63,23 +63,33 @@ export default function CheckupRepo(){
             const doc = new jsPDF(orientation, unit, size);
         
             doc.setFontSize(15);
-        
-            const title = "Body Temperature Checkups Report";
+            
+            const title = "Body Temperature Checkup Results Summary";
+           
             const headers = "Latest Body Temperature Checkups based on Dates";
         
             
             
-        
-            doc.text(title, 250, 40);
+            doc.setTextColor("blue")
+            doc.text(title, 130, 40);
+            doc.setTextColor("black")
             doc.text(headers,marginLeft,70);
+
+            doc.setTextColor("green");
+            doc.text("From",marginLeft,100);
+            doc.text(String(date),marginLeft+40,100);
+            doc.text("To",marginLeft+160,100);
+            doc.text(String(lastday),225,100);
+            doc.setTextColor("black")
+
           
             
         
             let left=marginLeft;
             let top=150;
-            doc.text("Date",marginLeft,120);
+            doc.text("Date",marginLeft,130);
            
-            doc.text("No of Checkups done",360,120);
+            doc.text("No of Checkups done",360,130);
         
             report.map((data)=>{
                 doc.text("------------------------------------------------------------------------------------------------------------",left,top);
@@ -105,7 +115,7 @@ export default function CheckupRepo(){
                
             })
 
-            doc.save("Temperature Checkups Results Report.pdf");
+            doc.save("Temperature Checkups Results Summmary.pdf");
         
         }
     
@@ -121,25 +131,27 @@ export default function CheckupRepo(){
           textShadow:"5px 5px 3.5px #278ea5",
           fontWeight: "bold",
           position: "relative",
-          left: "350px",
+          left: "200px",
           top:"-20px"
         }}>Analysis of Body Temperature Checkup Results</h1>
 
-        <button className="btn btn-dark" onClick={()=>exportPDF()} style={{position:"relative",top:"-30px",left:"40px"}}>Get the details as a pdf</button>
+        <button className="btn btn-dark" onClick={()=>exportPDF()} style={{position:"relative",top:"-10px",left:"40px"}}>Get the summary as a PDF</button>
 
 
            
-            <div style={{width: "45%",float: "left",padding: "20px",position:"relative",left:"40px"}}> 
+           
              <div className = "container">
 
                 <br></br>
                 <br></br>
-                <h3 className="heading fw-bold" style={{ textAlign: "center"}}>Body Temperature Checkups done on each day</h3>
+                <h3 className="heading fw-bold" style={{ textAlign: "center", borderStyle: "solid",
+              borderColor: "#278ea5"}}>Body Temperature Checkups done on each day</h3>
 
 
                <div class="card bg-light mb-3">
 
                   <div class="card-body">
+                   <center>   
                   <h4>Enter the time period you want the analysis to get generated on</h4>
 
                     
@@ -147,7 +159,7 @@ export default function CheckupRepo(){
 
                          <div class="form-row align-items-center">
 
-                              <div class="col-auto my-1">
+                              <div class="col-auto my-1" style={{position:"relative",left:"280px"}}>
 
                                   <div className="mb-3">
 
@@ -163,7 +175,7 @@ export default function CheckupRepo(){
                                   
                               </div>
 
-                              <div class="col-auto my-1">
+                              <div class="col-auto my-1" style={{position:"relative",left:"400px"}}>
 
                                  <div className="mb-3">
 
@@ -187,6 +199,7 @@ export default function CheckupRepo(){
 
 
                     </form>
+                    </center>
 
                   </div>
 
@@ -200,18 +213,18 @@ export default function CheckupRepo(){
             {/* <div style={{width: "45%",float: "left",padding: "20px",border: "2px solid gray",maxHeight:"860px"
             }}> */}
 
-
+            <div style={{width: "45%",float: "left",padding: "20px",position:"relative",left:"40px"}}> 
             <table class="table" >
 
               <thead>
 
-                <tr>
+               
 
-                  <th scope="col">Date</th>
+                  <th >Date</th>
 
-                  <th scope="col">Total</th>
+                  <th >Total</th>
 
-                </tr>
+               
 
               </thead>
 
@@ -240,7 +253,7 @@ export default function CheckupRepo(){
 
                </tbody>
 
-             </table>
+             </table></div>
             <div style={{width: "45%",float: "left",padding: "20px",position:"relative",left:"40px"}}> 
             <PieChart width={400} height={250}>
                                     <Pie data={data4} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8"/>
@@ -266,7 +279,7 @@ export default function CheckupRepo(){
            
             </center>
 
-            </div></div></div>
+            </div></div>
 
 
 

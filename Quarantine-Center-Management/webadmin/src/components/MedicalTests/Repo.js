@@ -103,22 +103,31 @@ export default function Repo(){
     
         doc.setFontSize(15);
     
-        const title = "PCR Test Results Report";
+        const title = "PCR Test Results Summary";
         const headers = "PCR Test Results Analysis based on Results";
     
         
         
-    
-        doc.text(title, 250, 40);
+        doc.setTextColor("blue")
+        doc.text(title, 200, 40);
+        doc.setTextColor("black")
         doc.text(headers,marginLeft,70);
+
+
+        doc.setTextColor("green")
+        doc.text("From",marginLeft,100);
+        doc.text(String(date),marginLeft+40,100);
+        doc.text("To",marginLeft+160,100);
+        doc.text(String(lastday),225,100);
+        doc.setTextColor("black")
       
         
     
         let left=marginLeft;
         let top=150;
-        doc.text("Result",marginLeft,120);
+        doc.text("Result",marginLeft,135);
        
-        doc.text("No of Patients",360,120);
+        doc.text("No of Patients",360,135);
     
         report.map((data)=>{
             doc.text("------------------------------------------------------------------------------------------------------------",left,top);
@@ -144,11 +153,20 @@ export default function Repo(){
            
         })
 
-        top=top+20;
+        top=top+40;
 
         doc.text("PCR Tests Results Analysis on Result and Test Number",marginLeft,top)
-        
         top=top+30;
+
+        doc.setTextColor("green")
+        doc.text("From",marginLeft,top);
+        doc.text(String(date1),marginLeft+40,top);
+        doc.text("To",marginLeft+160,top);
+        doc.text(String(lastday1),225,top);
+        doc.setTextColor("black")
+            
+        
+        top=top+40;
         doc.text("Result",marginLeft,top);
         doc.text("Test No",200,top);
         doc.text("No of Patients",360,top);
@@ -208,19 +226,20 @@ export default function Repo(){
           top:"-20px"
         }}>Analysis of PCR Test Results</h1>
 
-            <button className="btn btn-dark" onClick={()=>exportPDF()} style={{position:"relative",top:"-30px",left:"40px"}}>Get the details as a pdf</button>
+            <button className="btn btn-dark" onClick={()=>exportPDF()} style={{position:"relative",top:"-30px",left:"-500px"}}>Get the summary as a PDF</button>
 
             <div style={{width: "45%",float: "left",padding: "20px",position:"relative",left:"40px"}}> 
              <div className = "container">
 
                 <br></br>
                 <br></br>
-                <h3 className="heading fw-bold" style={{ textAlign: "center"}}>PCR Test Results Analysis Based on Results</h3>
+                <h3 className="heading fw-bold" style={{ textAlign: "center", borderStyle: "solid",
+              borderColor: "#278ea5"}}>PCR Test Results Analysis Based on Results</h3>
 
 
                <div class="card bg-light mb-3">
 
-                  <div class="card-body">
+                  <div class="card-body"><br/>
                   <h4>Enter the time period you want the analysis to get generated on</h4>
 
                     
@@ -282,15 +301,15 @@ export default function Repo(){
             }}> */}
 
 
-            <table class="table" >
+            <table class="table" style={{ outline: "2px groove black"}}>
 
-              <thead>
+              <thead >
 
               
 
-                  <th scope="col">Result</th>
+                  <th  scope="col">Result</th>
 
-                  <th scope="col">Total</th>
+                  <th  scope="col">Total</th>
 
                 
               </thead>
@@ -356,7 +375,8 @@ export default function Repo(){
 
                 <br></br>
                 <br></br>
-                <h3 className="heading fw-bold" style={{ textAlign: "center"}}>PCR Test Results Analysis Based on Results and Test Number</h3>
+                <h3 className="heading fw-bold" style={{ textAlign: "center", borderStyle: "solid",
+              borderColor: "#278ea5"}}>PCR Test Results Analysis Based on Results and Test Number</h3>
 
 
                 <div class="card bg-light mb-3" >
@@ -417,7 +437,7 @@ export default function Repo(){
     
       {/* <div style={{width: "45%",float: "left",padding: "20px",border: "2px solid gray",maxHeight:"860px"}}> */}
         
-        <table class="table">
+        <table class="table" style={{ outline: "2px groove black"}}>
 
          <thead>
 

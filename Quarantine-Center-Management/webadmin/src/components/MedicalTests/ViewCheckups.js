@@ -174,14 +174,15 @@ const handleFilter = (event) => {
     
                             <Link to={"/UpdateCheckup"}>
     
-                              <button class="btn btn-primary" className="fas fa-edit" style={{
+                              <button class="btn btn-primary"  style={{backgroundColor:"#FDD017",height:"30px",color:"black",
 
                                 
                                  }}id="view" onClick={()=>setData(Checkups)}>Update</button>
 
                             </Link>
                             <Link to = {"/DeleteCheckup"}>
-                              <button class="btn btn-primary" className="far fa-trash-alt" style={{
+                              <button class="btn btn-primary" style={{backgroundColor:"red",height:"30px",color:"black",
+
                                   position:"relative",
                                   left:"5px",
                                 
