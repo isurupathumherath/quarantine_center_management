@@ -4,15 +4,15 @@
  */
 
 const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const EmployeeSchema = new mongoose.Schema({
     employeeId: {
-        type: String, 
+        type: String,
         required: true
     },
     firstName: {
-        type:String,
+        type: String,
         trim: true,
         uppercase: true,
         required: true
@@ -57,20 +57,25 @@ const EmployeeSchema = new mongoose.Schema({
         default: "employee"
     },
     username: {
-        type: String, 
+        type: String,
         unique: true,
         lowercase: true,
         required: true
     },
     password: {
-        type:String,
+        type: String,
         min: 8,
         required: true
     },
     accountStatus: {
         type: String,
         required: true
+    },
+    profileURL: {
+        type: String,
+        required: false
     }
-}, {timestamps: true});
+
+}, { timestamps: true });
 
 module.exports = mongoose.model('Employee', EmployeeSchema);

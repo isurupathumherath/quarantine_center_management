@@ -1,22 +1,22 @@
 /*
     Created by - Isuru Pathum Herath
-    On - 17/09/2021
-    Name - Quarantined Employee CRUD
-    Last Updated - 20/09/2021
+    On - 13/10/2021
+    Name - Staff Attendance Mark CRUD
+    Last Updated - 13/10/2021
  */
 
-const QEmployee = require('../../models/HRM/QuarantinedEmployee');
+const Attendance = require('../../models/HRM/StaffAttendance');
 require('dotenv').config();
 
 /*
-Name - Add Quarantined Employee
-Date - 20/09/2021
+Name - Add Staff Attendance
+Date - 13/10/2021
  */
 exports.create = (req, res) => {
 
-    const { employeeId, startedDate, endDate } = req.body
+    const { employeeId, date, inTime, outTime } = req.body
 
-    console.log(employeeId, startedDate, endDate);
+    console.log(employeeId, date, inTime, outTime);
 
     //Check Empty Parameters
     switch (true) {
@@ -24,56 +24,47 @@ exports.create = (req, res) => {
             return res.status(400).json({
                 error: 'Employee ID is required'
             });
-        case !startedDate:
+        case !date:
             return res.status(400).json({
-                error: 'Started Date is required'
+                error: 'Date is required'
             });
-        case !endDate:
+        case !inTime:
             return res.status(400).json({
-                error: 'End Date is required'
+                error: 'In Time is required'
             });
-        //  case !email:
-        //      return res.status(400).json({
-        //          error: 'Email Address is required'
-        //      });
+        case !outTime:
+            return res.status(400).json({
+                error: 'Out Time is required'
+            });
     }
 
     //Check Server Errors
-    QEmployee.create({ employeeId, startedDate, endDate }, (err, qemployee) => {
+    Attendance.create({ employeeId, date, inTime, outTime }, (err, response) => {
 
         //Check Server Errors
         if (err) {
-            console.log(err)
-            console.log("Error = " + err.code)
-            console.log("Error Message = " + err.message)
-            if (err.keyPattern.employeeId == 1) {
-                res.status(400).json({
-                    error: 'Employee ID is already used'
-                });
-            }
-            else {
-                res.status(400).json({
-                    error: 'Internal Server Error! Try Again!'
-                });
-            }
 
+            res.status(400).json({
+                error: 'Internal Server Error! Try Again!'
+            });
         }
-        res.json(qemployee);
+        else
+            res.json(response);
     });
+
 };
 
 /*
-Name - Display All Quarantined Employee
-Date - 20/09/2021
+Name - All Attendance
+Date - 13/10/2021
  */
-
 exports.showAll = (req, res) => {
-    QEmployee.find({})
+    Attendance.find({})
         // .limit(10)
-        .sort({ createdAt: -1 })
-        .exec((err, qemployee) => {
+        // .sort({ createdAt: -1 })
+        .exec((err, attendance) => {
             if (err) console.log(err);
-            res.json(qemployee);
+            res.json(attendance);
         });
 };
 
@@ -84,10 +75,10 @@ Date - 22/08/2021
 exports.readByDatabaseId = (req, res) => {
     const { id } = req.params
     console.log(req.params.id)
-    QEmployee.findOne({ id })
-        .exec((err, qemployee) => {
+    Attendance.find({ employeeId: id })
+        .exec((err, at) => {
             if (err) console.log(err);
-            res.json(qemployee);
+            res.json(at);
         });
 };
 

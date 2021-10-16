@@ -15,7 +15,8 @@
 
 # folder-structure
 
-<b>client </br> <br>
+<b>webadmin - admin side </br> <br>
+<b>webclient - client side </br> <br>
 <b>server </br> <br>
 <ul>
     <li>contollers      - Business Logic</li>
@@ -40,6 +41,7 @@
   <li>body-parser - Data pasing between client and server (https://www.npmjs.com/package/body-parser)</li>
   <li>morgan - HTtP request logger middleware for node.js (https://www.npmjs.com/package/morgan)</li>
   <li>nodemon - Helps to automatically restart the node application when file changes (https://www.npmjs.com/package/nodemon)</li>
+  
 </ul><br>
 
 <br><b>Additional Packages</b><br>
@@ -49,4 +51,8 @@
   <li>generate-unique-id - Generate random unique ID (https://www.npmjs.com/package/generate-unique-id)</li>
   <li>generate-password - Generate random unique password (https://www.npmjs.com/package/generate-password)</li>
   <li>nodemailer - Send email from node application (https://www.npmjs.com/package/nodemailer)</li>
+  <li>@material-ui/core</li>
+  <li>@testing-library/jest-dom</li>
+  <li>@testing-library/react</li>
+  <li>@testing-library/user-event</li>
 </ul><br>
